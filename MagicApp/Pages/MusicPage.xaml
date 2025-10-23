@@ -6,9 +6,32 @@
     xmlns:local="using:MagicApp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled">
 
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <AutoSuggestBox PlaceholderText="在此键入搜索音乐"  MinWidth="200" MaxWidth="600" Grid.Row="0" Grid.Column="1" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" Name="SearchBox"/>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Grid.Column="1"
+            Grid.Row="1">
+            <TextBlock Text="音乐来源：" VerticalAlignment="Center"/>
+            <Image Source="https://s1.music.126.net/style/favicon.ico?v20180823" Height="20" Width="20" Name="Icon"/>
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" SelectedValue="网易云音乐" SelectionChanged="ComboBox_SelectionChanged">
+                <x:String>网易云音乐</x:String>
+            </ComboBox>
+        </StackPanel>
+        <WebView2 Grid.Column="1" Grid.Row="2" Name="explorer"/>
     </Grid>
 </Page>

@@ -6,9 +6,53 @@
     xmlns:local="using:MagicApp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
+    Loading="Page_Loading">
 
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0"/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Grid.Column="1"
+            Grid.Row="0">
+            <Image  Height="20" Width="20" Name="Icon"/>
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Grid.Column="3"
+            Grid.Row="0">
+            <ComboBox
+                Name="ComboBox"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="100"
+                SelectionChanged="ComboBox_SelectionChanged">
+                <x:String>Google</x:String>
+                <x:String>Bing</x:String>
+                <x:String>百度</x:String>
+            </ComboBox>
+        </StackPanel>
+        <AutoSuggestBox PlaceholderText="在此键入进行搜索"  MinWidth="200" Height="35" Grid.Row="0" Grid.Column="5" QueryIcon="Find" TextChanged="SearchBox_TextChanged" Name="SearchBox"/>
+        <AppBarButton Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="NewWindow" ToolTipService.ToolTip="在浏览器打开此网页" Click="AppBarButton_Click"/>
+        <WebView2 Grid.ColumnSpan="9" Grid.Row="1" Name="explorer"/>
+        <TextBlock Grid.Row="2" Name="Text"/>
     </Grid>
 </Page>

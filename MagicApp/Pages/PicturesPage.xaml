@@ -6,9 +6,81 @@
     xmlns:local="using:MagicApp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loading="Page_Loading">
 
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Grid.ColumnSpan="6"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <ProgressRing/>
+        </StackPanel>
+        <Image  Grid.Row="0" Grid.ColumnSpan="9" Name="Picture"/>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            Orientation="Horizontal">
+            <Image Height="20" Width="20" Name="Icon"/>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="3"
+            Orientation="Horizontal">
+            <ComboBox
+                Name="ComboBox"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                SelectionChanged="ComboBox_SelectionChanged">
+                <x:String>Bing</x:String>
+                <x:String>NASA</x:String>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="5"
+            Orientation="Horizontal">
+            <Button
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="50">
+                <SymbolIcon Symbol="Important"/>
+                <Button.Flyout>
+                    <Flyout>
+                        <StackPanel>
+                            <TextBlock Name="InfoTitle" Style="{ThemeResource BaseTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Width="400"/>
+                            <TextBlock Name="InfoBody" FontSize="12" TextWrapping="Wrap" Width="400"/>
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="7"
+            Orientation="Horizontal">
+            <Button
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="50">
+                <SymbolIcon Symbol="Download"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>

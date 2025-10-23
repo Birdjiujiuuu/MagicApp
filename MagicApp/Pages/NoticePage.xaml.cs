@@ -5,6 +5,8 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.AppNotifications;
+using Microsoft.Windows.AppNotifications.Builder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +28,15 @@ namespace MagicApp.Pages
         public NoticePage()
         {
             InitializeComponent();
+        }
+
+        private void Send_Click(object sender, RoutedEventArgs e)
+        {
+            AppNotification notification = new AppNotificationBuilder()
+                .AddText(ContectTitle.Text)
+                .AddText(Contect.Text)
+                .BuildNotification();
+            AppNotificationManager.Default.Show(notification);
         }
     }
 }

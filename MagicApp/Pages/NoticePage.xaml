@@ -9,6 +9,57 @@
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1">
 
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Grid>
+                <Grid.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="500"/>
+                    </TransitionCollection>
+                </Grid.ChildrenTransitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" FontSize="20">
+                <Span>
+                    <Bold>在此处编辑您的通知内容</Bold>
+                </Span>
+                </TextBlock>
+                <TextBlock Grid.Row="2" Text="标题"/>
+                <AutoSuggestBox Grid.Row="3" Name="ContectTitle" PlaceholderText="标题"/>
+                <TextBlock Grid.Row="5" Text="内容"/>
+                <AutoSuggestBox Grid.Row="6" Name="Contect" PlaceholderText="内容"/>
+                <TextBlock Grid.Row="8" Text="Logo"/>
+                <Button Grid.Row="9" Name="PickLogo" Content="打开图片" IsEnabled="False"/>
+                <TextBlock Grid.Row="11" Text="附加图片"/>
+                <Button Grid.Row="12" Name="PickPhoto" Content="打开图片" IsEnabled="False"/>
+                <Button Grid.Row="100" Name="Send" Content="发送" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" Click="Send_Click"/>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>

@@ -71,10 +71,8 @@ namespace MagicApp
                 try
                 {
                     string url = "https://birdjiujiuuu.github.io/magicapp/source/winui3/home/bgm.txt";
-                    // 发送GET请求
                     var response = await httpClient.GetAsync(url);
 
-                    // 检查请求是否成功
                     if (response.IsSuccessStatusCode)
                     {
                         string retString = await response.Content.ReadAsStringAsync();
@@ -90,7 +88,6 @@ namespace MagicApp
                         int Covera = retString.IndexOf("<cover>");
                         int Coverb = retString.IndexOf("</cover>");
                         string Cover = retString.Substring(Covera + 7, Coverb - Covera - 7);
-                        //各种抓取和解析
                         Uri BgmUri = new Uri(BgmMedia);
                         MediaPlayer.Source = MediaSource.CreateFromUri(BgmUri);
                         BitmapImage CoverUri = new BitmapImage();

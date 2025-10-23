@@ -27,5 +27,17 @@ namespace MagicApp.Pages
         {
             InitializeComponent();
         }
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            string url = "https://music.163.com/#/search/m/?s=" + SearchBox.Text;
+            Uri targetUri = new Uri(url);
+            explorer.Source = targetUri;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

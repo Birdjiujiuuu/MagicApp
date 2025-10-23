@@ -5,10 +5,81 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MagicApp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:MagicApp.UI.Controls"
+    mc:Ignorable="d"
+    Loading="Page_Loading">
 
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <!--动画-->
+            <StackPanel.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="500"/>
+                </TransitionCollection>
+            </StackPanel.ChildrenTransitions>
+            <!--内容-->
+            <controls:ContentControl
+                Header="外观"
+                Description="切换浅色/深色模式">
+                <controls:ContentControl.Icon>
+                    <FontIcon Glyph="&#xE790;"/>
+                </controls:ContentControl.Icon>
+                <ComboBox x:Name="ColorMode" SelectionChanged="ColorMode_SelectionChanged">
+                    <x:String>使用 Windows 默认</x:String>
+                    <x:String>浅色</x:String>
+                    <x:String>深色</x:String>
+                </ComboBox>
+            </controls:ContentControl>
+            <Grid Height="5"/>
+            <controls:ContentControl
+                Header="语言"
+                Description="选择应用要显示的语言">
+                <controls:ContentControl.Icon>
+                    <FontIcon Glyph="&#xF2B7;"/>
+                </controls:ContentControl.Icon>
+                <ComboBox x:Name="Language">
+                    <x:String>一种很新的语言(天朝)</x:String>
+                    <x:String>简体中文</x:String>
+                    <x:String>繁體中文</x:String>
+                    <x:String>日本語</x:String>
+                    <x:String>English</x:String>
+                </ComboBox>
+            </controls:ContentControl>
+            <Grid Height="5"/>
+            <controls:ContentControl
+                x:Name="AppVersion"
+                Header="版本更新">
+                <controls:ContentControl.Icon>
+                    <FontIcon Glyph="&#xE895;"/>
+                </controls:ContentControl.Icon>
+                <StackPanel Orientation="Horizontal">
+                    <ProgressRing x:Name="CheckUpdateProgressRing" IsActive="False"/>
+                    <StackPanel Width="5"/>
+                    <Button x:Name="CheckUpdate" Content="检查更新" Style="{StaticResource AccentButtonStyle}" Click="CheckUpdate_Click"/>
+                </StackPanel>
+            </controls:ContentControl>
+            <Grid Height="5"/>
+            <controls:ContentControl
+                Image="/Assets/StoreLogo.png"
+                Header="神奇的应用程序"
+                Description="©2025 Birdjiujiuuu">
+                <RichTextBlock>
+                    <Paragraph>
+                        <Hyperlink NavigateUri="https://birdjiujiuuu.github.io/magicapp/">官方网站</Hyperlink>
+                        <Hyperlink NavigateUri="https://github.com/Birdjiujiuuu/MagicApp">源代码</Hyperlink>
+                    </Paragraph>
+                </RichTextBlock>
+            </controls:ContentControl>
+        </StackPanel>
     </Grid>
 </Page>
