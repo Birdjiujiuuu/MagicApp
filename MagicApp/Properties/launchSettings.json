@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MagicApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MagicApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
