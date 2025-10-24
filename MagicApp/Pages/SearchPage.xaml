@@ -7,8 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    NavigationCacheMode="Enabled"
-    Loading="Page_Loading">
+    NavigationCacheMode="Enabled">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,7 +24,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
         <StackPanel
             Orientation="Horizontal"
@@ -44,15 +42,15 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Width="100"
+                SelectedIndex="0"
                 SelectionChanged="ComboBox_SelectionChanged">
-                <x:String>Google</x:String>
-                <x:String>Bing</x:String>
-                <x:String>百度</x:String>
+                <ComboBoxItem Name="Google" Content="Google"/>
+                <ComboBoxItem Name="Bing" Content="Bing"/>
+                <ComboBoxItem Name="Baidu" Content="百度"/>
             </ComboBox>
         </StackPanel>
         <AutoSuggestBox PlaceholderText="在此键入进行搜索"  MinWidth="200" Height="35" Grid.Row="0" Grid.Column="5" QueryIcon="Find" TextChanged="SearchBox_TextChanged" Name="SearchBox"/>
         <AppBarButton Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="NewWindow" ToolTipService.ToolTip="在浏览器打开此网页" Click="AppBarButton_Click"/>
         <WebView2 Grid.ColumnSpan="9" Grid.Row="1" Name="explorer"/>
-        <TextBlock Grid.Row="2" Name="Text"/>
     </Grid>
 </Page>

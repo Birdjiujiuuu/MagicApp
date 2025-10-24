@@ -48,8 +48,9 @@ namespace MagicApp
             var centerY = displayArea.WorkArea.Y + (displayArea.WorkArea.Height - appWindow.Size.Height) / 2;
             appWindow.Move(new Windows.Graphics.PointInt32(centerX, centerY));
 
+            NavView.SelectedItem = Home;
             ContentFrame.Navigate(typeof(HomePage), null);
-            NavView.Header = home.Content;
+            NavView.Header = Home.Content;
 
             this.MusicRefresh_Click(this, new RoutedEventArgs());
         }
@@ -118,10 +119,10 @@ namespace MagicApp
         {
             FrameNavigationOptions navOptions = new FrameNavigationOptions();
             navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
-            if (args.InvokedItemContainer == home)
+            if (args.InvokedItemContainer == Home)
             {
                 ContentFrame.Navigate(typeof(HomePage), null);
-                NavView.Header = home.Content;
+                NavView.Header = Home.Content;
             }
             else if (args.InvokedItemContainer == Pictures)
             {

@@ -28,8 +28,8 @@
             Grid.Row="1">
             <TextBlock Text="音乐来源：" VerticalAlignment="Center"/>
             <Image Source="https://s1.music.126.net/style/favicon.ico?v20180823" Height="20" Width="20" Name="Icon"/>
-            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" SelectedValue="网易云音乐" SelectionChanged="ComboBox_SelectionChanged">
-                <x:String>网易云音乐</x:String>
+            <ComboBox Name="ComboBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem Name="NetEase" Content="网易云音乐"/>
             </ComboBox>
         </StackPanel>
         <WebView2 Grid.Column="1" Grid.Row="2" Name="explorer"/>

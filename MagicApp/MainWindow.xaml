@@ -26,7 +26,7 @@
             IsPaneToggleButtonVisible="True"
             PaneToggleRequested="TitleBar_PaneToggleRequested">
             <TitleBar.IconSource>
-                <ImageIconSource ImageSource="/Assets/StoreLogo.png" />
+                <ImageIconSource ImageSource="ms-appx:///Assets/StoreLogo.png" />
             </TitleBar.IconSource>
             <TitleBar.Content>
                 <AutoSuggestBox Width="360" VerticalAlignment="Center" PlaceholderText="搜索" QueryIcon="Find"/>
@@ -98,7 +98,7 @@
             IsPaneToggleButtonVisible="False"
             ItemInvoked="NavView_ItemInvoked">
             <NavigationView.MenuItems>
-                <NavigationViewItem x:Name="home" Icon="Home" Content="主页"/>
+                <NavigationViewItem x:Name="Home" Icon="Home" Content="主页"/>
                 <NavigationViewItemSeparator/>
                 <NavigationViewItemHeader x:Name="NavViewHeaderMore" Content="更多"/>
                 <NavigationViewItem x:Name="Pictures" Icon="Pictures" Content="每日一图" />

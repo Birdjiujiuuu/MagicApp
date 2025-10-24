@@ -25,14 +25,14 @@
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
+        <Image Name="Picture" Grid.Row="0" Grid.ColumnSpan="9"/>
         <StackPanel
             Grid.Row="0"
-            Grid.ColumnSpan="6"
+            Grid.ColumnSpan="9"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
-            <ProgressRing/>
+            <ProgressRing Name="ProgressRing"/>
         </StackPanel>
-        <Image  Grid.Row="0" Grid.ColumnSpan="9" Name="Picture"/>
         <StackPanel
             Grid.Row="1"
             Grid.Column="1"
@@ -57,6 +57,7 @@
             Grid.Column="5"
             Orientation="Horizontal">
             <Button
+                Name="InfoButton"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Width="50">
@@ -76,6 +77,7 @@
             Grid.Column="7"
             Orientation="Horizontal">
             <Button
+                Name="DownloadButton"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Width="50">

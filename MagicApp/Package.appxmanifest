@@ -10,7 +10,7 @@
   <Identity
     Name="b5ada830-a745-43cb-8ba4-ba4044f71652"
     Publisher="CN=Birdjiujiuuu"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="b5ada830-a745-43cb-8ba4-ba4044f71652" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

@@ -30,9 +30,15 @@ namespace MagicApp.Pages
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            string url = "https://music.163.com/#/search/m/?s=" + SearchBox.Text;
-            Uri targetUri = new Uri(url);
-            explorer.Source = targetUri;
+            var Music = ComboBox.SelectedItem as ComboBoxItem;
+            string MusicName = Music?.Name?.ToString() ?? string.Empty;
+
+            if (MusicName == "NetEase")
+            {
+                string url = "https://music.163.com/#/search/m/?s=" + SearchBox.Text;
+                Uri targetUri = new Uri(url);
+                explorer.Source = targetUri;
+            }
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

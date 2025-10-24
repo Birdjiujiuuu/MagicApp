@@ -34,10 +34,10 @@
                 <controls:ContentControl.Icon>
                     <FontIcon Glyph="&#xE790;"/>
                 </controls:ContentControl.Icon>
-                <ComboBox x:Name="ColorMode" SelectionChanged="ColorMode_SelectionChanged">
-                    <x:String>使用 Windows 默认</x:String>
-                    <x:String>浅色</x:String>
-                    <x:String>深色</x:String>
+                <ComboBox Name="ColorMode" SelectedIndex="0" SelectionChanged="ColorMode_SelectionChanged">
+                    <ComboBoxItem Name="Default" Content="使用 Windows 默认"/>
+                    <ComboBoxItem Name="Light" Content="浅色"/>
+                    <ComboBoxItem Name="Dark" Content="深色"/>
                 </ComboBox>
             </controls:ContentControl>
             <Grid Height="5"/>
@@ -47,12 +47,12 @@
                 <controls:ContentControl.Icon>
                     <FontIcon Glyph="&#xF2B7;"/>
                 </controls:ContentControl.Icon>
-                <ComboBox x:Name="Language">
-                    <x:String>一种很新的语言(天朝)</x:String>
-                    <x:String>简体中文</x:String>
-                    <x:String>繁體中文</x:String>
-                    <x:String>日本語</x:String>
-                    <x:String>English</x:String>
+                <ComboBox Name="Language" SelectedIndex="1">
+                    <ComboBoxItem Name="zh" Content="一种很新的语言(天朝)"/>
+                    <ComboBoxItem Name="zh_cn" Content="简体中文"/>
+                    <ComboBoxItem Name="zh_tw" Content="繁體中文"/>
+                    <ComboBoxItem Name="jp" Content="日本語"/>
+                    <ComboBoxItem Name="en_us" Content="English"/>
                 </ComboBox>
             </controls:ContentControl>
             <Grid Height="5"/>
@@ -70,7 +70,7 @@
             </controls:ContentControl>
             <Grid Height="5"/>
             <controls:ContentControl
-                Image="/Assets/StoreLogo.png"
+                Image="ms-appx:///Assets/StoreLogo.png"
                 Header="神奇的应用程序"
                 Description="©2025 Birdjiujiuuu">
                 <RichTextBlock>

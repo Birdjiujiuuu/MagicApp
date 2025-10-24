@@ -39,6 +39,12 @@ namespace MagicApp.Pages
 
         private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ProgressRing.IsActive = true;
+            Picture.Source = null;
+            Icon.Source = null;
+            InfoButton.IsEnabled = false;
+            DownloadButton.IsEnabled = false;
+
             string SourceWeb = e.AddedItems[0].ToString();
             if (SourceWeb == "Bing")
             {
@@ -69,12 +75,15 @@ namespace MagicApp.Pages
                             Icon.Source = Icons;
                             InfoTitle.Text = InfoTitleab;
                             InfoBody.Text = InfoBodyab;
+
+                            ProgressRing.IsActive = false;
+                            InfoButton.IsEnabled = true;
+                            DownloadButton.IsEnabled = true;
                         }
                     }
                     catch
                     {
-                        InfoTitle.Text = "错误";
-                        InfoBody.Text = "无法获取Bing每日一图，请检查网络连接";
+
                     }
                 }
             }
@@ -107,12 +116,15 @@ namespace MagicApp.Pages
                             Icon.Source = Icons;
                             InfoTitle.Text = InfoTitleab;
                             InfoBody.Text = InfoBodyab;
+
+                            ProgressRing.IsActive = false;
+                            InfoButton.IsEnabled = true;
+                            DownloadButton.IsEnabled = true;
                         }
                     }
                     catch
                     {
-                        InfoTitle.Text = "错误";
-                        InfoBody.Text = "无法获取NASA每日一图，请检查网络连接";
+
                     }
                 }
             }

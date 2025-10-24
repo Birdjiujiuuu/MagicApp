@@ -6,7 +6,8 @@
     xmlns:local="using:MagicApp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,13 +18,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1">
-
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2">
             <Grid>
                 <Grid.ChildrenTransitions>
                     <TransitionCollection>
@@ -34,31 +31,29 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                     <RowDefinition Height="10"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" FontSize="20">
-                <Span>
-                    <Bold>在此处编辑您的通知内容</Bold>
-                </Span>
+                    <Span>
+                        <Bold>在此处编辑您的通知内容</Bold>
+                    </Span>
                 </TextBlock>
-                <TextBlock Grid.Row="2" Text="标题"/>
-                <AutoSuggestBox Grid.Row="3" Name="ContectTitle" PlaceholderText="标题"/>
-                <TextBlock Grid.Row="5" Text="内容"/>
-                <AutoSuggestBox Grid.Row="6" Name="Contect" PlaceholderText="内容"/>
-                <TextBlock Grid.Row="8" Text="Logo"/>
-                <Button Grid.Row="9" Name="PickLogo" Content="打开图片" IsEnabled="False"/>
-                <TextBlock Grid.Row="11" Text="附加图片"/>
-                <Button Grid.Row="12" Name="PickPhoto" Content="打开图片" IsEnabled="False"/>
-                <Button Grid.Row="100" Name="Send" Content="发送" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" Click="Send_Click"/>
+                <AutoSuggestBox Name="ContectTitle" Grid.Row="2" PlaceholderText="标题" Header="标题"/>
+                <AutoSuggestBox Name="Contect" Grid.Row="4" PlaceholderText="内容" Header="内容"/>
+                <ComboBox Name="SoundEvent_ComboBox" Grid.Row="6" Header="声音事件" SelectedIndex="0">
+                    <ComboBoxItem Name="Default" Content="默认"/>
+                    <ComboBoxItem Name="IM" Content="IM"/>
+                    <ComboBoxItem Name="Reminder" Content="提醒"/>
+                    <ComboBoxItem Name="SMS" Content="消息"/>
+                    <ComboBoxItem Name="Alarm" Content="闹钟"/>
+                    <ComboBoxItem Name="Call" Content="呼叫"/>
+                </ComboBox>
+                <Button Name="Send" Grid.Row="100" Content="发送" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" Click="Send_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

@@ -32,9 +32,38 @@ namespace MagicApp.Pages
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
+            var selectedSound = SoundEvent_ComboBox.SelectedItem as ComboBoxItem;
+            AppNotificationSoundEvent soundEvent = AppNotificationSoundEvent.Default;
+
+            if (selectedSound != null)
+            {
+                switch (selectedSound.Name?.ToString())
+                {
+                    case "IM":
+                        soundEvent = AppNotificationSoundEvent.IM;
+                        break;
+                    case "Reminder":
+                        soundEvent = AppNotificationSoundEvent.Reminder;
+                        break;
+                    case "SMS":
+                        soundEvent = AppNotificationSoundEvent.SMS;
+                        break;
+                    case "Alarm":
+                        soundEvent = AppNotificationSoundEvent.Alarm;
+                        break;
+                    case "Call":
+                        soundEvent = AppNotificationSoundEvent.Call;
+                        break;
+                    default:
+                        soundEvent = AppNotificationSoundEvent.Default;
+                        break;
+                }
+            }
+
             AppNotification notification = new AppNotificationBuilder()
                 .AddText(ContectTitle.Text)
                 .AddText(Contect.Text)
+                .SetAudioEvent(soundEvent)
                 .BuildNotification();
             AppNotificationManager.Default.Show(notification);
         }
