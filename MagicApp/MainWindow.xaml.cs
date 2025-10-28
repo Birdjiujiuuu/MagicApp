@@ -27,6 +27,10 @@ namespace MagicApp
             this.ExtendsContentIntoTitleBar = true;
             this.SetTitleBar(TitleBar);
 
+            //设置标题栏标题为应用名称
+            string appName = Windows.ApplicationModel.AppInfo.Current.DisplayInfo.DisplayName;
+            TitleBar.Title = appName;
+
             // 获取当前窗口的 AppWindow 实例
             var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
@@ -55,12 +59,14 @@ namespace MagicApp
             this.MusicRefresh_Click(this, new RoutedEventArgs());
         }
 
+        // 音乐 AppBarButton 点击事件，显示附加的 Flyout
         private void AppBarButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var Info = sender as FrameworkElement;
             FlyoutBase.ShowAttachedFlyout(Info);
         }
 
+        // 音乐刷新按钮点击事件
         private async void MusicRefresh_Click(object sender, RoutedEventArgs e)
         {
             MusicRefreshFailTip.Text = "";
@@ -76,6 +82,7 @@ namespace MagicApp
 
                     if (response.IsSuccessStatusCode)
                     {
+                        // 解析返回的 XML 数据
                         string retString = await response.Content.ReadAsStringAsync();
                         int Ida = retString.IndexOf("<id>");
                         int Idb = retString.IndexOf("</id>");
@@ -90,12 +97,16 @@ namespace MagicApp
                         int Coverb = retString.IndexOf("</cover>");
                         string Cover = retString.Substring(Covera + 7, Coverb - Covera - 7);
                         Uri BgmUri = new Uri(BgmMedia);
+
+                        // 设置 MediaPlayer 播放音乐
                         MediaPlayer.Source = MediaSource.CreateFromUri(BgmUri);
                         BitmapImage CoverUri = new BitmapImage();
                         CoverUri.UriSource = new Uri(Cover);
                         CoverImage.Source = CoverUri;
                         MusicName.Text = BgmNameAB;
                         MusicAuthor.Text = BgmAuthorAB;
+
+                        MediaPlayer.AutoPlay = true;
                     }
                 }
                 catch
@@ -110,11 +121,13 @@ namespace MagicApp
             }
         }
 
+        // 标题栏面板切换请求事件
         private void TitleBar_PaneToggleRequested(TitleBar sender, object args)
         {
             NavView.IsPaneOpen = !NavView.IsPaneOpen;
         }
 
+        // 导航视图项目调用事件
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             FrameNavigationOptions navOptions = new FrameNavigationOptions();

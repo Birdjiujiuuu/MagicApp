@@ -19,6 +19,11 @@ namespace MagicApp.Pages
             InitializeComponent();
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ComboBox.SelectedIndex = 0;
+        }
+
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var Engine = ComboBox.SelectedItem as ComboBoxItem;
@@ -43,10 +48,7 @@ namespace MagicApp.Pages
                 Icon.Source = Icons;
             }
 
-            if (SearchBox != null)
-            {
-                this.SearchBox_TextChanged(SearchBox, new AutoSuggestBoxTextChangedEventArgs());
-            }
+            this.SearchBox_TextChanged(SearchBox, new AutoSuggestBoxTextChangedEventArgs());
         }
 
 

@@ -20,16 +20,16 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <AutoSuggestBox PlaceholderText="在此键入搜索音乐"  MinWidth="200" MaxWidth="600" Grid.Row="0" Grid.Column="1" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" Name="SearchBox"/>
+        <AutoSuggestBox Name="SearchBox" x:Uid="Music_SearchBox" MinWidth="200" MaxWidth="600" Grid.Row="0" Grid.Column="1" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged"/>
         <StackPanel
             Orientation="Horizontal"
             HorizontalAlignment="Center"
             Grid.Column="1"
             Grid.Row="1">
-            <TextBlock Text="音乐来源：" VerticalAlignment="Center"/>
+            <TextBlock Name="MusicSource" x:Uid="Music_MusicSource" VerticalAlignment="Center"/>
             <Image Source="https://s1.music.126.net/style/favicon.ico?v20180823" Height="20" Width="20" Name="Icon"/>
-            <ComboBox Name="ComboBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged">
-                <ComboBoxItem Name="NetEase" Content="网易云音乐"/>
+            <ComboBox Name="ComboBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem Name="NetEase" x:Uid="Music_Source_NetEase"/>
             </ComboBox>
         </StackPanel>
         <WebView2 Grid.Column="1" Grid.Row="2" Name="explorer"/>

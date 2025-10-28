@@ -61,8 +61,8 @@ namespace MagicApp.Pages
             }
 
             AppNotification notification = new AppNotificationBuilder()
-                .AddText(ContectTitle.Text)
-                .AddText(Contect.Text)
+                .AddText(ContentTitle.Text)
+                .AddText(ContentContent.Text)
                 .SetAudioEvent(soundEvent)
                 .BuildNotification();
             AppNotificationManager.Default.Show(notification);

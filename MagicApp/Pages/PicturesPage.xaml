@@ -7,7 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Loading="Page_Loading">
+    NavigationCacheMode="Enabled"
+    Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -48,8 +49,8 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 SelectionChanged="ComboBox_SelectionChanged">
-                <x:String>Bing</x:String>
-                <x:String>NASA</x:String>
+                <ComboBoxItem Name="Bing" x:Uid="Pictures_Source_Bing"/>
+                <ComboBoxItem Name="NASA" x:Uid="Pictures_Source_NASA"/>
             </ComboBox>
         </StackPanel>
         <StackPanel

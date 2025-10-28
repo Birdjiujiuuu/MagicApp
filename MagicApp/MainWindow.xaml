@@ -20,8 +20,7 @@
         </Grid.RowDefinitions>
         <TitleBar
             x:Name="TitleBar"
-            Title="神奇的应用程序"
-            Subtitle="Preview"
+            x:Uid="Main_Titlebar"
             IsBackButtonVisible="False"
             IsPaneToggleButtonVisible="True"
             PaneToggleRequested="TitleBar_PaneToggleRequested">
@@ -29,7 +28,7 @@
                 <ImageIconSource ImageSource="ms-appx:///Assets/StoreLogo.png" />
             </TitleBar.IconSource>
             <TitleBar.Content>
-                <AutoSuggestBox Width="360" VerticalAlignment="Center" PlaceholderText="搜索" QueryIcon="Find"/>
+                <AutoSuggestBox x:Uid="Main_SearchBox" Width="360" VerticalAlignment="Center" QueryIcon="Find"/>
             </TitleBar.Content>
             <TitleBar.RightHeader>
                 <Grid>
@@ -59,7 +58,7 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Image Name="CoverImage" Grid.Column="0" Grid.RowSpan="3"/>
-                                    <TextBlock Name="MusicName" Grid.Column="2" Grid.Row="0" Style="{ThemeResource BaseTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Text="无音乐"/>
+                                    <TextBlock Name="MusicName" x:Uid="Main_MusicName" Grid.Column="2" Grid.Row="0" Style="{ThemeResource BaseTextBlockStyle}" FontSize="18" TextWrapping="Wrap"/>
                                     <TextBlock Name="MusicAuthor" Grid.Column="2" Grid.Row="1" FontSize="12" Text="-"/>
                                     <StackPanel
                                         Grid.Column="2"
@@ -77,8 +76,7 @@
                                         Grid.ColumnSpan="3"
                                         Grid.Row="3"
                                         Width="400"
-                                        AreTransportControlsEnabled="True"
-                                        AutoPlay="True">
+                                        AreTransportControlsEnabled="True">
                                         <MediaPlayerElement.TransportControls>
                                             <MediaTransportControls IsZoomButtonVisible="False" IsCompact="True"/>
                                         </MediaPlayerElement.TransportControls>
@@ -98,15 +96,15 @@
             IsPaneToggleButtonVisible="False"
             ItemInvoked="NavView_ItemInvoked">
             <NavigationView.MenuItems>
-                <NavigationViewItem x:Name="Home" Icon="Home" Content="主页"/>
+                <NavigationViewItem x:Name="Home" x:Uid="Main_NavView_Home" Icon="Home"/>
                 <NavigationViewItemSeparator/>
-                <NavigationViewItemHeader x:Name="NavViewHeaderMore" Content="更多"/>
-                <NavigationViewItem x:Name="Pictures" Icon="Pictures" Content="每日一图" />
-                <NavigationViewItem x:Name="Music" Icon="Audio" Content="音乐"/>
-                <NavigationViewItem x:Name="Search" Icon="Find" Content="搜索"/>
+                <NavigationViewItemHeader x:Name="NavViewHeaderMore" x:Uid="Main_NavView_Header_More"/>
+                <NavigationViewItem x:Name="Pictures" x:Uid="Main_NavView_Pictures"  Icon="Pictures"/>
+                <NavigationViewItem x:Name="Music" x:Uid="Main_NavView_Music"  Icon="Audio"/>
+                <NavigationViewItem x:Name="Search" x:Uid="Main_NavView_Search"  Icon="Find"/>
                 <NavigationViewItemSeparator/>
-                <NavigationViewItemHeader x:Name="NavViewHeaderTools" Content="小工具"/>
-                <NavigationViewItem x:Name="Notice" Icon="Message" Content="桌面通知" />
+                <NavigationViewItemHeader x:Name="NavViewHeaderTools" x:Uid="Main_NavView_Header_Tools"/>
+                <NavigationViewItem x:Name="Notice" x:Uid="Main_NavView_Notice"  Icon="Message"/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame"/>
         </NavigationView>

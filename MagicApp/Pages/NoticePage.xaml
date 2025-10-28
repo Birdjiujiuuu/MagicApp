@@ -38,22 +38,18 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20">
-                    <Span>
-                        <Bold>在此处编辑您的通知内容</Bold>
-                    </Span>
-                </TextBlock>
-                <AutoSuggestBox Name="ContectTitle" Grid.Row="2" PlaceholderText="标题" Header="标题"/>
-                <AutoSuggestBox Name="Contect" Grid.Row="4" PlaceholderText="内容" Header="内容"/>
-                <ComboBox Name="SoundEvent_ComboBox" Grid.Row="6" Header="声音事件" SelectedIndex="0">
-                    <ComboBoxItem Name="Default" Content="默认"/>
-                    <ComboBoxItem Name="IM" Content="IM"/>
-                    <ComboBoxItem Name="Reminder" Content="提醒"/>
-                    <ComboBoxItem Name="SMS" Content="消息"/>
-                    <ComboBoxItem Name="Alarm" Content="闹钟"/>
-                    <ComboBoxItem Name="Call" Content="呼叫"/>
+                <TextBlock Name="Title" x:Uid="Notice_Title" Grid.Row="0" FontSize="20" FontWeight="Bold"/>
+                <AutoSuggestBox Name="ContentTitle" x:Uid="Notice_ContentTitle" Grid.Row="2"/>
+                <AutoSuggestBox Name="ContentContent" x:Uid="Notice_ContentContent" Grid.Row="4"/>
+                <ComboBox Name="SoundEvent_ComboBox" x:Uid="Notice_SoundEvent_ComboBox" Grid.Row="6" SelectedIndex="0">
+                    <ComboBoxItem Name="Default" x:Uid="Notice_SoundEvent_Default"/>
+                    <ComboBoxItem Name="IM" x:Uid="Notice_SoundEvent_IM"/>
+                    <ComboBoxItem Name="Reminder" x:Uid="Notice_SoundEvent_Reminder"/>
+                    <ComboBoxItem Name="SMS" x:Uid="Notice_SoundEvent_SMS"/>
+                    <ComboBoxItem Name="Alarm" x:Uid="Notice_SoundEvent_Alarm"/>
+                    <ComboBoxItem Name="Call" x:Uid="Notice_SoundEvent_Call"/>
                 </ComboBox>
-                <Button Name="Send" Grid.Row="100" Content="发送" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" Click="Send_Click"/>
+                <Button Name="Send" x:Uid="Notice_Send" Grid.Row="100" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" Click="Send_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

@@ -32,9 +32,9 @@ namespace MagicApp.Pages
             InitializeComponent();
         }
 
-        private void Page_Loading(FrameworkElement sender, object args)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ComboBox.SelectedValue = "Bing";
+            ComboBox.SelectedIndex = 0;
         }
 
         private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -45,7 +45,9 @@ namespace MagicApp.Pages
             InfoButton.IsEnabled = false;
             DownloadButton.IsEnabled = false;
 
-            string SourceWeb = e.AddedItems[0].ToString();
+            var Web = ComboBox.SelectedItem as ComboBoxItem;
+            string SourceWeb = Web?.Name?.ToString() ?? string.Empty;
+
             if (SourceWeb == "Bing")
             {
                 using (var httpClient = new HttpClient())

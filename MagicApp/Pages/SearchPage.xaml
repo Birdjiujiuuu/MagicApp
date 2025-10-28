@@ -7,7 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    NavigationCacheMode="Enabled">
+    NavigationCacheMode="Enabled"
+    Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -42,15 +43,14 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Width="100"
-                SelectedIndex="0"
                 SelectionChanged="ComboBox_SelectionChanged">
-                <ComboBoxItem Name="Google" Content="Google"/>
-                <ComboBoxItem Name="Bing" Content="Bing"/>
-                <ComboBoxItem Name="Baidu" Content="百度"/>
+                <ComboBoxItem Name="Google" x:Uid="Search_Engine_Google"/>
+                <ComboBoxItem Name="Bing" x:Uid="Search_Engine_Bing"/>
+                <ComboBoxItem Name="Baidu" x:Uid="Search_Engine_Baidu"/>
             </ComboBox>
         </StackPanel>
-        <AutoSuggestBox PlaceholderText="在此键入进行搜索"  MinWidth="200" Height="35" Grid.Row="0" Grid.Column="5" QueryIcon="Find" TextChanged="SearchBox_TextChanged" Name="SearchBox"/>
-        <AppBarButton Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="NewWindow" ToolTipService.ToolTip="在浏览器打开此网页" Click="AppBarButton_Click"/>
+        <AutoSuggestBox Name="SearchBox" x:Uid="Search_SearchBox" MinWidth="200" Height="35" Grid.Row="0" Grid.Column="5" QueryIcon="Find" TextChanged="SearchBox_TextChanged"/>
+        <AppBarButton Name="OpenInBowser" x:Uid="Search_OpenInBowser" Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="NewWindow" Click="AppBarButton_Click"/>
         <WebView2 Grid.ColumnSpan="9" Grid.Row="1" Name="explorer"/>
     </Grid>
 </Page>

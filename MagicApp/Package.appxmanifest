@@ -10,12 +10,12 @@
   <Identity
     Name="b5ada830-a745-43cb-8ba4-ba4044f71652"
     Publisher="CN=Birdjiujiuuu"
-    Version="1.0.1.0" />
+    Version="1.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="b5ada830-a745-43cb-8ba4-ba4044f71652" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>MagicApp</DisplayName>
+    <DisplayName>ms-resource:AppDisplayName</DisplayName>
     <PublisherDisplayName>Birdjiujiuuu</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -26,7 +26,11 @@
   </Dependencies>
 
   <Resources>
-    <Resource Language="x-generate"/>
+	<Resource Language="en-US"/>
+    <Resource Language="ja-JP"/>
+    <Resource Language="zh-CN"/>
+	<Resource Language="zh-MO"/>
+	<Resource Language="zh-TW"/>
   </Resources>
 
   <Applications>
@@ -34,7 +38,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="神奇的应用程序"
+        DisplayName="ms-resource:AppDisplayName"
         Description="MagicApp"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"

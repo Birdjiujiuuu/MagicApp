@@ -29,49 +29,49 @@
             </StackPanel.ChildrenTransitions>
             <!--内容-->
             <controls:ContentControl
-                Header="外观"
-                Description="切换浅色/深色模式">
+                x:Name="Theme"
+                x:Uid="Settings_Theme">
                 <controls:ContentControl.Icon>
                     <FontIcon Glyph="&#xE790;"/>
                 </controls:ContentControl.Icon>
-                <ComboBox Name="ColorMode" SelectedIndex="0" SelectionChanged="ColorMode_SelectionChanged">
-                    <ComboBoxItem Name="Default" Content="使用 Windows 默认"/>
-                    <ComboBoxItem Name="Light" Content="浅色"/>
-                    <ComboBoxItem Name="Dark" Content="深色"/>
+                <ComboBox Name="ThemeModeBox" SelectedIndex="0" SelectionChanged="ThemeMode_SelectionChanged">
+                    <ComboBoxItem Name="Theme_Default" x:Uid="Settings_Theme_Default"/>
+                    <ComboBoxItem Name="Theme_Light" x:Uid="Settings_Theme_Light"/>
+                    <ComboBoxItem Name="Theme_Dark" x:Uid="Settings_Theme_Dark"/>
                 </ComboBox>
             </controls:ContentControl>
             <Grid Height="5"/>
             <controls:ContentControl
-                Header="语言"
-                Description="选择应用要显示的语言">
+                x:Name="Languages"
+                x:Uid="Settings_Languages">
                 <controls:ContentControl.Icon>
                     <FontIcon Glyph="&#xF2B7;"/>
                 </controls:ContentControl.Icon>
-                <ComboBox Name="Language" SelectedIndex="1">
-                    <ComboBoxItem Name="zh" Content="一种很新的语言(天朝)"/>
-                    <ComboBoxItem Name="zh_cn" Content="简体中文"/>
-                    <ComboBoxItem Name="zh_tw" Content="繁體中文"/>
-                    <ComboBoxItem Name="jp" Content="日本語"/>
-                    <ComboBoxItem Name="en_us" Content="English"/>
+                <ComboBox Name="LanguageBox" SelectionChanged="Language_SelectionChanged">
+                    <ComboBoxItem Name="Lang_zh_mo" Content="一种很新的语言(天朝)"/>
+                    <ComboBoxItem Name="Lang_zh_cn" Content="简体中文"/>
+                    <ComboBoxItem Name="Lang_zh_tw" Content="繁體中文"/>
+                    <ComboBoxItem Name="Lang_ja_jp" Content="日本語"/>
+                    <ComboBoxItem Name="Lang_en_us" Content="English"/>
                 </ComboBox>
             </controls:ContentControl>
             <Grid Height="5"/>
             <controls:ContentControl
                 x:Name="AppVersion"
-                Header="版本更新">
+                x:Uid="Settings_AppVersion">
                 <controls:ContentControl.Icon>
                     <FontIcon Glyph="&#xE895;"/>
                 </controls:ContentControl.Icon>
                 <StackPanel Orientation="Horizontal">
                     <ProgressRing x:Name="CheckUpdateProgressRing" IsActive="False"/>
                     <StackPanel Width="5"/>
-                    <Button x:Name="CheckUpdate" Content="检查更新" Style="{StaticResource AccentButtonStyle}" Click="CheckUpdate_Click"/>
+                    <Button x:Name="CheckUpdate" x:Uid="Settings_AppVersion_CheckUpdate" Style="{StaticResource AccentButtonStyle}" Click="CheckUpdate_Click"/>
                 </StackPanel>
             </controls:ContentControl>
             <Grid Height="5"/>
             <controls:ContentControl
+                x:Name="About"
                 Image="ms-appx:///Assets/StoreLogo.png"
-                Header="神奇的应用程序"
                 Description="©2025 Birdjiujiuuu">
                 <RichTextBlock>
                     <Paragraph>

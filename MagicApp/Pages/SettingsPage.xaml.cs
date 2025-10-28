@@ -5,6 +5,8 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.AI.Text;
+using Microsoft.Windows.Globalization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,6 +18,7 @@ using System.Text;
 using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System.UserProfile;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,31 +37,92 @@ namespace MagicApp.Pages
 
         private void Page_Loading(FrameworkElement sender, object args)
         {
+            //设置关于页标题为应用名称
+            string appName = Windows.ApplicationModel.AppInfo.Current.DisplayInfo.DisplayName;
+            About.Header = appName;
+
+            //设置应用版本号
             string Version = string.Format("{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major, Package.Current.Id.Version.Minor, Package.Current.Id.Version.Build, Package.Current.Id.Version.Revision);
             AppVersion.Description = Version;
+
+            // 获取当前语言
+            string currentLang = ApplicationLanguages.Languages[0];
+            if (currentLang == "zh-Hant-MO")
+            {
+                LanguageBox.SelectedItem = Lang_zh_mo;
+            }
+            else if (currentLang == "zh-Hans-CN")
+            {
+                LanguageBox.SelectedItem = Lang_zh_cn;
+            }
+            else if (currentLang == "zh-Hant-TW")
+            {
+                LanguageBox.SelectedItem = Lang_zh_tw;
+            }
+            else if (currentLang == "ja")
+            {
+                LanguageBox.SelectedItem = Lang_ja_jp;
+            }
+            else if (currentLang == "en-US")
+            {
+                LanguageBox.SelectedItem = Lang_en_us;
+            }
         }
 
-        private void ColorMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //更改主题模式
+        private void ThemeMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string Color = e.AddedItems[0].ToString();
-            if (Color == "使用 Windows 默认")
+            var ThemeSelect = ThemeModeBox.SelectedItem as ComboBoxItem;
+            string Theme = ThemeSelect?.Name?.ToString() ?? string.Empty;
+
+            if (Theme == "Theme_Default")
             {
 
             }
-            else if (Color == "浅色")
+            else if (Theme == "Theme_Light")
             {
 
             }
-            else if (Color == "深色")
+            else if (Theme == "Theme_Dark")
             {
 
             }
         }
 
+        //更改应用语言
+        private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var LangSelect = LanguageBox.SelectedItem as ComboBoxItem;
+            string Lang = LangSelect?.Name?.ToString() ?? string.Empty;
+
+            if (Lang == "Lang_zh_mo")
+            {
+                ApplicationLanguages.PrimaryLanguageOverride = "zh-MO";
+            }
+            else if (Lang == "Lang_zh_cn")
+            {
+                ApplicationLanguages.PrimaryLanguageOverride = "zh-CN";
+            }
+            else if (Lang == "Lang_zh_tw")
+            {
+                ApplicationLanguages.PrimaryLanguageOverride = "zh-TW";
+            }
+            else if (Lang == "Lang_ja_jp")
+            {
+                ApplicationLanguages.PrimaryLanguageOverride = "ja-JP";
+            }
+            else if (Lang == "Lang_en_us")
+            {
+                ApplicationLanguages.PrimaryLanguageOverride = "en-US";
+            }
+        }
+
+        //检查更新
         private async void CheckUpdate_Click(object sender, RoutedEventArgs e)
         {
             CheckUpdate.IsEnabled = false;
             CheckUpdateProgressRing.IsActive = true;
+
 
             using (var httpClient = new HttpClient())
             {
