@@ -81,7 +81,8 @@
                 Name="DownloadButton"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Width="50">
+                Width="50"
+                Click="DownloadButton_Click">
                 <SymbolIcon Symbol="Download"/>
             </Button>
         </StackPanel>

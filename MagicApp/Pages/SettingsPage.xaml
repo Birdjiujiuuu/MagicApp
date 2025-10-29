@@ -34,7 +34,7 @@
                 <controls:ContentControl.Icon>
                     <FontIcon Glyph="&#xE790;"/>
                 </controls:ContentControl.Icon>
-                <ComboBox Name="ThemeModeBox" SelectedIndex="0" SelectionChanged="ThemeMode_SelectionChanged">
+                <ComboBox Name="ThemeModeBox" SelectionChanged="ThemeMode_SelectionChanged">
                     <ComboBoxItem Name="Theme_Default" x:Uid="Settings_Theme_Default"/>
                     <ComboBoxItem Name="Theme_Light" x:Uid="Settings_Theme_Light"/>
                     <ComboBoxItem Name="Theme_Dark" x:Uid="Settings_Theme_Dark"/>
@@ -75,8 +75,8 @@
                 Description="©2025 Birdjiujiuuu">
                 <RichTextBlock>
                     <Paragraph>
-                        <Hyperlink NavigateUri="https://birdjiujiuuu.github.io/magicapp/">官方网站</Hyperlink>
-                        <Hyperlink NavigateUri="https://github.com/Birdjiujiuuu/MagicApp">源代码</Hyperlink>
+                        <Hyperlink x:Name="OfficialWebsite" NavigateUri="https://birdjiujiuuu.github.io/magicapp/"/>
+                        <Hyperlink x:Name="SourceCode" NavigateUri="https://github.com/Birdjiujiuuu/MagicApp"/>
                     </Paragraph>
                 </RichTextBlock>
             </controls:ContentControl>

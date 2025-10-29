@@ -1,21 +1,15 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Text.Json;
+using System.Xml.Linq;
+using Windows.ApplicationModel.Resources;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -54,33 +48,35 @@ namespace MagicApp.Pages
                 {
                     try
                     {
-                        string url = "https://cn.bing.com/HPImageArchive.aspx?idx=0&n=1";
+                        string url = "https://cn.bing.com/HPImageArchive.aspx?n=1";
                         var response = await httpClient.GetAsync(url);
 
                         if (response.IsSuccessStatusCode)
                         {
                             string retString = await response.Content.ReadAsStringAsync();
-                            int a = retString.IndexOf("<url>");
-                            int b = retString.IndexOf("</url>");
-                            string imgurl = "http://cn.bing.com" + retString.Substring(a + 5, b - a - 5);
-                            int InfoTitlea = retString.IndexOf("<headline>");
-                            int InfoTitleb = retString.IndexOf("</headline>");
-                            string InfoTitleab = retString.Substring(InfoTitlea + 10, InfoTitleb - InfoTitlea - 10);
-                            int InfoBodya = retString.IndexOf("<copyright>");
-                            int InfoBodyb = retString.IndexOf("</copyright>");
-                            string InfoBodyab = retString.Substring(InfoBodya + 11, InfoBodyb - InfoBodya - 11);
-                            BitmapImage Pictures = new BitmapImage();
-                            Pictures.UriSource = new Uri(this.BaseUri, imgurl);
-                            Picture.Source = Pictures;
-                            BitmapImage Icons = new BitmapImage();
-                            Icons.UriSource = new Uri(this.BaseUri, "https://cn.bing.com/favicon.ico");
-                            Icon.Source = Icons;
-                            InfoTitle.Text = InfoTitleab;
-                            InfoBody.Text = InfoBodyab;
 
-                            ProgressRing.IsActive = false;
-                            InfoButton.IsEnabled = true;
-                            DownloadButton.IsEnabled = true;
+                            var doc = XDocument.Parse(retString);
+                            var imageElement = doc.Descendants("image").FirstOrDefault();
+
+                            if (imageElement != null)
+                            {
+                                string imgurl = "http://cn.bing.com" + imageElement.Element("urlBase")?.Value + "_UHD.jpg";
+                                string? StrInfoTitle = imageElement.Element("headline")?.Value;
+                                string? StrInfoBody = imageElement.Element("copyright")?.Value;
+
+                                BitmapImage Pictures = new BitmapImage();
+                                Pictures.UriSource = new Uri(this.BaseUri, imgurl);
+                                Picture.Source = Pictures;
+                                BitmapImage Icons = new BitmapImage();
+                                Icons.UriSource = new Uri(this.BaseUri, "https://cn.bing.com/favicon.ico");
+                                Icon.Source = Icons;
+                                InfoTitle.Text = StrInfoTitle;
+                                InfoBody.Text = StrInfoBody;
+
+                                ProgressRing.IsActive = false;
+                                InfoButton.IsEnabled = true;
+                                DownloadButton.IsEnabled = true;
+                            }
                         }
                     }
                     catch
@@ -101,23 +97,30 @@ namespace MagicApp.Pages
                         if (response.IsSuccessStatusCode)
                         {
                             string retString = await response.Content.ReadAsStringAsync();
-                            int a = retString.IndexOf("\"hdurl\":\"");
-                            int b = retString.IndexOf("\",\"media_type");
-                            string imgurl = retString.Substring(a + 9, b - a - 9);
-                            int InfoTitlea = retString.IndexOf("\"title\":\"");
-                            int InfoTitleb = retString.IndexOf("\",\"url");
-                            string InfoTitleab = retString.Substring(InfoTitlea + 9, InfoTitleb - InfoTitlea - 9);
-                            int InfoBodya = retString.IndexOf("\"explanation\":\"");
-                            int InfoBodyb = retString.IndexOf("\",\"hdurl");
-                            string InfoBodyab = retString.Substring(InfoBodya + 15, InfoBodyb - InfoBodya - 15);
+
+                            // 使用 JsonDocument 解析 JSON 响应
+                            using JsonDocument document = JsonDocument.Parse(retString);
+                            JsonElement root = document.RootElement;
+
+                            // 安全地获取字段值
+                            string? imgurl = root.TryGetProperty("hdurl", out JsonElement hdurlElement)
+                                            ? hdurlElement.GetString()
+                                            : string.Empty;
+                            string? StrInfoTitle = root.TryGetProperty("title", out JsonElement titleElement)
+                                                 ? titleElement.GetString()
+                                                 : string.Empty;
+                            string? StrInfoBody = root.TryGetProperty("explanation", out JsonElement explanationElement)
+                                                ? explanationElement.GetString()
+                                                : string.Empty;
+
                             BitmapImage Pictures = new BitmapImage();
                             Pictures.UriSource = new Uri(this.BaseUri, imgurl);
                             Picture.Source = Pictures;
                             BitmapImage Icons = new BitmapImage();
                             Icons.UriSource = new Uri(this.BaseUri, "https://apod.nasa.gov/favicon.ico");
                             Icon.Source = Icons;
-                            InfoTitle.Text = InfoTitleab;
-                            InfoBody.Text = InfoBodyab;
+                            InfoTitle.Text = StrInfoTitle;
+                            InfoBody.Text = StrInfoBody;
 
                             ProgressRing.IsActive = false;
                             InfoButton.IsEnabled = true;
@@ -130,6 +133,131 @@ namespace MagicApp.Pages
                     }
                 }
             }
+        }
+
+        // 图片下载
+        private async void DownloadButton_Click(object sender, RoutedEventArgs e)
+        {
+            var loader = ResourceLoader.GetForViewIndependentUse();
+
+            if (sender is Button button)
+            {
+                button.IsEnabled = false;
+
+                // 检查是否有图片可以下载
+                if (Picture.Source == null)
+                {
+                    button.IsEnabled = true;
+                    return;
+                }
+
+                // 获取当前图片的URL
+                string imageUrl = GetCurrentImageUrl();
+                if (string.IsNullOrEmpty(imageUrl))
+                {
+                    button.IsEnabled = true;
+                    return;
+                }
+
+                var picker = new FileSavePicker();
+
+                // 配置 FileSavePicker 属性
+                picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+                picker.SuggestedFileName = $"Wallpaper_{DateTime.Now:yyyyMMdd_HHmmss}";
+                picker.FileTypeChoices.Add("JPEG", new List<string>() { ".jpg" });
+                picker.FileTypeChoices.Add("PNG", new List<string>() { ".png" });
+
+                // 关联窗口句柄
+                var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
+                WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+                // 显示选择器对话框
+                var file = await picker.PickSaveFileAsync();
+
+                // 创建并显示进度对话框
+                ContentDialog progressDialog = new ContentDialog
+                {
+                    XamlRoot = this.XamlRoot,
+                    Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+                    Title = loader.GetString("Pictures_Download_Dialog_Downloading"),
+                    Content = CreateProgressContent(),
+                    PrimaryButtonText = loader.GetString("Pictures_Download_Dialog_Close"),
+                    IsPrimaryButtonEnabled = false,
+                    CloseButtonText = null,
+                    DefaultButton = ContentDialogButton.Primary
+                };
+                var showTask = progressDialog.ShowAsync();
+
+                if (file != null)
+                {
+                    try
+                    {
+                        // 下载图片并保存
+                        using (var httpClient = new HttpClient())
+                        {
+                            var imageData = await httpClient.GetByteArrayAsync(imageUrl);
+                            await FileIO.WriteBytesAsync(file, imageData);
+
+                            // 下载完成，更新对话框
+                            UpdateDialogForCompletion(progressDialog, loader.GetString("Pictures_Download_Dialog_Success"), loader.GetString("Pictures_Download_Dialog_FilePath") + $"{file.Path}");
+                            progressDialog.IsPrimaryButtonEnabled = true;
+                            await showTask;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        try
+                        {
+                            // 如果下载失败，尝试删除已创建的文件
+                            await file.DeleteAsync();
+                        }
+                        catch
+                        {
+                            
+                        }
+                        // 下载失败，更新对话框
+                        UpdateDialogForCompletion(progressDialog, loader.GetString("Pictures_Download_Dialog_Failure"), loader.GetString("Pictures_Download_Dialog_Error") + $"{ex.Message}");
+                        progressDialog.IsPrimaryButtonEnabled = true;
+                        await showTask;
+                    }
+                }
+                button.IsEnabled = true;
+            }
+        }
+
+        // 创建进度对话框内容
+        private StackPanel CreateProgressContent()
+        {
+            return new StackPanel
+            {
+                Orientation = Orientation.Vertical,
+                Spacing = 10,
+                Children =
+                {
+                    new ProgressBar
+                    {
+                        IsIndeterminate = true,
+                        Width = 250,
+                        HorizontalAlignment = HorizontalAlignment.Center
+                    }
+                }
+            };
+        }
+
+        // 更新对话框内容为完成状态
+        private void UpdateDialogForCompletion(ContentDialog dialog, string title, string message)
+        {
+            dialog.Title = title;
+            dialog.Content = new TextBlock
+            {
+                Text = message,
+                TextWrapping = TextWrapping.WrapWholeWords
+            };
+        }
+
+        private string GetCurrentImageUrl()
+        {
+            return (Picture.Source as BitmapImage)?.UriSource?.ToString() ?? "";
         }
     }
 }

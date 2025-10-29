@@ -123,6 +123,9 @@
   <data name="Main_MusicName.Text" xml:space="preserve">
     <value>无音乐</value>
   </data>
+  <data name="Main_Music_Load_Failure" xml:space="preserve">
+    <value>加载失败，请重试！</value>
+  </data>
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>主页</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Main_NavView_Search.Content" xml:space="preserve">
     <value>搜索</value>
+  </data>
+  <data name="Main_NavView_Settings" xml:space="preserve">
+    <value>设置</value>
   </data>
   <data name="Main_NavView_Music.Content" xml:space="preserve">
     <value>音乐</value>
@@ -205,7 +211,7 @@
     <value>提醒</value>
   </data>
   <data name="Notice_SoundEvent_IM.Content" xml:space="preserve">
-    <value>IM</value>
+    <value>即时消息</value>
   </data>
   <data name="Notice_ContentTitle.PlaceholderText" xml:space="preserve">
     <value>标题</value>
@@ -234,6 +240,24 @@
   <data name="Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
     <value>检查更新</value>
   </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Title" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Close" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Error" xml:space="preserve">
+    <value>错误：</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Latest" xml:space="preserve">
+    <value>已经是最新版本！</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Later" xml:space="preserve">
+    <value>稍后下载</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Download" xml:space="preserve">
+    <value>前往下载</value>
+  </data>
   <data name="Settings_Theme.Header" xml:space="preserve">
     <value>主题</value>
   </data>
@@ -245,5 +269,41 @@
   </data>
   <data name="Settings_Theme_Dark.Content" xml:space="preserve">
     <value>深色</value>
+  </data>
+  <data name="Settings_Languages_Dialog_Title" xml:space="preserve">
+    <value>语言已更改 </value>
+  </data>
+  <data name="Settings_Languages_Dialog_Content" xml:space="preserve">
+    <value>需要重启应用以使语言更改生效，是否立即重启？ </value>
+  </data>
+  <data name="Settings_Languages_Dialog_Restart" xml:space="preserve">
+    <value>立即重启 </value>
+  </data>
+  <data name="Settings_Languages_Dialog_Later" xml:space="preserve">
+    <value>稍后 </value>
+  </data>
+  <data name="Settings_About_OfficialWebsite" xml:space="preserve">
+    <value>官方网站</value>
+  </data>
+  <data name="Settings_About_SourceCode" xml:space="preserve">
+    <value>源代码</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Close" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Downloading" xml:space="preserve">
+    <value>下载中...</value>
+  </data>
+  <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
+    <value>图片已保存到：</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
+    <value>错误：</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
+    <value>下载成功</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Failure" xml:space="preserve">
+    <value>下载失败</value>
   </data>
 </root>

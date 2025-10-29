@@ -11,14 +11,14 @@
     HorizontalAlignment="Stretch">
 
     <UserControl.Resources>
-        <Style TargetType="Grid">
+        <Style TargetType="Grid" x:Key="ContentControlGridStyle">
             <Setter Property="Background" Value="{ThemeResource ControlFillColorDefault}"/>
             <Setter Property="CornerRadius" Value="5"/>
             <Setter Property="Height" Value="70"/>
         </Style>
     </UserControl.Resources>
 
-    <Grid
+    <Grid Style="{StaticResource ContentControlGridStyle}"
         BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}"
         BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}">
         <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
             <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="15"/>
         </Grid.ColumnDefinitions>
         <ContentPresenter Content="{x:Bind Icon, Mode=OneWay}"  Grid.Column="1"/>
@@ -40,6 +40,6 @@
             Grid.Column="4"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
-            Content="{x:Bind SettingActionableElement, Mode=OneWay}" />
+            Content="{x:Bind SettingActionableElement, Mode=OneWay}"/>
     </Grid>
 </UserControl>

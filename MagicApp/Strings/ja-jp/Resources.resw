@@ -121,19 +121,25 @@
     <value>検索</value>
   </data>
   <data name="Main_MusicName.Text" xml:space="preserve">
-    <value>音楽がありません</value>
+    <value>音楽なし</value>
+  </data>
+  <data name="Main_Music_Load_Failure" xml:space="preserve">
+    <value>読み込みに失敗しました。もう一度お試しください。</value>
   </data>
   <data name="Main_NavView_Home.Content" xml:space="preserve">
-    <value>ホームページ</value>
+    <value>ホーム</value>
   </data>
   <data name="Main_NavView_Header_More.Content" xml:space="preserve">
     <value>もっと</value>
   </data>
   <data name="Main_NavView_Header_Tools.Content" xml:space="preserve">
-    <value>ガジェット</value>
+    <value>ウィジェット</value>
   </data>
   <data name="Main_NavView_Search.Content" xml:space="preserve">
     <value>検索</value>
+  </data>
+  <data name="Main_NavView_Settings" xml:space="preserve">
+    <value>設定</value>
   </data>
   <data name="Main_NavView_Music.Content" xml:space="preserve">
     <value>音楽</value>
@@ -142,19 +148,19 @@
     <value>デスクトップ通知</value>
   </data>
   <data name="Main_NavView_Pictures.Content" xml:space="preserve">
-    <value>今日の写真</value>
+    <value>今日の1枚</value>
   </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>素晴らしいアプリ</value>
   </data>
   <data name="Music_SearchBox.PlaceholderText" xml:space="preserve">
-    <value>ここに入力して音楽を検索します</value>
+    <value>ここに音楽を検索入力</value>
   </data>
   <data name="Music_MusicSource.Text" xml:space="preserve">
     <value>音楽ソース</value>
   </data>
   <data name="Music_Source_NetEase.Content" xml:space="preserve">
-    <value>NetEase クラウド ミュージック</value>
+    <value>NetEase Music</value>
   </data>
   <data name="Pictures_Source_Bing.Content" xml:space="preserve">
     <value>Bing</value>
@@ -166,22 +172,22 @@
     <value>プレビュー</value>
   </data>
   <data name="Search_SearchBox.PlaceholderText" xml:space="preserve">
-    <value>ここに入力して検索します</value>
+    <value>ここに入力して検索</value>
   </data>
   <data name="Search_OpenInBowser.ToolTipService.ToolTip" xml:space="preserve">
-    <value>ブラウザでこのページを開きます</value>
+    <value>ブラウザで開く</value>
   </data>
   <data name="Search_Engine_Google.Content" xml:space="preserve">
     <value>Google</value>
   </data>
   <data name="Search_Engine_Baidu.Content" xml:space="preserve">
-    <value>百度</value>
+    <value>Baidu</value>
   </data>
   <data name="Search_Engine_Bing.Content" xml:space="preserve">
     <value>Bing</value>
   </data>
   <data name="Notice_Title.Text" xml:space="preserve">
-    <value>ここで通知内容を編集します</value>
+    <value>こちらで通知内容を編集</value>
   </data>
   <data name="Notice_Send.Content" xml:space="preserve">
     <value>送信</value>
@@ -193,19 +199,19 @@
     <value>デフォルト</value>
   </data>
   <data name="Notice_SoundEvent_Call.Content" xml:space="preserve">
-    <value>電話</value>
+    <value>通話</value>
   </data>
   <data name="Notice_SoundEvent_Alarm.Content" xml:space="preserve">
-    <value>目覚まし時計</value>
+    <value>アラーム</value>
   </data>
   <data name="Notice_SoundEvent_SMS.Content" xml:space="preserve">
-    <value>情報</value>
+    <value>メッセージ</value>
   </data>
   <data name="Notice_SoundEvent_Reminder.Content" xml:space="preserve">
-    <value>思い出させる</value>
+    <value>リマインダー</value>
   </data>
   <data name="Notice_SoundEvent_IM.Content" xml:space="preserve">
-    <value>IM</value>
+    <value>インスタントメッセージ</value>
   </data>
   <data name="Notice_ContentTitle.PlaceholderText" xml:space="preserve">
     <value>タイトル</value>
@@ -220,30 +226,84 @@
     <value>コンテンツ</value>
   </data>
   <data name="Settings_Theme.Description" xml:space="preserve">
-    <value>ライト/ダークモードを切り替える</value>
+    <value>ライト/ダークモード切替</value>
   </data>
   <data name="Settings_Languages.Description" xml:space="preserve">
-    <value>アプリが表示する言語を選択します</value>
+    <value>表示言語を選択</value>
   </data>
   <data name="Settings_Languages.Header" xml:space="preserve">
     <value>言語</value>
   </data>
   <data name="Settings_AppVersion.Header" xml:space="preserve">
-    <value>バージョンアップ</value>
+    <value>バージョン更新</value>
   </data>
   <data name="Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
-    <value>アップデートをチェックする</value>
+    <value>更新を確認</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Title" xml:space="preserve">
+    <value>更新を確認</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Close" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Error" xml:space="preserve">
+    <value>エラー：</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Latest" xml:space="preserve">
+    <value>最新版です！</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Later" xml:space="preserve">
+    <value>後でダウンロード</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Download" xml:space="preserve">
+    <value>ダウンロードへ進む</value>
   </data>
   <data name="Settings_Theme.Header" xml:space="preserve">
     <value>テーマ</value>
   </data>
   <data name="Settings_Theme_Default.Content" xml:space="preserve">
-    <value>Windows のデフォルトを使用する</value>
+    <value>Windowsに合わせる</value>
   </data>
   <data name="Settings_Theme_Light.Content" xml:space="preserve">
-    <value>明るい色</value>
+    <value>ライト</value>
   </data>
   <data name="Settings_Theme_Dark.Content" xml:space="preserve">
-    <value>暗い</value>
+    <value>ダーク</value>
+  </data>
+  <data name="Settings_Languages_Dialog_Title" xml:space="preserve">
+    <value>言語が変更されました</value>
+  </data>
+  <data name="Settings_Languages_Dialog_Content" xml:space="preserve">
+    <value>言語変更を有効にするにはアプリを再起動する必要があります。今すぐ再起動しますか？</value>
+  </data>
+  <data name="Settings_Languages_Dialog_Restart" xml:space="preserve">
+    <value>すぐに再起動</value>
+  </data>
+  <data name="Settings_Languages_Dialog_Later" xml:space="preserve">
+    <value>後ほど</value>
+  </data>
+  <data name="Settings_About_OfficialWebsite" xml:space="preserve">
+    <value>公式サイト</value>
+  </data>
+  <data name="Settings_About_SourceCode" xml:space="preserve">
+    <value>ソースコード</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Close" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Downloading" xml:space="preserve">
+    <value>ダウンロード中...</value>
+  </data>
+  <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
+    <value>画像を保存しました：</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
+    <value>エラー：</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
+    <value>ダウンロードが成功しました</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Failure" xml:space="preserve">
+    <value>ダウンロードに失敗しました</value>
   </data>
 </root>

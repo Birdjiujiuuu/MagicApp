@@ -123,6 +123,9 @@
   <data name="Main_MusicName.Text" xml:space="preserve">
     <value>没有好听的呢</value>
   </data>
+  <data name="Main_Music_Load_Failure" xml:space="preserve">
+    <value>找不到家了，再试试！</value>
+  </data>
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>小房子</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Main_NavView_Search.Content" xml:space="preserve">
     <value>找东西</value>
+  </data>
+  <data name="Main_NavView_Settings" xml:space="preserve">
+    <value>設定</value>
   </data>
   <data name="Main_NavView_Music.Content" xml:space="preserve">
     <value>好听的</value>
@@ -205,7 +211,7 @@
     <value>！！！！</value>
   </data>
   <data name="Notice_SoundEvent_IM.Content" xml:space="preserve">
-    <value>IM</value>
+    <value>很迅速的消息</value>
   </data>
   <data name="Notice_ContentTitle.PlaceholderText" xml:space="preserve">
     <value>标题</value>
@@ -234,6 +240,24 @@
   <data name="Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
     <value>升级！</value>
   </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Title" xml:space="preserve">
+    <value>升级！</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Close" xml:space="preserve">
+    <value>好</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Error" xml:space="preserve">
+    <value>出问题了：</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Latest" xml:space="preserve">
+    <value>已经是最新啦！太棒了！</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Later" xml:space="preserve">
+    <value>等等再下载</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_Download" xml:space="preserve">
+    <value>去下载</value>
+  </data>
   <data name="Settings_Theme.Header" xml:space="preserve">
     <value>主题</value>
   </data>
@@ -245,5 +269,41 @@
   </data>
   <data name="Settings_Theme_Dark.Content" xml:space="preserve">
     <value>黑黑的</value>
+  </data>
+  <data name="Settings_Languages_Dialog_Title" xml:space="preserve">
+    <value>字已经变了</value>
+  </data>
+  <data name="Settings_Languages_Dialog_Content" xml:space="preserve">
+    <value>重新打开小软件才能看见新的字，要吗？</value>
+  </data>
+  <data name="Settings_Languages_Dialog_Restart" xml:space="preserve">
+    <value>迫不及待了</value>
+  </data>
+  <data name="Settings_Languages_Dialog_Later" xml:space="preserve">
+    <value>等等</value>
+  </data>
+  <data name="Settings_About_OfficialWebsite" xml:space="preserve">
+    <value>小软件的小网站</value>
+  </data>
+  <data name="Settings_About_SourceCode" xml:space="preserve">
+    <value>小软件的内部</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Close" xml:space="preserve">
+    <value>好</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Downloading" xml:space="preserve">
+    <value>保存ing</value>
+  </data>
+  <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
+    <value>好康的已经藏进：</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
+    <value>出问题了：</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
+    <value>保存好了！</value>
+  </data>
+  <data name="Pictures_Download_Dialog_Failure" xml:space="preserve">
+    <value>保存不了惹</value>
   </data>
 </root>

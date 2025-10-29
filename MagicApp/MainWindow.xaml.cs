@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Net.Http;
+using Windows.ApplicationModel.Resources;
 using Windows.Media.Core;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -69,6 +70,8 @@ namespace MagicApp
         // 音乐刷新按钮点击事件
         private async void MusicRefresh_Click(object sender, RoutedEventArgs e)
         {
+            var loader = ResourceLoader.GetForViewIndependentUse();
+
             MusicRefreshFailTip.Text = "";
             MusicRefreshProgressRing.IsActive = true;
             MusicRefresh.IsEnabled = false;
@@ -111,7 +114,7 @@ namespace MagicApp
                 }
                 catch
                 {
-                    MusicRefreshFailTip.Text = "加载失败，请重试！";
+                    MusicRefreshFailTip.Text = loader.GetString("Main_Music_Load_Failure");
                 }
                 finally
                 {
@@ -130,6 +133,8 @@ namespace MagicApp
         // 导航视图项目调用事件
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
+            var loader = ResourceLoader.GetForViewIndependentUse();
+
             FrameNavigationOptions navOptions = new FrameNavigationOptions();
             navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
             if (args.InvokedItemContainer == Home)
@@ -160,7 +165,7 @@ namespace MagicApp
             else if (args.IsSettingsInvoked)
             {
                 ContentFrame.Navigate(typeof(SettingsPage), null);
-                NavView.Header = "设置";
+                NavView.Header = loader.GetString("Main_NavView_Settings");
             }
         }
     }
