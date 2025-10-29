@@ -247,7 +247,10 @@
     <value>确定</value>
   </data>
   <data name="Settings_AppVersion_CheckUpdate_Dialog_Error" xml:space="preserve">
-    <value>错误：</value>
+    <value>错误</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_JSONError" xml:space="preserve">
+    <value>JSON解析失败</value>
   </data>
   <data name="Settings_AppVersion_CheckUpdate_Dialog_Latest" xml:space="preserve">
     <value>已经是最新版本！</value>
@@ -295,10 +298,10 @@
     <value>下载中...</value>
   </data>
   <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
-    <value>图片已保存到：</value>
+    <value>图片已保存到</value>
   </data>
   <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
-    <value>错误：</value>
+    <value>错误</value>
   </data>
   <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
     <value>下载成功</value>

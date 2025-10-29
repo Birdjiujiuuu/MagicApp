@@ -247,7 +247,10 @@
     <value>OK</value>
   </data>
   <data name="Settings_AppVersion_CheckUpdate_Dialog_Error" xml:space="preserve">
-    <value>Error:</value>
+    <value>Error</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_JSONError" xml:space="preserve">
+    <value>JSON parsing failed</value>
   </data>
   <data name="Settings_AppVersion_CheckUpdate_Dialog_Latest" xml:space="preserve">
     <value>Already the latest version!</value>
@@ -295,10 +298,10 @@
     <value>Downloading...</value>
   </data>
   <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
-    <value>Image saved to:</value>
+    <value>Image saved to</value>
   </data>
   <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
-    <value>Error:</value>
+    <value>Error</value>
   </data>
   <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
     <value>Download successful</value>

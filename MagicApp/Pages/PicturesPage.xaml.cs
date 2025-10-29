@@ -174,22 +174,22 @@ namespace MagicApp.Pages
                 // 显示选择器对话框
                 var file = await picker.PickSaveFileAsync();
 
-                // 创建并显示进度对话框
-                ContentDialog progressDialog = new ContentDialog
-                {
-                    XamlRoot = this.XamlRoot,
-                    Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                    Title = loader.GetString("Pictures_Download_Dialog_Downloading"),
-                    Content = CreateProgressContent(),
-                    PrimaryButtonText = loader.GetString("Pictures_Download_Dialog_Close"),
-                    IsPrimaryButtonEnabled = false,
-                    CloseButtonText = null,
-                    DefaultButton = ContentDialogButton.Primary
-                };
-                var showTask = progressDialog.ShowAsync();
-
                 if (file != null)
                 {
+                    // 创建并显示进度对话框
+                    ContentDialog progressDialog = new ContentDialog
+                    {
+                        XamlRoot = this.XamlRoot,
+                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+                        Title = loader.GetString("Pictures_Download_Dialog_Downloading"),
+                        Content = CreateProgressContent(),
+                        PrimaryButtonText = loader.GetString("Pictures_Download_Dialog_Close"),
+                        IsPrimaryButtonEnabled = false,
+                        CloseButtonText = null,
+                        DefaultButton = ContentDialogButton.Primary
+                    };
+                    var showTask = progressDialog.ShowAsync();
+
                     try
                     {
                         // 下载图片并保存
@@ -199,7 +199,7 @@ namespace MagicApp.Pages
                             await FileIO.WriteBytesAsync(file, imageData);
 
                             // 下载完成，更新对话框
-                            UpdateDialogForCompletion(progressDialog, loader.GetString("Pictures_Download_Dialog_Success"), loader.GetString("Pictures_Download_Dialog_FilePath") + $"{file.Path}");
+                            UpdateDialogForCompletion(progressDialog, loader.GetString("Pictures_Download_Dialog_Success"), $"{loader.GetString("Pictures_Download_Dialog_FilePath")}:\n{file.Path}");
                             progressDialog.IsPrimaryButtonEnabled = true;
                             await showTask;
                         }
@@ -213,10 +213,10 @@ namespace MagicApp.Pages
                         }
                         catch
                         {
-                            
+
                         }
                         // 下载失败，更新对话框
-                        UpdateDialogForCompletion(progressDialog, loader.GetString("Pictures_Download_Dialog_Failure"), loader.GetString("Pictures_Download_Dialog_Error") + $"{ex.Message}");
+                        UpdateDialogForCompletion(progressDialog, loader.GetString("Pictures_Download_Dialog_Failure"), $"{loader.GetString("Pictures_Download_Dialog_Error")}:\n{ex.Message}");
                         progressDialog.IsPrimaryButtonEnabled = true;
                         await showTask;
                     }

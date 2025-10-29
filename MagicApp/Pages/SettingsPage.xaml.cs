@@ -217,9 +217,6 @@ namespace MagicApp.Pages
                             
                             CheckUpdateProgressRing.IsActive = false;
 
-                            // 调试输出，帮助诊断问题
-                            Debug.WriteLine($"当前版本: {currentVersion}, 最新版本: {newestVersion}");
-
                             if (newestVersion == currentVersion)
                             {
                                 ContentDialog dialog = new ContentDialog
@@ -267,7 +264,7 @@ namespace MagicApp.Pages
                             XamlRoot = this.XamlRoot,
                             Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
                             Title = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Title"),
-                            Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}(HTTP {response.StatusCode})",
+                            Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}:\n(HTTP {response.StatusCode})",
                             CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Close"),
                             DefaultButton = ContentDialogButton.Close
                         };
@@ -282,7 +279,7 @@ namespace MagicApp.Pages
                         XamlRoot = this.XamlRoot,
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
                         Title = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Title"),
-                        Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}{httpEx.Message}",
+                        Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}:\n{httpEx.Message}",
                         CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Close"),
                         DefaultButton = ContentDialogButton.Close
                     };
@@ -296,7 +293,7 @@ namespace MagicApp.Pages
                         XamlRoot = this.XamlRoot,
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
                         Title = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Title"),
-                        Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}JSON解析失败",
+                        Content = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error") + ": " + loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_JSONError"),
                         CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Close"),
                         DefaultButton = ContentDialogButton.Close
                     };
@@ -310,7 +307,7 @@ namespace MagicApp.Pages
                         XamlRoot = this.XamlRoot,
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
                         Title = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Title"),
-                        Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}{ex.Message}",
+                        Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}:\n{ex.Message}",
                         CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Close"),
                         DefaultButton = ContentDialogButton.Close
                     };

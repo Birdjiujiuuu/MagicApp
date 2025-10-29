@@ -247,7 +247,10 @@
     <value>確認</value>
   </data>
   <data name="Settings_AppVersion_CheckUpdate_Dialog_Error" xml:space="preserve">
-    <value>エラー：</value>
+    <value>エラー</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_JSONError" xml:space="preserve">
+    <value>JSONの解析に失敗しました</value>
   </data>
   <data name="Settings_AppVersion_CheckUpdate_Dialog_Latest" xml:space="preserve">
     <value>最新版です！</value>
@@ -295,10 +298,10 @@
     <value>ダウンロード中...</value>
   </data>
   <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
-    <value>画像を保存しました：</value>
+    <value>画像を保存しました</value>
   </data>
   <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
-    <value>エラー：</value>
+    <value>エラー</value>
   </data>
   <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
     <value>ダウンロードが成功しました</value>

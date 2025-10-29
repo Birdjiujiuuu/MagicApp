@@ -247,7 +247,10 @@
     <value>好</value>
   </data>
   <data name="Settings_AppVersion_CheckUpdate_Dialog_Error" xml:space="preserve">
-    <value>出问题了：</value>
+    <value>出问题了</value>
+  </data>
+  <data name="Settings_AppVersion_CheckUpdate_Dialog_JSONError" xml:space="preserve">
+    <value>JSON读不懂了</value>
   </data>
   <data name="Settings_AppVersion_CheckUpdate_Dialog_Latest" xml:space="preserve">
     <value>已经是最新啦！太棒了！</value>
@@ -295,10 +298,10 @@
     <value>保存ing</value>
   </data>
   <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
-    <value>好康的已经藏进：</value>
+    <value>好康的已经藏进</value>
   </data>
   <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
-    <value>出问题了：</value>
+    <value>出问题了</value>
   </data>
   <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
     <value>保存好了！</value>
