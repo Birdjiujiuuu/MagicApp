@@ -120,11 +120,14 @@
   <data name="Main_SearchBox.PlaceholderText" xml:space="preserve">
     <value>搜尋</value>
   </data>
-  <data name="Main_MusicName.Text" xml:space="preserve">
+  <data name="Main_MusicName" xml:space="preserve">
     <value>無音樂</value>
   </data>
-  <data name="Main_Music_Load_Failure" xml:space="preserve">
-    <value>加載失敗，請重試！</value>
+  <data name="Main_Music_Load_Connect_Error" xml:space="preserve">
+    <value>連接失敗，請重試！</value>
+  </data>
+  <data name="Main_Music_Load_Get_Error" xml:space="preserve">
+    <value>獲取失敗，請重試！</value>
   </data>
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>主頁</value>

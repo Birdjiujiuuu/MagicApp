@@ -64,10 +64,10 @@ namespace MagicApp.Pages
                                 string? StrInfoTitle = imageElement.Element("headline")?.Value;
                                 string? StrInfoBody = imageElement.Element("copyright")?.Value;
 
-                                BitmapImage Pictures = new BitmapImage();
+                                BitmapImage Pictures = new();
                                 Pictures.UriSource = new Uri(this.BaseUri, imgurl);
                                 Picture.Source = Pictures;
-                                BitmapImage Icons = new BitmapImage();
+                                BitmapImage Icons = new();
                                 Icons.UriSource = new Uri(this.BaseUri, "https://cn.bing.com/favicon.ico");
                                 Icon.Source = Icons;
                                 InfoTitle.Text = StrInfoTitle;
@@ -113,10 +113,10 @@ namespace MagicApp.Pages
                                                 ? explanationElement.GetString()
                                                 : string.Empty;
 
-                            BitmapImage Pictures = new BitmapImage();
+                            BitmapImage Pictures = new();
                             Pictures.UriSource = new Uri(this.BaseUri, imgurl);
                             Picture.Source = Pictures;
-                            BitmapImage Icons = new BitmapImage();
+                            BitmapImage Icons = new();
                             Icons.UriSource = new Uri(this.BaseUri, "https://apod.nasa.gov/favicon.ico");
                             Icon.Source = Icons;
                             InfoTitle.Text = StrInfoTitle;
@@ -177,7 +177,7 @@ namespace MagicApp.Pages
                 if (file != null)
                 {
                     // 创建并显示进度对话框
-                    ContentDialog progressDialog = new ContentDialog
+                    ContentDialog progressDialog = new()
                     {
                         XamlRoot = this.XamlRoot,
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,

@@ -120,11 +120,14 @@
   <data name="Main_SearchBox.PlaceholderText" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="Main_MusicName.Text" xml:space="preserve">
+  <data name="Main_MusicName" xml:space="preserve">
     <value>None</value>
   </data>
-  <data name="Main_Music_Load_Failure" xml:space="preserve">
-    <value>Failed to load. Please try again.</value>
+  <data name="Main_Music_Load_Connect_Error" xml:space="preserve">
+    <value>Connection failed. Please try again!</value>
+  </data>
+  <data name="Main_Music_Load_Get_Error" xml:space="preserve">
+    <value>Failed to fetch. Please try again!</value>
   </data>
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>Home</value>

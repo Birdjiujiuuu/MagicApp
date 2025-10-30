@@ -7,9 +7,16 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
+using System.Linq;
 using System.Net.Http;
+using System.Security.Principal;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.Media.Core;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using Windows.System.UserProfile;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -78,46 +85,65 @@ namespace MagicApp
             MusicRefreshFailTip.Text = "";
             MusicRefreshProgressRing.IsActive = true;
             MusicRefresh.IsEnabled = false;
+            MediaPlayer.IsEnabled = false;
 
             using (var httpClient = new HttpClient())
             {
                 try
                 {
-                    string url = "https://birdjiujiuuu.github.io/magicapp/source/winui3/home/bgm.txt";
+                    string url = "https://birdjiujiuuu.github.io/magicapp/source/winui3/home/bgm.xml";
                     var response = await httpClient.GetAsync(url);
 
                     if (response.IsSuccessStatusCode)
                     {
-                        // 解析返回的 XML 数据
                         string retString = await response.Content.ReadAsStringAsync();
-                        int Ida = retString.IndexOf("<id>");
-                        int Idb = retString.IndexOf("</id>");
-                        string BgmMedia = "https://music.163.com/song/media/outer/url?id=" + retString.Substring(Ida + 4, Idb - Ida - 4) + ".mp3";
-                        int BgmNamea = retString.IndexOf("<name>");
-                        int BgmNameb = retString.IndexOf("</name>");
-                        string BgmNameAB = retString.Substring(BgmNamea + 6, BgmNameb - BgmNamea - 6);
-                        int BgmAuthora = retString.IndexOf("<artist>");
-                        int BgmAuthorb = retString.IndexOf("</artist>");
-                        string BgmAuthorAB = retString.Substring(BgmAuthora + 8, BgmAuthorb - BgmAuthora - 8);
-                        int Covera = retString.IndexOf("<cover>");
-                        int Coverb = retString.IndexOf("</cover>");
-                        string Cover = retString.Substring(Covera + 7, Coverb - Covera - 7);
-                        Uri BgmUri = new Uri(BgmMedia);
 
-                        // 设置 MediaPlayer 播放音乐
-                        MediaPlayer.Source = MediaSource.CreateFromUri(BgmUri);
-                        BitmapImage CoverUri = new BitmapImage();
-                        CoverUri.UriSource = new Uri(Cover);
-                        CoverImage.Source = CoverUri;
-                        MusicName.Text = BgmNameAB;
-                        MusicAuthor.Text = BgmAuthorAB;
+                        var doc = XDocument.Parse(retString);
+                        var musicElement = doc.Descendants("music").FirstOrDefault();
 
-                        MediaPlayer.AutoPlay = true;
+                        if (musicElement != null)
+                        {
+
+                            string BgmMedia = "https://music.163.com/song/media/outer/url?id=" + musicElement.Element("id")?.Value + ".mp3";
+                            string? BgmName = musicElement.Element("name")?.Value;
+                            string? BgmAuthor = musicElement.Element("artist")?.Value;
+                            string? Cover = musicElement.Element("cover")?.Value;
+
+                            // 设置 MediaPlayer 播放音乐
+                            Uri BgmUri = new Uri(BgmMedia);
+                            MediaPlayer.Source = MediaSource.CreateFromUri(BgmUri);
+                            MusicName.Text = BgmName;
+                            MusicAuthor.Text = BgmAuthor;
+
+                            // 设置封面图片
+                            if (string.IsNullOrEmpty(Cover))
+                            {
+                                CoverImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
+                            }
+                            else
+                            {
+                                BitmapImage CoverUri = new BitmapImage();
+                                CoverUri.UriSource = new Uri(Cover);
+                                CoverImage.Source = CoverUri;
+                            }
+
+                            MediaPlayer.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        CoverImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
+                        MusicName.Text = loader.GetString("Main_MusicName");
+                        MusicAuthor.Text = "-";
+                        MusicRefreshFailTip.Text = loader.GetString("Main_Music_Load_Get_Error");
                     }
                 }
                 catch
                 {
-                    MusicRefreshFailTip.Text = loader.GetString("Main_Music_Load_Failure");
+                    CoverImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
+                    MusicName.Text = loader.GetString("Main_MusicName");
+                    MusicAuthor.Text = "-";
+                    MusicRefreshFailTip.Text = loader.GetString("Main_Music_Load_Connect_Error");
                 }
                 finally
                 {

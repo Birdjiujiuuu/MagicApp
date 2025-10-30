@@ -51,6 +51,21 @@ namespace MagicApp.Pages
             SourceCode.Inlines.Clear();
             SourceCode.Inlines.Add(new Run { Text = sourceCodeText });
 
+            // 设置当前主题选项
+            var currentTheme = App.AppTheme;
+            if (currentTheme == ElementTheme.Default)
+            {
+                ThemeModeBox.SelectedItem = Theme_Default;
+            }
+            else if (currentTheme == ElementTheme.Light)
+            {
+                ThemeModeBox.SelectedItem = Theme_Light;
+            }
+            else if (currentTheme == ElementTheme.Dark)
+            {
+                ThemeModeBox.SelectedItem = Theme_Dark;
+            }
+
             // 获取当前语言
             string currentLang = ApplicationLanguages.Languages[0];
             if (currentLang == "zh-Hant-MO")
@@ -72,21 +87,6 @@ namespace MagicApp.Pages
             else if (currentLang == "en-US")
             {
                 LanguageBox.SelectedItem = Lang_en_us;
-            }
-
-            // 设置当前主题选项
-            var currentTheme = App.AppTheme;
-            if (currentTheme == ElementTheme.Default)
-            {
-                ThemeModeBox.SelectedItem = Theme_Default;
-            }
-            else if (currentTheme == ElementTheme.Light)
-            {
-                ThemeModeBox.SelectedItem = Theme_Light;
-            }
-            else if (currentTheme == ElementTheme.Dark)
-            {
-                ThemeModeBox.SelectedItem = Theme_Dark;
             }
 
             // 初始化完成
@@ -157,14 +157,16 @@ namespace MagicApp.Pages
         {
             var loader = ResourceLoader.GetForViewIndependentUse();
 
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = loader.GetString("Settings_Languages_Dialog_Title");
-            dialog.Content = loader.GetString("Settings_Languages_Dialog_Content");
-            dialog.PrimaryButtonText = loader.GetString("Settings_Languages_Dialog_Restart");
-            dialog.CloseButtonText = loader.GetString("Settings_Languages_Dialog_Later");
-            dialog.DefaultButton = ContentDialogButton.Primary;
+            ContentDialog dialog = new()
+            {
+                XamlRoot = this.XamlRoot,
+                Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+                Title = loader.GetString("Settings_Languages_Dialog_Title"),
+                Content = loader.GetString("Settings_Languages_Dialog_Content"),
+                PrimaryButtonText = loader.GetString("Settings_Languages_Dialog_Restart"),
+                CloseButtonText = loader.GetString("Settings_Languages_Dialog_Later"),
+                DefaultButton = ContentDialogButton.Primary
+            };
             var result = await dialog.ShowAsync();
 
             if (result == ContentDialogResult.Primary)
@@ -210,7 +212,7 @@ namespace MagicApp.Pages
 
                         using (var json = JsonDocument.Parse(jsonString))
                         {
-                            string newestVersion = json.RootElement.GetProperty("tag_name").GetString();
+                            string newestVersion = json.RootElement.GetProperty("tag_name").GetString() ?? string.Empty;
 
                             // 清理版本号"v"前缀
                             newestVersion = newestVersion.TrimStart('v', 'V');
@@ -219,7 +221,7 @@ namespace MagicApp.Pages
 
                             if (newestVersion == currentVersion)
                             {
-                                ContentDialog dialog = new ContentDialog
+                                ContentDialog dialog = new()
                                 {
                                     XamlRoot = this.XamlRoot,
                                     Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
@@ -233,10 +235,10 @@ namespace MagicApp.Pages
                             else
                             {
                                 // 获取发布说明和下载链接
-                                string releaseNotes = json.RootElement.GetProperty("body").GetString();
-                                string DownloadUrl = json.RootElement.GetProperty("html_url").GetString();
+                                string releaseNotes = json.RootElement.GetProperty("body").GetString() ?? string.Empty;
+                                string DownloadUrl = json.RootElement.GetProperty("html_url").GetString() ?? string.Empty;
 
-                                ContentDialog dialog = new ContentDialog
+                                ContentDialog dialog = new()
                                 {
                                     XamlRoot = this.XamlRoot,
                                     Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
@@ -255,11 +257,11 @@ namespace MagicApp.Pages
                             }
                         }
                     }
+                    //非成功响应
                     else
                     {
-                        // 处理HTTP错误状态
                         CheckUpdateProgressRing.IsActive = false;
-                        ContentDialog dialog = new ContentDialog
+                        ContentDialog dialog = new()
                         {
                             XamlRoot = this.XamlRoot,
                             Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
@@ -271,10 +273,11 @@ namespace MagicApp.Pages
                         var result = await dialog.ShowAsync();
                     }
                 }
+                //网络请求异常
                 catch (HttpRequestException httpEx)
                 {
                     CheckUpdateProgressRing.IsActive = false;
-                    ContentDialog dialog = new ContentDialog
+                    ContentDialog dialog = new()
                     {
                         XamlRoot = this.XamlRoot,
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
@@ -285,10 +288,11 @@ namespace MagicApp.Pages
                     };
                     var result = await dialog.ShowAsync();
                 }
-                catch (JsonException jsonEx)
+                //JSON解析错误
+                catch (JsonException)
                 {
                     CheckUpdateProgressRing.IsActive = false;
-                    ContentDialog dialog = new ContentDialog
+                    ContentDialog dialog = new()
                     {
                         XamlRoot = this.XamlRoot,
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
@@ -299,10 +303,11 @@ namespace MagicApp.Pages
                     };
                     var result = await dialog.ShowAsync();
                 }
+                //其他异常
                 catch (Exception ex)
                 {
                     CheckUpdateProgressRing.IsActive = false;
-                    ContentDialog dialog = new ContentDialog
+                    ContentDialog dialog = new()
                     {
                         XamlRoot = this.XamlRoot,
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,

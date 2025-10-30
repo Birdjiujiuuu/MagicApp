@@ -120,11 +120,14 @@
   <data name="Main_SearchBox.PlaceholderText" xml:space="preserve">
     <value>検索</value>
   </data>
-  <data name="Main_MusicName.Text" xml:space="preserve">
+  <data name="Main_MusicName" xml:space="preserve">
     <value>音楽なし</value>
   </data>
-  <data name="Main_Music_Load_Failure" xml:space="preserve">
-    <value>読み込みに失敗しました。もう一度お試しください。</value>
+  <data name="Main_Music_Load_Connect_Error" xml:space="preserve">
+    <value>接続に失敗しました。もう一度お試しください！</value>
+  </data>
+  <data name="Main_Music_Load_Get_Error" xml:space="preserve">
+    <value>取得に失敗しました。もう一度お試しください！</value>
   </data>
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>ホーム</value>
