@@ -28,9 +28,12 @@ namespace MagicApp
             this.ExtendsContentIntoTitleBar = true;
             this.SetTitleBar(TitleBar);
 
-            //设置标题栏标题为应用名称
+            //设置标题栏标题和图标
             string appName = Windows.ApplicationModel.AppInfo.Current.DisplayInfo.DisplayName;
             TitleBar.Title = appName;
+            AppWindow.Title = appName;
+            AppWindow.SetTitleBarIcon("Assets/MagicAppIcon.ico");
+            AppWindow.SetTaskbarIcon("Assets/MagicAppIcon.ico");
 
             // 获取当前窗口的 AppWindow 实例
             var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);

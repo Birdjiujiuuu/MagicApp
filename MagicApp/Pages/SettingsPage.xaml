@@ -71,7 +71,7 @@
             <Grid Height="5"/>
             <controls:ContentControl
                 x:Name="About"
-                Image="ms-appx:///Assets/StoreLogo.png"
+                Image="ms-appx:///Assets/MagicAppLogo.png"
                 Description="©2025 Birdjiujiuuu">
                 <RichTextBlock>
                     <Paragraph>
