@@ -50,7 +50,7 @@
             </ComboBox>
         </StackPanel>
         <AutoSuggestBox Name="SearchBox" x:Uid="Search_SearchBox" MinWidth="200" Height="35" Grid.Row="0" Grid.Column="5" QueryIcon="Find" TextChanged="SearchBox_TextChanged"/>
-        <AppBarButton Name="OpenInBowser" x:Uid="Search_OpenInBowser" Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="NewWindow" Click="AppBarButton_Click"/>
+        <AppBarButton Name="OpenInBowser" x:Uid="Search_OpenInBowser" Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="World" Click="AppBarButton_Click"/>
         <WebView2 Grid.ColumnSpan="9" Grid.Row="1" Name="explorer"/>
     </Grid>
 </Page>

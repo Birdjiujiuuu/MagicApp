@@ -80,6 +80,10 @@ namespace MagicApp.Pages
             {
                 LanguageBox.SelectedItem = Lang_zh_tw;
             }
+            else if (currentLang == "ko")
+            {
+                LanguageBox.SelectedItem = Lang_ko;
+            }
             else if (currentLang == "ja")
             {
                 LanguageBox.SelectedItem = Lang_ja_jp;
@@ -134,6 +138,10 @@ namespace MagicApp.Pages
             else if (Lang == "Lang_zh_tw")
             {
                 ApplicationLanguages.PrimaryLanguageOverride = "zh-TW";
+            }
+            else if (Lang == "Lang_ko")
+            {
+                ApplicationLanguages.PrimaryLanguageOverride = "ko";
             }
             else if (Lang == "Lang_ja_jp")
             {
@@ -235,6 +243,7 @@ namespace MagicApp.Pages
                             else
                             {
                                 // 获取发布说明和下载链接
+                                string releaseTitle = json.RootElement.GetProperty("name").GetString() ?? string.Empty;
                                 string releaseNotes = json.RootElement.GetProperty("body").GetString() ?? string.Empty;
                                 string DownloadUrl = json.RootElement.GetProperty("html_url").GetString() ?? string.Empty;
 
@@ -242,7 +251,7 @@ namespace MagicApp.Pages
                                 {
                                     XamlRoot = this.XamlRoot,
                                     Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                                    Title = newestVersion,
+                                    Title = releaseTitle,
                                     Content = $"{releaseNotes}",
                                     PrimaryButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Download"),
                                     CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Later"),

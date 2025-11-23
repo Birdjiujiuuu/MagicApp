@@ -51,6 +51,7 @@
                     <ComboBoxItem Name="Lang_zh_mo" Content="一种很新的语言(天朝)"/>
                     <ComboBoxItem Name="Lang_zh_cn" Content="简体中文"/>
                     <ComboBoxItem Name="Lang_zh_tw" Content="繁體中文"/>
+                    <ComboBoxItem Name="Lang_ko" Content="한국어"/>
                     <ComboBoxItem Name="Lang_ja_jp" Content="日本語"/>
                     <ComboBoxItem Name="Lang_en_us" Content="English"/>
                 </ComboBox>

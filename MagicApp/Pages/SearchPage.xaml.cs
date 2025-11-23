@@ -81,22 +81,27 @@ namespace MagicApp.Pages
         {
             var Engine = ComboBox.SelectedItem as ComboBoxItem;
             string EngineName = Engine?.Name?.ToString() ?? string.Empty;
+            string url = "";
 
             if (EngineName == "Google")
             {
-                string url = "https://www.google.com/search?q=" + SearchBox.Text;
-                System.Diagnostics.Process.Start("explorer.exe", "https://www.google.com/search?q=" + SearchBox.Text);
+                url = "https://www.google.com/search?q=" + SearchBox.Text;
             }
             else if (EngineName == "Bing")
             {
-                string url = "https://www.bing.com/search?q=" + SearchBox.Text;
-                System.Diagnostics.Process.Start("explorer.exe", url);
+                url = "https://www.bing.com/search?q=" + SearchBox.Text;
             }
             else if (EngineName == "Baidu")
             {
-                string url = "https://www.baidu.com/s?wd=" + SearchBox.Text;
-                System.Diagnostics.Process.Start("explorer.exe", url);
+                url = "https://www.baidu.com/s?wd=" + SearchBox.Text;
             }
+
+            var processStartInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            };
+            System.Diagnostics.Process.Start(processStartInfo);
         }
     }
 }
