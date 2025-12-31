@@ -68,6 +68,34 @@ namespace MagicApp
             NavView.Header = Home.Content;
 
             this.MusicRefresh_Click(this, new RoutedEventArgs());
+
+            // 异步加载当前 Windows 账户头像（不阻塞构造）
+            _ = LoadUserAccountPictureAsync();
+        }
+
+        // 异步加载当前 Windows 账户头像并设置到 PersonPicture
+        private async Task LoadUserAccountPictureAsync()
+        {
+            try
+            {
+                // 优先尝试小尺寸头像（Small/Thumbnail/Large 可选）
+                var streamRef = UserInformation.GetAccountPicture(AccountPictureKind.SmallImage);
+                if (streamRef != null)
+                {
+                    using (var stream = await streamRef.OpenReadAsync())
+                    {
+                        var bitmap = new BitmapImage();
+                        await bitmap.SetSourceAsync(stream);
+                        // 将 BitmapImage 绑定到 XAML 中的 PersonPicture 控件
+                        UserPersonPicture.ProfilePicture = bitmap;
+                        return;
+                    }
+                }
+            }
+            catch
+            {
+                
+            }
         }
 
         // 音乐 AppBarButton 点击事件，显示附加的 Flyout

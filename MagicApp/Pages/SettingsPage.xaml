@@ -73,7 +73,7 @@
             <controls:ContentControl
                 x:Name="About"
                 Image="ms-appx:///Assets/MagicAppLogo.png"
-                Description="©2025 Birdjiujiuuu">
+                Description="©2026 Birdjiujiuuu">
                 <RichTextBlock>
                     <Paragraph>
                         <Hyperlink x:Name="OfficialWebsite" NavigateUri="https://birdjiujiuuu.github.io/magicapp/"/>
