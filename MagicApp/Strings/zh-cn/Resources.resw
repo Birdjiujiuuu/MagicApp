@@ -312,4 +312,7 @@
   <data name="Pictures_Download_Dialog_Failure" xml:space="preserve">
     <value>下载失败</value>
   </data>
+  <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
+    <value>B站视频数据</value>
+  </data>
 </root>

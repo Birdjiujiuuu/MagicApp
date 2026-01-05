@@ -57,23 +57,26 @@ namespace MagicApp.Pages
             var Engine = ComboBox.SelectedItem as ComboBoxItem;
             string EngineName = Engine?.Name?.ToString() ?? string.Empty;
 
-            if (EngineName == "Google")
+            if (SearchBox.Text != "")
             {
-                string url = "https://www.google.com/search?q=" + SearchBox.Text;
-                Uri targetUri = new Uri(url);
-                explorer.Source = targetUri;
-            }
-            else if (EngineName == "Bing")
-            {
-                string url = "https://www.bing.com/search?q=" + SearchBox.Text;
-                Uri targetUri = new Uri(url);
-                explorer.Source = targetUri;
-            }
-            else if (EngineName == "Baidu")
-            {
-                string url = "https://www.baidu.com/s?wd=" + SearchBox.Text;
-                Uri targetUri = new Uri(url);
-                explorer.Source = targetUri;
+                if (EngineName == "Google")
+                {
+                    string url = "https://www.google.com/search?q=" + SearchBox.Text;
+                    Uri targetUri = new Uri(url);
+                    explorer.Source = targetUri;
+                }
+                else if (EngineName == "Bing")
+                {
+                    string url = "https://www.bing.com/search?q=" + SearchBox.Text;
+                    Uri targetUri = new Uri(url);
+                    explorer.Source = targetUri;
+                }
+                else if (EngineName == "Baidu")
+                {
+                    string url = "https://www.baidu.com/s?wd=" + SearchBox.Text;
+                    Uri targetUri = new Uri(url);
+                    explorer.Source = targetUri;
+                }
             }
         }
 

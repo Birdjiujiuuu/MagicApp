@@ -214,6 +214,11 @@ namespace MagicApp
                 ContentFrame.Navigate(typeof(SearchPage), null, new DrillInNavigationTransitionInfo());
                 NavView.Header = Search.Content;
             }
+            else if (args.InvokedItemContainer == BilibiliVideoData)
+            {
+                ContentFrame.Navigate(typeof(BilibiliVideoDataPage), null);
+                NavView.Header = BilibiliVideoData.Content;
+            }
             else if (args.InvokedItemContainer == Notice)
             {
                 ContentFrame.Navigate(typeof(NoticePage), null);
