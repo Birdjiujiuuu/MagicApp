@@ -204,11 +204,6 @@ namespace MagicApp
                 ContentFrame.Navigate(typeof(PicturesPage), null, new DrillInNavigationTransitionInfo());
                 NavView.Header = Pictures.Content;
             }
-            else if (args.InvokedItemContainer == Music)
-            {
-                ContentFrame.Navigate(typeof(MusicPage), null, new DrillInNavigationTransitionInfo());
-                NavView.Header = Music.Content;
-            }
             else if (args.InvokedItemContainer == Search)
             {
                 ContentFrame.Navigate(typeof(SearchPage), null, new DrillInNavigationTransitionInfo());

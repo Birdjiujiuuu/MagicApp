@@ -16,7 +16,6 @@
   <ItemGroup>
     <None Remove="Pages\BilibiliVideoDataPage.xaml" />
     <None Remove="Pages\HomePage.xaml" />
-    <None Remove="Pages\MusicPage.xaml" />
     <None Remove="Pages\NoticePage.xaml" />
     <None Remove="Pages\PicturesPage.xaml" />
     <None Remove="Pages\SearchPage.xaml" />

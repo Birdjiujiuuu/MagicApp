@@ -144,9 +144,6 @@
   <data name="Main_NavView_Settings" xml:space="preserve">
     <value>設定</value>
   </data>
-  <data name="Main_NavView_Music.Content" xml:space="preserve">
-    <value>好听的</value>
-  </data>
   <data name="Main_NavView_Notice.Content" xml:space="preserve">
     <value>消息</value>
   </data>
@@ -155,15 +152,6 @@
   </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>神秘的小应用</value>
-  </data>
-  <data name="Music_SearchBox.PlaceholderText" xml:space="preserve">
-    <value>在这里找好听的</value>
-  </data>
-  <data name="Music_MusicSource.Text" xml:space="preserve">
-    <value>好听的从哪来</value>
-  </data>
-  <data name="Music_Source_NetEase.Content" xml:space="preserve">
-    <value>网抑云</value>
   </data>
   <data name="Pictures_Source_Bing.Content" xml:space="preserve">
     <value>Bing</value>

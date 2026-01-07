@@ -144,9 +144,6 @@
   <data name="Main_NavView_Settings" xml:space="preserve">
     <value>设置</value>
   </data>
-  <data name="Main_NavView_Music.Content" xml:space="preserve">
-    <value>音乐</value>
-  </data>
   <data name="Main_NavView_Notice.Content" xml:space="preserve">
     <value>桌面通知</value>
   </data>
@@ -155,15 +152,6 @@
   </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>神奇的应用程序</value>
-  </data>
-  <data name="Music_SearchBox.PlaceholderText" xml:space="preserve">
-    <value>在此键入搜索音乐</value>
-  </data>
-  <data name="Music_MusicSource.Text" xml:space="preserve">
-    <value>音乐来源</value>
-  </data>
-  <data name="Music_Source_NetEase.Content" xml:space="preserve">
-    <value>网易云音乐</value>
   </data>
   <data name="Pictures_Source_Bing.Content" xml:space="preserve">
     <value>必应</value>

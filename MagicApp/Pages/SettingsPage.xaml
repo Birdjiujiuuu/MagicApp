@@ -22,13 +22,14 @@
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1" Grid.Row="1">
+            
             <!--动画-->
             <StackPanel.ChildrenTransitions>
                 <TransitionCollection>
                     <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="500"/>
                 </TransitionCollection>
             </StackPanel.ChildrenTransitions>
-            <!--内容-->
+            
             <controls:ContentControl
                 x:Name="Theme"
                 x:Uid="Settings_Theme"

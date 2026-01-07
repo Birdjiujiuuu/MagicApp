@@ -101,7 +101,6 @@
                 <NavigationViewItemSeparator/>
                 <NavigationViewItemHeader x:Name="NavViewHeaderMore" x:Uid="Main_NavView_Header_More"/>
                 <NavigationViewItem x:Name="Pictures" x:Uid="Main_NavView_Pictures"  Icon="Pictures"/>
-                <NavigationViewItem x:Name="Music" x:Uid="Main_NavView_Music"  Icon="Audio"/>
                 <NavigationViewItem x:Name="Search" x:Uid="Main_NavView_Search"  Icon="Find"/>
                 <NavigationViewItemSeparator/>
                 <NavigationViewItemHeader x:Name="NavViewHeaderTools" x:Uid="Main_NavView_Header_Tools"/>
