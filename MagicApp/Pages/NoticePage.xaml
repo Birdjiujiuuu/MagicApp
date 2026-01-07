@@ -29,19 +29,15 @@
                 </Grid.ChildrenTransitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Name="Title" x:Uid="Notice_Title" Grid.Row="0" FontSize="20" FontWeight="Bold"/>
-                <AutoSuggestBox Name="ContentTitle" x:Uid="Notice_ContentTitle" Grid.Row="2"/>
-                <AutoSuggestBox Name="ContentContent" x:Uid="Notice_ContentContent" Grid.Row="4"/>
-                <ComboBox Name="SoundEvent_ComboBox" x:Uid="Notice_SoundEvent_ComboBox" Grid.Row="6" SelectedIndex="0">
+                <TextBlock Name="Title" x:Uid="Notice_Title" Grid.Row="0" Margin="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                <AutoSuggestBox Name="ContentTitle" x:Uid="Notice_ContentTitle" Grid.Row="1" Margin="0,0,0,10"/>
+                <AutoSuggestBox Name="ContentContent" x:Uid="Notice_ContentContent" Grid.Row="2" Margin="0,0,0,10"/>
+                <ComboBox Name="SoundEvent_ComboBox" x:Uid="Notice_SoundEvent_ComboBox" Grid.Row="3" Margin="0,0,0,10" SelectedIndex="0">
                     <ComboBoxItem Name="Default" x:Uid="Notice_SoundEvent_Default"/>
                     <ComboBoxItem Name="IM" x:Uid="Notice_SoundEvent_IM"/>
                     <ComboBoxItem Name="Reminder" x:Uid="Notice_SoundEvent_Reminder"/>

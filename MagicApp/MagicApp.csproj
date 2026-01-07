@@ -14,6 +14,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Pages\BilibiliVideoDataPage.xaml" />
     <None Remove="Pages\HomePage.xaml" />
     <None Remove="Pages\MusicPage.xaml" />
     <None Remove="Pages\NoticePage.xaml" />
@@ -21,6 +22,7 @@
     <None Remove="Pages\SearchPage.xaml" />
     <None Remove="Pages\SettingsPage.xaml" />
     <None Remove="UI\Controls\ContentControl.xaml" />
+    <None Remove="UI\Controls\DataControl.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +49,16 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.6901" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251003001" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UI\Controls\DataControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\BilibiliVideoDataPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UI\Controls\ContentControl.xaml">
