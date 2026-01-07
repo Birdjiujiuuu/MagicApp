@@ -183,6 +183,9 @@
   <data name="Notice_Send.Content" xml:space="preserve">
     <value>보내기</value>
   </data>
+  <data name="Notice_Clear.Content" xml:space="preserve">
+    <value>지우기</value>
+  </data>
   <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>사운드 이벤트</value>
   </data>

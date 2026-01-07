@@ -16,33 +16,39 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Image Name="Picture" Grid.Row="0" Grid.ColumnSpan="9"/>
+        <Border 
+            Grid.Column="0"
+            Grid.Row="0"
+            Grid.ColumnSpan="5"
+            Margin="10"
+            CornerRadius="10"
+            Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1">
+            <Image Name="Picture" Stretch="Fill"/>
+        </Border>
         <StackPanel
             Grid.Row="0"
-            Grid.ColumnSpan="9"
+            Grid.ColumnSpan="5"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <ProgressRing Name="ProgressRing"/>
         </StackPanel>
         <StackPanel
             Grid.Row="1"
-            Grid.Column="1"
+            Grid.Column="0"
             Orientation="Horizontal">
-            <Image Height="20" Width="20" Name="Icon"/>
+            <Image Margin="10,0,10,0" Height="20" Width="20" Name="Icon"/>
         </StackPanel>
         <StackPanel
             Grid.Row="1"
-            Grid.Column="3"
+            Grid.Column="1"
             Orientation="Horizontal">
             <ComboBox
                 Name="ComboBox"
@@ -55,9 +61,10 @@
         </StackPanel>
         <StackPanel
             Grid.Row="1"
-            Grid.Column="5"
+            Grid.Column="3"
             Orientation="Horizontal">
             <Button
+                Margin="0,0,10,0"
                 Name="InfoButton"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
@@ -75,9 +82,10 @@
         </StackPanel>
         <StackPanel
             Grid.Row="1"
-            Grid.Column="7"
+            Grid.Column="4"
             Orientation="Horizontal">
             <Button
+                Margin="0,0,10,0"
                 Name="DownloadButton"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"

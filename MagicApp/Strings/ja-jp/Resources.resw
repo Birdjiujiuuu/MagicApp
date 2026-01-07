@@ -183,6 +183,9 @@
   <data name="Notice_Send.Content" xml:space="preserve">
     <value>送信</value>
   </data>
+  <data name="Notice_Clear.Content" xml:space="preserve">
+    <value>クリア</value>
+  </data>
   <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>サウンドイベント</value>
   </data>

@@ -11,17 +11,7 @@
     Loading="Page_Loading">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="40"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Margin="40,20,40,20">
             
             <!--动画-->
             <StackPanel.ChildrenTransitions>
