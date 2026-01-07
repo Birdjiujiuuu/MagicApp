@@ -60,7 +60,7 @@
                     <Border Grid.Column="0"
                             Width="300"
                             Height="180"
-                            CornerRadius="4"
+                            CornerRadius="10"
                             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
                             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                             BorderThickness="1">
@@ -224,7 +224,7 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- 视频信息 -->
+                    <!-- 其他信息 -->
                     <Border Grid.Column="1"
                             Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                             BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}"
@@ -233,7 +233,7 @@
                             Padding="16"
                             Margin="5,0,0,0">
                         <StackPanel>
-                            <TextBlock Text="视频信息"
+                            <TextBlock Text="其他信息"
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,8"/>
@@ -296,7 +296,7 @@
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,0"/>
                                 <TextBlock x:Name="FetchTimeTextBlock"
-                                           Grid.Row="5" Grid.Column="1"
+                                           Grid.Row="4" Grid.Column="1"
                                            FontSize="12"/>
                             </Grid>
                         </StackPanel>

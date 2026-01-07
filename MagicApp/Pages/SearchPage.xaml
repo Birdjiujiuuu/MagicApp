@@ -12,15 +12,10 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="55"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="75"/>
-            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="110"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -29,15 +24,17 @@
         <StackPanel
             Orientation="Horizontal"
             HorizontalAlignment="Center"
-            Grid.Column="1"
-            Grid.Row="0">
+            Grid.Column="0"
+            Grid.Row="0"
+            Margin="25,0,10,0">
             <Image  Height="20" Width="20" Name="Icon"/>
         </StackPanel>
         <StackPanel
             Orientation="Horizontal"
             HorizontalAlignment="Center"
-            Grid.Column="3"
-            Grid.Row="0">
+            Grid.Column="1"
+            Grid.Row="0"
+            Margin="0,0,10,0">
             <ComboBox
                 Name="ComboBox"
                 HorizontalAlignment="Left"
@@ -49,8 +46,17 @@
                 <ComboBoxItem Name="Baidu" x:Uid="Search_Engine_Baidu"/>
             </ComboBox>
         </StackPanel>
-        <AutoSuggestBox Name="SearchBox" x:Uid="Search_SearchBox" MinWidth="200" Height="35" Grid.Row="0" Grid.Column="5" QueryIcon="Find" TextChanged="SearchBox_TextChanged"/>
-        <AppBarButton Name="OpenInBowser" x:Uid="Search_OpenInBowser" Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="World" Click="AppBarButton_Click"/>
-        <WebView2 Grid.ColumnSpan="9" Grid.Row="1" Name="explorer"/>
+        <AutoSuggestBox Name="SearchBox" x:Uid="Search_SearchBox" MinWidth="200" Height="35" Grid.Row="0" Grid.Column="2" QueryIcon="Find" TextChanged="SearchBox_TextChanged"/>
+        <AppBarButton Name="OpenInBowser" x:Uid="Search_OpenInBowser" Grid.Row="0" Grid.Column="3" Margin="10,0,25,0" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="World" Click="AppBarButton_Click"/>
+        <Border 
+            Grid.Row="1"
+            Grid.ColumnSpan="4"
+            Margin="10"
+            CornerRadius="10"
+            Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1">
+            <WebView2 Name="explorer"/>
+        </Border>
     </Grid>
 </Page>
