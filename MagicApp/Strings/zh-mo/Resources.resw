@@ -177,9 +177,6 @@
   <data name="Search_Engine_Bing.Content" xml:space="preserve">
     <value>Bing</value>
   </data>
-  <data name="Notice_Title.Text" xml:space="preserve">
-    <value>在这里写你的小文章</value>
-  </data>
   <data name="Notice_Send.Content" xml:space="preserve">
     <value>发射！</value>
   </data>

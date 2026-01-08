@@ -34,12 +34,10 @@ namespace MagicApp.Pages
             _isInitializing = true;
 
             //设置关于页标题为应用名称
-            string appName = Windows.ApplicationModel.AppInfo.Current.DisplayInfo.DisplayName;
-            About.Header = appName;
+            About.Header = Windows.ApplicationModel.AppInfo.Current.DisplayInfo.DisplayName;
 
             //设置应用版本号
-            string Version = string.Format("{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major, Package.Current.Id.Version.Minor, Package.Current.Id.Version.Build, Package.Current.Id.Version.Revision);
-            AppVersion.Description = Version;
+            AppVersion.Description = string.Format("{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major, Package.Current.Id.Version.Minor, Package.Current.Id.Version.Build, Package.Current.Id.Version.Revision);
 
             // 设置关于处超链接文本
             var loader = ResourceLoader.GetForViewIndependentUse();

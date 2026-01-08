@@ -177,9 +177,6 @@
   <data name="Search_Engine_Bing.Content" xml:space="preserve">
     <value>Bing</value>
   </data>
-  <data name="Notice_Title.Text" xml:space="preserve">
-    <value>여기에 알림 내용을 입력하세요</value>
-  </data>
   <data name="Notice_Send.Content" xml:space="preserve">
     <value>보내기</value>
   </data>

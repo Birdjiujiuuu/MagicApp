@@ -177,9 +177,6 @@
   <data name="Search_Engine_Bing.Content" xml:space="preserve">
     <value>必应</value>
   </data>
-  <data name="Notice_Title.Text" xml:space="preserve">
-    <value>在此处编辑您的通知内容</value>
-  </data>
   <data name="Notice_Send.Content" xml:space="preserve">
     <value>发送</value>
   </data>

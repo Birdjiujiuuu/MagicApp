@@ -57,7 +57,15 @@
                                         <RowDefinition Height="50"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <Image Name="CoverImage" Grid.Column="0" Grid.RowSpan="3"/>
+                                    <Border
+                                        Grid.Column="0"
+                                        Grid.RowSpan="3"
+                                        CornerRadius="10"
+                                        Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                        BorderThickness="1">
+                                        <Image Name="CoverImage" Stretch="Fill"/>
+                                    </Border>
                                     <TextBlock Name="MusicName" Grid.Column="2" Grid.Row="0" Style="{ThemeResource BaseTextBlockStyle}" FontSize="18" TextWrapping="Wrap"/>
                                     <TextBlock Name="MusicAuthor" Grid.Column="2" Grid.Row="1" FontSize="12"/>
                                     <StackPanel
