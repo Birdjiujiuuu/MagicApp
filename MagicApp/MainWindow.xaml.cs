@@ -214,6 +214,11 @@ namespace MagicApp
                 ContentFrame.Navigate(typeof(BilibiliVideoDataPage), null);
                 NavView.Header = BilibiliVideoData.Content;
             }
+            else if (args.InvokedItemContainer == QRCode)
+            {
+                ContentFrame.Navigate(typeof(QRCodePage), null);
+                NavView.Header = QRCode.Content;
+            }
             else if (args.InvokedItemContainer == Notice)
             {
                 ContentFrame.Navigate(typeof(NoticePage), null);

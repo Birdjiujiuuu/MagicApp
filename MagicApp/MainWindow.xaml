@@ -113,6 +113,7 @@
                 <NavigationViewItemSeparator/>
                 <NavigationViewItemHeader x:Name="NavViewHeaderTools" x:Uid="Main_NavView_Header_Tools"/>
                 <NavigationViewItem x:Name="BilibiliVideoData" x:Uid="Main_NavView_BilibiliVideoData"  Icon="SlideShow"/>
+                <NavigationViewItem x:Name="QRCode" x:Uid="Main_NavView_QRCode"  Icon="Scan"/>
                 <NavigationViewItem x:Name="Notice" x:Uid="Main_NavView_Notice"  Icon="Message"/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame"/>

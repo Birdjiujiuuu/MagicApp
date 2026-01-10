@@ -4,11 +4,17 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Resources;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,6 +35,9 @@ public sealed partial class BilibiliVideoDataPage : Page
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
         _httpClient.DefaultRequestHeaders.Accept.ParseAdd("application/json");
+
+        // 初始化字段
+        _currentCoverUrl = string.Empty;
     }
 
     // 格式化数字（添加千分位逗号）
@@ -171,6 +180,9 @@ public sealed partial class BilibiliVideoDataPage : Page
         }
     }
 
+    // 在类中添加私有字段来保存封面URL
+    private string _currentCoverUrl;
+
     // 使用视频数据更新UI
     private async Task UpdateUIWithVideoData(JsonElement data)
     {
@@ -220,6 +232,9 @@ public sealed partial class BilibiliVideoDataPage : Page
             string? coverUrl = data.GetProperty("pic").GetString();
             if (!string.IsNullOrEmpty(coverUrl))
             {
+                // 保存封面URL到字段
+                _currentCoverUrl = coverUrl;
+
                 var coverImage = await LoadImageAsync(coverUrl);
                 if (coverImage != null)
                 {
@@ -321,16 +336,93 @@ public sealed partial class BilibiliVideoDataPage : Page
         }
     }
 
-    // 打开浏览器按钮点击事件
-    private void OpenInBrowser_Click(object sender, RoutedEventArgs e)
+    // 下载封面按钮点击事件
+    private async void DownloadCoverButton_Click(object sender, RoutedEventArgs e)
     {
-        string url = "https://www.bilibili.com/video/" + BvIdTextBox.Text;
-        var processStartInfo = new System.Diagnostics.ProcessStartInfo
+        try
         {
-            FileName = url,
-            UseShellExecute = true
-        };
-        System.Diagnostics.Process.Start(processStartInfo);
+            // 检查是否有封面URL
+            if (string.IsNullOrEmpty(_currentCoverUrl))
+            {
+                return;
+            }
+
+            // 检查是否有图片可以下载
+            if (CoverImage.Source == null)
+            {
+                return;
+            }
+
+            var picker = new FileSavePicker();
+
+            // 配置 FileSavePicker 属性
+            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+
+            // 创建文件名
+            string fileName = !string.IsNullOrEmpty(BvidTextBlock.Text)
+                ? $"{BvidTextBlock.Text}_Cover"
+                : $"bilibili_cover";
+
+            picker.SuggestedFileName = fileName;
+            picker.FileTypeChoices.Add("JPEG", new List<string>() { ".jpg", ".jpeg" });
+            picker.FileTypeChoices.Add("PNG", new List<string>() { ".png" });
+
+            // 获取窗口句柄 - 使用与参考代码相同的方式
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+            // 显示选择器对话框
+            var file = await picker.PickSaveFileAsync();
+
+            if (file != null)
+            {
+                // 下载图片并保存
+                using (var httpClient = new HttpClient())
+                {
+                    var imageData = await httpClient.GetByteArrayAsync(_currentCoverUrl);
+                    await FileIO.WriteBytesAsync(file, imageData);
+                }
+            }
+        }
+        catch
+        {
+            
+        }
+    }
+
+    // 复制链接按钮点击事件
+    private async void CopyLinkButton_Click(object sender, RoutedEventArgs e)
+    {
+        var package = new DataPackage();
+        package.SetText("https://www.bilibili.com/video/" + BvIdTextBox.Text);
+        Clipboard.SetContent(package);
+    }
+
+    // 打开浏览器按钮点击事件
+    private async void OpenInBrowserButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            string url = "https://www.bilibili.com/video/" + BvIdTextBox.Text;
+            var processStartInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            };
+            System.Diagnostics.Process.Start(processStartInfo);
+        }
+        catch
+        {
+            
+        }
+    }
+
+    // 复制简介按钮点击事件
+    private async void CopyDescriptionButton_Click(object sender, RoutedEventArgs e)
+    {
+        var package = new DataPackage();
+        package.SetText(DescriptionTextBlock.Text);
+        Clipboard.SetContent(package);
     }
 
     // 页面卸载时清理资源

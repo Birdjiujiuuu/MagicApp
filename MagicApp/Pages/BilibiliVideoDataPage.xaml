@@ -38,7 +38,7 @@
 
         <!-- 加载条区域 -->
         <ProgressBar x:Name="LoadingProgressBar" Grid.Row="1" Height="4" Margin="20,0,20,0" Visibility="Collapsed" IsIndeterminate="True"/>
-        
+
         <!-- 主内容区域 -->
         <ScrollViewer Grid.Row="2" Margin="20,10,20,10" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel Spacing="20">
@@ -84,7 +84,7 @@
                                        FontSize="14"
                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                         </StackPanel>
-                        
+
                         <!-- 时长 -->
                         <StackPanel Orientation="Horizontal" Spacing="4">
                             <SymbolIcon Symbol="Clock"/>
@@ -93,7 +93,7 @@
                                        VerticalAlignment="Center"
                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                         </StackPanel>
-                        
+
                         <!-- 发布时间 -->
                         <StackPanel Orientation="Horizontal" Spacing="4">
                             <SymbolIcon Symbol="Calendar"/>
@@ -102,13 +102,31 @@
                                        VerticalAlignment="Center"
                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                         </StackPanel>
-                        <Button x:Name="OpenInBrowser"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Width="50"
-                                Click="OpenInBrowser_Click">
-                            <SymbolIcon Symbol="World"/>
-                        </Button>
+
+                        <!-- 操作区 -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+
+                            <!-- 下载封面图片 -->
+                            <Button x:Name="DownloadCoverButton"
+                                    Click="DownloadCoverButton_Click"
+                                    ToolTipService.ToolTip="下载封面">
+                                <SymbolIcon Symbol="Save"/>
+                            </Button>
+
+                            <!-- 复制视频链接 -->
+                            <Button x:Name="CopyLinkButton"
+                                    Click="CopyLinkButton_Click"
+                                    ToolTipService.ToolTip="复制链接">
+                                <SymbolIcon Symbol="Link"/>
+                            </Button>
+
+                            <!-- 在浏览器打开视频 -->
+                            <Button x:Name="OpenInBrowserButton"
+                                    Click="OpenInBrowserButton_Click"
+                                    ToolTipService.ToolTip="在浏览器打开">
+                                <SymbolIcon Symbol="World"/>
+                            </Button>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
 
@@ -216,11 +234,17 @@
                             <ScrollViewer MaxHeight="150"
                                           VerticalScrollBarVisibility="Auto">
                                 <TextBlock x:Name="DescriptionTextBlock"
-                                           Text="暂无简介"
                                            TextWrapping="Wrap"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                             </ScrollViewer>
+                            <Button x:Name="CopyDescriptionButton"
+                                    Click="CopyDescriptionButton_Click"
+                                    HorizontalAlignment="Right"
+                                    Margin="0,8,0,0"
+                                    ToolTipService.ToolTip="复制链接">
+                                <SymbolIcon Symbol="Copy"/>
+                            </Button>
                         </StackPanel>
                     </Border>
 

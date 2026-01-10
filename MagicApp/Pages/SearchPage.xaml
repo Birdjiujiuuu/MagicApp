@@ -47,7 +47,16 @@
             </ComboBox>
         </StackPanel>
         <AutoSuggestBox Name="SearchBox" x:Uid="Search_SearchBox" MinWidth="200" Height="35" Grid.Row="0" Grid.Column="2" QueryIcon="Find" TextChanged="SearchBox_TextChanged"/>
-        <AppBarButton Name="OpenInBowser" x:Uid="Search_OpenInBowser" Grid.Row="0" Grid.Column="3" Margin="10,0,25,0" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="World" Click="AppBarButton_Click"/>
+        <Button Name="OpenInBowser"
+                x:Uid="Search_OpenInBowser"
+                Grid.Row="0"
+                Grid.Column="3"
+                Margin="10,0,25,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="OpenInBowser_Click">
+            <SymbolIcon Symbol="World"/>
+        </Button>
         <Border 
             Grid.Row="1"
             Grid.ColumnSpan="4"

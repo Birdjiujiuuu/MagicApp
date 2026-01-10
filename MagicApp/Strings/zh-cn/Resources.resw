@@ -303,4 +303,7 @@
   <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
     <value>B站视频数据</value>
   </data>
+  <data name="Main_NavView_QRCode.Content" xml:space="preserve">
+    <value>二维码生成器</value>
+  </data>
 </root>

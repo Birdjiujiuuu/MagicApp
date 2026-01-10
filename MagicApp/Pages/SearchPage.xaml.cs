@@ -80,7 +80,7 @@ namespace MagicApp.Pages
             }
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private void OpenInBowser_Click(object sender, RoutedEventArgs e)
         {
             var Engine = ComboBox.SelectedItem as ComboBoxItem;
             string EngineName = Engine?.Name?.ToString() ?? string.Empty;
