@@ -13,7 +13,6 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
@@ -21,20 +20,15 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <StackPanel
             Orientation="Horizontal"
             HorizontalAlignment="Center"
             Grid.Column="0"
             Grid.Row="0"
-            Margin="25,0,10,0">
-            <Image  Height="20" Width="20" Name="Icon"/>
-        </StackPanel>
-        <StackPanel
-            Orientation="Horizontal"
-            HorizontalAlignment="Center"
-            Grid.Column="1"
-            Grid.Row="0"
-            Margin="0,0,10,0">
+            Margin="25,0,10,0"
+            Spacing="10">
+            <Image Name="Icon" Height="20" Width="20"/>
             <ComboBox
                 Name="ComboBox"
                 HorizontalAlignment="Left"
@@ -46,20 +40,21 @@
                 <ComboBoxItem Name="Baidu" x:Uid="Search_Engine_Baidu"/>
             </ComboBox>
         </StackPanel>
-        <AutoSuggestBox Name="SearchBox" x:Uid="Search_SearchBox" MinWidth="200" Height="35" Grid.Row="0" Grid.Column="2" QueryIcon="Find" TextChanged="SearchBox_TextChanged"/>
+        <AutoSuggestBox Name="SearchBox" x:Uid="Search_SearchBox" MinWidth="200" Height="35" Grid.Row="0" Grid.Column="1" QueryIcon="Find" TextChanged="SearchBox_TextChanged"/>
         <Button Name="OpenInBowser"
                 x:Uid="Search_OpenInBowser"
                 Grid.Row="0"
-                Grid.Column="3"
+                Grid.Column="2"
                 Margin="10,0,25,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Click="OpenInBowser_Click">
             <SymbolIcon Symbol="World"/>
         </Button>
+        
         <Border 
             Grid.Row="1"
-            Grid.ColumnSpan="4"
+            Grid.ColumnSpan="3"
             Margin="10"
             CornerRadius="10"
             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"

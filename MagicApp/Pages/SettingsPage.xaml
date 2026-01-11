@@ -11,7 +11,7 @@
     Loading="Page_Loading">
 
     <Grid>
-        <StackPanel Margin="40,20,40,20">
+        <StackPanel Margin="40,20,40,20" Spacing="5">
             
             <!--动画-->
             <StackPanel.ChildrenTransitions>
@@ -22,8 +22,7 @@
             
             <controls:ContentControl
                 x:Name="Theme"
-                x:Uid="Settings_Theme"
-                Margin="0,0,0,5">
+                x:Uid="Settings_Theme">
                 <controls:ContentControl.Icon>
                     <FontIcon Glyph="&#xE790;"/>
                 </controls:ContentControl.Icon>
@@ -35,8 +34,7 @@
             </controls:ContentControl>
             <controls:ContentControl
                 x:Name="Languages"
-                x:Uid="Settings_Languages"
-                Margin="0,0,0,5">
+                x:Uid="Settings_Languages">
                 <controls:ContentControl.Icon>
                     <FontIcon Glyph="&#xF2B7;"/>
                 </controls:ContentControl.Icon>
@@ -51,8 +49,7 @@
             </controls:ContentControl>
             <controls:ContentControl
                 x:Name="AppVersion"
-                x:Uid="Settings_AppVersion"
-                Margin="0,0,0,5">
+                x:Uid="Settings_AppVersion">
                 <controls:ContentControl.Icon>
                     <FontIcon Glyph="&#xE895;"/>
                 </controls:ContentControl.Icon>
@@ -65,8 +62,7 @@
             <controls:ContentControl
                 x:Name="About"
                 Image="ms-appx:///Assets/MagicAppLogo.png"
-                Description="©2026 Birdjiujiuuu"
-                Margin="0,0,0,5">
+                Description="©2026 Birdjiujiuuu">
                 <RichTextBlock>
                     <Paragraph>
                         <Hyperlink x:Name="OfficialWebsite" NavigateUri="https://birdjiujiuuu.github.io/magicapp/"/>

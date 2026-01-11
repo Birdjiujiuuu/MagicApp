@@ -16,10 +16,15 @@ namespace MagicApp.Pages
             InitializeComponent();
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.InputTextBox_TextChanged(this, default!);
+        }
+
         private async void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             // 更新文本长度
-            TextLengthTextBlock.Text = InputTextBox.Text.Length.ToString();
+            TextLengthData.DataValue = InputTextBox.Text.Length.ToString();
 
             // 如果文本框有内容，启用生成按钮
             GenerateButton.IsEnabled = !string.IsNullOrWhiteSpace(InputTextBox.Text);
@@ -28,8 +33,13 @@ namespace MagicApp.Pages
             if (string.IsNullOrWhiteSpace(InputTextBox.Text))
             {
                 QRCodeImage.Source = null;
-                StatusTextBlock.Text = "等待输入...";
+                StatusTextBlock.Text = string.Empty;
             }
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            InputTextBox.Text = string.Empty;
         }
 
         private async void GenerateButton_Click(object sender, RoutedEventArgs e)
@@ -42,14 +52,6 @@ namespace MagicApp.Pages
             try
             {
                 string text = InputTextBox.Text;
-
-                if (string.IsNullOrWhiteSpace(text))
-                {
-                    StatusTextBlock.Text = "请输入要生成二维码的内容";
-                    return;
-                }
-
-                StatusTextBlock.Text = "正在生成二维码...";
 
                 // 使用QRCoder生成二维码
                 using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
@@ -79,18 +81,9 @@ namespace MagicApp.Pages
             }
             catch (Exception ex)
             {
+                // 处理生成二维码时的异常
                 StatusTextBlock.Text = $"生成失败: {ex.Message}";
-
-                // 显示错误对话框
-                ContentDialog errorDialog = new ContentDialog
-                {
-                    Title = "生成错误",
-                    Content = $"生成二维码时出现错误：{ex.Message}",
-                    CloseButtonText = "确定",
-                    XamlRoot = Content.XamlRoot
-                };
-
-                await errorDialog.ShowAsync();
+                QRCodeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
             }
         }
     }

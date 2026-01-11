@@ -17,11 +17,10 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
+
         <Border
             Grid.Column="0"
             Grid.Row="0"
@@ -40,19 +39,16 @@
             VerticalAlignment="Center">
             <ProgressRing Name="ProgressRing"/>
         </StackPanel>
+
         <StackPanel
             Grid.Row="1"
             Grid.Column="0"
-            Orientation="Horizontal">
-            <Image Margin="10,0,10,0" Height="20" Width="20" Name="Icon"/>
-        </StackPanel>
-        <StackPanel
-            Grid.Row="1"
-            Grid.Column="1"
-            Orientation="Horizontal">
+            Orientation="Horizontal"
+            Margin="10,0,0,0"
+            Spacing="10">
+            <Image Height="20" Width="20" Name="Icon"/>
             <ComboBox
                 Name="ComboBox"
-                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem Name="Bing" x:Uid="Pictures_Source_Bing"/>
@@ -61,12 +57,12 @@
         </StackPanel>
         <StackPanel
             Grid.Row="1"
-            Grid.Column="3"
-            Orientation="Horizontal">
+            Grid.Column="2"
+            Orientation="Horizontal"
+            Margin="0,0,10,0"
+            Spacing="10">
             <Button
-                Margin="0,0,10,0"
                 Name="InfoButton"
-                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Width="50">
                 <SymbolIcon Symbol="Important"/>
@@ -79,15 +75,8 @@
                     </Flyout>
                 </Button.Flyout>
             </Button>
-        </StackPanel>
-        <StackPanel
-            Grid.Row="1"
-            Grid.Column="4"
-            Orientation="Horizontal">
             <Button
-                Margin="0,0,10,0"
                 Name="DownloadButton"
-                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Width="50"
                 Click="DownloadButton_Click">

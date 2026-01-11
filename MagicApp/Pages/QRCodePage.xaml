@@ -6,16 +6,12 @@
     xmlns:local="using:MagicApp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:controls="using:MagicApp.UI.Controls"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <!-- 内容区域 -->
-        <Grid Grid.Row="0" Padding="20">
+        <Grid Padding="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -35,7 +31,6 @@
                                FontWeight="SemiBold"/>
 
                     <TextBox x:Name="InputTextBox"
-                             Header="输入文本："
                              PlaceholderText="请输入要生成二维码的内容..."
                              AcceptsReturn="True"
                              TextWrapping="Wrap"
@@ -43,11 +38,36 @@
                              VerticalAlignment="Stretch"
                              TextChanged="InputTextBox_TextChanged"/>
 
-                    <Button x:Name="GenerateButton"
-                            Content="生成二维码"
-                            HorizontalAlignment="Stretch"
-                            Style="{StaticResource AccentButtonStyle}"
-                            Click="GenerateButton_Click"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <controls:DataControl x:Name="TextLengthData"
+                            Description="输入长度/字符"
+                            IconGlyph="&#xE8D2;"
+                            IconColor="#00A1D6"
+                            Margin="0,0,5,0"
+                            Grid.Column="0"/>
+
+                        <StackPanel Grid.Column="1"
+                                    Margin="5,0,0,0"
+                                    Orientation="Vertical">
+
+                            <Button x:Name="ClearButton"
+                                    Margin="0,0,0,5"
+                                    HorizontalAlignment="Stretch"
+                                    Content="清除"
+                                    Click="ClearButton_Click"/>
+
+                            <Button x:Name="GenerateButton"
+                                    Margin="0,5,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Content="生成二维码"
+                                    Style="{StaticResource AccentButtonStyle}"
+                                    Click="GenerateButton_Click"/>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </Border>
 
@@ -68,8 +88,8 @@
                     <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                             BorderThickness="1"
                             Background="White"
-                            CornerRadius="4"
-                            Padding="10"
+                            CornerRadius="5"
+                            Padding="5"
                             HorizontalAlignment="Center">
                         <Image x:Name="QRCodeImage"
                                Width="250"
@@ -81,29 +101,12 @@
 
                     <!-- 状态提示 -->
                     <TextBlock x:Name="StatusTextBlock"
-                               Text="等待输入..."
+                               TextWrapping="Wrap"
                                HorizontalAlignment="Center"
                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                TextAlignment="Center"/>
                 </StackPanel>
             </Border>
         </Grid>
-
-        <!-- 底部状态栏 -->
-        <Border Grid.Row="1"
-                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                BorderThickness="0,1,0,0">
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        Padding="20"
-                        Spacing="10">
-                <TextBlock Text="输入长度："/>
-                <TextBlock x:Name="TextLengthTextBlock"
-                           Text="0"
-                           FontWeight="SemiBold"/>
-                <TextBlock Text="字符"/>
-            </StackPanel>
-        </Border>
     </Grid>
 </Page>

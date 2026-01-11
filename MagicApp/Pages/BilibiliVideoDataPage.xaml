@@ -12,7 +12,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="4"/>
+            <RowDefinition Height="5"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -37,7 +37,7 @@
         </Grid>
 
         <!-- 加载条区域 -->
-        <ProgressBar x:Name="LoadingProgressBar" Grid.Row="1" Height="4" Margin="20,0,20,0" Visibility="Collapsed" IsIndeterminate="True"/>
+        <ProgressBar x:Name="LoadingProgressBar" Grid.Row="1" Height="5" Margin="20,0,20,0" Visibility="Collapsed" IsIndeterminate="True"/>
 
         <!-- 主内容区域 -->
         <ScrollViewer Grid.Row="2" Margin="20,10,20,10" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

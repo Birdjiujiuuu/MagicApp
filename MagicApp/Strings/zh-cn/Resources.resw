@@ -304,6 +304,6 @@
     <value>B站视频数据</value>
   </data>
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
-    <value>二维码生成器</value>
+    <value>二维码工具</value>
   </data>
 </root>
