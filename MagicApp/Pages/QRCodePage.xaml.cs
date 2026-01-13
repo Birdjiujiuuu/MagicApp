@@ -1,11 +1,12 @@
+using MagicApp.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Imaging;
 using QRCoder;
 using System;
-using Windows.Storage.Streams;
-using Microsoft.UI.Xaml.Media.Imaging;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.Storage.Streams;
 
 namespace MagicApp.Pages
 {
@@ -34,6 +35,7 @@ namespace MagicApp.Pages
             {
                 QRCodeImage.Source = null;
                 StatusTextBlock.Text = string.Empty;
+                SaveButton.IsEnabled = false;
             }
         }
 
@@ -78,6 +80,7 @@ namespace MagicApp.Pages
                 }
 
                 StatusTextBlock.Text = $"二维码生成成功 ({DateTime.Now:HH:mm:ss})";
+                SaveButton.IsEnabled = true;
             }
             catch (Exception ex)
             {
@@ -85,6 +88,11 @@ namespace MagicApp.Pages
                 StatusTextBlock.Text = $"生成失败: {ex.Message}";
                 QRCodeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
             }
+        }
+
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

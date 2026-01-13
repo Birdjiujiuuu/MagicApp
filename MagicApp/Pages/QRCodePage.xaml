@@ -6,7 +6,7 @@
     xmlns:local="using:MagicApp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:MagicApp.UI.Controls"
+    xmlns:controls="using:MagicApp.Controls"
     mc:Ignorable="d"
     Loaded="Page_Loaded">
 
@@ -105,6 +105,13 @@
                                HorizontalAlignment="Center"
                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                TextAlignment="Center"/>
+                    
+                    <!-- 保存到本地按钮 -->
+                    <Button x:Name="SaveButton"
+                            Content="保存二维码到本地"
+                            HorizontalAlignment="Stretch"
+                            Style="{StaticResource AccentButtonStyle}"
+                            Click="SaveButton_Click"/>
                 </StackPanel>
             </Border>
         </Grid>

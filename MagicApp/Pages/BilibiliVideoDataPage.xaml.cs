@@ -5,16 +5,14 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using MagicApp.Services;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -353,36 +351,15 @@ public sealed partial class BilibiliVideoDataPage : Page
                 return;
             }
 
-            var picker = new FileSavePicker();
-
-            // 配置 FileSavePicker 属性
-            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-
-            // 创建文件名
-            string fileName = !string.IsNullOrEmpty(BvidTextBlock.Text)
+            // 使用通用下载服务
+            string suggestedFileName = !string.IsNullOrEmpty(BvidTextBlock.Text)
                 ? $"{BvidTextBlock.Text}_Cover"
-                : $"bilibili_cover";
+                : $"bilibili_cover_{DateTime.Now:yyyyMMdd_HHmmss}";
 
-            picker.SuggestedFileName = fileName;
-            picker.FileTypeChoices.Add("JPEG", new List<string>() { ".jpg", ".jpeg" });
-            picker.FileTypeChoices.Add("PNG", new List<string>() { ".png" });
-
-            // 获取窗口句柄 - 使用与参考代码相同的方式
-            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
-            WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
-
-            // 显示选择器对话框
-            var file = await picker.PickSaveFileAsync();
-
-            if (file != null)
-            {
-                // 下载图片并保存
-                using (var httpClient = new HttpClient())
-                {
-                    var imageData = await httpClient.GetByteArrayAsync(_currentCoverUrl);
-                    await FileIO.WriteBytesAsync(file, imageData);
-                }
-            }
+            bool success = await FileDownloadService.DownloadImageAsync(
+                _currentCoverUrl,
+                suggestedFileName,
+                this.XamlRoot);
         }
         catch
         {

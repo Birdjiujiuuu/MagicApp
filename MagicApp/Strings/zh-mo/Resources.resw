@@ -282,22 +282,46 @@
   <data name="Settings_About_SourceCode" xml:space="preserve">
     <value>小软件的内部</value>
   </data>
-  <data name="Pictures_Download_Dialog_Close" xml:space="preserve">
+  <data name="FileDownloadService_Close" xml:space="preserve">
     <value>好</value>
   </data>
-  <data name="Pictures_Download_Dialog_Downloading" xml:space="preserve">
+  <data name="FileDownloadService_Downloading" xml:space="preserve">
     <value>保存ing</value>
   </data>
-  <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
-    <value>好康的已经藏进</value>
+  <data name="FileDownloadService_FilePath" xml:space="preserve">
+    <value>好东西的已经藏进：</value>
   </data>
-  <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
+  <data name="FileDownloadService_Error" xml:space="preserve">
     <value>出问题了</value>
   </data>
-  <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
+  <data name="FileDownloadService_Success" xml:space="preserve">
     <value>保存好了！</value>
   </data>
-  <data name="Pictures_Download_Dialog_Failure" xml:space="preserve">
-    <value>保存不了惹</value>
+  <data name="FileDownloadService_Failure" xml:space="preserve">
+    <value>保存不了惹：</value>
+  </data>
+  <data name="FileDownloadService_Downloading_Describe" xml:space="preserve">
+    <value>在保存了，等等...</value>
+  </data>
+  <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
+    <value>保存的URL不能没有哦</value>
+  </data>
+  <data name="FileDownloadService_AllFile" xml:space="preserve">
+    <value>全部好东西</value>
+  </data>
+  <data name="FileDownloadService_File" xml:space="preserve">
+    <value>好东西</value>
+  </data>
+  <data name="FileDownloadService_TxtFile" xml:space="preserve">
+    <value>全是字的好东西</value>
+  </data>
+  <data name="FileDownloadService_Error_Describe" xml:space="preserve">
+    <value>保存的时候出问题惹：</value>
+  </data>
+  <data name="FileDownloadService_AllFile_Image" xml:space="preserve">
+    <value>全部可以看的好东西</value>
+  </data>
+  <data name="FileDownloadService_AllFile_Video" xml:space="preserve">
+    <value>全部会动的好东西</value>
   </data>
 </root>

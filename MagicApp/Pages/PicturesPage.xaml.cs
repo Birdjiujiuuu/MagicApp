@@ -1,3 +1,4 @@
+using MagicApp.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
@@ -138,121 +139,40 @@ namespace MagicApp.Pages
         // 图片下载
         private async void DownloadButton_Click(object sender, RoutedEventArgs e)
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             if (sender is Button button)
             {
                 button.IsEnabled = false;
 
-                // 检查是否有图片可以下载
-                if (Picture.Source == null)
+                try
+                {
+                    // 检查是否有图片可以下载
+                    if (Picture.Source == null)
+                    {
+                        button.IsEnabled = true;
+                        return;
+                    }
+
+                    // 获取当前图片的URL
+                    string imageUrl = GetCurrentImageUrl();
+                    if (string.IsNullOrEmpty(imageUrl))
+                    {
+                        button.IsEnabled = true;
+                        return;
+                    }
+
+                    // 使用通用下载服务
+                    string suggestedFileName = $"Wallpaper_{DateTime.Now:yyyyMMdd_HHmmss}";
+
+                    bool success = await FileDownloadService.DownloadImageAsync(
+                        imageUrl,
+                        suggestedFileName,
+                        this.XamlRoot);
+                }
+                finally
                 {
                     button.IsEnabled = true;
-                    return;
                 }
-
-                // 获取当前图片的URL
-                string imageUrl = GetCurrentImageUrl();
-                if (string.IsNullOrEmpty(imageUrl))
-                {
-                    button.IsEnabled = true;
-                    return;
-                }
-
-                var picker = new FileSavePicker();
-
-                // 配置 FileSavePicker 属性
-                picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-                picker.SuggestedFileName = $"Wallpaper_{DateTime.Now:yyyyMMdd_HHmmss}";
-                picker.FileTypeChoices.Add("JPEG", new List<string>() { ".jpg" });
-                picker.FileTypeChoices.Add("PNG", new List<string>() { ".png" });
-
-                // 关联窗口句柄
-                var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
-                WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
-
-                // 显示选择器对话框
-                var file = await picker.PickSaveFileAsync();
-
-                if (file != null)
-                {
-                    // 创建并显示进度对话框
-                    ContentDialog progressDialog = new()
-                    {
-                        XamlRoot = this.XamlRoot,
-                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                        Title = loader.GetString("Pictures_Download_Dialog_Downloading"),
-                        Content = CreateProgressContent(),
-                        PrimaryButtonText = loader.GetString("Pictures_Download_Dialog_Close"),
-                        IsPrimaryButtonEnabled = false,
-                        CloseButtonText = null,
-                        DefaultButton = ContentDialogButton.Primary
-                    };
-                    var showTask = progressDialog.ShowAsync();
-
-                    try
-                    {
-                        // 下载图片并保存
-                        using (var httpClient = new HttpClient())
-                        {
-                            var imageData = await httpClient.GetByteArrayAsync(imageUrl);
-                            await FileIO.WriteBytesAsync(file, imageData);
-
-                            // 下载完成，更新对话框
-                            UpdateDialogForCompletion(progressDialog, loader.GetString("Pictures_Download_Dialog_Success"), $"{loader.GetString("Pictures_Download_Dialog_FilePath")}:\n{file.Path}");
-                            progressDialog.IsPrimaryButtonEnabled = true;
-                            await showTask;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        try
-                        {
-                            // 如果下载失败，尝试删除已创建的文件
-                            await file.DeleteAsync();
-                        }
-                        catch
-                        {
-
-                        }
-                        // 下载失败，更新对话框
-                        UpdateDialogForCompletion(progressDialog, loader.GetString("Pictures_Download_Dialog_Failure"), $"{loader.GetString("Pictures_Download_Dialog_Error")}:\n{ex.Message}");
-                        progressDialog.IsPrimaryButtonEnabled = true;
-                        await showTask;
-                    }
-                }
-                button.IsEnabled = true;
             }
-        }
-
-        // 创建进度对话框内容
-        private StackPanel CreateProgressContent()
-        {
-            return new StackPanel
-            {
-                Orientation = Orientation.Vertical,
-                Spacing = 10,
-                Children =
-                {
-                    new ProgressBar
-                    {
-                        IsIndeterminate = true,
-                        Width = 250,
-                        HorizontalAlignment = HorizontalAlignment.Center
-                    }
-                }
-            };
-        }
-
-        // 更新对话框内容为完成状态
-        private void UpdateDialogForCompletion(ContentDialog dialog, string title, string message)
-        {
-            dialog.Title = title;
-            dialog.Content = new TextBlock
-            {
-                Text = message,
-                TextWrapping = TextWrapping.WrapWholeWords
-            };
         }
 
         private string GetCurrentImageUrl()

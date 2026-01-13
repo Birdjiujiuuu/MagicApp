@@ -24,7 +24,7 @@
         <Border
             Grid.Column="0"
             Grid.Row="0"
-            Grid.ColumnSpan="5"
+            Grid.ColumnSpan="3"
             Margin="10"
             CornerRadius="10"
             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
@@ -34,7 +34,7 @@
         </Border>
         <StackPanel
             Grid.Row="0"
-            Grid.ColumnSpan="5"
+            Grid.ColumnSpan="3"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <ProgressRing Name="ProgressRing"/>

@@ -282,22 +282,46 @@
   <data name="Settings_About_SourceCode" xml:space="preserve">
     <value>源代碼</value>
   </data>
-  <data name="Pictures_Download_Dialog_Close" xml:space="preserve">
+  <data name="FileDownloadService_Close" xml:space="preserve">
     <value>確定</value>
   </data>
-  <data name="Pictures_Download_Dialog_Downloading" xml:space="preserve">
-    <value>下載中...</value>
+  <data name="FileDownloadService_Downloading" xml:space="preserve">
+    <value>下載中</value>
   </data>
-  <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
-    <value>圖片已保存到</value>
+  <data name="FileDownloadService_FilePath" xml:space="preserve">
+    <value>檔案已儲存到：</value>
   </data>
-  <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
+  <data name="FileDownloadService_Error" xml:space="preserve">
     <value>錯誤</value>
   </data>
-  <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
+  <data name="FileDownloadService_Success" xml:space="preserve">
     <value>下載成功</value>
   </data>
-  <data name="Pictures_Download_Dialog_Failure" xml:space="preserve">
-    <value>下載失敗</value>
+  <data name="FileDownloadService_Failure" xml:space="preserve">
+    <value>下載失敗：</value>
+  </data>
+  <data name="FileDownloadService_Downloading_Describe" xml:space="preserve">
+    <value>正在下載檔案，請稍候...</value>
+  </data>
+  <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
+    <value>下載URL不能為空</value>
+  </data>
+  <data name="FileDownloadService_AllFile" xml:space="preserve">
+    <value>所有檔案</value>
+  </data>
+  <data name="FileDownloadService_File" xml:space="preserve">
+    <value>檔案</value>
+  </data>
+  <data name="FileDownloadService_TxtFile" xml:space="preserve">
+    <value>文字檔案</value>
+  </data>
+  <data name="FileDownloadService_Error_Describe" xml:space="preserve">
+    <value>下載過程中發生錯誤：</value>
+  </data>
+  <data name="FileDownloadService_AllFile_Image" xml:space="preserve">
+    <value>所有圖片檔案</value>
+  </data>
+  <data name="FileDownloadService_AllFile_Video" xml:space="preserve">
+    <value>所有影片檔案</value>
   </data>
 </root>

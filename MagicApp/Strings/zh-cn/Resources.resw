@@ -282,28 +282,52 @@
   <data name="Settings_About_SourceCode" xml:space="preserve">
     <value>源代码</value>
   </data>
-  <data name="Pictures_Download_Dialog_Close" xml:space="preserve">
+  <data name="FileDownloadService_Close" xml:space="preserve">
     <value>确定</value>
   </data>
-  <data name="Pictures_Download_Dialog_Downloading" xml:space="preserve">
-    <value>下载中...</value>
+  <data name="FileDownloadService_Downloading" xml:space="preserve">
+    <value>下载中</value>
   </data>
-  <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
-    <value>图片已保存到</value>
+  <data name="FileDownloadService_FilePath" xml:space="preserve">
+    <value>文件已保存到：</value>
   </data>
-  <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
+  <data name="FileDownloadService_Error" xml:space="preserve">
     <value>错误</value>
   </data>
-  <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
+  <data name="FileDownloadService_Success" xml:space="preserve">
     <value>下载成功</value>
   </data>
-  <data name="Pictures_Download_Dialog_Failure" xml:space="preserve">
-    <value>下载失败</value>
+  <data name="FileDownloadService_Failure" xml:space="preserve">
+    <value>下载失败：</value>
   </data>
   <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
     <value>B站视频数据</value>
   </data>
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>二维码工具</value>
+  </data>
+  <data name="FileDownloadService_Downloading_Describe" xml:space="preserve">
+    <value>正在下载文件，请稍候...</value>
+  </data>
+  <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
+    <value>下载URL不能为空</value>
+  </data>
+  <data name="FileDownloadService_AllFile" xml:space="preserve">
+    <value>所有文件</value>
+  </data>
+  <data name="FileDownloadService_File" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="FileDownloadService_TxtFile" xml:space="preserve">
+    <value>文本文件</value>
+  </data>
+  <data name="FileDownloadService_Error_Describe" xml:space="preserve">
+    <value>下载过程中发生错误：</value>
+  </data>
+  <data name="FileDownloadService_AllFile_Image" xml:space="preserve">
+    <value>所有图片文件</value>
+  </data>
+  <data name="FileDownloadService_AllFile_Video" xml:space="preserve">
+    <value>所有视频文件</value>
   </data>
 </root>

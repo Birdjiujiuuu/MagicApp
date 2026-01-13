@@ -21,8 +21,8 @@
     <None Remove="Pages\QRCodePage.xaml" />
     <None Remove="Pages\SearchPage.xaml" />
     <None Remove="Pages\SettingsPage.xaml" />
-    <None Remove="UI\Controls\ContentControl.xaml" />
-    <None Remove="UI\Controls\DataControl.xaml" />
+    <None Remove="Controls\ContentControl.xaml" />
+    <None Remove="Controls\DataControl.xaml" />
   </ItemGroup>
 
   <ItemGroup>

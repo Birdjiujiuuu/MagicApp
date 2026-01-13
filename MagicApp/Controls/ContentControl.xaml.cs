@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Markup;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace MagicApp.UI.Controls
+namespace MagicApp.Controls
 {
     [ContentProperty(Name = nameof(SettingActionableElement))]
     public sealed partial class ContentControl : UserControl

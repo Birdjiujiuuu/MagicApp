@@ -4,7 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Windows.UI;
 
-namespace MagicApp.UI.Controls
+namespace MagicApp.Controls
 {
     public sealed partial class DataControl : UserControl
     {

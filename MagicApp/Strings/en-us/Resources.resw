@@ -282,22 +282,46 @@
   <data name="Settings_About_SourceCode" xml:space="preserve">
     <value>Source Code</value>
   </data>
-  <data name="Pictures_Download_Dialog_Close" xml:space="preserve">
+  <data name="FileDownloadService_Close" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="Pictures_Download_Dialog_Downloading" xml:space="preserve">
-    <value>Downloading...</value>
+  <data name="FileDownloadService_Downloading" xml:space="preserve">
+    <value>Downloading</value>
   </data>
-  <data name="Pictures_Download_Dialog_FilePath" xml:space="preserve">
-    <value>Image saved to</value>
+  <data name="FileDownloadService_FilePath" xml:space="preserve">
+    <value>File saved to:</value>
   </data>
-  <data name="Pictures_Download_Dialog_Error" xml:space="preserve">
+  <data name="FileDownloadService_Error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="Pictures_Download_Dialog_Success" xml:space="preserve">
+  <data name="FileDownloadService_Success" xml:space="preserve">
     <value>Download successful</value>
   </data>
-  <data name="Pictures_Download_Dialog_Failure" xml:space="preserve">
-    <value>Download failed</value>
+  <data name="FileDownloadService_Failure" xml:space="preserve">
+    <value>Download failed :</value>
+  </data>
+  <data name="FileDownloadService_Downloading_Describe" xml:space="preserve">
+    <value>Downloading file, please wait...</value>
+  </data>
+  <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
+    <value>Download URL must not be empty</value>
+  </data>
+  <data name="FileDownloadService_AllFile" xml:space="preserve">
+    <value>All Files</value>
+  </data>
+  <data name="FileDownloadService_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="FileDownloadService_TxtFile" xml:space="preserve">
+    <value>Text File</value>
+  </data>
+  <data name="FileDownloadService_Error_Describe" xml:space="preserve">
+    <value>An error occurred during download:</value>
+  </data>
+  <data name="FileDownloadService_AllFile_Image" xml:space="preserve">
+    <value>All Image Files</value>
+  </data>
+  <data name="FileDownloadService_AllFile_Video" xml:space="preserve">
+    <value>All Video Files</value>
   </data>
 </root>
