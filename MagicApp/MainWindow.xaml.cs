@@ -1,4 +1,5 @@
 using MagicApp.Pages;
+using MagicApp.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -9,14 +10,10 @@ using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.Media.Core;
-using Windows.Storage;
-using Windows.Storage.Streams;
-using Windows.System.UserProfile;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,6 +28,9 @@ namespace MagicApp
         public MainWindow()
         {
             InitializeComponent();
+
+            // 订阅Loaded事件
+            this.Activated += MainWindow_Activated;
 
             this.ExtendsContentIntoTitleBar = true;
             this.SetTitleBar(TitleBar);
@@ -68,34 +68,24 @@ namespace MagicApp
             NavView.Header = Home.Content;
 
             this.MusicRefresh_Click(this, new RoutedEventArgs());
-
-            // 异步加载当前 Windows 账户头像（不阻塞构造）
-            _ = LoadUserAccountPictureAsync();
         }
 
-        // 异步加载当前 Windows 账户头像并设置到 PersonPicture
-        private async Task LoadUserAccountPictureAsync()
+        private async void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
         {
-            try
+            // 确保只在第一次激活时检查
+            if (args.WindowActivationState != WindowActivationState.CodeActivated &&
+                args.WindowActivationState != WindowActivationState.PointerActivated)
             {
-                // 优先尝试小尺寸头像（Small/Thumbnail/Large 可选）
-                var streamRef = UserInformation.GetAccountPicture(AccountPictureKind.SmallImage);
-                if (streamRef != null)
-                {
-                    using (var stream = await streamRef.OpenReadAsync())
-                    {
-                        var bitmap = new BitmapImage();
-                        await bitmap.SetSourceAsync(stream);
-                        // 将 BitmapImage 绑定到 XAML 中的 PersonPicture 控件
-                        UserPersonPicture.ProfilePicture = bitmap;
-                        return;
-                    }
-                }
+                return;
             }
-            catch
-            {
-                
-            }
+
+            // 取消订阅，避免重复检查
+            this.Activated -= MainWindow_Activated;
+
+            await Task.Delay(2000);
+
+            // 调用UpdateService静默检查更新
+            await UpdateService.CheckForUpdateSilentlyAndNotifyAsync(this.Content.XamlRoot);
         }
 
         // 音乐 AppBarButton 点击事件，显示附加的 Flyout

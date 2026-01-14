@@ -1,18 +1,16 @@
+using MagicApp.Helpers;
+using MagicApp.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using MagicApp.Services;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -38,34 +36,6 @@ public sealed partial class BilibiliVideoDataPage : Page
         _currentCoverUrl = string.Empty;
     }
 
-    // 格式化数字（添加千分位逗号）
-    private string FormatNumber(int number)
-    {
-        return number.ToString("N0");
-    }
-
-    // Unix时间戳转换为DateTime
-    private DateTime UnixTimeStampToDateTime(long unixTimeStamp)
-    {
-        DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-        dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-        return dateTime;
-    }
-
-    // 格式化视频时长（秒转换为时:分:秒）
-    private string FormatDuration(int seconds)
-    {
-        TimeSpan timeSpan = TimeSpan.FromSeconds(seconds);
-        if (timeSpan.TotalHours >= 1)
-        {
-            return timeSpan.ToString(@"hh\:mm\:ss");
-        }
-        else
-        {
-            return timeSpan.ToString(@"mm\:ss");
-        }
-    }
-
     // 获取视频类型（版权信息）
     private string GetCopyrightText(int copyright)
     {
@@ -89,12 +59,6 @@ public sealed partial class BilibiliVideoDataPage : Page
             4 => "已锁定",
             _ => $"未知({state})"
         };
-    }
-
-    // 格式化抓取时间
-    private string FormatFetchTime(DateTime fetchTime)
-    {
-        return fetchTime.ToString("yyyy-MM-dd HH:mm:ss");
     }
 
     // 通用的图片加载方法
@@ -192,20 +156,20 @@ public sealed partial class BilibiliVideoDataPage : Page
             BvidTextBlock.Text = data.GetProperty("bvid").GetString() ?? "未知BV号";
             AidTextBlock.Text = data.GetProperty("aid").ToString();
 
-            // 发布时间（详细时间）
+            // 发布时间（详细时间） - 使用 FormatHelper.UnixTimeStampToDateTime
             long pubdate = data.GetProperty("pubdate").GetInt64();
-            DateTime publishTime = UnixTimeStampToDateTime(pubdate);
+            DateTime publishTime = FormatHelper.UnixTimeStampToDateTime(pubdate);
             PubDateTextBlock.Text = publishTime.ToString("yyyy-MM-dd HH:mm:ss");
 
-            // 统计数据
+            // 统计数据 - 使用 FormatHelper.FormatNumber
             var stat = data.GetProperty("stat");
-            ViewDataControl.DataValue = FormatNumber(stat.GetProperty("view").GetInt32());
-            DanmakuDataControl.DataValue = FormatNumber(stat.GetProperty("danmaku").GetInt32());
-            ReplyDataControl.DataValue = FormatNumber(stat.GetProperty("reply").GetInt32());
-            LikeDataControl.DataValue = FormatNumber(stat.GetProperty("like").GetInt32());
-            CoinDataControl.DataValue = FormatNumber(stat.GetProperty("coin").GetInt32());
-            FavoriteDataControl.DataValue = FormatNumber(stat.GetProperty("favorite").GetInt32());
-            ShareDataControl.DataValue = FormatNumber(stat.GetProperty("share").GetInt32());
+            ViewDataControl.DataValue = FormatHelper.FormatNumber(stat.GetProperty("view").GetInt32());
+            DanmakuDataControl.DataValue = FormatHelper.FormatNumber(stat.GetProperty("danmaku").GetInt32());
+            ReplyDataControl.DataValue = FormatHelper.FormatNumber(stat.GetProperty("reply").GetInt32());
+            LikeDataControl.DataValue = FormatHelper.FormatNumber(stat.GetProperty("like").GetInt32());
+            CoinDataControl.DataValue = FormatHelper.FormatNumber(stat.GetProperty("coin").GetInt32());
+            FavoriteDataControl.DataValue = FormatHelper.FormatNumber(stat.GetProperty("favorite").GetInt32());
+            ShareDataControl.DataValue = FormatHelper.FormatNumber(stat.GetProperty("share").GetInt32());
 
             // 视频简介
             var description = data.GetProperty("desc").GetString();
@@ -219,12 +183,12 @@ public sealed partial class BilibiliVideoDataPage : Page
             int state = data.GetProperty("state").GetInt32();
             VideoStateTextBlock.Text = GetVideoStateText(state);
 
-            // 视频时长
+            // 视频时长 - 使用 FormatHelper.FormatDuration
             int duration = data.GetProperty("duration").GetInt32();
-            DurationTextBlock.Text = FormatDuration(duration);
+            DurationTextBlock.Text = FormatHelper.FormatDuration(duration);
 
-            // 抓取时间
-            FetchTimeTextBlock.Text = FormatFetchTime(_fetchTime);
+            // 抓取时间 - 使用 FormatHelper.FormatDateTime
+            FetchTimeTextBlock.Text = FormatHelper.FormatDateTime(_fetchTime, "yyyy-MM-dd HH:mm:ss");
 
             // 加载封面图片
             string? coverUrl = data.GetProperty("pic").GetString();
@@ -337,21 +301,25 @@ public sealed partial class BilibiliVideoDataPage : Page
     // 下载封面按钮点击事件
     private async void DownloadCoverButton_Click(object sender, RoutedEventArgs e)
     {
+        DownloadCoverButton.IsEnabled = false;
+
         try
         {
             // 检查是否有封面URL
             if (string.IsNullOrEmpty(_currentCoverUrl))
             {
+                DownloadCoverButton.IsEnabled = true;
                 return;
             }
 
             // 检查是否有图片可以下载
             if (CoverImage.Source == null)
             {
+                DownloadCoverButton.IsEnabled = true;
                 return;
             }
 
-            // 使用通用下载服务
+            // 调用FileDownloadService
             string suggestedFileName = !string.IsNullOrEmpty(BvidTextBlock.Text)
                 ? $"{BvidTextBlock.Text}_Cover"
                 : $"bilibili_cover_{DateTime.Now:yyyyMMdd_HHmmss}";
@@ -361,9 +329,9 @@ public sealed partial class BilibiliVideoDataPage : Page
                 suggestedFileName,
                 this.XamlRoot);
         }
-        catch
+        finally
         {
-            
+            DownloadCoverButton.IsEnabled = true;
         }
     }
 

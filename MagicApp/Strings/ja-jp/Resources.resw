@@ -231,26 +231,23 @@
   <data name="Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
     <value>更新を確認</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Title" xml:space="preserve">
+  <data name="UpdateService_Title" xml:space="preserve">
     <value>更新を確認</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Close" xml:space="preserve">
+  <data name="UpdateService_Close" xml:space="preserve">
     <value>確認</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Error" xml:space="preserve">
+  <data name="UpdateService_Error" xml:space="preserve">
     <value>エラー</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_JSONError" xml:space="preserve">
-    <value>JSONの解析に失敗しました</value>
-  </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Latest" xml:space="preserve">
+  <data name="UpdateService_Latest" xml:space="preserve">
     <value>最新版です！</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Later" xml:space="preserve">
+  <data name="UpdateService_Later" xml:space="preserve">
     <value>後でダウンロード</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Download" xml:space="preserve">
-    <value>ダウンロードへ進む</value>
+  <data name="UpdateService_Download" xml:space="preserve">
+    <value>今すぐダウンロード</value>
   </data>
   <data name="Settings_Theme.Header" xml:space="preserve">
     <value>テーマ</value>
@@ -323,5 +320,8 @@
   </data>
   <data name="FileDownloadService_AllFile_Video" xml:space="preserve">
     <value>すべての動画ファイル</value>
+  </data>
+  <data name="UpdateService_Release" xml:space="preserve">
+    <value>リリースページへ</value>
   </data>
 </root>

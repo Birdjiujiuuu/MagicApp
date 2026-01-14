@@ -231,26 +231,23 @@
   <data name="Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
     <value>检查更新</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Title" xml:space="preserve">
+  <data name="UpdateService_Title" xml:space="preserve">
     <value>检查更新</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Close" xml:space="preserve">
+  <data name="UpdateService_Close" xml:space="preserve">
     <value>确定</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Error" xml:space="preserve">
+  <data name="UpdateService_Error" xml:space="preserve">
     <value>错误</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_JSONError" xml:space="preserve">
-    <value>JSON解析失败</value>
-  </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Latest" xml:space="preserve">
+  <data name="UpdateService_Latest" xml:space="preserve">
     <value>已经是最新版本！</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Later" xml:space="preserve">
+  <data name="UpdateService_Later" xml:space="preserve">
     <value>稍后下载</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate_Dialog_Download" xml:space="preserve">
-    <value>前往下载</value>
+  <data name="UpdateService_Download" xml:space="preserve">
+    <value>立即下载</value>
   </data>
   <data name="Settings_Theme.Header" xml:space="preserve">
     <value>主题</value>
@@ -329,5 +326,8 @@
   </data>
   <data name="FileDownloadService_AllFile_Video" xml:space="preserve">
     <value>所有视频文件</value>
+  </data>
+  <data name="UpdateService_Release" xml:space="preserve">
+    <value>前往发行页</value>
   </data>
 </root>

@@ -1,11 +1,9 @@
+using MagicApp.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.Windows.Globalization;
 using System;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
@@ -28,6 +26,8 @@ namespace MagicApp.Pages
             InitializeComponent();
         }
 
+        private static readonly ResourceLoader _resourceLoader = ResourceLoader.GetForViewIndependentUse();
+
         private void Page_Loading(FrameworkElement sender, object args)
         {
             // 开始初始化
@@ -40,10 +40,8 @@ namespace MagicApp.Pages
             AppVersion.Description = string.Format("{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major, Package.Current.Id.Version.Minor, Package.Current.Id.Version.Build, Package.Current.Id.Version.Revision);
 
             // 设置关于处超链接文本
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
-            string officialWebsiteText = loader.GetString("Settings_About_OfficialWebsite");
-            string sourceCodeText = loader.GetString("Settings_About_SourceCode");
+            string officialWebsiteText = _resourceLoader.GetString("Settings_About_OfficialWebsite");
+            string sourceCodeText = _resourceLoader.GetString("Settings_About_SourceCode");
             OfficialWebsite.Inlines.Clear();
             OfficialWebsite.Inlines.Add(new Run { Text = officialWebsiteText });
             SourceCode.Inlines.Clear();
@@ -161,16 +159,14 @@ namespace MagicApp.Pages
         //显示重启对话框
         private async void ShowRestartDialog()
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             ContentDialog dialog = new()
             {
                 XamlRoot = this.XamlRoot,
                 Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                Title = loader.GetString("Settings_Languages_Dialog_Title"),
-                Content = loader.GetString("Settings_Languages_Dialog_Content"),
-                PrimaryButtonText = loader.GetString("Settings_Languages_Dialog_Restart"),
-                CloseButtonText = loader.GetString("Settings_Languages_Dialog_Later"),
+                Title = _resourceLoader.GetString("Settings_Languages_Dialog_Title"),
+                Content = _resourceLoader.GetString("Settings_Languages_Dialog_Content"),
+                PrimaryButtonText = _resourceLoader.GetString("Settings_Languages_Dialog_Restart"),
+                CloseButtonText = _resourceLoader.GetString("Settings_Languages_Dialog_Later"),
                 DefaultButton = ContentDialogButton.Primary
             };
             var result = await dialog.ShowAsync();
@@ -194,143 +190,18 @@ namespace MagicApp.Pages
             CheckUpdate.IsEnabled = false;
             CheckUpdateProgressRing.IsActive = true;
 
-
-            using (var httpClient = new HttpClient())
-            {
-                var loader = ResourceLoader.GetForViewIndependentUse();
-
-                try
+            // 调用UpdateService
+            await UpdateService.CheckForUpdateAsync(
+                this.XamlRoot,
+                // 检查开始时的回调
+                onCheckStart: null,
+                // 检查结束时的回调
+                onCheckEnd: () =>
                 {
-                    // 获取当前应用版本
-                    var packageVersion = Package.Current.Id.Version;
-                    string currentVersion = $"{packageVersion.Major}.{packageVersion.Minor}.{packageVersion.Build}.{packageVersion.Revision}";
-
-                    // 设置User-Agent头以符合GitHub API要求
-                    string userAgentString = $"MagicApp/{currentVersion}";
-                    httpClient.DefaultRequestHeaders.Add("User-Agent", userAgentString);
-
-                    string url = "https://api.github.com/repos/Birdjiujiuuu/MagicApp/releases/latest";
-                    var response = await httpClient.GetAsync(url);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string jsonString = await response.Content.ReadAsStringAsync();
-
-                        using (var json = JsonDocument.Parse(jsonString))
-                        {
-                            string newestVersion = json.RootElement.GetProperty("tag_name").GetString() ?? string.Empty;
-
-                            // 清理版本号"v"前缀
-                            newestVersion = newestVersion.TrimStart('v', 'V');
-                            
-                            CheckUpdateProgressRing.IsActive = false;
-
-                            if (newestVersion == currentVersion)
-                            {
-                                ContentDialog dialog = new()
-                                {
-                                    XamlRoot = this.XamlRoot,
-                                    Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                                    Title = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Title"),
-                                    Content = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Latest"),
-                                    CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Close"),
-                                    DefaultButton = ContentDialogButton.Close
-                                };
-                                var result = await dialog.ShowAsync();
-                            }
-                            else
-                            {
-                                // 获取发布说明和下载链接
-                                string releaseTitle = json.RootElement.GetProperty("name").GetString() ?? string.Empty;
-                                string releaseNotes = json.RootElement.GetProperty("body").GetString() ?? string.Empty;
-                                string DownloadUrl = json.RootElement.GetProperty("html_url").GetString() ?? string.Empty;
-
-                                ContentDialog dialog = new()
-                                {
-                                    XamlRoot = this.XamlRoot,
-                                    Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                                    Title = releaseTitle,
-                                    Content = $"{releaseNotes}",
-                                    PrimaryButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Download"),
-                                    CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Later"),
-                                    DefaultButton = ContentDialogButton.Primary
-                                };
-                                var result = await dialog.ShowAsync();
-
-                                if (result == ContentDialogResult.Primary)
-                                {
-                                    await Windows.System.Launcher.LaunchUriAsync(new Uri(DownloadUrl));
-                                }
-                            }
-                        }
-                    }
-                    //非成功响应
-                    else
-                    {
-                        CheckUpdateProgressRing.IsActive = false;
-                        ContentDialog dialog = new()
-                        {
-                            XamlRoot = this.XamlRoot,
-                            Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                            Title = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Title"),
-                            Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}:\n(HTTP {response.StatusCode})",
-                            CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Close"),
-                            DefaultButton = ContentDialogButton.Close
-                        };
-                        var result = await dialog.ShowAsync();
-                    }
-                }
-                //网络请求异常
-                catch (HttpRequestException httpEx)
-                {
-                    CheckUpdateProgressRing.IsActive = false;
-                    ContentDialog dialog = new()
-                    {
-                        XamlRoot = this.XamlRoot,
-                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                        Title = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Title"),
-                        Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}:\n{httpEx.Message}",
-                        CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Close"),
-                        DefaultButton = ContentDialogButton.Close
-                    };
-                    var result = await dialog.ShowAsync();
-                }
-                //JSON解析错误
-                catch (JsonException)
-                {
-                    CheckUpdateProgressRing.IsActive = false;
-                    ContentDialog dialog = new()
-                    {
-                        XamlRoot = this.XamlRoot,
-                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                        Title = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Title"),
-                        Content = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error") + ": " + loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_JSONError"),
-                        CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Close"),
-                        DefaultButton = ContentDialogButton.Close
-                    };
-                    var result = await dialog.ShowAsync();
-                }
-                //其他异常
-                catch (Exception ex)
-                {
-                    CheckUpdateProgressRing.IsActive = false;
-                    ContentDialog dialog = new()
-                    {
-                        XamlRoot = this.XamlRoot,
-                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                        Title = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Title"),
-                        Content = $"{loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Error")}:\n{ex.Message}",
-                        CloseButtonText = loader.GetString("Settings_AppVersion_CheckUpdate_Dialog_Close"),
-                        DefaultButton = ContentDialogButton.Close
-                    };
-                    var result = await dialog.ShowAsync();
-                }
-                finally
-                {
-                    CheckUpdateProgressRing.IsActive = false;
                     CheckUpdate.IsEnabled = true;
+                    CheckUpdateProgressRing.IsActive = false;
                 }
-            }
+            );
         }
     }
 }

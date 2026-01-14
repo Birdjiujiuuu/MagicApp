@@ -3,14 +3,10 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Xml.Linq;
-using Windows.ApplicationModel.Resources;
-using Windows.Storage;
-using Windows.Storage.Pickers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -139,39 +135,36 @@ namespace MagicApp.Pages
         // 图片下载
         private async void DownloadButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button button)
+            DownloadButton.IsEnabled = false;
+
+            try
             {
-                button.IsEnabled = false;
-
-                try
+                // 检查是否有图片可以下载
+                if (Picture.Source == null)
                 {
-                    // 检查是否有图片可以下载
-                    if (Picture.Source == null)
-                    {
-                        button.IsEnabled = true;
-                        return;
-                    }
-
-                    // 获取当前图片的URL
-                    string imageUrl = GetCurrentImageUrl();
-                    if (string.IsNullOrEmpty(imageUrl))
-                    {
-                        button.IsEnabled = true;
-                        return;
-                    }
-
-                    // 使用通用下载服务
-                    string suggestedFileName = $"Wallpaper_{DateTime.Now:yyyyMMdd_HHmmss}";
-
-                    bool success = await FileDownloadService.DownloadImageAsync(
-                        imageUrl,
-                        suggestedFileName,
-                        this.XamlRoot);
+                    DownloadButton.IsEnabled = true;
+                    return;
                 }
-                finally
+
+                // 获取当前图片的URL
+                string imageUrl = GetCurrentImageUrl();
+                if (string.IsNullOrEmpty(imageUrl))
                 {
-                    button.IsEnabled = true;
+                    DownloadButton.IsEnabled = true;
+                    return;
                 }
+
+                // 调用FileDownloadService
+                string suggestedFileName = $"Wallpaper_{DateTime.Now:yyyyMMdd_HHmmss}";
+
+                bool success = await FileDownloadService.DownloadImageAsync(
+                    imageUrl,
+                    suggestedFileName,
+                    this.XamlRoot);
+            }
+            finally
+            {
+                DownloadButton.IsEnabled = true;
             }
         }
 

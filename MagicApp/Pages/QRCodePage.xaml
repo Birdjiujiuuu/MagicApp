@@ -108,7 +108,7 @@
                     
                     <!-- 保存到本地按钮 -->
                     <Button x:Name="SaveButton"
-                            Content="保存二维码到本地"
+                            Content="保存二维码"
                             HorizontalAlignment="Stretch"
                             Style="{StaticResource AccentButtonStyle}"
                             Click="SaveButton_Click"/>
