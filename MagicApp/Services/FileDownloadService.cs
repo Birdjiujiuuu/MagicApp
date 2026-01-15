@@ -14,7 +14,7 @@ namespace MagicApp.Services
 {
     public class FileDownloadService
     {
-
+        private static readonly ResourceLoader _resourceLoader = ResourceLoader.GetForViewIndependentUse();
         private static readonly HttpClient _httpClient = new HttpClient();
 
         /// <summary>
@@ -39,14 +39,12 @@ namespace MagicApp.Services
             string? successMessage = null,
             string? failureMessage = null)
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             try
             {
                 // 验证参数
                 if (string.IsNullOrEmpty(downloadUrl))
                 {
-                    throw new ArgumentException(loader.GetString("FileDownloadService_UrlNoNull"));
+                    throw new ArgumentException(_resourceLoader.GetString("FileDownloadService_UrlNoNull"));
                 }
 
                 if (string.IsNullOrEmpty(suggestedFileName))
@@ -102,7 +100,7 @@ namespace MagicApp.Services
                 else
                 {
                     // 如果没有提供文件类型选择，使用通用类型
-                    picker.FileTypeChoices.Add(loader.GetString("FileDownloadService_AllFile"), new List<string> { ".*" });
+                    picker.FileTypeChoices.Add(_resourceLoader.GetString("FileDownloadService_AllFile"), new List<string> { ".*" });
                 }
 
                 // 设置默认扩展名
@@ -125,9 +123,9 @@ namespace MagicApp.Services
                     {
                         XamlRoot = xamlRoot,
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                        Title = dialogTitle ?? loader.GetString("FileDownloadService_Downloading"),
+                        Title = dialogTitle ?? _resourceLoader.GetString("FileDownloadService_Downloading"),
                         Content = CreateProgressContent(),
-                        PrimaryButtonText = loader.GetString("FileDownloadService_Close"),
+                        PrimaryButtonText = _resourceLoader.GetString("FileDownloadService_Close"),
                         IsPrimaryButtonEnabled = false,
                         CloseButtonText = null,
                         DefaultButton = ContentDialogButton.Primary
@@ -146,8 +144,8 @@ namespace MagicApp.Services
                             // 下载成功，更新对话框
                             UpdateDialogForCompletion(
                                 progressDialog,
-                                loader.GetString("FileDownloadService_Success"),
-                                successMessage ?? loader.GetString("FileDownloadService_FilePath") + $"\n{file.Path}");
+                                _resourceLoader.GetString("FileDownloadService_Success"),
+                                successMessage ?? _resourceLoader.GetString("FileDownloadService_FilePath") + $"\n{file.Path}");
                             progressDialog.IsPrimaryButtonEnabled = true;
                             await showTask;
                         }
@@ -169,8 +167,8 @@ namespace MagicApp.Services
                         // 下载失败，更新对话框
                         UpdateDialogForCompletion(
                             progressDialog,
-                            loader.GetString("FileDownloadService_Failure"),
-                            failureMessage ?? loader.GetString("FileDownloadService_Failure") + $"\n{ex.Message}");
+                            _resourceLoader.GetString("FileDownloadService_Failure"),
+                            failureMessage ?? _resourceLoader.GetString("FileDownloadService_Failure") + $"\n{ex.Message}");
                         progressDialog.IsPrimaryButtonEnabled = true;
                         await showTask;
 
@@ -183,7 +181,7 @@ namespace MagicApp.Services
             catch (Exception ex)
             {
                 // 显示错误对话框
-                await ShowErrorDialogAsync(xamlRoot, loader.GetString("FileDownloadService_Error"), loader.GetString("FileDownloadService_Error_Describe") + $"\n{ex.Message}");
+                await ShowErrorDialogAsync(xamlRoot, _resourceLoader.GetString("FileDownloadService_Error"), _resourceLoader.GetString("FileDownloadService_Error_Describe") + $"\n{ex.Message}");
                 return false;
             }
         }
@@ -196,14 +194,12 @@ namespace MagicApp.Services
             string suggestedFileName,
             XamlRoot xamlRoot)
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             var fileTypeChoices = new Dictionary<string, List<string>>
             {
                 { "JPEG", new List<string> { ".jpg", ".jpeg" } },
                 { "PNG", new List<string> { ".png" } },
                 { "BMP", new List<string> { ".bmp" } },
-                { loader.GetString("FileDownloadService_AllFile_Image"), new List<string> { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp", ".tiff" } }
+                { _resourceLoader.GetString("FileDownloadService_AllFile_Image"), new List<string> { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp", ".tiff" } }
             };
 
             string defaultExtension = GetDefaultImageExtension(imageUrl);
@@ -224,13 +220,11 @@ namespace MagicApp.Services
             string suggestedFileName,
             XamlRoot xamlRoot)
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             var fileTypeChoices = new Dictionary<string, List<string>>
             {
                 { "MP4", new List<string> { ".mp4" } },
                 { "WebM", new List<string> { ".webm" } },
-                { loader.GetString("FileDownloadService_AllFile_Video"), new List<string> { ".mp4", ".webm", ".avi", ".mov", ".wmv", ".flv", ".mkv" } }
+                { _resourceLoader.GetString("FileDownloadService_AllFile_Video"), new List<string> { ".mp4", ".webm", ".avi", ".mov", ".wmv", ".flv", ".mkv" } }
             };
 
             string defaultExtension = GetDefaultVideoExtension(videoUrl);
@@ -251,11 +245,9 @@ namespace MagicApp.Services
             string suggestedFileName,
             XamlRoot xamlRoot)
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             var fileTypeChoices = new Dictionary<string, List<string>>
             {
-                { loader.GetString("FileDownloadService_AllFile"), new List<string> { ".*" } }
+                { _resourceLoader.GetString("FileDownloadService_AllFile"), new List<string> { ".*" } }
             };
 
             string defaultExtension = Path.GetExtension(fileUrl);
@@ -329,10 +321,8 @@ namespace MagicApp.Services
         /// </summary>
         private static string GetFileTypeDescription(string extension)
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             if (string.IsNullOrEmpty(extension))
-                return loader.GetString("FileDownloadService_File");
+                return _resourceLoader.GetString("FileDownloadService_File");
 
             extension = extension.ToLowerInvariant();
 
@@ -354,7 +344,7 @@ namespace MagicApp.Services
                 ".zip" => "ZIP",
                 ".rar" => "RAR",
                 ".7z" => "7Z",
-                ".txt" => loader.GetString("FileDownloadService_TxtFile"),
+                ".txt" => _resourceLoader.GetString("FileDownloadService_TxtFile"),
                 ".pdf" => "PDF",
                 ".doc" or ".docx" => "Word",
                 ".xls" or ".xlsx" => "Excel",
@@ -367,8 +357,6 @@ namespace MagicApp.Services
         /// </summary>
         private static StackPanel CreateProgressContent()
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             return new StackPanel
             {
                 Orientation = Orientation.Vertical,
@@ -383,7 +371,7 @@ namespace MagicApp.Services
                     },
                     new TextBlock
                     {
-                        Text = loader.GetString("FileDownloadService_Downloading_Describe"),
+                        Text = _resourceLoader.GetString("FileDownloadService_Downloading_Describe"),
                         HorizontalAlignment = HorizontalAlignment.Center,
                         Margin = new Thickness(0, 10, 0, 0)
                     }

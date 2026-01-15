@@ -34,7 +34,6 @@ namespace MagicApp.Pages
             {
                 QRCodeImage.Source = null;
                 StatusTextBlock.Text = string.Empty;
-                SaveButton.IsEnabled = false;
             }
         }
 
@@ -79,7 +78,6 @@ namespace MagicApp.Pages
                 }
 
                 StatusTextBlock.Text = $"二维码生成成功 ({DateTime.Now:HH:mm:ss})";
-                SaveButton.IsEnabled = true;
             }
             catch (Exception ex)
             {
@@ -87,11 +85,6 @@ namespace MagicApp.Pages
                 StatusTextBlock.Text = $"生成失败: {ex.Message}";
                 QRCodeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
             }
-        }
-
-        private async void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
