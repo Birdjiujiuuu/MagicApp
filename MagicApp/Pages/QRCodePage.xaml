@@ -26,12 +26,12 @@
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                     BorderThickness="1">
                 <StackPanel Spacing="15">
-                    <TextBlock Text="二维码生成"
+                    <TextBlock x:Uid="QRCode_TitleGenerate"
                                Style="{StaticResource SubtitleTextBlockStyle}"
                                FontWeight="SemiBold"/>
 
                     <TextBox x:Name="InputTextBox"
-                             PlaceholderText="请输入要生成二维码的内容..."
+                             x:Uid="QRCode_InputTextBox"
                              AcceptsReturn="True"
                              TextWrapping="Wrap"
                              MaxHeight="200"
@@ -44,7 +44,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <controls:DataControl x:Name="TextLengthData"
-                            Description="输入长度/字符"
+                            x:Uid="QRCode_TextLengthData"
                             IconGlyph="&#xE8D2;"
                             IconColor="#00A1D6"
                             Margin="0,0,5,0"
@@ -55,15 +55,15 @@
                                     Orientation="Vertical">
 
                             <Button x:Name="ClearButton"
+                                    x:Uid="QRCode_ClearButton"
                                     Margin="0,0,0,5"
                                     HorizontalAlignment="Stretch"
-                                    Content="清除"
                                     Click="ClearButton_Click"/>
 
                             <Button x:Name="GenerateButton"
+                                    x:Uid="QRCode_GenerateButton"
                                     Margin="0,5,0,0"
                                     HorizontalAlignment="Stretch"
-                                    Content="生成二维码"
                                     Style="{StaticResource AccentButtonStyle}"
                                     Click="GenerateButton_Click"/>
                         </StackPanel>
@@ -80,7 +80,7 @@
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                     BorderThickness="1">
                 <StackPanel Spacing="15">
-                    <TextBlock Text="二维码预览"
+                    <TextBlock x:Uid="QRCode_TitlePreview"
                                Style="{StaticResource SubtitleTextBlockStyle}"
                                FontWeight="SemiBold"/>
 

@@ -1,12 +1,16 @@
-﻿using Microsoft.UI.Xaml;
+﻿using MagicApp.Helpers;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 
@@ -125,52 +129,187 @@ namespace MagicApp.Services
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
                         Title = dialogTitle ?? _resourceLoader.GetString("FileDownloadService_Downloading"),
                         Content = CreateProgressContent(),
-                        PrimaryButtonText = _resourceLoader.GetString("FileDownloadService_Close"),
-                        IsPrimaryButtonEnabled = false,
+                        PrimaryButtonText = _resourceLoader.GetString("FileDownloadService_Cancel"),
                         CloseButtonText = null,
                         DefaultButton = ContentDialogButton.Primary
                     };
 
-                    var showTask = progressDialog.ShowAsync();
+                    // 添加取消标记
+                    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+                    StorageFile targetFile = file; // 保存文件引用用于取消时删除
+                    bool isDownloadCompleted = false; // 添加下载完成标志
 
-                    try
+                    // 定义取消按钮的事件处理程序
+                    TypedEventHandler<ContentDialog, ContentDialogButtonClickEventArgs> cancelHandler = async (sender, args) =>
                     {
-                        // 下载文件
-                        using (var downloadClient = new HttpClient())
+                        // 如果下载已完成，则不执行取消逻辑
+                        if (isDownloadCompleted)
                         {
-                            var fileData = await downloadClient.GetByteArrayAsync(downloadUrl);
-                            await FileIO.WriteBytesAsync(file, fileData);
-
-                            // 下载成功，更新对话框
-                            UpdateDialogForCompletion(
-                                progressDialog,
-                                _resourceLoader.GetString("FileDownloadService_Success"),
-                                successMessage ?? _resourceLoader.GetString("FileDownloadService_FilePath") + $"\n{file.Path}");
-                            progressDialog.IsPrimaryButtonEnabled = true;
-                            await showTask;
+                            progressDialog.Hide();
+                            return;
                         }
 
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
+                        args.Cancel = true; // 防止对话框立即关闭
+                        cancellationTokenSource.Cancel();
+
+                        // 延迟关闭对话框，确保删除操作完成
+                        await Task.Delay(100);
+                        progressDialog.Hide();
+
                         try
                         {
-                            // 如果下载失败，尝试删除已创建的文件
-                            await file.DeleteAsync();
+                            // 删除已下载的部分文件
+                            if (targetFile != null)
+                            {
+                                await targetFile.DeleteAsync(StorageDeleteOption.Default);
+                            }
                         }
                         catch
                         {
                             // 忽略删除错误
                         }
+                    };
 
-                        // 下载失败，更新对话框
+                    // 为取消按钮添加点击事件
+                    progressDialog.PrimaryButtonClick += cancelHandler;
+
+                    var showTask = progressDialog.ShowAsync();
+
+                    try
+                    {
+                        // 使用支持取消的下载方式
+                        using (var downloadClient = new HttpClient())
+                        using (var response = await downloadClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationTokenSource.Token))
+                        {
+                            // 获取文件总大小
+                            long? contentLength = response.Content.Headers.ContentLength;
+                            long totalBytes = contentLength ?? 0;
+                            long downloadedBytes = 0;
+
+                            // 速度计算变量
+                            Stopwatch speedTimer = Stopwatch.StartNew();
+                            long lastDownloadedBytes = 0;
+                            long bytesPerSecond = 0;
+                            TimeSpan? remainingTime = null;
+
+                            using (var streamToReadFrom = await response.Content.ReadAsStreamAsync())
+                            using (var streamToWriteTo = await targetFile.OpenStreamForWriteAsync())
+                            {
+                                var buffer = new byte[81920];
+                                int bytesRead;
+
+                                // 使用CancellationToken监听取消请求
+                                while ((bytesRead = await streamToReadFrom.ReadAsync(buffer, 0, buffer.Length, cancellationTokenSource.Token)) > 0)
+                                {
+                                    // 如果取消标记被请求，抛出异常
+                                    cancellationTokenSource.Token.ThrowIfCancellationRequested();
+
+                                    await streamToWriteTo.WriteAsync(buffer, 0, bytesRead, cancellationTokenSource.Token);
+
+                                    // 更新已下载字节数
+                                    downloadedBytes += bytesRead;
+
+                                    // 计算下载速度（每0.5秒更新一次）
+                                    if (speedTimer.ElapsedMilliseconds >= 500)
+                                    {
+                                        bytesPerSecond = (long)((downloadedBytes - lastDownloadedBytes) / (speedTimer.ElapsedMilliseconds / 1000.0));
+                                        lastDownloadedBytes = downloadedBytes;
+                                        speedTimer.Restart();
+
+                                        // 计算预计剩余时间（如果总大小已知且速度>0）
+                                        if (totalBytes > 0 && bytesPerSecond > 0)
+                                        {
+                                            long remainingBytes = totalBytes - downloadedBytes;
+                                            if (remainingBytes > 0)
+                                            {
+                                                remainingTime = TimeSpan.FromSeconds(remainingBytes / (double)bytesPerSecond);
+                                            }
+                                            else
+                                            {
+                                                remainingTime = TimeSpan.Zero;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            remainingTime = null;
+                                        }
+
+                                        // 更新进度显示
+                                        UpdateDownloadProgress(progressDialog, downloadedBytes, totalBytes, bytesPerSecond, remainingTime);
+                                    }
+                                }
+                            }
+                        }
+
+                        // 下载成功，设置完成标志
+                        isDownloadCompleted = true;
+
+                        // 更新对话框
                         UpdateDialogForCompletion(
                             progressDialog,
-                            _resourceLoader.GetString("FileDownloadService_Failure"),
-                            failureMessage ?? _resourceLoader.GetString("FileDownloadService_Failure") + $"\n{ex.Message}");
-                        progressDialog.IsPrimaryButtonEnabled = true;
+                            _resourceLoader.GetString("FileDownloadService_Success"),
+                            successMessage ?? _resourceLoader.GetString("FileDownloadService_FilePath") + $"\n{targetFile.Path}");
+
+                        // 移除取消事件处理程序
+                        progressDialog.PrimaryButtonClick -= cancelHandler;
+
+                        // 添加新的关闭按钮事件处理程序
+                        progressDialog.PrimaryButtonClick += (sender, args) =>
+                        {
+                            progressDialog.Hide();
+                        };
+
+                        // 修改按钮文本
+                        progressDialog.PrimaryButtonText = _resourceLoader.GetString("FileDownloadService_Close");
+
+                        // 等待用户点击关闭按钮
                         await showTask;
+                        return true;
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        // 用户取消了下载，已处理，直接返回false
+                        return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        // 设置完成标志（虽然是失败，但已经完成）
+                        isDownloadCompleted = true;
+
+                        // 取消标记可能已被处理，避免重复操作
+                        if (!cancellationTokenSource.IsCancellationRequested)
+                        {
+                            try
+                            {
+                                // 如果下载失败，尝试删除已创建的文件
+                                await targetFile.DeleteAsync();
+                            }
+                            catch
+                            {
+                                // 忽略删除错误
+                            }
+
+                            // 移除取消事件处理程序
+                            progressDialog.PrimaryButtonClick -= cancelHandler;
+
+                            // 添加新的关闭按钮事件处理程序
+                            progressDialog.PrimaryButtonClick += (sender, args) =>
+                            {
+                                progressDialog.Hide();
+                            };
+
+                            // 修改按钮文本
+                            progressDialog.PrimaryButtonText = _resourceLoader.GetString("FileDownloadService_Close");
+
+                            // 下载失败，更新对话框
+                            UpdateDialogForCompletion(
+                                progressDialog,
+                                _resourceLoader.GetString("FileDownloadService_Failure"),
+                                failureMessage ?? _resourceLoader.GetString("FileDownloadService_Failure") + $"\n{ex.Message}");
+
+                            progressDialog.IsPrimaryButtonEnabled = true;
+                            await showTask;
+                        }
 
                         return false;
                     }
@@ -365,18 +504,112 @@ namespace MagicApp.Services
                 {
                     new ProgressBar
                     {
-                        IsIndeterminate = true,
-                        Width = 250,
+                        IsIndeterminate = false,
+                        Minimum = 0,
+                        Maximum = 100,
+                        Value = 0,
+                        Width = 450,
+                        Margin = new Thickness(0, 10, 0, 0),
                         HorizontalAlignment = HorizontalAlignment.Center
                     },
-                    new TextBlock
+                    new Grid
                     {
-                        Text = _resourceLoader.GetString("FileDownloadService_Downloading_Describe"),
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        Margin = new Thickness(0, 10, 0, 0)
+                        Children =
+                        {
+                            new TextBlock
+                            {
+                                Name = "SpeedTextBlock",
+                                HorizontalAlignment = HorizontalAlignment.Left,
+                            },
+                            new TextBlock
+                            {
+                                Name = "ProgressTextBlock",
+                                HorizontalAlignment = HorizontalAlignment.Right,
+                            }
+                        }
                     }
                 }
             };
+        }
+
+        /// <summary>
+        /// 更新下载进度
+        /// </summary>
+        private static void UpdateDownloadProgress(ContentDialog dialog, long downloadedBytes, long totalBytes, long bytesPerSecond, TimeSpan? remainingTime = null)
+        {
+            if (dialog.Content is StackPanel stackPanel && stackPanel.Children.Count > 1)
+            {
+                // 更新进度条
+                if (stackPanel.Children[0] is ProgressBar progressBar)
+                {
+                    if (totalBytes > 0)
+                    {
+                        // 已知总大小，显示确定进度
+                        progressBar.IsIndeterminate = false;
+                        double progress = (double)downloadedBytes / totalBytes * 100;
+                        progressBar.Value = Math.Min(progress, 100);
+                    }
+                    else
+                    {
+                        // 未知总大小，显示不确定进度
+                        progressBar.IsIndeterminate = true;
+                    }
+                }
+
+                // 更新进度文本和速度文本
+                if (stackPanel.Children[1] is Grid grid && grid.Children.Count >= 2)
+                {
+                    // 获取速度文本块
+                    if (grid.Children[0] is TextBlock speedTextBlock)
+                    {
+                        string speedText = FormatHelper.FormatFileSize(bytesPerSecond) + "/s";
+
+                        if (remainingTime.HasValue && remainingTime.Value.TotalSeconds > 0)
+                        {
+                            // 显示速度和预计剩余时间
+                            string remainingTimeText;
+                            if (remainingTime.Value.TotalHours >= 1)
+                            {
+                                remainingTimeText = $"{(int)remainingTime.Value.TotalHours}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Hour") + $"{ (int)remainingTime.Value.Minutes}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Minute");
+                            }
+                            else if (remainingTime.Value.TotalMinutes >= 1)
+                            {
+                                remainingTimeText = $"{(int)remainingTime.Value.TotalMinutes}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Minute") + $"{ (int)remainingTime.Value.Seconds}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Second");
+                            }
+                            else
+                            {
+                                remainingTimeText = $"{(int)remainingTime.Value.TotalSeconds}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Second");
+                            }
+
+                            speedTextBlock.Text = $"{speedText} - " + _resourceLoader.GetString("FileDownloadService_remainingTimeText") + $"{remainingTimeText}";
+                        }
+                        else
+                        {
+                            // 只显示速度
+                            speedTextBlock.Text = $"{speedText}";
+                        }
+                    }
+
+                    // 获取进度文本块
+                    if (grid.Children[1] is TextBlock progressTextBlock)
+                    {
+                        string downloadedSize = FormatHelper.FormatFileSize(downloadedBytes);
+
+                        if (totalBytes > 0)
+                        {
+                            // 已知总大小
+                            string totalSize = FormatHelper.FormatFileSize(totalBytes);
+                            double progress = (double)downloadedBytes / totalBytes * 100;
+                            progressTextBlock.Text = $"{downloadedSize} / {totalSize} ({progress:F1}%)";
+                        }
+                        else
+                        {
+                            // 未知总大小
+                            progressTextBlock.Text = $"{downloadedSize}";
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -389,7 +622,7 @@ namespace MagicApp.Services
             {
                 Text = message,
                 TextWrapping = TextWrapping.WrapWholeWords,
-                MaxWidth = 400
+                MaxWidth = 450
             };
         }
 

@@ -32,7 +32,6 @@ namespace MagicApp.Helpers
         /// <returns>格式化后的字符串</returns>
         public static string FormatNumber(double number, int decimalPlaces = 2)
         {
-            // 修复：使用字符串格式化而不是字符串插值
             string format = "N" + decimalPlaces.ToString();
             return number.ToString(format);
         }
@@ -66,7 +65,6 @@ namespace MagicApp.Helpers
                 return bytes.ToString() + " " + sizes[order];
             }
 
-            // 修复：使用string.Format而不是字符串插值
             string format = "F" + decimalPlaces.ToString();
             return len.ToString(format) + " " + sizes[order];
         }

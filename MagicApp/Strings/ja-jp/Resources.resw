@@ -183,6 +183,9 @@
   <data name="Notice_Clear.Content" xml:space="preserve">
     <value>クリア</value>
   </data>
+  <data name="QRCode_ClearButton.Content" xml:space="preserve">
+    <value>クリア</value>
+  </data>
   <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>サウンドイベント</value>
   </data>
@@ -297,8 +300,8 @@
   <data name="FileDownloadService_Failure" xml:space="preserve">
     <value>ダウンロード失敗：</value>
   </data>
-  <data name="FileDownloadService_Downloading_Describe" xml:space="preserve">
-    <value>ファイルをダウンロード中、しばらくお待ちください...</value>
+  <data name="Main_NavView_QRCode.Content" xml:space="preserve">
+    <value>QRコードツール</value>
   </data>
   <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
     <value>ダウンロードURLは空にできません</value>
@@ -323,5 +326,41 @@
   </data>
   <data name="UpdateService_Release" xml:space="preserve">
     <value>リリースページへ</value>
+  </data>
+  <data name="FileDownloadService_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Hour" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Minute" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="FileDownloadService_remainingTimeText" xml:space="preserve">
+    <value>残り約 </value>
+  </data>
+  <data name="QRCode_Status_Success" xml:space="preserve">
+    <value>QRコードの生成に成功しました</value>
+  </data>
+  <data name="QRCode_Status_Failure" xml:space="preserve">
+    <value>生成失敗:</value>
+  </data>
+  <data name="QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
+    <value>QRコードの内容を入力してください...</value>
+  </data>
+  <data name="QRCode_TextLengthData.Description" xml:space="preserve">
+    <value>入力長/文字数</value>
+  </data>
+  <data name="QRCode_TitlePreview.Text" xml:space="preserve">
+    <value>QRコードプレビュー</value>
+  </data>
+  <data name="QRCode_TitleGenerate.Text" xml:space="preserve">
+    <value>QRコード生成</value>
+  </data>
+  <data name="QRCode_GenerateButton.Content" xml:space="preserve">
+    <value>QRコードを生成</value>
   </data>
 </root>

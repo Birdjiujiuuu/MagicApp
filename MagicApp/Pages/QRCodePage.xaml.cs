@@ -5,6 +5,7 @@ using QRCoder;
 using System;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage.Streams;
 
 namespace MagicApp.Pages
@@ -15,6 +16,8 @@ namespace MagicApp.Pages
         {
             InitializeComponent();
         }
+
+        private static readonly ResourceLoader _resourceLoader = ResourceLoader.GetForViewIndependentUse();
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -77,12 +80,12 @@ namespace MagicApp.Pages
                     }
                 }
 
-                StatusTextBlock.Text = $"二维码生成成功 ({DateTime.Now:HH:mm:ss})";
+                StatusTextBlock.Text = _resourceLoader.GetString("QRCode_Status_Success") + $" ({DateTime.Now:HH:mm:ss})";
             }
             catch (Exception ex)
             {
                 // 处理生成二维码时的异常
-                StatusTextBlock.Text = $"生成失败: {ex.Message}";
+                StatusTextBlock.Text = _resourceLoader.GetString("QRCode_Status_Failure") + $" {ex.Message}";
                 QRCodeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
             }
         }

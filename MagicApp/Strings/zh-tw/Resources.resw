@@ -183,6 +183,9 @@
   <data name="Notice_Clear.Content" xml:space="preserve">
     <value>清空</value>
   </data>
+  <data name="QRCode_ClearButton.Content" xml:space="preserve">
+    <value>清空</value>
+  </data>
   <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>聲音事件</value>
   </data>
@@ -297,8 +300,8 @@
   <data name="FileDownloadService_Failure" xml:space="preserve">
     <value>下載失敗：</value>
   </data>
-  <data name="FileDownloadService_Downloading_Describe" xml:space="preserve">
-    <value>正在下載檔案，請稍候...</value>
+  <data name="Main_NavView_QRCode.Content" xml:space="preserve">
+    <value>二維碼工具</value>
   </data>
   <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
     <value>下載URL不能為空</value>
@@ -323,5 +326,41 @@
   </data>
   <data name="UpdateService_Release" xml:space="preserve">
     <value>前往發行頁</value>
+  </data>
+  <data name="FileDownloadService_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Hour" xml:space="preserve">
+    <value>小時</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Minute" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="FileDownloadService_remainingTimeText" xml:space="preserve">
+    <value>剩餘約 </value>
+  </data>
+  <data name="QRCode_Status_Success" xml:space="preserve">
+    <value>二維碼生成成功</value>
+  </data>
+  <data name="QRCode_Status_Failure" xml:space="preserve">
+    <value>生成失敗:</value>
+  </data>
+  <data name="QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
+    <value>請輸入要生成二維碼的內容...</value>
+  </data>
+  <data name="QRCode_TextLengthData.Description" xml:space="preserve">
+    <value>輸入長度/字元數</value>
+  </data>
+  <data name="QRCode_TitlePreview.Text" xml:space="preserve">
+    <value>二維碼預覽</value>
+  </data>
+  <data name="QRCode_TitleGenerate.Text" xml:space="preserve">
+    <value>二維碼生成</value>
+  </data>
+  <data name="QRCode_GenerateButton.Content" xml:space="preserve">
+    <value>生成二維碼</value>
   </data>
 </root>

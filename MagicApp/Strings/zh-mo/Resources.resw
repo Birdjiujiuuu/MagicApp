@@ -183,6 +183,9 @@
   <data name="Notice_Clear.Content" xml:space="preserve">
     <value>全部不要了</value>
   </data>
+  <data name="QRCode_ClearButton.Content" xml:space="preserve">
+    <value>全部不要了</value>
+  </data>
   <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>声音事件</value>
   </data>
@@ -297,8 +300,8 @@
   <data name="FileDownloadService_Failure" xml:space="preserve">
     <value>保存不了惹：</value>
   </data>
-  <data name="FileDownloadService_Downloading_Describe" xml:space="preserve">
-    <value>在保存了，等等...</value>
+  <data name="Main_NavView_QRCode.Content" xml:space="preserve">
+    <value>神秘二维码的工具</value>
   </data>
   <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
     <value>保存的URL不能没有哦</value>
@@ -323,5 +326,41 @@
   </data>
   <data name="UpdateService_Release" xml:space="preserve">
     <value>去发行页看看</value>
+  </data>
+  <data name="FileDownloadService_Cancel" xml:space="preserve">
+    <value>不要了</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Hour" xml:space="preserve">
+    <value>小时</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Minute" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="FileDownloadService_remainingTimeText" xml:space="preserve">
+    <value>还要大概 </value>
+  </data>
+  <data name="QRCode_Status_Success" xml:space="preserve">
+    <value>神秘二维码产生成了！</value>
+  </data>
+  <data name="QRCode_Status_Failure" xml:space="preserve">
+    <value>产生出错了:</value>
+  </data>
+  <data name="QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
+    <value>把要藏在神秘二维码的东西写在这里...</value>
+  </data>
+  <data name="QRCode_TextLengthData.Description" xml:space="preserve">
+    <value>东西有多长/字符</value>
+  </data>
+  <data name="QRCode_TitlePreview.Text" xml:space="preserve">
+    <value>神秘二维码提前看看</value>
+  </data>
+  <data name="QRCode_TitleGenerate.Text" xml:space="preserve">
+    <value>神秘二维码产生</value>
+  </data>
+  <data name="QRCode_GenerateButton.Content" xml:space="preserve">
+    <value>产生神秘二维码</value>
   </data>
 </root>

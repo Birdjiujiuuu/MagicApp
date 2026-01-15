@@ -183,6 +183,9 @@
   <data name="Notice_Clear.Content" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="QRCode_ClearButton.Content" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>Sound Event</value>
   </data>
@@ -297,8 +300,8 @@
   <data name="FileDownloadService_Failure" xml:space="preserve">
     <value>Download failed :</value>
   </data>
-  <data name="FileDownloadService_Downloading_Describe" xml:space="preserve">
-    <value>Downloading file, please wait...</value>
+  <data name="Main_NavView_QRCode.Content" xml:space="preserve">
+    <value>QR Code Tool</value>
   </data>
   <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
     <value>Download URL must not be empty</value>
@@ -323,5 +326,41 @@
   </data>
   <data name="UpdateService_Release" xml:space="preserve">
     <value>Go to Release Page</value>
+  </data>
+  <data name="FileDownloadService_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Hour" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Minute" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Second" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="FileDownloadService_remainingTimeText" xml:space="preserve">
+    <value>About </value>
+  </data>
+  <data name="QRCode_Status_Success" xml:space="preserve">
+    <value>QR code generated successfully</value>
+  </data>
+  <data name="QRCode_Status_Failure" xml:space="preserve">
+    <value>Generation failed:</value>
+  </data>
+  <data name="QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
+    <value>Please enter the content for the QR code...</value>
+  </data>
+  <data name="QRCode_TextLengthData.Description" xml:space="preserve">
+    <value>Input length/characters</value>
+  </data>
+  <data name="QRCode_TitlePreview.Text" xml:space="preserve">
+    <value>QR Code Preview</value>
+  </data>
+  <data name="QRCode_TitleGenerate.Text" xml:space="preserve">
+    <value>QR Code Generation</value>
+  </data>
+  <data name="QRCode_GenerateButton.Content" xml:space="preserve">
+    <value>Generate QR Code</value>
   </data>
 </root>

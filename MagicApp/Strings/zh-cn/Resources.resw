@@ -183,6 +183,9 @@
   <data name="Notice_Clear.Content" xml:space="preserve">
     <value>清空</value>
   </data>
+  <data name="QRCode_ClearButton.Content" xml:space="preserve">
+    <value>清空</value>
+  </data>
   <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>声音事件</value>
   </data>
@@ -303,9 +306,6 @@
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>二维码工具</value>
   </data>
-  <data name="FileDownloadService_Downloading_Describe" xml:space="preserve">
-    <value>正在下载文件，请稍候...</value>
-  </data>
   <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
     <value>下载URL不能为空</value>
   </data>
@@ -329,5 +329,41 @@
   </data>
   <data name="UpdateService_Release" xml:space="preserve">
     <value>前往发行页</value>
+  </data>
+  <data name="FileDownloadService_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Hour" xml:space="preserve">
+    <value>小时</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Minute" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="FileDownloadService_remainingTime_Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="FileDownloadService_remainingTimeText" xml:space="preserve">
+    <value>剩余约 </value>
+  </data>
+  <data name="QRCode_Status_Success" xml:space="preserve">
+    <value>二维码生成成功</value>
+  </data>
+  <data name="QRCode_Status_Failure" xml:space="preserve">
+    <value>生成失败:</value>
+  </data>
+  <data name="QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
+    <value>请输入要生成二维码的内容...</value>
+  </data>
+  <data name="QRCode_TextLengthData.Description" xml:space="preserve">
+    <value>输入长度/字符</value>
+  </data>
+  <data name="QRCode_TitlePreview.Text" xml:space="preserve">
+    <value>二维码预览</value>
+  </data>
+  <data name="QRCode_TitleGenerate.Text" xml:space="preserve">
+    <value>二维码生成</value>
+  </data>
+  <data name="QRCode_GenerateButton.Content" xml:space="preserve">
+    <value>生成二维码</value>
   </data>
 </root>
