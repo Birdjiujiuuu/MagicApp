@@ -44,15 +44,19 @@
             Grid.Row="1"
             Grid.Column="0"
             Orientation="Horizontal"
-            Margin="10,0,0,0"
-            Spacing="10">
-            <Image Height="20" Width="20" Name="Icon"/>
+            Margin="10,0,0,0">
             <ComboBox
                 Name="ComboBox"
                 VerticalAlignment="Center"
                 SelectionChanged="ComboBox_SelectionChanged">
-                <ComboBoxItem Name="Bing" x:Uid="Pictures_Source_Bing"/>
-                <ComboBoxItem Name="NASA" x:Uid="Pictures_Source_NASA"/>
+                <StackPanel Name="Bing" Orientation="Horizontal" Spacing="10">
+                    <Image Height="20" Width="20" Name="BingIcon"/>
+                    <TextBlock x:Uid="Pictures_Source_Bing"/>
+                </StackPanel>
+                <StackPanel Name="NASA" Orientation="Horizontal" Spacing="10">
+                    <Image Height="20" Width="20" Name="NASAIcon"/>
+                    <TextBlock x:Uid="Pictures_Source_NASA"/>
+                </StackPanel>
             </ComboBox>
         </StackPanel>
         <StackPanel

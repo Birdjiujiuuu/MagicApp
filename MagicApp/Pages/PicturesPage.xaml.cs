@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
@@ -26,17 +27,24 @@ namespace MagicApp.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ComboBox.SelectedIndex = 0;
+
+            BitmapImage BingIcons = new();
+            BingIcons.UriSource = new Uri(this.BaseUri, "https://www.bing.com/favicon.ico");
+            BingIcon.Source = BingIcons;
+
+            BitmapImage NASAIcons = new();
+            NASAIcons.UriSource = new Uri(this.BaseUri, "https://apod.nasa.gov/favicon.ico");
+            NASAIcon.Source = NASAIcons;
         }
 
         private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ProgressRing.IsActive = true;
             Picture.Source = null;
-            Icon.Source = null;
             InfoButton.IsEnabled = false;
             DownloadButton.IsEnabled = false;
 
-            var Web = ComboBox.SelectedItem as ComboBoxItem;
+            var Web = ComboBox.SelectedItem as StackPanel;
             string SourceWeb = Web?.Name?.ToString() ?? string.Empty;
 
             if (SourceWeb == "Bing")
@@ -45,7 +53,7 @@ namespace MagicApp.Pages
                 {
                     try
                     {
-                        string url = "https://cn.bing.com/HPImageArchive.aspx?n=1";
+                        string url = "https://www.bing.com/HPImageArchive.aspx?n=1";
                         var response = await httpClient.GetAsync(url);
 
                         if (response.IsSuccessStatusCode)
@@ -57,16 +65,13 @@ namespace MagicApp.Pages
 
                             if (imageElement != null)
                             {
-                                string imgurl = "http://cn.bing.com" + imageElement.Element("urlBase")?.Value + "_UHD.jpg";
+                                string imgurl = "http://www.bing.com" + imageElement.Element("urlBase")?.Value + "_UHD.jpg";
                                 string? StrInfoTitle = imageElement.Element("headline")?.Value;
                                 string? StrInfoBody = imageElement.Element("copyright")?.Value;
 
                                 BitmapImage Pictures = new();
                                 Pictures.UriSource = new Uri(this.BaseUri, imgurl);
                                 Picture.Source = Pictures;
-                                BitmapImage Icons = new();
-                                Icons.UriSource = new Uri(this.BaseUri, "https://cn.bing.com/favicon.ico");
-                                Icon.Source = Icons;
                                 InfoTitle.Text = StrInfoTitle;
                                 InfoBody.Text = StrInfoBody;
 
@@ -113,9 +118,6 @@ namespace MagicApp.Pages
                             BitmapImage Pictures = new();
                             Pictures.UriSource = new Uri(this.BaseUri, imgurl);
                             Picture.Source = Pictures;
-                            BitmapImage Icons = new();
-                            Icons.UriSource = new Uri(this.BaseUri, "https://apod.nasa.gov/favicon.ico");
-                            Icon.Source = Icons;
                             InfoTitle.Text = StrInfoTitle;
                             InfoBody.Text = StrInfoBody;
 

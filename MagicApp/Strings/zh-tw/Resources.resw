@@ -153,10 +153,10 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>神奇的應用程式</value>
   </data>
-  <data name="Pictures_Source_Bing.Content" xml:space="preserve">
+  <data name="Pictures_Source_Bing.Text" xml:space="preserve">
     <value>必應</value>
   </data>
-  <data name="Pictures_Source_NASA.Content" xml:space="preserve">
+  <data name="Pictures_Source_NASA.Text" xml:space="preserve">
     <value>NASA</value>
   </data>
   <data name="Main_Titlebar.Subtitle" xml:space="preserve">
@@ -168,13 +168,13 @@
   <data name="Search_OpenInBowser.ToolTipService.ToolTip" xml:space="preserve">
     <value>在瀏覽器打開此網頁</value>
   </data>
-  <data name="Search_Engine_Google.Content" xml:space="preserve">
+  <data name="Search_Engine_Google.Text" xml:space="preserve">
     <value>谷歌</value>
   </data>
-  <data name="Search_Engine_Baidu.Content" xml:space="preserve">
+  <data name="Search_Engine_Baidu.Text" xml:space="preserve">
     <value>百度</value>
   </data>
-  <data name="Search_Engine_Bing.Content" xml:space="preserve">
+  <data name="Search_Engine_Bing.Text" xml:space="preserve">
     <value>必應</value>
   </data>
   <data name="Notice_Send.Content" xml:space="preserve">

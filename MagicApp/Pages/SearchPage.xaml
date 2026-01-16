@@ -20,26 +20,28 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <StackPanel
-            Orientation="Horizontal"
-            HorizontalAlignment="Center"
-            Grid.Column="0"
-            Grid.Row="0"
-            Margin="25,0,10,0"
-            Spacing="10">
-            <Image Name="Icon" Height="20" Width="20"/>
-            <ComboBox
+
+        <ComboBox
                 Name="ComboBox"
-                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Width="100"
+                HorizontalAlignment="Center"
+                Grid.Column="0"
+                Grid.Row="0"
+                Margin="25,0,10,0"
                 SelectionChanged="ComboBox_SelectionChanged">
-                <ComboBoxItem Name="Google" x:Uid="Search_Engine_Google"/>
-                <ComboBoxItem Name="Bing" x:Uid="Search_Engine_Bing"/>
-                <ComboBoxItem Name="Baidu" x:Uid="Search_Engine_Baidu"/>
-            </ComboBox>
-        </StackPanel>
+            <StackPanel Name="Google" Orientation="Horizontal" Spacing="10">
+                <Image Height="20" Width="20" Name="GoogleIcon"/>
+                <TextBlock x:Uid="Search_Engine_Google"/>
+            </StackPanel>
+            <StackPanel Name="Bing" Orientation="Horizontal" Spacing="10">
+                <Image Height="20" Width="20" Name="BingIcon"/>
+                <TextBlock x:Uid="Search_Engine_Bing"/>
+            </StackPanel>
+            <StackPanel Name="Baidu" Orientation="Horizontal" Spacing="10">
+                <Image Height="20" Width="20" Name="BaiduIcon"/>
+                <TextBlock x:Uid="Search_Engine_Baidu"/>
+            </StackPanel>
+        </ComboBox>
         <AutoSuggestBox Name="SearchBox" x:Uid="Search_SearchBox" MinWidth="200" Height="35" Grid.Row="0" Grid.Column="1" QueryIcon="Find" TextChanged="SearchBox_TextChanged"/>
         <Button Name="OpenInBowser"
                 x:Uid="Search_OpenInBowser"
