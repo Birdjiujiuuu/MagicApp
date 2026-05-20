@@ -106,10 +106,10 @@
                         <!-- 操作区 -->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
 
-                            <!-- 下载封面图片 -->
-                            <Button x:Name="DownloadCoverButton"
-                                    Click="DownloadCoverButton_Click"
-                                    ToolTipService.ToolTip="下载封面">
+                            <!-- 保存封面图片 -->
+                            <Button x:Name="SaveCoverButton"
+                                    Click="SaveCoverButton_Click"
+                                    ToolTipService.ToolTip="保存封面">
                                 <SymbolIcon Symbol="Save"/>
                             </Button>
 

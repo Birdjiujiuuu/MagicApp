@@ -299,23 +299,23 @@ public sealed partial class BilibiliVideoDataPage : Page
     }
 
     // 下载封面按钮点击事件
-    private async void DownloadCoverButton_Click(object sender, RoutedEventArgs e)
+    private async void SaveCoverButton_Click(object sender, RoutedEventArgs e)
     {
-        DownloadCoverButton.IsEnabled = false;
+        SaveCoverButton.IsEnabled = false;
 
         try
         {
             // 检查是否有封面URL
             if (string.IsNullOrEmpty(_currentCoverUrl))
             {
-                DownloadCoverButton.IsEnabled = true;
+                SaveCoverButton.IsEnabled = true;
                 return;
             }
 
             // 检查是否有图片可以下载
             if (CoverImage.Source == null)
             {
-                DownloadCoverButton.IsEnabled = true;
+                SaveCoverButton.IsEnabled = true;
                 return;
             }
 
@@ -331,7 +331,7 @@ public sealed partial class BilibiliVideoDataPage : Page
         }
         finally
         {
-            DownloadCoverButton.IsEnabled = true;
+            SaveCoverButton.IsEnabled = true;
         }
     }
 
