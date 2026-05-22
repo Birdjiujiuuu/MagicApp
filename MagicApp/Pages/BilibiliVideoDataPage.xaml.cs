@@ -142,6 +142,34 @@ public sealed partial class BilibiliVideoDataPage : Page
         }
     }
 
+    // 获取视频实时在线观看人数
+    private async Task<int?> GetOnlineCountAsync(string bvid, long cid)
+    {
+        try
+        {
+            string url = $"https://api.bilibili.com/x/player/online/total?bvid={bvid}&cid={cid}";
+            var response = await _httpClient.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            var jsonString = await response.Content.ReadAsStringAsync();
+            using JsonDocument doc = JsonDocument.Parse(jsonString);
+            var root = doc.RootElement;
+
+            if (root.GetProperty("code").GetInt32() != 0)
+                return null;
+
+            // "total" 是字符串，需要转成数字
+            var totalText = root.GetProperty("data").GetProperty("total").GetString();
+            if (int.TryParse(totalText, out int total))
+                return total;
+        }
+        catch
+        {
+           
+        }
+        return null;
+    }
+
     // 在类中添加私有字段来保存封面URL
     private string _currentCoverUrl;
 
@@ -160,6 +188,21 @@ public sealed partial class BilibiliVideoDataPage : Page
             long pubdate = data.GetProperty("pubdate").GetInt64();
             DateTime publishTime = FormatHelper.UnixTimeStampToDateTime(pubdate);
             PubDateTextBlock.Text = publishTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+            // 获取在线观看人数
+            try
+            {
+                long cid = data.GetProperty("cid").GetInt64();
+                string bvid = data.GetProperty("bvid").GetString() ?? "";
+
+                var onlineCount = await GetOnlineCountAsync(bvid, cid);
+                if (onlineCount.HasValue)
+                    OnlineDataControl.DataValue = FormatHelper.FormatNumber(onlineCount.Value);
+            }
+            catch
+            {
+                OnlineDataControl.DataValue = "N/A";
+            }
 
             // 统计数据 - 使用 FormatHelper.FormatNumber
             var stat = data.GetProperty("stat");

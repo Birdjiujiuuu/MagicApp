@@ -139,19 +139,28 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
+                            <!-- 正在观看人数 -->
+                            <controls:DataControl x:Name="OnlineDataControl"
+                          Grid.Column="0"
+                          Description="正在观看"
+                          IconGlyph="&#xE716;"
+                          IconColor="#FFCC00"
+                          Margin="0,0,5,0"/>
+                            
                             <!-- 播放量 -->
                             <controls:DataControl x:Name="ViewDataControl"
-                          Grid.Column="0"
+                          Grid.Column="1"
                           Description="播放"
                           IconGlyph="&#xE768;"
                           IconColor="#00A1D6"
-                          Margin="0,0,5,0"/>
+                          Margin="5,0,5,0"/>
 
                             <!-- 弹幕 -->
                             <controls:DataControl x:Name="DanmakuDataControl"
-                          Grid.Column="1"
+                          Grid.Column="2"
                           Description="弹幕"
                           IconGlyph="&#xE8BD;"
                           IconColor="#FB7299"
@@ -159,7 +168,7 @@
 
                             <!-- 评论 -->
                             <controls:DataControl x:Name="ReplyDataControl"
-                          Grid.Column="2"
+                          Grid.Column="3"
                           Description="评论"
                           IconGlyph="&#xE8F2;"
                           IconColor="#007AFF"
