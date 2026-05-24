@@ -132,11 +132,11 @@
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>홈</value>
   </data>
-  <data name="Main_NavView_Header_More.Content" xml:space="preserve">
-    <value>더보기</value>
+  <data name="Main_NavView_Header_NetworkTools.Content" xml:space="preserve">
+    <value>네트워크 도구</value>
   </data>
-  <data name="Main_NavView_Header_Tools.Content" xml:space="preserve">
-    <value>위젯</value>
+  <data name="Main_NavView_Header_SystemTools.Content" xml:space="preserve">
+    <value>시스템 도구</value>
   </data>
   <data name="Main_NavView_Search.Content" xml:space="preserve">
     <value>검색</value>
@@ -300,6 +300,9 @@
   <data name="FileDownloadService_Failure" xml:space="preserve">
     <value>다운로드 실패：</value>
   </data>
+  <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
+    <value>Bilibili 영상 데이터</value>
+  </data>
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>QR 코드 도구</value>
   </data>
@@ -362,5 +365,8 @@
   </data>
   <data name="QRCode_GenerateButton.Content" xml:space="preserve">
     <value>QR 코드 생성</value>
+  </data>
+  <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
+    <value>변환 도구</value>
   </data>
 </root>

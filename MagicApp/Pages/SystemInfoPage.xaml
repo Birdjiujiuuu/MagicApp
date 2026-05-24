@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="MagicApp.Pages.SystemInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MagicApp.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- 卡片边框统一样式 -->
+        <Style x:Key="CardBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefault}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="24"/>
+        </Style>
+
+        <!-- 统一的段落标题样式 -->
+        <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <!-- 标签样式 -->
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!-- 值样式 -->
+        <Style x:Key="ValueStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="10,20" Spacing="10">
+            <!-- 设备规格卡片 -->
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="🔧 设备规格" Style="{StaticResource SectionTitleStyle}"/>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" 
+                          ColumnSpacing="20" RowSpacing="14">
+                        <!-- 处理器 -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="处理器" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtCpu" Grid.Row="0" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+
+                        <!-- 内存 -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="内存" Style="{StaticResource LabelStyle}"/>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="6">
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <TextBlock x:Name="txtMemoryUsed" Style="{StaticResource ValueStyle}" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="2" Text=" 已用" Style="{StaticResource ValueStyle}" 
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            </Grid>
+                            <ProgressBar x:Name="memoryBar" Height="6" Maximum="100" Value="0"
+                                         Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
+                            <TextBlock x:Name="txtMemoryTotal" Style="{StaticResource ValueStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+
+                        <!-- 驱动器 -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="驱动器" Style="{StaticResource LabelStyle}"/>
+                        <ItemsControl x:Name="drivesList" Grid.Row="2" Grid.Column="1">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,6">
+                                        <TextBlock Text="{Binding Name}" Style="{StaticResource ValueStyle}" FontWeight="SemiBold"/>
+                                        <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                                            <TextBlock Text="{Binding FreeSpaceStr}" Style="{StaticResource ValueStyle}"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12"/>
+                                            <ProgressBar Height="4" Maximum="{Binding TotalBytes}" Value="{Binding UsedBytes}" 
+                                 Foreground="{ThemeResource AccentFillColorDefaultBrush}" Margin="0,2,0,0"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="2" Text="{Binding TotalSpaceStr}" Style="{StaticResource ValueStyle}"
+                           Margin="8,0,0,0" FontSize="12"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        
+                        <!-- 显卡 -->
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="显卡" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtGpu" Grid.Row="3" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+
+                        <!-- 屏幕分辨率 -->
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="屏幕分辨率" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtResolution" Grid.Row="4" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+
+                        <!-- 系统类型 -->
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="系统类型" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtArchitecture" Grid.Row="5" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Windows 规格卡片 -->
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="10">
+                    <TextBlock Text=" Windows 规格" Style="{StaticResource SectionTitleStyle}"/>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                          ColumnSpacing="20" RowSpacing="14">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="版本" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtEdition" Grid.Row="0" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="版本号" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtVersionDisplay" Grid.Row="1" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="安装日期" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtInstallDate" Grid.Row="2" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="操作系统版本" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtBuild" Grid.Row="3" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="体验包" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtExperience" Grid.Row="4" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- 运行时卡片 -->
+            <Border Style="{StaticResource CardBorderStyle}">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="📀 运行时" Style="{StaticResource SectionTitleStyle}"/>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto"
+                          ColumnSpacing="20" RowSpacing="14">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text=".NET 版本" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtDotNet" Grid.Row="0" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="系统启动时长" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtUptime" Grid.Row="1" Grid.Column="1" Style="{StaticResource ValueStyle}"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

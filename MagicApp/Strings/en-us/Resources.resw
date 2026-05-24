@@ -132,11 +132,11 @@
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="Main_NavView_Header_More.Content" xml:space="preserve">
-    <value>More</value>
+  <data name="Main_NavView_Header_NetworkTools.Content" xml:space="preserve">
+    <value>Network Tools</value>
   </data>
-  <data name="Main_NavView_Header_Tools.Content" xml:space="preserve">
-    <value>Tools</value>
+  <data name="Main_NavView_Header_SystemTools.Content" xml:space="preserve">
+    <value>System Tools</value>
   </data>
   <data name="Main_NavView_Search.Content" xml:space="preserve">
     <value>Search</value>
@@ -300,6 +300,9 @@
   <data name="FileDownloadService_Failure" xml:space="preserve">
     <value>Download failed :</value>
   </data>
+  <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
+    <value>Bilibili video data</value>
+  </data>
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>QR Code Tool</value>
   </data>
@@ -362,5 +365,8 @@
   </data>
   <data name="QRCode_GenerateButton.Content" xml:space="preserve">
     <value>Generate QR Code</value>
+  </data>
+  <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
+    <value>Conversion Tools</value>
   </data>
 </root>

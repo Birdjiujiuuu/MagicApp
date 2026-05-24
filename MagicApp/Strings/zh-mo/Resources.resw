@@ -132,11 +132,11 @@
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>小房子</value>
   </data>
-  <data name="Main_NavView_Header_More.Content" xml:space="preserve">
-    <value>更多</value>
+  <data name="Main_NavView_Header_NetworkTools.Content" xml:space="preserve">
+    <value>可以在网上找东西的小东西</value>
   </data>
-  <data name="Main_NavView_Header_Tools.Content" xml:space="preserve">
-    <value>神奇的东西</value>
+  <data name="Main_NavView_Header_SystemTools.Content" xml:space="preserve">
+    <value>跟电脑有关的小东西</value>
   </data>
   <data name="Main_NavView_Search.Content" xml:space="preserve">
     <value>找东西</value>
@@ -300,6 +300,9 @@
   <data name="FileDownloadService_Failure" xml:space="preserve">
     <value>保存不了惹：</value>
   </data>
+  <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
+    <value>阿B的视频信息</value>
+  </data>
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>神秘二维码的工具</value>
   </data>
@@ -362,5 +365,8 @@
   </data>
   <data name="QRCode_GenerateButton.Content" xml:space="preserve">
     <value>产生神秘二维码</value>
+  </data>
+  <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
+    <value>可以变换的小东西</value>
   </data>
 </root>

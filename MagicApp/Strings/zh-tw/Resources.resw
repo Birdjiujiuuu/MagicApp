@@ -132,11 +132,11 @@
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>主頁</value>
   </data>
-  <data name="Main_NavView_Header_More.Content" xml:space="preserve">
-    <value>更多</value>
+  <data name="Main_NavView_Header_NetworkTools.Content" xml:space="preserve">
+    <value>網路工具</value>
   </data>
-  <data name="Main_NavView_Header_Tools.Content" xml:space="preserve">
-    <value>小工具</value>
+  <data name="Main_NavView_Header_SystemTools.Content" xml:space="preserve">
+    <value>系統工具</value>
   </data>
   <data name="Main_NavView_Search.Content" xml:space="preserve">
     <value>搜尋</value>
@@ -300,6 +300,9 @@
   <data name="FileDownloadService_Failure" xml:space="preserve">
     <value>下載失敗：</value>
   </data>
+  <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
+    <value>B站影片資料</value>
+  </data>
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>二維碼工具</value>
   </data>
@@ -362,5 +365,8 @@
   </data>
   <data name="QRCode_GenerateButton.Content" xml:space="preserve">
     <value>生成二維碼</value>
+  </data>
+  <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
+    <value>轉換工具</value>
   </data>
 </root>

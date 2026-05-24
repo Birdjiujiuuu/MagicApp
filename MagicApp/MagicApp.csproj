@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows10.0.26100.0</TargetFramework>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>MagicApp</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -23,6 +23,7 @@
     <None Remove="Pages\SettingsPage.xaml" />
     <None Remove="Controls\ContentControl.xaml" />
     <None Remove="Controls\DataControl.xaml" />
+    <None Remove="Pages\SystemInfoPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +52,12 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.6901" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.1.3" />
     <PackageReference Include="QRCoder" Version="1.8.0" />
+    <PackageReference Include="System.Management" Version="10.0.8" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\SystemInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\QRCodePage.xaml">

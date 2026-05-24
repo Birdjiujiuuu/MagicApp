@@ -105,19 +105,26 @@
             ItemInvoked="NavView_ItemInvoked">
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Name="Home" x:Uid="Main_NavView_Home" Icon="Home"/>
-                <NavigationViewItemSeparator/>
-                <NavigationViewItemHeader x:Name="NavViewHeaderMore" x:Uid="Main_NavView_Header_More"/>
                 <NavigationViewItem x:Name="Pictures" x:Uid="Main_NavView_Pictures" Icon="Pictures"/>
-                <NavigationViewItem x:Name="Search" x:Uid="Main_NavView_Search" Icon="Find"/>
                 <NavigationViewItemSeparator/>
-                <NavigationViewItemHeader x:Name="NavViewHeaderTools" x:Uid="Main_NavView_Header_Tools"/>
+                <NavigationViewItemHeader x:Name="NavViewHeaderNetworkTools" x:Uid="Main_NavView_Header_NetworkTools"/>
+                <NavigationViewItem x:Name="Search" x:Uid="Main_NavView_Search" Icon="Find"/>
                 <NavigationViewItem x:Name="BilibiliVideoData" x:Uid="Main_NavView_BilibiliVideoData" Icon="SlideShow"/>
+                <NavigationViewItemSeparator/>
+                <NavigationViewItemHeader x:Name="NavViewHeaderSystemTools" x:Uid="Main_NavView_Header_SystemTools"/>
+                <NavigationViewItem x:Name="SystemInfo" x:Uid="Main_NavView_SystemInfo">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE770;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="Notice" x:Uid="Main_NavView_Notice" Icon="Message"/>
+                <NavigationViewItemSeparator/>
+                <NavigationViewItemHeader x:Name="NavViewHeaderConversionTools" x:Uid="Main_NavView_Header_ConversionTools"/>
                 <NavigationViewItem x:Name="QRCode" x:Uid="Main_NavView_QRCode">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xED14;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Name="Notice" x:Uid="Main_NavView_Notice" Icon="Message"/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame"/>
         </NavigationView>

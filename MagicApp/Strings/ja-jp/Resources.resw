@@ -132,11 +132,11 @@
   <data name="Main_NavView_Home.Content" xml:space="preserve">
     <value>ホーム</value>
   </data>
-  <data name="Main_NavView_Header_More.Content" xml:space="preserve">
-    <value>もっと</value>
+  <data name="Main_NavView_Header_NetworkTools.Content" xml:space="preserve">
+    <value>ネットワークツール</value>
   </data>
-  <data name="Main_NavView_Header_Tools.Content" xml:space="preserve">
-    <value>ウィジェット</value>
+  <data name="Main_NavView_Header_SystemTools.Content" xml:space="preserve">
+    <value>システムツール</value>
   </data>
   <data name="Main_NavView_Search.Content" xml:space="preserve">
     <value>検索</value>
@@ -300,6 +300,9 @@
   <data name="FileDownloadService_Failure" xml:space="preserve">
     <value>ダウンロード失敗：</value>
   </data>
+  <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
+    <value>Bilibili動画データ</value>
+  </data>
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>QRコードツール</value>
   </data>
@@ -362,5 +365,8 @@
   </data>
   <data name="QRCode_GenerateButton.Content" xml:space="preserve">
     <value>QRコードを生成</value>
+  </data>
+  <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
+    <value>変換ツール</value>
   </data>
 </root>
