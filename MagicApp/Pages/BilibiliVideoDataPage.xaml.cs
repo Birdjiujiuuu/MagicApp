@@ -143,7 +143,7 @@ public sealed partial class BilibiliVideoDataPage : Page
     }
 
     // 获取视频实时在线观看人数
-    private async Task<int?> GetOnlineCountAsync(string bvid, long cid)
+    private async Task<string?> GetOnlineCountAsync(string bvid, long cid)
     {
         try
         {
@@ -158,10 +158,7 @@ public sealed partial class BilibiliVideoDataPage : Page
             if (root.GetProperty("code").GetInt32() != 0)
                 return null;
 
-            // "total" 是字符串，需要转成数字
-            var totalText = root.GetProperty("data").GetProperty("total").GetString();
-            if (int.TryParse(totalText, out int total))
-                return total;
+            return root.GetProperty("data").GetProperty("total").GetString();
         }
         catch
         {
@@ -196,8 +193,7 @@ public sealed partial class BilibiliVideoDataPage : Page
                 string bvid = data.GetProperty("bvid").GetString() ?? "";
 
                 var onlineCount = await GetOnlineCountAsync(bvid, cid);
-                if (onlineCount.HasValue)
-                    OnlineDataControl.DataValue = FormatHelper.FormatNumber(onlineCount.Value);
+                OnlineDataControl.DataValue = onlineCount ?? "N/A";
             }
             catch
             {
