@@ -66,7 +66,7 @@ namespace MagicApp.Pages
                     ulong usedBytes = totalBytes - availBytes;
                     double percent = totalBytes > 0 ? (double)usedBytes / totalBytes * 100.0 : 0;
 
-                    txtMemoryUsed.Text = FormatHelper.FormatFileSize((long)usedBytes, 1);
+                    txtMemoryUsed.Text = $"已用 {FormatHelper.FormatFileSize((long)usedBytes, 1)}";
                     txtMemoryTotal.Text = $"共 {FormatHelper.FormatFileSize((long)totalBytes, 1)}";
                     memoryBar.Value = percent;
                 }
