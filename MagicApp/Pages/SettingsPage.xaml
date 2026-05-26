@@ -11,65 +11,67 @@
     Loading="Page_Loading">
 
     <Grid>
-        <StackPanel Margin="40,20,40,20" Spacing="5">
-            
-            <!--动画-->
-            <StackPanel.ChildrenTransitions>
-                <TransitionCollection>
-                    <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="500"/>
-                </TransitionCollection>
-            </StackPanel.ChildrenTransitions>
-            
-            <controls:ContentControl
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="40,20,40,20" Spacing="5">
+
+                <!--动画-->
+                <StackPanel.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="500"/>
+                    </TransitionCollection>
+                </StackPanel.ChildrenTransitions>
+
+                <controls:ContentControl
                 x:Name="Theme"
                 x:Uid="Settings_Theme">
-                <controls:ContentControl.Icon>
-                    <FontIcon Glyph="&#xE790;"/>
-                </controls:ContentControl.Icon>
-                <ComboBox Name="ThemeModeBox" SelectionChanged="ThemeMode_SelectionChanged">
-                    <ComboBoxItem Name="Theme_Default" x:Uid="Settings_Theme_Default"/>
-                    <ComboBoxItem Name="Theme_Light" x:Uid="Settings_Theme_Light"/>
-                    <ComboBoxItem Name="Theme_Dark" x:Uid="Settings_Theme_Dark"/>
-                </ComboBox>
-            </controls:ContentControl>
-            <controls:ContentControl
+                    <controls:ContentControl.Icon>
+                        <FontIcon Glyph="&#xE790;"/>
+                    </controls:ContentControl.Icon>
+                    <ComboBox Name="ThemeModeBox" SelectionChanged="ThemeMode_SelectionChanged">
+                        <ComboBoxItem Name="Theme_Default" x:Uid="Settings_Theme_Default"/>
+                        <ComboBoxItem Name="Theme_Light" x:Uid="Settings_Theme_Light"/>
+                        <ComboBoxItem Name="Theme_Dark" x:Uid="Settings_Theme_Dark"/>
+                    </ComboBox>
+                </controls:ContentControl>
+                <controls:ContentControl
                 x:Name="Languages"
                 x:Uid="Settings_Languages">
-                <controls:ContentControl.Icon>
-                    <FontIcon Glyph="&#xF2B7;"/>
-                </controls:ContentControl.Icon>
-                <ComboBox Name="LanguageBox" SelectionChanged="Language_SelectionChanged">
-                    <ComboBoxItem Name="Lang_zh_mo" Content="一种很新的语言(天朝)"/>
-                    <ComboBoxItem Name="Lang_zh_cn" Content="简体中文"/>
-                    <ComboBoxItem Name="Lang_zh_tw" Content="繁體中文"/>
-                    <ComboBoxItem Name="Lang_ko" Content="한국어"/>
-                    <ComboBoxItem Name="Lang_ja_jp" Content="日本語"/>
-                    <ComboBoxItem Name="Lang_en_us" Content="English"/>
-                </ComboBox>
-            </controls:ContentControl>
-            <controls:ContentControl
+                    <controls:ContentControl.Icon>
+                        <FontIcon Glyph="&#xF2B7;"/>
+                    </controls:ContentControl.Icon>
+                    <ComboBox Name="LanguageBox" SelectionChanged="Language_SelectionChanged">
+                        <ComboBoxItem Name="Lang_zh_mo" Content="一种很新的语言(天朝)"/>
+                        <ComboBoxItem Name="Lang_zh_cn" Content="简体中文"/>
+                        <ComboBoxItem Name="Lang_zh_tw" Content="繁體中文"/>
+                        <ComboBoxItem Name="Lang_ko" Content="한국어"/>
+                        <ComboBoxItem Name="Lang_ja_jp" Content="日本語"/>
+                        <ComboBoxItem Name="Lang_en_us" Content="English"/>
+                    </ComboBox>
+                </controls:ContentControl>
+                <controls:ContentControl
                 x:Name="AppVersion"
                 x:Uid="Settings_AppVersion">
-                <controls:ContentControl.Icon>
-                    <FontIcon Glyph="&#xE895;"/>
-                </controls:ContentControl.Icon>
-                <StackPanel Orientation="Horizontal">
-                    <ProgressRing x:Name="CheckUpdateProgressRing" IsActive="False"/>
-                    <StackPanel Width="5"/>
-                    <Button x:Name="CheckUpdate" x:Uid="Settings_AppVersion_CheckUpdate" Style="{StaticResource AccentButtonStyle}" Click="CheckUpdate_Click"/>
-                </StackPanel>
-            </controls:ContentControl>
-            <controls:ContentControl
+                    <controls:ContentControl.Icon>
+                        <FontIcon Glyph="&#xE895;"/>
+                    </controls:ContentControl.Icon>
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing x:Name="CheckUpdateProgressRing" IsActive="False"/>
+                        <StackPanel Width="5"/>
+                        <Button x:Name="CheckUpdate" x:Uid="Settings_AppVersion_CheckUpdate" Style="{StaticResource AccentButtonStyle}" Click="CheckUpdate_Click"/>
+                    </StackPanel>
+                </controls:ContentControl>
+                <controls:ContentControl
                 x:Name="About"
                 Image="ms-appx:///Assets/MagicAppLogo.png"
                 Description="©2026 Birdjiujiuuu">
-                <RichTextBlock>
-                    <Paragraph>
-                        <Hyperlink x:Name="OfficialWebsite" NavigateUri="https://birdjiujiuuu.github.io/magicapp/"/>
-                        <Hyperlink x:Name="SourceCode" NavigateUri="https://github.com/Birdjiujiuuu/MagicApp"/>
-                    </Paragraph>
-                </RichTextBlock>
-            </controls:ContentControl>
-        </StackPanel>
+                    <RichTextBlock>
+                        <Paragraph>
+                            <Hyperlink x:Name="OfficialWebsite" NavigateUri="https://birdjiujiuuu.github.io/magicapp/"/>
+                            <Hyperlink x:Name="SourceCode" NavigateUri="https://github.com/Birdjiujiuuu/MagicApp"/>
+                        </Paragraph>
+                    </RichTextBlock>
+                </controls:ContentControl>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

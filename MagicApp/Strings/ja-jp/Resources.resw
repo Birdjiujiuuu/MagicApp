@@ -150,6 +150,9 @@
   <data name="Main_NavView_Pictures.Content" xml:space="preserve">
     <value>今日の1枚</value>
   </data>
+  <data name="Main_NavView_SystemInfo.Content" xml:space="preserve">
+    <value>システム情報</value>
+  </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>素晴らしいアプリ</value>
   </data>

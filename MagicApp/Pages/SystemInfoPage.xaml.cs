@@ -37,15 +37,31 @@ namespace MagicApp.Pages
         private const int SM_CXSCREEN = 0;
         private const int SM_CYSCREEN = 1;
 
+        private DispatcherTimer? _timer;
+
         public SystemInfoPage()
         {
             InitializeComponent();
             this.Loaded += OnPageLoaded;
+            this.Unloaded += OnPageUnloaded;
         }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             LoadSystemInfo();
+
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            _timer.Tick += (s, args) => UpdateDynamicInfo();
+            _timer.Start();
+        }
+
+        private void OnPageUnloaded(object sender, RoutedEventArgs e)
+        {
+            _timer?.Stop();
+            _timer = null;
         }
 
         private void LoadSystemInfo()
@@ -57,21 +73,9 @@ namespace MagicApp.Pages
                 txtCpu.Text = GetProcessorName();
 
                 // 内存
-                var memStatus = new MEMORYSTATUSEX();
-                memStatus.dwLength = (uint)Marshal.SizeOf(typeof(MEMORYSTATUSEX));
-                if (GlobalMemoryStatusEx(ref memStatus))
-                {
-                    ulong totalBytes = memStatus.ullTotalPhys;
-                    ulong availBytes = memStatus.ullAvailPhys;
-                    ulong usedBytes = totalBytes - availBytes;
-                    double percent = totalBytes > 0 ? (double)usedBytes / totalBytes * 100.0 : 0;
+                UpdateMemoryInfo();
 
-                    txtMemoryUsed.Text = $"已用 {FormatHelper.FormatFileSize((long)usedBytes, 1)}";
-                    txtMemoryTotal.Text = $"共 {FormatHelper.FormatFileSize((long)totalBytes, 1)}";
-                    memoryBar.Value = percent;
-                }
-
-                // 驱动器信息（排除光盘等不可用驱动器）
+                // 驱动器
                 var drives = DriveInfo.GetDrives()
                     .Where(d => d.IsReady && d.DriveType == DriveType.Fixed)
                     .Select(d => new
@@ -86,7 +90,7 @@ namespace MagicApp.Pages
 
                 drivesList.ItemsSource = drives;
 
-                // 显卡（主显卡）
+                // 显卡
                 txtGpu.Text = GetAllGpuNames();
 
                 // 屏幕分辨率
@@ -117,7 +121,7 @@ namespace MagicApp.Pages
                             {
                                 productName = productName.Replace("Windows 10", "Windows 11");
                             }
-                            // 如果连 Windows 都没有（某些精简版），则根据 EditionID 重新生成
+                            // 如果连 Windows 都没有，则根据 EditionID 重新生成
                             if (!productName.Contains("Windows"))
                             {
                                 string editionID = key.GetValue("EditionID")?.ToString() ?? "";
@@ -128,14 +132,14 @@ namespace MagicApp.Pages
                         // 版本信息组合
                         txtEdition.Text = productName;
                         txtVersionDisplay.Text = string.IsNullOrEmpty(displayVersion) ? "未知" : displayVersion;
-                        txtBuild.Text = $"Build {currentBuild}.{ubr}";
+                        txtBuild.Text = $"{currentBuild}.{ubr}";
                         txtExperience.Text = string.IsNullOrEmpty(buildLabEx) ? "未知" : buildLabEx.Split('.').LastOrDefault();
 
                         // 安装日期
                         if (key.GetValue("InstallDate") is int installDateUnix)
                         {
                             DateTime installDate = FormatHelper.UnixTimeStampToDateTime(installDateUnix);
-                            txtInstallDate.Text = FormatHelper.FormatDateTime(installDate, "yyyy-MM-dd");
+                            txtInstallDate.Text = FormatHelper.FormatDateTime(installDate, "yyyy/MM/dd");
                         }
                         else
                         {
@@ -145,16 +149,14 @@ namespace MagicApp.Pages
                 }
 
                 // ========== 运行时 ==========
+                // .NET 版本
                 txtDotNet.Text = RuntimeInformation.FrameworkDescription;
 
                 // 系统启动时长
-                long uptimeMillis = Environment.TickCount64;
-                TimeSpan uptime = TimeSpan.FromMilliseconds(uptimeMillis);
-                txtUptime.Text = $"{uptime.Days} 天 {uptime.Hours} 小时 {uptime.Minutes} 分钟";
+                UpdateUptimeInfo();
             }
             catch (Exception ex)
             {
-                // 忽略异常，保持界面默认值
                 Debug.WriteLine($"获取系统信息异常: {ex.Message}");
             }
         }
@@ -163,7 +165,6 @@ namespace MagicApp.Pages
         {
             try
             {
-                // 显式声明为可空对象
                 object? value = Registry.GetValue(
                     @"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\CentralProcessor\0",
                     "ProcessorNameString",
@@ -213,6 +214,45 @@ namespace MagicApp.Pages
             return distinctGpus.Count > 0
                 ? string.Join(Environment.NewLine, distinctGpus)
                 : "未知显卡";
+        }
+
+        // 更新动态信息
+        private void UpdateDynamicInfo()
+        {
+            UpdateMemoryInfo();
+            UpdateUptimeInfo();
+        }
+
+        private void UpdateMemoryInfo()
+        {
+            try
+            {
+                var memStatus = new MEMORYSTATUSEX();
+                memStatus.dwLength = (uint)Marshal.SizeOf(typeof(MEMORYSTATUSEX));
+                if (GlobalMemoryStatusEx(ref memStatus))
+                {
+                    ulong totalBytes = memStatus.ullTotalPhys;
+                    ulong availBytes = memStatus.ullAvailPhys;
+                    ulong usedBytes = totalBytes - availBytes;
+                    double percent = totalBytes > 0 ? (double)usedBytes / totalBytes * 100.0 : 0;
+
+                    txtMemoryUsed.Text = $"已用 {FormatHelper.FormatFileSize((long)usedBytes, 1)}";
+                    txtMemoryTotal.Text = $"共 {FormatHelper.FormatFileSize((long)totalBytes, 1)}";
+                    memoryBar.Value = percent;
+                }
+            }
+            catch { }
+        }
+
+        private void UpdateUptimeInfo()
+        {
+            try
+            {
+                long uptimeMillis = Environment.TickCount64;
+                TimeSpan uptime = TimeSpan.FromMilliseconds(uptimeMillis);
+                txtUptime.Text = $"{uptime.Days}:{uptime.Hours}:{uptime.Minutes}:{uptime.Seconds}";
+            }
+            catch { }
         }
     }
 }

@@ -150,6 +150,9 @@
   <data name="Main_NavView_Pictures.Content" xml:space="preserve">
     <value>일일 이미지</value>
   </data>
+  <data name="Main_NavView_SystemInfo.Content" xml:space="preserve">
+    <value>시스템 정보</value>
+  </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>신비한 앱</value>
   </data>

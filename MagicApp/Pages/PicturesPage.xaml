@@ -10,17 +10,7 @@
     NavigationCacheMode="Enabled"
     Loaded="Page_Loaded">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-
+    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="*,50">
         <Border
             Grid.Column="0"
             Grid.Row="0"
@@ -65,10 +55,7 @@
             Orientation="Horizontal"
             Margin="0,0,10,0"
             Spacing="10">
-            <Button
-                Name="InfoButton"
-                VerticalAlignment="Center"
-                Width="50">
+            <Button Name="InfoButton" VerticalAlignment="Center" Width="50">
                 <SymbolIcon Symbol="Important"/>
                 <Button.Flyout>
                     <Flyout>
@@ -79,11 +66,7 @@
                     </Flyout>
                 </Button.Flyout>
             </Button>
-            <Button
-                Name="DownloadButton"
-                VerticalAlignment="Center"
-                Width="50"
-                Click="DownloadButton_Click">
+            <Button Name="DownloadButton" VerticalAlignment="Center" Width="50" Click="DownloadButton_Click">
                 <SymbolIcon Symbol="Download"/>
             </Button>
         </StackPanel>

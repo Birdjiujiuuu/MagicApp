@@ -52,8 +52,7 @@
                 <StackPanel Spacing="10">
                     <TextBlock Text="设备规格" Style="{StaticResource SectionTitleStyle}"/>
 
-                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" 
-                          ColumnSpacing="10" RowSpacing="5">
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
                         <!-- 处理器 -->
                         <FontIcon Grid.Row="0" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xEEA1;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="处理器" Style="{StaticResource LabelStyle}"/>
@@ -82,12 +81,11 @@
                                         <TextBlock Text="{Binding Name}" Style="{StaticResource ValueStyle}" FontWeight="SemiBold"/>
                                         <StackPanel Grid.Column="1" Margin="12,0,0,0">
                                             <TextBlock Text="{Binding FreeSpaceStr}" Style="{StaticResource ValueStyle}"
-                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12"/>
+                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12"/>
                                             <ProgressBar Height="4" Maximum="{Binding TotalBytes}" Value="{Binding UsedBytes}" 
                                  Foreground="{ThemeResource AccentFillColorDefaultBrush}" Margin="0,2,0,0"/>
                                         </StackPanel>
-                                        <TextBlock Grid.Column="2" Text="{Binding TotalSpaceStr}" Style="{StaticResource ValueStyle}"
-                           Margin="8,0,0,0" FontSize="12"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding TotalSpaceStr}" Style="{StaticResource ValueStyle}" Margin="8,0,0,0" FontSize="12"/>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -116,8 +114,7 @@
                 <StackPanel Spacing="10">
                     <TextBlock Text=" Windows 规格" Style="{StaticResource SectionTitleStyle}"/>
 
-                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                          ColumnSpacing="10" RowSpacing="5">
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
                         <FontIcon Grid.Row="0" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE770;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="版本" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtEdition" Grid.Row="0" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
@@ -146,8 +143,7 @@
                 <StackPanel Spacing="10">
                     <TextBlock Text="运行时" Style="{StaticResource SectionTitleStyle}"/>
 
-                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto"
-                          ColumnSpacing="10" RowSpacing="5">
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="5">
                         <FontIcon Grid.Row="0" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xED35;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" Text=".NET 版本" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtDotNet" Grid.Row="0" Grid.Column="2" Style="{StaticResource ValueStyle}"/>

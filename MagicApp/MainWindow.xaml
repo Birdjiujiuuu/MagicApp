@@ -12,11 +12,7 @@
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid RowDefinitions="Auto,*">
         <TitleBar
             x:Name="TitleBar"
             x:Uid="Main_Titlebar"
@@ -30,12 +26,7 @@
                 <AutoSuggestBox x:Uid="Main_SearchBox" Width="360" VerticalAlignment="Center" QueryIcon="Find"/>
             </TitleBar.Content>
             <TitleBar.RightHeader>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid ColumnDefinitions="*,10,*">
                     <AppBarButton
                         Grid.Column="0"
                         Icon="Audio"
@@ -44,18 +35,7 @@
                         Tapped="AppBarButton_Tapped">
                         <FlyoutBase.AttachedFlyout>
                             <Flyout>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition Width="10"/>
-                                        <ColumnDefinition Width="290"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition Height="50"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+                                <Grid ColumnDefinitions="100,10,290" RowDefinitions="30,20,50,*">
                                     <Border
                                         Grid.Column="0"
                                         Grid.RowSpan="3"

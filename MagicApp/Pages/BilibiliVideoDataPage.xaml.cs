@@ -184,7 +184,7 @@ public sealed partial class BilibiliVideoDataPage : Page
             // 发布时间（详细时间） - 使用 FormatHelper.UnixTimeStampToDateTime
             long pubdate = data.GetProperty("pubdate").GetInt64();
             DateTime publishTime = FormatHelper.UnixTimeStampToDateTime(pubdate);
-            PubDateTextBlock.Text = publishTime.ToString("yyyy-MM-dd HH:mm:ss");
+            PubDateTextBlock.Text = publishTime.ToString("yyyy/MM/dd HH:mm:ss");
 
             // 获取在线观看人数
             try
@@ -227,7 +227,7 @@ public sealed partial class BilibiliVideoDataPage : Page
             DurationTextBlock.Text = FormatHelper.FormatDuration(duration);
 
             // 抓取时间 - 使用 FormatHelper.FormatDateTime
-            FetchTimeTextBlock.Text = FormatHelper.FormatDateTime(_fetchTime, "yyyy-MM-dd HH:mm:ss");
+            FetchTimeTextBlock.Text = FormatHelper.FormatDateTime(_fetchTime, "yyyy/MM/dd HH:mm:ss");
 
             // 加载封面图片
             string? coverUrl = data.GetProperty("pic").GetString();

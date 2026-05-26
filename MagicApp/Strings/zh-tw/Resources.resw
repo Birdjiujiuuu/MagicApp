@@ -150,6 +150,9 @@
   <data name="Main_NavView_Pictures.Content" xml:space="preserve">
     <value>每日一圖</value>
   </data>
+  <data name="Main_NavView_SystemInfo.Content" xml:space="preserve">
+    <value>系統資訊</value>
+  </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>神奇的應用程式</value>
   </data>

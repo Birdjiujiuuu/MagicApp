@@ -150,6 +150,9 @@
   <data name="Main_NavView_Pictures.Content" xml:space="preserve">
     <value>Daily Picture</value>
   </data>
+  <data name="Main_NavView_SystemInfo.Content" xml:space="preserve">
+    <value>System Information</value>
+  </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>Magic App</value>
   </data>

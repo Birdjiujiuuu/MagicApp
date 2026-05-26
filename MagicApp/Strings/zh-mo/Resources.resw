@@ -150,6 +150,9 @@
   <data name="Main_NavView_Pictures.Content" xml:space="preserve">
     <value>每天一个好康的</value>
   </data>
+  <data name="Main_NavView_SystemInfo.Content" xml:space="preserve">
+    <value>查看电脑身体</value>
+  </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>神秘的小应用</value>
   </data>
