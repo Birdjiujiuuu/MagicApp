@@ -2,7 +2,7 @@
 目标是集合一些常用的工具，随意添加各种功能，做一个类似于工具箱的程序\
 因为是第一次使用 WinUI 3 进行程序开发，故采用人工 + AI 辅助的方法进行开发
 # ↓首页预览图以及当前已经具备的功能↓
-<img width="951" height="554" alt="image" src="https://github.com/user-attachments/assets/2e52d0d2-c963-4eb0-afbe-670724f981e1" /><br />
+<img width="951" height="554" alt="image" src="https://github.com/user-attachments/assets/4d28e1e3-a50b-4599-8859-12fc222cb200" /><br />
 # 支持的语言
 🇨🇳 简体中文\
 🇭🇰 繁體中文\
