@@ -69,23 +69,46 @@ namespace MagicApp.Pages
             try
             {
                 // ========== 设备规格 ==========
+                // 设备名称
+                txtDeviceName.Text = Environment.MachineName;
+
+                // 主板
+                txtMotherboard.Text = GetMotherboardInfo();
+
+                // BIOS 版本
+                txtBiosVersion.Text = GetBiosVersion();
+
+                // 系统型号
+                txtSystemModel.Text = GetSystemModel();
+
                 // 处理器
                 txtCpu.Text = GetProcessorName();
 
                 // 内存
                 UpdateMemoryInfo();
 
+                // 虚拟内存
+                UpdatePageFileInfo();
+
                 // 驱动器
                 var drives = DriveInfo.GetDrives()
                     .Where(d => d.IsReady && d.DriveType == DriveType.Fixed)
-                    .Select(d => new
-                    {
-                        Name = d.Name.TrimEnd('\\'),
-                        TotalBytes = d.TotalSize,
-                        FreeBytes = d.AvailableFreeSpace,
-                        UsedBytes = d.TotalSize - d.AvailableFreeSpace,
-                        TotalSpaceStr = $"共 {FormatHelper.FormatFileSize(d.TotalSize, 1)}",
-                        FreeSpaceStr = $"可用 {FormatHelper.FormatFileSize(d.AvailableFreeSpace, 1)}"
+                    .Select(d => {
+                        long total = d.TotalSize;
+                        long free = d.AvailableFreeSpace;
+                        long used = total - free;
+                        double percent = total > 0 ? (double)used / total * 100.0 : 0;
+                        return new
+                        {
+                            Name = d.Name.TrimEnd('\\'),
+                            TotalBytes = total,
+                            FreeBytes = free,
+                            UsedBytes = used,
+                            TotalSpaceStr = $"共 {FormatHelper.FormatFileSize(total, 1)}",
+                            FreeSpaceStr = $"可用 {FormatHelper.FormatFileSize(free, 1)}",
+                            UsagePercent = percent,
+                            IsHighUsage = percent > 90
+                        };
                     }).ToList();
 
                 drivesList.ItemsSource = drives;
@@ -148,17 +171,88 @@ namespace MagicApp.Pages
                     }
                 }
 
+                // ========== 网络 ==========
+                var networkInfo = GetNetworkInfo();
+                // IPv4 地址
+                txtIpv4Address.Text = networkInfo.Ipv4Address;
+
+                // IPv6 地址
+                txtIpv6Address.Text = networkInfo.Ipv6Address;
+
+                // MAC 地址
+                txtMacAddress.Text = networkInfo.MacAddress;
+
                 // ========== 运行时 ==========
                 // .NET 版本
                 txtDotNet.Text = RuntimeInformation.FrameworkDescription;
 
                 // 系统启动时长
                 UpdateUptimeInfo();
+
+                // 当前用户
+                txtCurrentUser.Text = Environment.UserName;
+
+                // 用户目录
+                txtUserProfile.Text = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"获取系统信息异常: {ex.Message}");
             }
+        }
+
+        private string GetMotherboardInfo()
+        {
+            try
+            {
+                string? manufacturer = Registry.GetValue(
+                    @"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS",
+                    "BaseBoardManufacturer", null) as string;
+                string? product = Registry.GetValue(
+                    @"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS",
+                    "BaseBoardProduct", null) as string;
+
+                if (!string.IsNullOrWhiteSpace(manufacturer) || !string.IsNullOrWhiteSpace(product))
+                {
+                    if (!string.IsNullOrWhiteSpace(manufacturer) && !string.IsNullOrWhiteSpace(product))
+                        return $"{manufacturer} {product}";
+                    return manufacturer ?? product ?? "未知主板";
+                }
+                return "未知主板";
+            }
+            catch
+            {
+                return "未知主板";
+            }
+        }
+
+        private string GetBiosVersion()
+        {
+            try
+            {
+                string? biosVersion = Registry.GetValue(
+                    @"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS",
+                    "BIOSVersion", null) as string;
+                return !string.IsNullOrWhiteSpace(biosVersion) ? biosVersion : "未知";
+            }
+            catch { return "未知"; }
+        }
+
+        private string GetSystemModel()
+        {
+            try
+            {
+                string? manufacturer = Registry.GetValue(
+                    @"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS",
+                    "SystemManufacturer", null) as string;
+                string? productName = Registry.GetValue(
+                    @"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS",
+                    "SystemProductName", null) as string;
+                if (!string.IsNullOrWhiteSpace(manufacturer) || !string.IsNullOrWhiteSpace(productName))
+                    return $"{manufacturer} {productName}".Trim();
+                return "未知";
+            }
+            catch { return "未知"; }
         }
 
         private string GetProcessorName()
@@ -216,11 +310,44 @@ namespace MagicApp.Pages
                 : "未知显卡";
         }
 
+        private (string Ipv4Address, string MacAddress, string Ipv6Address) GetNetworkInfo()
+        {
+            string ipv4 = "无连接";
+            string ipv6 = "无连接";
+            string mac = "未知";
+            try
+            {
+                var nics = System.Net.NetworkInformation.NetworkInterface
+                    .GetAllNetworkInterfaces()
+                    .Where(n => n.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up
+                             && n.NetworkInterfaceType != System.Net.NetworkInformation.NetworkInterfaceType.Loopback
+                             && n.GetIPProperties().UnicastAddresses.Any(addr =>
+                                 addr.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork ||
+                                 addr.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6))
+                    .FirstOrDefault();
+
+                if (nics != null)
+                {
+                    var ipProp = nics.GetIPProperties();
+                    var ipv4Addr = ipProp.UnicastAddresses
+                        .FirstOrDefault(a => a.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+                    var ipv6Addr = ipProp.UnicastAddresses
+                        .FirstOrDefault(a => a.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6);
+                    ipv4 = ipv4Addr?.Address.ToString() ?? "无 IPv4";
+                    ipv6 = ipv6Addr?.Address.ToString() ?? "无 IPv6";
+                    mac = string.Join(":", nics.GetPhysicalAddress().GetAddressBytes().Select(b => b.ToString("X2")));
+                }
+            }
+            catch { }
+            return (ipv4, ipv6, mac);
+        }
+
         // 更新动态信息
         private void UpdateDynamicInfo()
         {
             UpdateMemoryInfo();
             UpdateUptimeInfo();
+            UpdatePageFileInfo();
         }
 
         private void UpdateMemoryInfo()
@@ -239,6 +366,43 @@ namespace MagicApp.Pages
                     txtMemoryUsed.Text = $"已用 {FormatHelper.FormatFileSize((long)usedBytes, 1)}";
                     txtMemoryTotal.Text = $"共 {FormatHelper.FormatFileSize((long)totalBytes, 1)}";
                     memoryBar.Value = percent;
+                    if (percent > 90)
+                    {
+                        memoryBar.ShowError = true;
+                    }
+                    else
+                    {
+                        memoryBar.ShowError = false;
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void UpdatePageFileInfo()
+        {
+            try
+            {
+                var memStatus = new MEMORYSTATUSEX();
+                memStatus.dwLength = (uint)Marshal.SizeOf(typeof(MEMORYSTATUSEX));
+                if (GlobalMemoryStatusEx(ref memStatus))
+                {
+                    ulong totalPage = memStatus.ullTotalPageFile;
+                    ulong availPage = memStatus.ullAvailPageFile;
+                    ulong usedPage = totalPage - availPage;
+                    double percent = totalPage > 0 ? (double)usedPage / totalPage * 100.0 : 0;
+
+                    txtPageUsed.Text = $"已用 {FormatHelper.FormatFileSize((long)usedPage, 1)}";
+                    txtPageTotal.Text = $"共 {FormatHelper.FormatFileSize((long)totalPage, 1)}";
+                    pageBar.Value = percent;
+                    if (percent > 90)
+                    {
+                        pageBar.ShowError = true;
+                    }
+                    else
+                    {
+                        pageBar.ShowError = false;
+                    }
                 }
             }
             catch { }
