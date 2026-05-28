@@ -405,7 +405,7 @@ namespace MagicApp.Services
                 return "<p>" + _resourceLoader.GetString("UpdateService_NoReleaseNotes") + "</p>";
             }
 
-            // 简单的Markdown转换（如果需要更复杂的Markdown支持，可以考虑使用Markdig等库）
+            // 简单的Markdown转换
             string html = markdown
                 // 转义HTML特殊字符
                 .Replace("&", "&amp;")

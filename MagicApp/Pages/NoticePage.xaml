@@ -53,8 +53,13 @@
                 <ComboBoxItem Name="Call" x:Uid="Notice_SoundEvent_Call"/>
             </ComboBox>
             <StackPanel Spacing="10" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="Clear" x:Uid="Notice_Clear" Click="Clear_Click"/>
-                <Button Name="Send" x:Uid="Notice_Send" Style="{StaticResource AccentButtonStyle}" Click="Send_Click"/>
+                <Button Name="Clear" Height="35" x:Uid="Notice_Clear" Click="Clear_Click"/>
+                <Button Name="Send" Height="35" Style="{StaticResource AccentButtonStyle}" Click="Send_Click">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock x:Uid="Notice_Send"/>
+                        <FontIcon Glyph="&#xE724;"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

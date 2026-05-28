@@ -181,21 +181,41 @@
                 <StackPanel Spacing="10">
                     <TextBlock Text="网络" Style="{StaticResource SectionTitleStyle}"/>
 
-                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
+                        <!-- 适配器 -->
+                        <FontIcon Grid.Row="0" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xEE77;" Style="{StaticResource IconStyle}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="适配器" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtAdapter" Grid.Row="0" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
+
+                        <!-- 连接状态 -->
+                        <FontIcon Grid.Row="1" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE968;" Style="{StaticResource IconStyle}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="状态" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtNetworkStatus" Grid.Row="1" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
+
                         <!-- IPv4 地址 -->
-                        <FontIcon Grid.Row="0" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE874;" Style="{StaticResource IconStyle}"/>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="IPv4 地址" Style="{StaticResource LabelStyle}"/>
-                        <TextBlock x:Name="txtIpv4Address" Grid.Row="0" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
+                        <FontIcon Grid.Row="2" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE874;" Style="{StaticResource IconStyle}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="IPv4 地址" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtIpv4Address" Grid.Row="2" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- IPv6 地址 -->
-                        <FontIcon Grid.Row="1" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE701;" Style="{StaticResource IconStyle}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="IPv6 地址" Style="{StaticResource LabelStyle}"/>
-                        <TextBlock x:Name="txtIpv6Address" Grid.Row="1" Grid.Column="2" Style="{StaticResource ValueStyle}" TextWrapping="Wrap"/>
+                        <FontIcon Grid.Row="3" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE874;" Style="{StaticResource IconStyle}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="IPv6 地址" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtIpv6Address" Grid.Row="3" Grid.Column="2" Style="{StaticResource ValueStyle}" TextWrapping="Wrap"/>
 
                         <!-- MAC 地址 -->
-                        <FontIcon Grid.Row="2" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE774;" Style="{StaticResource IconStyle}"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Text="MAC 地址" Style="{StaticResource LabelStyle}"/>
-                        <TextBlock x:Name="txtMacAddress" Grid.Row="2" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
+                        <FontIcon Grid.Row="4" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE8CE;" Style="{StaticResource IconStyle}"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="MAC 地址" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtMacAddress" Grid.Row="4" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
+
+                        <!-- 默认网关 -->
+                        <FontIcon Grid.Row="5" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE704;" Style="{StaticResource IconStyle}"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="默认网关" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtGateway" Grid.Row="5" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
+
+                        <!-- DNS 服务器 -->
+                        <FontIcon Grid.Row="6" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE774;" Style="{StaticResource IconStyle}"/>
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="DNS 服务器" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock x:Name="txtDnsServers" Grid.Row="6" Grid.Column="2" Style="{StaticResource ValueStyle}" TextWrapping="Wrap"/>
                     </Grid>
                 </StackPanel>
             </Border>

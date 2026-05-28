@@ -180,7 +180,7 @@
   <data name="Search_Engine_Bing.Text" xml:space="preserve">
     <value>Bing</value>
   </data>
-  <data name="Notice_Send.Content" xml:space="preserve">
+  <data name="Notice_Send.Text" xml:space="preserve">
     <value>보내기</value>
   </data>
   <data name="Notice_Clear.Content" xml:space="preserve">

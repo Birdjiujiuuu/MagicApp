@@ -104,7 +104,7 @@ namespace MagicApp.Pages
                             TotalBytes = total,
                             FreeBytes = free,
                             UsedBytes = used,
-                            TotalSpaceStr = $"共 {FormatHelper.FormatFileSize(total, 1)}",
+                            TotalSpaceStr = FormatHelper.FormatFileSize(total, 1),
                             FreeSpaceStr = $"可用 {FormatHelper.FormatFileSize(free, 1)}",
                             UsagePercent = percent,
                             IsHighUsage = percent > 90
@@ -173,6 +173,12 @@ namespace MagicApp.Pages
 
                 // ========== 网络 ==========
                 var networkInfo = GetNetworkInfo();
+                // 网络适配器
+                txtAdapter.Text = networkInfo.AdapterName;
+
+                // 连接状态
+                txtNetworkStatus.Text = networkInfo.Status;
+
                 // IPv4 地址
                 txtIpv4Address.Text = networkInfo.Ipv4Address;
 
@@ -181,6 +187,12 @@ namespace MagicApp.Pages
 
                 // MAC 地址
                 txtMacAddress.Text = networkInfo.MacAddress;
+
+                // 默认网关
+                txtGateway.Text = networkInfo.Gateway;
+
+                // DNS 服务器
+                txtDnsServers.Text = networkInfo.DnsServers;
 
                 // ========== 运行时 ==========
                 // .NET 版本
@@ -310,14 +322,19 @@ namespace MagicApp.Pages
                 : "未知显卡";
         }
 
-        private (string Ipv4Address, string MacAddress, string Ipv6Address) GetNetworkInfo()
+        private (string AdapterName, string Status, string Ipv4Address, string Ipv6Address, string MacAddress, string Gateway, string DnsServers) GetNetworkInfo()
         {
+            string adapter = "未知";
+            string status = "未知";
             string ipv4 = "无连接";
             string ipv6 = "无连接";
             string mac = "未知";
+            string gateway = "无";
+            string dns = "无";
+
             try
             {
-                var nics = System.Net.NetworkInformation.NetworkInterface
+                var nic = System.Net.NetworkInformation.NetworkInterface
                     .GetAllNetworkInterfaces()
                     .Where(n => n.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up
                              && n.NetworkInterfaceType != System.Net.NetworkInformation.NetworkInterfaceType.Loopback
@@ -326,20 +343,34 @@ namespace MagicApp.Pages
                                  addr.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6))
                     .FirstOrDefault();
 
-                if (nics != null)
+                if (nic != null)
                 {
-                    var ipProp = nics.GetIPProperties();
-                    var ipv4Addr = ipProp.UnicastAddresses
+                    adapter = nic.Name;
+                    status = nic.OperationalStatus.ToString();
+                    mac = string.Join(":", nic.GetPhysicalAddress().GetAddressBytes().Select(b => b.ToString("X2")));
+
+                    var ipProps = nic.GetIPProperties();
+                    var ipv4Addr = ipProps.UnicastAddresses
                         .FirstOrDefault(a => a.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
-                    var ipv6Addr = ipProp.UnicastAddresses
+                    var ipv6Addr = ipProps.UnicastAddresses
                         .FirstOrDefault(a => a.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6);
+
                     ipv4 = ipv4Addr?.Address.ToString() ?? "无 IPv4";
                     ipv6 = ipv6Addr?.Address.ToString() ?? "无 IPv6";
-                    mac = string.Join(":", nics.GetPhysicalAddress().GetAddressBytes().Select(b => b.ToString("X2")));
+
+                    // 默认网关（取 IPv4 网关）
+                    var gw = ipProps.GatewayAddresses
+                        .FirstOrDefault(g => g.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+                    gateway = gw?.Address.ToString() ?? "无";
+
+                    // DNS 服务器（所有地址）
+                    var dnsAddresses = ipProps.DnsAddresses;
+                    dns = dnsAddresses.Any() ? string.Join(", ", dnsAddresses) : "无";
                 }
             }
             catch { }
-            return (ipv4, ipv6, mac);
+
+            return (adapter, status, ipv4, ipv6, mac, gateway, dns);
         }
 
         // 更新动态信息
@@ -364,7 +395,7 @@ namespace MagicApp.Pages
                     double percent = totalBytes > 0 ? (double)usedBytes / totalBytes * 100.0 : 0;
 
                     txtMemoryUsed.Text = $"已用 {FormatHelper.FormatFileSize((long)usedBytes, 1)}";
-                    txtMemoryTotal.Text = $"共 {FormatHelper.FormatFileSize((long)totalBytes, 1)}";
+                    txtMemoryTotal.Text = FormatHelper.FormatFileSize((long)totalBytes, 1);
                     memoryBar.Value = percent;
                     if (percent > 90)
                     {
@@ -393,7 +424,7 @@ namespace MagicApp.Pages
                     double percent = totalPage > 0 ? (double)usedPage / totalPage * 100.0 : 0;
 
                     txtPageUsed.Text = $"已用 {FormatHelper.FormatFileSize((long)usedPage, 1)}";
-                    txtPageTotal.Text = $"共 {FormatHelper.FormatFileSize((long)totalPage, 1)}";
+                    txtPageTotal.Text = FormatHelper.FormatFileSize((long)totalPage, 1);
                     pageBar.Value = percent;
                     if (percent > 90)
                     {
