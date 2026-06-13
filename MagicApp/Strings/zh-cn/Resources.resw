@@ -372,4 +372,109 @@
   <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
     <value>转换工具</value>
   </data>
+  <data name="SystemInfo_DeviceSpecs.Text" xml:space="preserve">
+    <value>设备规格</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_DeviceName.Text" xml:space="preserve">
+    <value>设备名称</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Architecture.Text" xml:space="preserve">
+    <value>系统类型</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Resolution.Text" xml:space="preserve">
+    <value>屏幕分辨率</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Gpu.Text" xml:space="preserve">
+    <value>显卡</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Drives.Text" xml:space="preserve">
+    <value>驱动器</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_PageFile.Text" xml:space="preserve">
+    <value>虚拟内存</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Memory.Text" xml:space="preserve">
+    <value>内存</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Cpu.Text" xml:space="preserve">
+    <value>处理器</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_SystemModel.Text" xml:space="preserve">
+    <value>系统型号</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_BiosVersion.Text" xml:space="preserve">
+    <value>BIOS 版本</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Motherboard.Text" xml:space="preserve">
+    <value>主板</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs.Text" xml:space="preserve">
+    <value>Windows 规格</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_Experience.Text" xml:space="preserve">
+    <value>体验包</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
+    <value>操作系统版本</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
+    <value>安装日期</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_VersionDisplay.Text" xml:space="preserve">
+    <value>版本号</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_Edition.Text" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="SystemInfo_Network.Text" xml:space="preserve">
+    <value>网络</value>
+  </data>
+  <data name="SystemInfo_Network_DnsServers.Text" xml:space="preserve">
+    <value>DNS 服务器</value>
+  </data>
+  <data name="SystemInfo_Network_Gateway.Text" xml:space="preserve">
+    <value>默认网关</value>
+  </data>
+  <data name="SystemInfo_Network_MacAddress.Text" xml:space="preserve">
+    <value>MAC 地址</value>
+  </data>
+  <data name="SystemInfo_Network_Ipv6Address.Text" xml:space="preserve">
+    <value>IPv6 地址</value>
+  </data>
+  <data name="SystemInfo_Network_Ipv4Address.Text" xml:space="preserve">
+    <value>IPv4 地址</value>
+  </data>
+  <data name="SystemInfo_Network_Status.Text" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="SystemInfo_Network_Adapter.Text" xml:space="preserve">
+    <value>适配器</value>
+  </data>
+  <data name="SystemInfo_Runtime.Text" xml:space="preserve">
+    <value>运行时</value>
+  </data>
+  <data name="SystemInfo_Runtime_UserProfile.Text" xml:space="preserve">
+    <value>用户目录</value>
+  </data>
+  <data name="SystemInfo_Runtime_CurrentUser.Text" xml:space="preserve">
+    <value>当前用户</value>
+  </data>
+  <data name="SystemInfo_Runtime_Uptime.Text" xml:space="preserve">
+    <value>系统启动时长</value>
+  </data>
+  <data name="SystemInfo_Runtime_DotNet.Text" xml:space="preserve">
+    <value>.NET 版本</value>
+  </data>
+  <data name="SystemInfo_Unknow" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="SystemInfo_NoConnection" xml:space="preserve">
+    <value>无连接</value>
+  </data>
+  <data name="SystemInfo_Used" xml:space="preserve">
+    <value>已用</value>
+  </data>
+  <data name="SystemInfo_Available" xml:space="preserve">
+    <value>可用</value>
+  </data>
 </root>

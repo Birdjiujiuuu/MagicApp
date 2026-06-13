@@ -372,4 +372,109 @@
   <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
     <value>変換ツール</value>
   </data>
+  <data name="SystemInfo_DeviceSpecs.Text" xml:space="preserve">
+    <value>デバイスの仕様</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_DeviceName.Text" xml:space="preserve">
+    <value>デバイス名</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Architecture.Text" xml:space="preserve">
+    <value>システムの種類</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Resolution.Text" xml:space="preserve">
+    <value>画面解像度</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Gpu.Text" xml:space="preserve">
+    <value>グラフィック カード</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Drives.Text" xml:space="preserve">
+    <value>ドライブ</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_PageFile.Text" xml:space="preserve">
+    <value>仮想メモリ</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Memory.Text" xml:space="preserve">
+    <value>メモリ</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Cpu.Text" xml:space="preserve">
+    <value>プロセッサ</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_SystemModel.Text" xml:space="preserve">
+    <value>システム モデル</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_BiosVersion.Text" xml:space="preserve">
+    <value>BIOS バージョン</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Motherboard.Text" xml:space="preserve">
+    <value>マザーボード</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs.Text" xml:space="preserve">
+    <value>Windows の仕様</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_Experience.Text" xml:space="preserve">
+    <value>エクスペリエンス パック</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
+    <value>オペレーティング システム バージョン</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
+    <value>インストール日</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_VersionDisplay.Text" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_Edition.Text" xml:space="preserve">
+    <value>エディション</value>
+  </data>
+  <data name="SystemInfo_Network.Text" xml:space="preserve">
+    <value>ネットワーク</value>
+  </data>
+  <data name="SystemInfo_Network_DnsServers.Text" xml:space="preserve">
+    <value>DNS サーバー</value>
+  </data>
+  <data name="SystemInfo_Network_Gateway.Text" xml:space="preserve">
+    <value>デフォルト ゲートウェイ</value>
+  </data>
+  <data name="SystemInfo_Network_MacAddress.Text" xml:space="preserve">
+    <value>MAC アドレス</value>
+  </data>
+  <data name="SystemInfo_Network_Ipv6Address.Text" xml:space="preserve">
+    <value>IPv6 アドレス</value>
+  </data>
+  <data name="SystemInfo_Network_Ipv4Address.Text" xml:space="preserve">
+    <value>IPv4 アドレス</value>
+  </data>
+  <data name="SystemInfo_Network_Status.Text" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="SystemInfo_Network_Adapter.Text" xml:space="preserve">
+    <value>アダプター</value>
+  </data>
+  <data name="SystemInfo_Runtime.Text" xml:space="preserve">
+    <value>ランタイム</value>
+  </data>
+  <data name="SystemInfo_Runtime_UserProfile.Text" xml:space="preserve">
+    <value>ユーザー ディレクトリ</value>
+  </data>
+  <data name="SystemInfo_Runtime_CurrentUser.Text" xml:space="preserve">
+    <value>現在のユーザー</value>
+  </data>
+  <data name="SystemInfo_Runtime_Uptime.Text" xml:space="preserve">
+    <value>システム起動時間</value>
+  </data>
+  <data name="SystemInfo_Runtime_DotNet.Text" xml:space="preserve">
+    <value>.NET バージョン</value>
+  </data>
+  <data name="SystemInfo_Unknow" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="SystemInfo_NoConnection" xml:space="preserve">
+    <value>接続なし</value>
+  </data>
+  <data name="SystemInfo_Used" xml:space="preserve">
+    <value>使用済み</value>
+  </data>
+  <data name="SystemInfo_Available" xml:space="preserve">
+    <value>利用可能</value>
+  </data>
 </root>

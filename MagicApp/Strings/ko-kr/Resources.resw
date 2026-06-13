@@ -372,4 +372,109 @@
   <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
     <value>변환 도구</value>
   </data>
+  <data name="SystemInfo_DeviceSpecs.Text" xml:space="preserve">
+    <value>장치 사양</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_DeviceName.Text" xml:space="preserve">
+    <value>장치 이름</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Architecture.Text" xml:space="preserve">
+    <value>시스템 종류</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Resolution.Text" xml:space="preserve">
+    <value>화면 해상도</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Gpu.Text" xml:space="preserve">
+    <value>그래픽 카드</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Drives.Text" xml:space="preserve">
+    <value>드라이브</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_PageFile.Text" xml:space="preserve">
+    <value>가상 메모리</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Memory.Text" xml:space="preserve">
+    <value>메모리</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Cpu.Text" xml:space="preserve">
+    <value>프로세서</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_SystemModel.Text" xml:space="preserve">
+    <value>시스템 모델</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_BiosVersion.Text" xml:space="preserve">
+    <value>BIOS 버전</value>
+  </data>
+  <data name="SystemInfo_DeviceSpecs_Motherboard.Text" xml:space="preserve">
+    <value>마더보드</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs.Text" xml:space="preserve">
+    <value>Windows 사양</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_Experience.Text" xml:space="preserve">
+    <value>경험 팩</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
+    <value>운영 체제 버전</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
+    <value>설치 날짜</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_VersionDisplay.Text" xml:space="preserve">
+    <value>버전</value>
+  </data>
+  <data name="SystemInfo_WindowsSpecs_Edition.Text" xml:space="preserve">
+    <value>에디션</value>
+  </data>
+  <data name="SystemInfo_Network.Text" xml:space="preserve">
+    <value>네트워크</value>
+  </data>
+  <data name="SystemInfo_Network_DnsServers.Text" xml:space="preserve">
+    <value>DNS 서버</value>
+  </data>
+  <data name="SystemInfo_Network_Gateway.Text" xml:space="preserve">
+    <value>기본 게이트웨이</value>
+  </data>
+  <data name="SystemInfo_Network_MacAddress.Text" xml:space="preserve">
+    <value>MAC 주소</value>
+  </data>
+  <data name="SystemInfo_Network_Ipv6Address.Text" xml:space="preserve">
+    <value>IPv6 주소</value>
+  </data>
+  <data name="SystemInfo_Network_Ipv4Address.Text" xml:space="preserve">
+    <value>IPv4 주소</value>
+  </data>
+  <data name="SystemInfo_Network_Status.Text" xml:space="preserve">
+    <value>상태</value>
+  </data>
+  <data name="SystemInfo_Network_Adapter.Text" xml:space="preserve">
+    <value>어댑터</value>
+  </data>
+  <data name="SystemInfo_Runtime.Text" xml:space="preserve">
+    <value>런타임</value>
+  </data>
+  <data name="SystemInfo_Runtime_UserProfile.Text" xml:space="preserve">
+    <value>사용자 디렉터리</value>
+  </data>
+  <data name="SystemInfo_Runtime_CurrentUser.Text" xml:space="preserve">
+    <value>현재 사용자</value>
+  </data>
+  <data name="SystemInfo_Runtime_Uptime.Text" xml:space="preserve">
+    <value>시스템 작동 시간</value>
+  </data>
+  <data name="SystemInfo_Runtime_DotNet.Text" xml:space="preserve">
+    <value>.NET 버전</value>
+  </data>
+  <data name="SystemInfo_Unknow" xml:space="preserve">
+    <value>알 수 없음</value>
+  </data>
+  <data name="SystemInfo_NoConnection" xml:space="preserve">
+    <value>연결 안 됨</value>
+  </data>
+  <data name="SystemInfo_Used" xml:space="preserve">
+    <value>사용됨</value>
+  </data>
+  <data name="SystemInfo_Available" xml:space="preserve">
+    <value>사용 가능</value>
+  </data>
 </root>

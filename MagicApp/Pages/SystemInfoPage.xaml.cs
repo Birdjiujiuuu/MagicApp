@@ -2,11 +2,11 @@ using MagicApp.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
+using Windows.ApplicationModel.Resources;
 
 namespace MagicApp.Pages
 {
@@ -45,6 +45,8 @@ namespace MagicApp.Pages
             this.Loaded += OnPageLoaded;
             this.Unloaded += OnPageUnloaded;
         }
+
+        private static readonly ResourceLoader _resourceLoader = ResourceLoader.GetForViewIndependentUse();
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
@@ -105,7 +107,7 @@ namespace MagicApp.Pages
                             FreeBytes = free,
                             UsedBytes = used,
                             TotalSpaceStr = FormatHelper.FormatFileSize(total, 1),
-                            FreeSpaceStr = $"可用 {FormatHelper.FormatFileSize(free, 1)}",
+                            FreeSpaceStr = _resourceLoader.GetString("SystemInfo_Available") + $" {FormatHelper.FormatFileSize(free, 1)}",
                             UsagePercent = percent,
                             IsHighUsage = percent > 90
                         };
@@ -130,7 +132,7 @@ namespace MagicApp.Pages
                 {
                     if (key != null)
                     {
-                        string productName = key.GetValue("ProductName")?.ToString() ?? "未知";
+                        string productName = key.GetValue("ProductName")?.ToString() ?? _resourceLoader.GetString("SystemInfo_Unknow");
                         string displayVersion = key.GetValue("DisplayVersion")?.ToString() ?? "";
                         string currentBuild = key.GetValue("CurrentBuild")?.ToString() ?? "";
                         string ubr = key.GetValue("UBR")?.ToString() ?? "";
@@ -154,9 +156,9 @@ namespace MagicApp.Pages
 
                         // 版本信息组合
                         txtEdition.Text = productName;
-                        txtVersionDisplay.Text = string.IsNullOrEmpty(displayVersion) ? "未知" : displayVersion;
+                        txtVersionDisplay.Text = string.IsNullOrEmpty(displayVersion) ? _resourceLoader.GetString("SystemInfo_Unknow") : displayVersion;
                         txtBuild.Text = $"{currentBuild}.{ubr}";
-                        txtExperience.Text = string.IsNullOrEmpty(buildLabEx) ? "未知" : buildLabEx.Split('.').LastOrDefault();
+                        txtExperience.Text = string.IsNullOrEmpty(buildLabEx) ? _resourceLoader.GetString("SystemInfo_Unknow") : buildLabEx.Split('.').LastOrDefault();
 
                         // 安装日期
                         if (key.GetValue("InstallDate") is int installDateUnix)
@@ -166,7 +168,7 @@ namespace MagicApp.Pages
                         }
                         else
                         {
-                            txtInstallDate.Text = "未知";
+                            txtInstallDate.Text = _resourceLoader.GetString("SystemInfo_Unknow");
                         }
                     }
                 }
@@ -207,9 +209,9 @@ namespace MagicApp.Pages
                 // 用户目录
                 txtUserProfile.Text = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             }
-            catch (Exception ex)
+            catch
             {
-                Debug.WriteLine($"获取系统信息异常: {ex.Message}");
+                
             }
         }
 
@@ -228,13 +230,13 @@ namespace MagicApp.Pages
                 {
                     if (!string.IsNullOrWhiteSpace(manufacturer) && !string.IsNullOrWhiteSpace(product))
                         return $"{manufacturer} {product}";
-                    return manufacturer ?? product ?? "未知主板";
+                    return manufacturer ?? product ?? _resourceLoader.GetString("SystemInfo_Unknow");
                 }
-                return "未知主板";
+                return _resourceLoader.GetString("SystemInfo_Unknow");
             }
             catch
             {
-                return "未知主板";
+                return _resourceLoader.GetString("SystemInfo_Unknow");
             }
         }
 
@@ -245,9 +247,9 @@ namespace MagicApp.Pages
                 string? biosVersion = Registry.GetValue(
                     @"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS",
                     "BIOSVersion", null) as string;
-                return !string.IsNullOrWhiteSpace(biosVersion) ? biosVersion : "未知";
+                return !string.IsNullOrWhiteSpace(biosVersion) ? biosVersion : _resourceLoader.GetString("SystemInfo_Unknow");
             }
-            catch { return "未知"; }
+            catch { return _resourceLoader.GetString("SystemInfo_Unknow"); }
         }
 
         private string GetSystemModel()
@@ -262,9 +264,9 @@ namespace MagicApp.Pages
                     "SystemProductName", null) as string;
                 if (!string.IsNullOrWhiteSpace(manufacturer) || !string.IsNullOrWhiteSpace(productName))
                     return $"{manufacturer} {productName}".Trim();
-                return "未知";
+                return _resourceLoader.GetString("SystemInfo_Unknow");
             }
-            catch { return "未知"; }
+            catch { return _resourceLoader.GetString("SystemInfo_Unknow"); }
         }
 
         private string GetProcessorName()
@@ -274,14 +276,14 @@ namespace MagicApp.Pages
                 object? value = Registry.GetValue(
                     @"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\CentralProcessor\0",
                     "ProcessorNameString",
-                    Environment.GetEnvironmentVariable("PROCESSOR_IDENTIFIER") ?? "未知处理器"
+                    Environment.GetEnvironmentVariable("PROCESSOR_IDENTIFIER") ?? _resourceLoader.GetString("SystemInfo_Unknow")
                 );
 
-                return value?.ToString() ?? "未知处理器";
+                return value?.ToString() ?? _resourceLoader.GetString("SystemInfo_Unknow");
             }
             catch
             {
-                return "未知处理器";
+                return _resourceLoader.GetString("SystemInfo_Unknow");
             }
         }
 
@@ -319,18 +321,18 @@ namespace MagicApp.Pages
             var distinctGpus = gpuList.Distinct().ToList();
             return distinctGpus.Count > 0
                 ? string.Join(Environment.NewLine, distinctGpus)
-                : "未知显卡";
+                : _resourceLoader.GetString("SystemInfo_Unknow");
         }
 
         private (string AdapterName, string Status, string Ipv4Address, string Ipv6Address, string MacAddress, string Gateway, string DnsServers) GetNetworkInfo()
         {
-            string adapter = "未知";
-            string status = "未知";
-            string ipv4 = "无连接";
-            string ipv6 = "无连接";
-            string mac = "未知";
-            string gateway = "无";
-            string dns = "无";
+            string adapter = _resourceLoader.GetString("SystemInfo_Unknow");
+            string status = _resourceLoader.GetString("SystemInfo_Unknow");
+            string ipv4 = _resourceLoader.GetString("SystemInfo_NoConnection");
+            string ipv6 = _resourceLoader.GetString("SystemInfo_NoConnection");
+            string mac = _resourceLoader.GetString("SystemInfo_Unknow");
+            string gateway = _resourceLoader.GetString("SystemInfo_Unknow");
+            string dns = _resourceLoader.GetString("SystemInfo_Unknow");
 
             try
             {
@@ -355,17 +357,17 @@ namespace MagicApp.Pages
                     var ipv6Addr = ipProps.UnicastAddresses
                         .FirstOrDefault(a => a.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6);
 
-                    ipv4 = ipv4Addr?.Address.ToString() ?? "无 IPv4";
-                    ipv6 = ipv6Addr?.Address.ToString() ?? "无 IPv6";
+                    ipv4 = ipv4Addr?.Address.ToString() ?? _resourceLoader.GetString("SystemInfo_NoConnection");
+                    ipv6 = ipv6Addr?.Address.ToString() ?? _resourceLoader.GetString("SystemInfo_NoConnection");
 
                     // 默认网关（取 IPv4 网关）
                     var gw = ipProps.GatewayAddresses
                         .FirstOrDefault(g => g.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
-                    gateway = gw?.Address.ToString() ?? "无";
+                    gateway = gw?.Address.ToString() ?? _resourceLoader.GetString("SystemInfo_Unknow");
 
                     // DNS 服务器（所有地址）
                     var dnsAddresses = ipProps.DnsAddresses;
-                    dns = dnsAddresses.Any() ? string.Join(", ", dnsAddresses) : "无";
+                    dns = dnsAddresses.Any() ? string.Join(", ", dnsAddresses) : _resourceLoader.GetString("SystemInfo_Unknow");
                 }
             }
             catch { }
@@ -394,7 +396,7 @@ namespace MagicApp.Pages
                     ulong usedBytes = totalBytes - availBytes;
                     double percent = totalBytes > 0 ? (double)usedBytes / totalBytes * 100.0 : 0;
 
-                    txtMemoryUsed.Text = $"已用 {FormatHelper.FormatFileSize((long)usedBytes, 1)}";
+                    txtMemoryUsed.Text = _resourceLoader.GetString("SystemInfo_Used") + $" {FormatHelper.FormatFileSize((long)usedBytes, 1)}";
                     txtMemoryTotal.Text = FormatHelper.FormatFileSize((long)totalBytes, 1);
                     memoryBar.Value = percent;
                     if (percent > 90)
@@ -423,7 +425,7 @@ namespace MagicApp.Pages
                     ulong usedPage = totalPage - availPage;
                     double percent = totalPage > 0 ? (double)usedPage / totalPage * 100.0 : 0;
 
-                    txtPageUsed.Text = $"已用 {FormatHelper.FormatFileSize((long)usedPage, 1)}";
+                    txtPageUsed.Text = _resourceLoader.GetString("SystemInfo_Used") + $" {FormatHelper.FormatFileSize((long)usedPage, 1)}";
                     txtPageTotal.Text = FormatHelper.FormatFileSize((long)totalPage, 1);
                     pageBar.Value = percent;
                     if (percent > 90)
