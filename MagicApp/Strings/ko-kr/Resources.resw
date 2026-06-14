@@ -477,4 +477,13 @@
   <data name="SystemInfo_Available" xml:space="preserve">
     <value>사용 가능</value>
   </data>
+  <data name="Home_Notice_CanNotLoad" xml:space="preserve">
+    <value>공지 불러오기 실패</value>
+  </data>
+  <data name="Pictures_Button_Info.ToolTipService.ToolTip" xml:space="preserve">
+    <value>이미지 설명</value>
+  </data>
+  <data name="Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
+    <value>이미지 다운로드</value>
+  </data>
 </root>

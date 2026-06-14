@@ -477,4 +477,13 @@
   <data name="SystemInfo_Available" xml:space="preserve">
     <value>可用</value>
   </data>
+  <data name="Home_Notice_CanNotLoad" xml:space="preserve">
+    <value>公告获取失败</value>
+  </data>
+  <data name="Pictures_Button_Info.ToolTipService.ToolTip" xml:space="preserve">
+    <value>图片描述</value>
+  </data>
+  <data name="Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
+    <value>下载此图片</value>
+  </data>
 </root>

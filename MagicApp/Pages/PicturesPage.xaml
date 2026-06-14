@@ -23,6 +23,7 @@
             <Image Name="Picture" Stretch="Fill"/>
         </Border>
         <StackPanel
+            Grid.Column="0"
             Grid.Row="0"
             Grid.ColumnSpan="3"
             HorizontalAlignment="Center"
@@ -55,7 +56,7 @@
             Orientation="Horizontal"
             Margin="0,0,10,0"
             Spacing="10">
-            <Button Name="InfoButton" VerticalAlignment="Center" Width="50">
+            <Button Name="InfoButton" x:Uid="Pictures_Button_Info" VerticalAlignment="Center" Width="50">
                 <SymbolIcon Symbol="Important"/>
                 <Button.Flyout>
                     <Flyout>
@@ -66,7 +67,7 @@
                     </Flyout>
                 </Button.Flyout>
             </Button>
-            <Button Name="DownloadButton" VerticalAlignment="Center" Width="50" Click="DownloadButton_Click">
+            <Button Name="DownloadButton" x:Uid="Pictures_Button_Download" VerticalAlignment="Center" Width="50" Click="DownloadButton_Click">
                 <SymbolIcon Symbol="Download"/>
             </Button>
         </StackPanel>

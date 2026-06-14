@@ -64,8 +64,7 @@ namespace MagicApp
             appWindow.Move(new Windows.Graphics.PointInt32(centerX, centerY));
 
             NavView.SelectedItem = Home;
-            ContentFrame.Navigate(typeof(HomePage), null);
-            NavView.Header = Home.Content;
+            ContentFrame.Navigate(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
 
             this.MusicRefresh_Click(this, new RoutedEventArgs());
         }
@@ -186,8 +185,8 @@ namespace MagicApp
             navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
             if (args.InvokedItemContainer == Home)
             {
-                ContentFrame.Navigate(typeof(HomePage), null);
-                NavView.Header = Home.Content;
+                ContentFrame.Navigate(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
+                NavView.Header = null;
             }
             else if (args.InvokedItemContainer == Pictures)
             {

@@ -6,10 +6,12 @@
     xmlns:local="using:MagicApp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled">
 
-    <Grid RowDefinitions="Auto,*">
-        <Border 
+    <ScrollViewer>
+        <Grid Margin="0,30,0,0" RowDefinitions="Auto,*">
+            <Border 
             Grid.Row="0"
             CornerRadius="10"
             MaxHeight="300"
@@ -17,18 +19,33 @@
             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
             BorderThickness="1">
-            <FlipView>
-                <Image Source="https://birdjiujiuuu.github.io/magicapp/source/winui3/home/1.png" Stretch="Fill"/>
-                <Image Source="https://birdjiujiuuu.github.io/magicapp/source/winui3/home/2.png" Stretch="Fill"/>
-                <Image Source="https://birdjiujiuuu.github.io/magicapp/source/winui3/home/3.png" Stretch="Fill"/>
-            </FlipView>
-        </Border>
-        <StackPanel
-            Orientation="Vertical"
-            Padding="30"
-            Grid.Row="1">
-            <TextBlock Text="主页已重塑！" Style="{ThemeResource BaseTextBlockStyle}" FontSize="24"/>
-            <TextBlock TextWrapping="Wrap" Text="咕咕咕~全新的主页现已推出！现在，您可以在主页找到全新头图，以及我们精心挑选的背景音乐！剩下的，请尽情享用吧~" FontSize="15"/>
-        </StackPanel>
-    </Grid>
+                <FlipView>
+                    <Image Source="https://birdjiujiuuu.github.io/magicapp/source/winui3/home/1.png" Stretch="Fill"/>
+                    <Image Source="https://birdjiujiuuu.github.io/magicapp/source/winui3/home/2.png" Stretch="Fill"/>
+                    <Image Source="https://birdjiujiuuu.github.io/magicapp/source/winui3/home/3.png" Stretch="Fill"/>
+                </FlipView>
+            </Border>
+
+            <Border
+            Grid.Row="1"
+            Margin="30"
+            Padding="10"
+            CornerRadius="10"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Name="NoticeTitle" HorizontalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" FontSize="24"/>
+                    <TextBlock Name="NoticeContent" TextWrapping="Wrap" FontSize="15"/>
+                </StackPanel>
+            </Border>
+            <StackPanel
+            Grid.Row="1"
+            Margin="30"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+                <ProgressRing Name="NoticeProgressRing"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>

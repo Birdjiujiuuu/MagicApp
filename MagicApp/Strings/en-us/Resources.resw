@@ -477,4 +477,13 @@
   <data name="SystemInfo_Available" xml:space="preserve">
     <value>Available</value>
   </data>
+  <data name="Home_Notice_CanNotLoad" xml:space="preserve">
+    <value>Failed to get announcements</value>
+  </data>
+  <data name="Pictures_Button_Info.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Image Description</value>
+  </data>
+  <data name="Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Download Image</value>
+  </data>
 </root>
