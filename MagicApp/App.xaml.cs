@@ -1,24 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Shapes;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Microsoft.Windows.AppLifecycle;
+using System;
+using System.Collections.Generic;
 using Windows.Storage;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using WinRT.Interop;
 
 namespace MagicApp
 {
@@ -30,6 +17,10 @@ namespace MagicApp
         private Window? _window;
 
         public static Window? MainWindow { get; private set; }
+
+        // 创建单实例 GUID
+        private const string AppInstanceKey = "MagicApp_9F1C4B8E-3A2D-4F6B-9C8E-7A3D5F1B2C6E";
+        private AppInstance? _currentInstance;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -84,9 +75,25 @@ namespace MagicApp
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            // 注册单实例
+            _currentInstance = AppInstance.FindOrRegisterForKey(AppInstanceKey);
+
+            // 若已有实例在运行，则激活该实例并传递参数
+            if (!_currentInstance.IsCurrent)
+            {
+                _currentInstance.RedirectActivationToAsync(
+                    AppInstance.GetCurrent().GetActivatedEventArgs()
+                ).AsTask().Wait();
+
+                Environment.Exit(0);
+                return;
+            }
+
+            // 创建主窗口
+            _currentInstance.Activated += OnAppInstanceActivated;
+
             _window = new MainWindow();
             Windows.Add(_window);
-
             MainWindow = _window;
 
             // 应用保存的主题设置
@@ -96,6 +103,22 @@ namespace MagicApp
             }
 
             _window.Activate();
+        }
+
+        // 处理单实例激活事件
+        private void OnAppInstanceActivated(object? sender, AppActivationArguments e)
+        {
+            if (_window != null)
+            {
+                _window.DispatcherQueue.TryEnqueue(() =>
+                {
+                    var hwnd = WindowNative.GetWindowHandle(_window);
+                    var windowId = Win32Interop.GetWindowIdFromWindow(hwnd);
+                    var appWindow = AppWindow.GetFromWindowId(windowId);
+                    appWindow.Show(true);  // 强制激活窗口
+                    _window.Activate();
+                });
+            }
         }
 
         // 注册窗口（在其他页面创建新窗口时调用）
