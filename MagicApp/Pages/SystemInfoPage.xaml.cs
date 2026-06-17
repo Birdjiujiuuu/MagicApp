@@ -1,4 +1,5 @@
 using MagicApp.Helpers;
+using MagicApp.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
@@ -95,17 +96,18 @@ namespace MagicApp.Pages
                 // 驱动器
                 var drives = DriveInfo.GetDrives()
                     .Where(d => d.IsReady && d.DriveType == DriveType.Fixed)
-                    .Select(d => {
+                    .Select(d =>
+                    {
                         long total = d.TotalSize;
                         long free = d.AvailableFreeSpace;
                         long used = total - free;
                         double percent = total > 0 ? (double)used / total * 100.0 : 0;
-                        return new
+                        return new SystemInfoDriveItem
                         {
                             Name = d.Name.TrimEnd('\\'),
-                            TotalBytes = total,
-                            FreeBytes = free,
-                            UsedBytes = used,
+                            TotalBytes = (double)total,
+                            FreeBytes = (double)free,
+                            UsedBytes = (double)used,
                             TotalSpaceStr = FormatHelper.FormatFileSize(total, 1),
                             FreeSpaceStr = _resourceLoader.GetString("SystemInfo_Available") + $" {FormatHelper.FormatFileSize(free, 1)}",
                             UsagePercent = percent,
@@ -211,7 +213,7 @@ namespace MagicApp.Pages
             }
             catch
             {
-                
+
             }
         }
 

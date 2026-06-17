@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MagicApp.Pages"
+    xmlns:models="using:MagicApp.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -109,16 +110,16 @@
                         <TextBlock Grid.Row="7" Grid.Column="1" x:Uid="SystemInfo_DeviceSpecs_Drives" Style="{StaticResource LabelStyle}"/>
                         <ItemsControl x:Name="drivesList" Grid.Row="7" Grid.Column="2">
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate>
+                                <DataTemplate x:DataType="models:SystemInfoDriveItem">
                                     <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,6">
-                                        <TextBlock Text="{Binding Name}" Style="{StaticResource ValueStyle}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{x:Bind Name, Mode=OneTime}" Style="{StaticResource ValueStyle}" FontWeight="SemiBold"/>
                                         <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                                            <TextBlock Text="{Binding FreeSpaceStr}" Style="{StaticResource ValueStyle}"
+                                            <TextBlock Text="{x:Bind FreeSpaceStr, Mode=OneTime}" Style="{StaticResource ValueStyle}"
                                  Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12"/>
-                                            <ProgressBar Height="4" Maximum="{Binding TotalBytes}" Value="{Binding UsedBytes}" 
-                                 Foreground="{ThemeResource AccentFillColorDefaultBrush}" ShowError="{Binding IsHighUsage}" Margin="0,2,0,0"/>
+                                            <ProgressBar Height="4" Maximum="{x:Bind TotalBytes, Mode=OneTime}" Value="{x:Bind UsedBytes, Mode=OneTime}" 
+                                 Foreground="{ThemeResource AccentFillColorDefaultBrush}" ShowError="{x:Bind IsHighUsage, Mode=OneTime}" Margin="0,2,0,0"/>
                                         </StackPanel>
-                                        <TextBlock Grid.Column="2" Text="{Binding TotalSpaceStr}" Style="{StaticResource ValueStyle}" Margin="8,0,0,0" FontSize="12"/>
+                                        <TextBlock Grid.Column="2" Text="{x:Bind TotalSpaceStr, Mode=OneTime}" Style="{StaticResource ValueStyle}" Margin="8,0,0,0" FontSize="12"/>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
