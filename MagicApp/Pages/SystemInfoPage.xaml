@@ -112,7 +112,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="models:SystemInfoDriveItem">
                                     <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,6">
-                                        <TextBlock Text="{x:Bind Name, Mode=OneTime}" Style="{StaticResource ValueStyle}" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="0" Text="{x:Bind Name, Mode=OneTime}" Style="{StaticResource ValueStyle}" FontWeight="SemiBold"/>
                                         <StackPanel Grid.Column="1" Margin="12,0,0,0">
                                             <TextBlock Text="{x:Bind FreeSpaceStr, Mode=OneTime}" Style="{StaticResource ValueStyle}"
                                  Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12"/>
