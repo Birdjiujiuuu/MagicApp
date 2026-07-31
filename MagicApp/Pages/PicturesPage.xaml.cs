@@ -156,8 +156,12 @@ namespace MagicApp.Pages
                     return;
                 }
 
+                // 获取当前选中的网站名称
+                var Web = ComboBox.SelectedItem as StackPanel;
+                string SourceWeb = Web?.Name?.ToString() ?? string.Empty;
+
                 // 调用FileDownloadService
-                string suggestedFileName = $"Wallpaper_{DateTime.Now:yyyyMMdd_HHmmss}";
+                string suggestedFileName = $"{SourceWeb}_Wallpaper_{DateTime.Now:yyyyMMdd}";
 
                 bool success = await FileDownloadService.DownloadImageAsync(
                     imageUrl,
