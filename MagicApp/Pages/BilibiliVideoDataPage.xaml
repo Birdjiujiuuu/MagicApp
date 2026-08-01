@@ -7,7 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:MagicApp.Controls"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
     <Grid RowDefinitions="Auto,5,*">
         <!-- 顶部搜索区域 -->
@@ -100,18 +101,16 @@
                             </Button>
 
                             <!-- 复制视频链接 -->
-                            <Button x:Name="CopyLinkButton"
-                                    Click="CopyLinkButton_Click"
-                                    ToolTipService.ToolTip="复制链接">
-                                <SymbolIcon Symbol="Link"/>
-                            </Button>
+                            <controls:ActionButton x:Name="CopyLinkButton"
+                                    Width="45"
+                                    IconGlyph="&#xE71B;"
+                                    ToolTipService.ToolTip="复制链接"/>
 
                             <!-- 在浏览器打开视频 -->
-                            <Button x:Name="OpenInBrowserButton"
-                                    Click="OpenInBrowserButton_Click"
-                                    ToolTipService.ToolTip="在浏览器打开">
-                                <SymbolIcon Symbol="World"/>
-                            </Button>
+                            <controls:ActionButton x:Name="OpenInBrowserButton"
+                                    Width="45"
+                                    IconGlyph="&#xE909;"
+                                    ToolTipService.ToolTip="在浏览器打开"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -121,7 +120,7 @@
                     <StackPanel Spacing="10">
                         <!-- 第一行 -->
                         <Grid ColumnDefinitions="*,*,*,*">
-                            
+
                             <!-- 正在观看人数 -->
                             <controls:DataControl x:Name="OnlineDataControl"
                           Grid.Column="0"
@@ -129,7 +128,7 @@
                           IconGlyph="&#xE716;"
                           IconColor="#FFCC00"
                           Margin="0,0,5,0"/>
-                            
+
                             <!-- 播放量 -->
                             <controls:DataControl x:Name="ViewDataControl"
                           Grid.Column="1"
@@ -218,13 +217,12 @@
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                             </ScrollViewer>
-                            <Button x:Name="CopyDescriptionButton"
-                                    Click="CopyDescriptionButton_Click"
+                            <controls:ActionButton x:Name="CopyDescriptionButton"
+                                    Width="45"
                                     HorizontalAlignment="Right"
                                     Margin="0,8,0,0"
-                                    ToolTipService.ToolTip="复制链接">
-                                <SymbolIcon Symbol="Copy"/>
-                            </Button>
+                                    IconGlyph="&#xE8C8;"
+                                    ToolTipService.ToolTip="复制链接"/>
                         </StackPanel>
                     </Border>
 
@@ -242,53 +240,64 @@
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,8"/>
 
-                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
                                 <TextBlock Grid.Row="0" Grid.Column="0"
-                                           Text="视频ID："
-                                           FontSize="12"
-                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                           Margin="0,0,8,4"/>
-                                <TextBlock x:Name="BvidTextBlock"
-                                           Grid.Row="0" Grid.Column="1"
-                                           FontSize="12"
-                                           Margin="0,0,0,4"/>
-
-                                <TextBlock Grid.Row="1" Grid.Column="0"
-                                           Text="AV号："
+                                           Text="AV号"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,4"/>
                                 <TextBlock x:Name="AidTextBlock"
-                                           Grid.Row="1" Grid.Column="1"
+                                           Grid.Row="0" Grid.Column="1"
                                            FontSize="12"
                                            Margin="0,0,0,4"/>
-
-                                <TextBlock Grid.Row="2" Grid.Column="0"
-                                           Text="视频类型："
+                                
+                                <TextBlock Grid.Row="1" Grid.Column="0"
+                                           Text="BV号"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,4"/>
-                                <TextBlock x:Name="CopyrightTextBlock"
+                                <TextBlock x:Name="BvidTextBlock"
+                                           Grid.Row="1" Grid.Column="1"
+                                           FontSize="12"
+                                           Margin="0,0,0,4"/>
+                                
+                                <TextBlock Grid.Row="2" Grid.Column="0"
+                                           Text="Cid"
+                                           FontSize="12"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           Margin="0,0,8,4"/>
+                                <TextBlock x:Name="CidTextBlock"
                                            Grid.Row="2" Grid.Column="1"
                                            FontSize="12"
                                            Margin="0,0,0,4"/>
 
                                 <TextBlock Grid.Row="3" Grid.Column="0"
-                                           Text="视频状态："
+                                           Text="视频类型"
+                                           FontSize="12"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           Margin="0,0,8,4"/>
+                                <TextBlock x:Name="CopyrightTextBlock"
+                                           Grid.Row="3" Grid.Column="1"
+                                           FontSize="12"
+                                           Margin="0,0,0,4"/>
+
+                                <TextBlock Grid.Row="4" Grid.Column="0"
+                                           Text="视频状态"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,4"/>
                                 <TextBlock x:Name="VideoStateTextBlock"
-                                           Grid.Row="3" Grid.Column="1"
+                                           Grid.Row="4" Grid.Column="1"
                                            FontSize="12"
                                            Margin="0,0,0,4"/>
-                                <TextBlock Grid.Row="4" Grid.Column="0"
-                                           Text="抓取时间："
+
+                                <TextBlock Grid.Row="5" Grid.Column="0"
+                                           Text="抓取时间"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,0"/>
                                 <TextBlock x:Name="FetchTimeTextBlock"
-                                           Grid.Row="4" Grid.Column="1"
+                                           Grid.Row="5" Grid.Column="1"
                                            FontSize="12"/>
                             </Grid>
                         </StackPanel>

@@ -1,3 +1,4 @@
+using MagicApp.Controls;
 using MagicApp.Helpers;
 using MagicApp.Services;
 using Microsoft.UI.Xaml;
@@ -11,9 +12,6 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace MagicApp.Pages;
 
@@ -177,9 +175,10 @@ public sealed partial class BilibiliVideoDataPage : Page
         {
             // 基本信息 - 使用空值合并运算符处理可能的空值
             TitleTextBlock.Text = data.GetProperty("title").GetString() ?? "未知标题";
-            UpNameTextBlock.Text = data.GetProperty("owner").GetProperty("name").GetString() ?? "未知UP主";
-            BvidTextBlock.Text = data.GetProperty("bvid").GetString() ?? "未知BV号";
+            UpNameTextBlock.Text = data.GetProperty("owner").GetProperty("name").GetString() ?? "未知UP主";            
             AidTextBlock.Text = data.GetProperty("aid").ToString();
+            BvidTextBlock.Text = data.GetProperty("bvid").GetString() ?? "未知BV号";
+            CidTextBlock.Text = data.GetProperty("cid").ToString();
 
             // 发布时间（详细时间） - 使用 FormatHelper.UnixTimeStampToDateTime
             long pubdate = data.GetProperty("pubdate").GetInt64();
@@ -374,45 +373,65 @@ public sealed partial class BilibiliVideoDataPage : Page
         }
     }
 
-    // 复制链接按钮点击事件
-    private async void CopyLinkButton_Click(object sender, RoutedEventArgs e)
-    {
-        var package = new DataPackage();
-        package.SetText("https://www.bilibili.com/video/" + BvIdTextBox.Text);
-        Clipboard.SetContent(package);
-    }
-
-    // 打开浏览器按钮点击事件
-    private async void OpenInBrowserButton_Click(object sender, RoutedEventArgs e)
-    {
-        try
-        {
-            string url = "https://www.bilibili.com/video/" + BvIdTextBox.Text;
-            var processStartInfo = new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = url,
-                UseShellExecute = true
-            };
-            System.Diagnostics.Process.Start(processStartInfo);
-        }
-        catch
-        {
-            
-        }
-    }
-
-    // 复制简介按钮点击事件
-    private async void CopyDescriptionButton_Click(object sender, RoutedEventArgs e)
-    {
-        var package = new DataPackage();
-        package.SetText(DescriptionTextBlock.Text);
-        Clipboard.SetContent(package);
-    }
-
     // 页面卸载时清理资源
     protected override void OnNavigatedFrom(NavigationEventArgs e)
     {
         base.OnNavigatedFrom(e);
         _httpClient?.Dispose();
+    }
+
+    private void Page_Loaded(object sender, RoutedEventArgs e)
+    {
+        // 复制链接按钮点击事件
+        CopyLinkButton.Action = async () =>
+        {
+            try
+            {
+                var package = new DataPackage();
+                package.SetText("https://www.bilibili.com/video/" + BvIdTextBox.Text);
+                Clipboard.SetContent(package);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        };
+
+        // 打开浏览器按钮点击事件
+        OpenInBrowserButton.Action = async () =>
+        {
+            try
+            {
+                string url = "https://www.bilibili.com/video/" + BvIdTextBox.Text;
+                var processStartInfo = new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                };
+                System.Diagnostics.Process.Start(processStartInfo);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        };
+
+        // 复制简介按钮点击事件
+        CopyDescriptionButton.Action = async () =>
+        {
+            try
+            {
+                var package = new DataPackage();
+                package.SetText(DescriptionTextBlock.Text);
+                Clipboard.SetContent(package);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        };
     }
 }

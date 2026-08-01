@@ -14,6 +14,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Controls\ActionButton.xaml" />
     <None Remove="Pages\BilibiliVideoDataPage.xaml" />
     <None Remove="Pages\HomePage.xaml" />
     <None Remove="Pages\NoticePage.xaml" />
