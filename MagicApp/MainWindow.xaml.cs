@@ -218,6 +218,11 @@ namespace MagicApp
                 ContentFrame.Navigate(typeof(QRCodePage), null);
                 NavView.Header = QRCode.Content;
             }
+            else if (args.InvokedItemContainer == Timestamp)
+            {
+                ContentFrame.Navigate(typeof(TimestampPage), null);
+                NavView.Header = Timestamp.Content;
+            }
             else if (args.IsSettingsInvoked)
             {
                 ContentFrame.Navigate(typeof(SettingsPage), null);

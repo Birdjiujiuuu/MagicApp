@@ -105,6 +105,7 @@
                         <FontIcon Glyph="&#xED14;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem x:Name="Timestamp" x:Uid="Main_NavView_Timestamp" Icon="Clock"/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame"/>
         </NavigationView>

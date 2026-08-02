@@ -486,4 +486,7 @@
   <data name="Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
     <value>下载此图片</value>
   </data>
+  <data name="Main_NavView_Timestamp.Content" xml:space="preserve">
+    <value>时间戳工具</value>
+  </data>
 </root>

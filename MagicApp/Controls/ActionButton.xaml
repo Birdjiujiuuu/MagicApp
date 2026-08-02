@@ -27,6 +27,7 @@
         <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
         <Setter Property="Padding" Value="6" />
         <Setter Property="FontSize" Value="20" />
+        <Setter Property="Width" Value="45" />
         <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
         <Setter Property="AutomationProperties.Name" Value="Action button" />

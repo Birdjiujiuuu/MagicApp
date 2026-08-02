@@ -11,7 +11,7 @@
     Loaded="Page_Loaded">
 
     <Grid Padding="20" ColumnDefinitions="*,*">
-        <!-- 左侧：输入区域 -->
+        <!-- 左侧输入区域 -->
         <Border Grid.Column="0"
                 Margin="0,0,10,0"
                 Padding="20"
@@ -58,7 +58,7 @@
             </StackPanel>
         </Border>
 
-        <!-- 右侧：预览区域 -->
+        <!-- 右侧预览区域 -->
         <Border Grid.Column="1"
                 Margin="10,0,0,0"
                 Padding="20"
