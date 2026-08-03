@@ -20,15 +20,8 @@
 
     <Grid Style="{StaticResource ContentControlGridStyle}"
         BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}"
-        BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="15"/>
-            <ColumnDefinition Width="25"/>
-            <ColumnDefinition Width="15"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="15"/>
-        </Grid.ColumnDefinitions>
+        BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}"
+        ColumnDefinitions="15,25,15,*,Auto,15">
         <ContentPresenter Content="{x:Bind Icon, Mode=OneWay}"  Grid.Column="1"/>
         <Image Source="{Binding ElementName=current,Path=Image}" Width="20" Height="20" Grid.Column="1"/>
         <StackPanel Grid.Column="3" VerticalAlignment="Center">

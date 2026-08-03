@@ -47,7 +47,7 @@
             Grid.Row="1"
             Grid.ColumnSpan="3"
             Margin="10"
-            CornerRadius="10"
+            CornerRadius="8"
             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
             BorderThickness="1">

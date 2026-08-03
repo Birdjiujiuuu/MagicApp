@@ -14,12 +14,8 @@
           CornerRadius="8"
           BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}"
           BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}"
+          ColumnDefinitions="Auto,12,*"
           Padding="16">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="12"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
         <!-- 左侧图标 - 使用FontIcon -->
         <FontIcon Grid.Column="0"

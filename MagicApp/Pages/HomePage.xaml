@@ -14,7 +14,7 @@
         <Grid Margin="0,30,0,0" RowDefinitions="Auto,*">
             <Border 
             Grid.Row="0"
-            CornerRadius="10"
+            CornerRadius="8"
             MaxHeight="300"
             MaxWidth="600"
             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
@@ -31,7 +31,7 @@
             Grid.Row="1"
             Margin="30"
             Padding="10"
-            CornerRadius="10"
+            CornerRadius="8"
             Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
             BorderThickness="1">
