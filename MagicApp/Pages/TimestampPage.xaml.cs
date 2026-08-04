@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Resources;
 
 namespace MagicApp.Pages
 {
@@ -30,23 +31,28 @@ namespace MagicApp.Pages
             StartClock();
         }
 
+        private static readonly ResourceLoader _resourceLoader = ResourceLoader.GetForViewIndependentUse();
+
         private void StartClock()
         {
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Interval = TimeSpan.FromMilliseconds(1);
             _timer.Tick += (s, e) => UpdateCurrentTimeDisplay();
             _timer.Start();
             UpdateCurrentTimeDisplay();
         }
 
+        // 更新当前时间显示
         private void UpdateCurrentTimeDisplay()
         {
             var now = DateTime.Now;
-            CurrentTimeText.Text = now.ToString("yyyy-MM-dd HH:mm:ss");
+            CurrentTimeData.DataValue = now.ToString("yyyy-MM-dd HH:mm:ss");
 
-            // 获取 UTC 时间戳
             long unixSeconds = FormatHelper.DateTimeToUnixTimeStamp(now);
-            CurrentTimestampText.Text = unixSeconds.ToString();
+            CurrentTimestampData.DataValue = unixSeconds.ToString();
+
+            long unixMilliseconds = FormatHelper.DateTimeToUnixTimeMilliseconds(now);
+            CurrentMillisecondsData.DataValue = unixMilliseconds.ToString();
         }
 
         //日期时间转换时间戳 
@@ -74,22 +80,58 @@ namespace MagicApp.Pages
         // 时间戳转换日期时间
         private void TimestampInput_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
+            PerformTimestampConversion();
+        }
+
+        private void TimestampUnitComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PerformTimestampConversion();
+        }
+
+        private void PerformTimestampConversion()
+        {
+            var loader = ResourceLoader.GetForViewIndependentUse();
+
             try
             {
-                if (!long.TryParse(TimestampInput.Text, out long unixSeconds))
+                if (ConvertedDateTimeResult == null)
+                    return;
+
+                string? inputText = TimestampInput.Text?.Trim();
+                if (string.IsNullOrEmpty(inputText))
                 {
-                    ConvertedDateTimeResult.Text = "请输入有效数字";
+                    ConvertedDateTimeResult.Text = "";
                     return;
                 }
 
-                DateTime localDateTime = FormatHelper.UnixTimeStampToDateTime(unixSeconds);
+                if (!long.TryParse(inputText, out long unixSeconds))
+                {
+                    ConvertedDateTimeResult.Text = _resourceLoader.GetString("Pages_Timestamp_InvalidNumber");
+                    return;
+                }
+
+                var unix = TimestampUnitComboBox.SelectedItem as ComboBoxItem;
+                DateTime localDateTime;
+                if (unix == SecondsComboBoxItem)
+                {
+                    localDateTime = FormatHelper.UnixTimeStampToDateTime(unixSeconds);
+                }
+                else if (unix == MillisecondsComboBoxItem)
+                {
+                    localDateTime = FormatHelper.UnixTimeMillisecondsToDateTime(unixSeconds);
+                }
+                else
+                {
+                    return;
+                }
+
                 ConvertedDateTimeResult.Text = localDateTime.ToString("yyyy-MM-dd HH:mm:ss");
             }
             catch (ArgumentOutOfRangeException)
             {
-                ConvertedDateTimeResult.Text = "时间戳超出有效范围";
+                ConvertedDateTimeResult.Text = _resourceLoader.GetString("Pages_Timestamp_OutOfRange");
             }
-        }
+        }        
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {

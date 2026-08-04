@@ -23,19 +23,19 @@
 
                 <controls:ContentControl
                 x:Name="Theme"
-                x:Uid="Settings_Theme">
+                x:Uid="Pages_Settings_Theme">
                     <controls:ContentControl.Icon>
                         <FontIcon Glyph="&#xE790;"/>
                     </controls:ContentControl.Icon>
                     <ComboBox Name="ThemeModeBox" SelectionChanged="ThemeMode_SelectionChanged">
-                        <ComboBoxItem Name="Theme_Default" x:Uid="Settings_Theme_Default"/>
-                        <ComboBoxItem Name="Theme_Light" x:Uid="Settings_Theme_Light"/>
-                        <ComboBoxItem Name="Theme_Dark" x:Uid="Settings_Theme_Dark"/>
+                        <ComboBoxItem Name="Theme_Default" x:Uid="Pages_Settings_Theme_Default"/>
+                        <ComboBoxItem Name="Theme_Light" x:Uid="Pages_Settings_Theme_Light"/>
+                        <ComboBoxItem Name="Theme_Dark" x:Uid="Pages_Settings_Theme_Dark"/>
                     </ComboBox>
                 </controls:ContentControl>
                 <controls:ContentControl
                 x:Name="Languages"
-                x:Uid="Settings_Languages">
+                x:Uid="Pages_Settings_Languages">
                     <controls:ContentControl.Icon>
                         <FontIcon Glyph="&#xF2B7;"/>
                     </controls:ContentControl.Icon>
@@ -50,14 +50,14 @@
                 </controls:ContentControl>
                 <controls:ContentControl
                 x:Name="AppVersion"
-                x:Uid="Settings_AppVersion">
+                x:Uid="Pages_Settings_AppVersion">
                     <controls:ContentControl.Icon>
                         <FontIcon Glyph="&#xE895;"/>
                     </controls:ContentControl.Icon>
                     <StackPanel Orientation="Horizontal">
                         <ProgressRing x:Name="CheckUpdateProgressRing" IsActive="False"/>
                         <StackPanel Width="5"/>
-                        <Button x:Name="CheckUpdate" x:Uid="Settings_AppVersion_CheckUpdate" Style="{StaticResource AccentButtonStyle}" Click="CheckUpdate_Click"/>
+                        <Button x:Name="CheckUpdate" x:Uid="Pages_Settings_AppVersion_CheckUpdate" Style="{StaticResource AccentButtonStyle}" Click="CheckUpdate_Click"/>
                     </StackPanel>
                 </controls:ContentControl>
                 <controls:ContentControl

@@ -50,7 +50,7 @@ namespace MagicApp.Pages
                     }
                     else
                     {
-                        NoticeTitle.Text = _resourceLoader.GetString("Home_Notice_CanNotLoad");
+                        NoticeTitle.Text = _resourceLoader.GetString("Pages_Home_Notice_CanNotLoad");
                         NoticeContent.Text = null;
 
                         NoticeProgressRing.IsActive = false;
@@ -58,7 +58,7 @@ namespace MagicApp.Pages
                 }
                 catch
                 {
-                    NoticeTitle.Text = _resourceLoader.GetString("Home_Notice_CanNotLoad");
+                    NoticeTitle.Text = _resourceLoader.GetString("Pages_Home_Notice_CanNotLoad");
                     NoticeContent.Text = null;
 
                     NoticeProgressRing.IsActive = false;

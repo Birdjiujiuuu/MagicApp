@@ -20,12 +20,9 @@
                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                 BorderThickness="1">
             <StackPanel Spacing="15">
-                <TextBlock x:Uid="QRCode_TitleGenerate"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           FontWeight="SemiBold"/>
-
+                <TextBlock x:Uid="Pages_QRCode_TitleGenerate" Style="{StaticResource SubtitleTextBlockStyle}"/>
                 <TextBox x:Name="InputTextBox"
-                         x:Uid="QRCode_InputTextBox"
+                         x:Uid="Pages_QRCode_InputTextBox"
                          AcceptsReturn="True"
                          TextWrapping="Wrap"
                          MaxHeight="200"
@@ -34,7 +31,7 @@
 
                 <Grid ColumnDefinitions="*,*">
                     <controls:DataControl x:Name="TextLengthData"
-                                    x:Uid="QRCode_TextLengthData"
+                                    x:Uid="Pages_QRCode_TextLengthData"
                                     IconGlyph="&#xE8D2;"
                                     IconColor="#00A1D6"
                                     Margin="0,0,5,0"
@@ -42,13 +39,13 @@
 
                     <StackPanel Grid.Column="1" Margin="5,0,0,0" Orientation="Vertical">
                         <Button x:Name="ClearButton"
-                                x:Uid="QRCode_ClearButton"
+                                x:Uid="Pages_QRCode_ClearButton"
                                 Margin="0,0,0,5"
                                 HorizontalAlignment="Stretch"
                                 Click="ClearButton_Click"/>
 
                         <Button x:Name="GenerateButton"
-                                x:Uid="QRCode_GenerateButton"
+                                x:Uid="Pages_QRCode_GenerateButton"
                                 Margin="0,5,0,0"
                                 HorizontalAlignment="Stretch"
                                 Style="{StaticResource AccentButtonStyle}"
@@ -67,10 +64,7 @@
                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                 BorderThickness="1">
             <StackPanel Spacing="15">
-                <TextBlock x:Uid="QRCode_TitlePreview"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           FontWeight="SemiBold"/>
-
+                <TextBlock x:Uid="Pages_QRCode_TitlePreview" Style="{StaticResource SubtitleTextBlockStyle}"/>
                 <!-- 二维码显示区域 -->
                 <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                         BorderThickness="1"

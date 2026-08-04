@@ -35,6 +35,7 @@
                        FontSize="18"/>
             <TextBlock Text="{x:Bind Description, Mode=OneWay}"
                        FontSize="12"
+                       TextWrapping="Wrap"
                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
         </StackPanel>
     </Grid>

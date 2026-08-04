@@ -21,34 +21,42 @@
     
     <ScrollViewer>
         <StackPanel Margin="10,20" Spacing="10">
-            <!-- 实时显示卡片 -->
-            <Border Style="{StaticResource CardBorderStyle}">
-                <Grid ColumnDefinitions="*,*">
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
-                        <TextBlock Text="当前时间" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                        <TextBlock x:Name="CurrentTimeText" TextWrapping="Wrap"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
-                        <TextBlock Text="当前时间戳" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                        <TextBlock x:Name="CurrentTimestampText" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
+            <!-- 实时显示 -->
+            <Grid ColumnDefinitions="*,*,*">
+                <controls:DataControl x:Name="CurrentTimeData"
+                                      x:Uid="Pages_Timestamp_CurrentTimeData"
+                                      IconGlyph="&#xE823;"
+                                      IconColor="#00A1D6"
+                                      Margin="0,0,5,0"
+                                      Grid.Column="0"/>
+                <controls:DataControl x:Name="CurrentTimestampData"
+                                      x:Uid="Pages_Timestamp_CurrentTimestampData"
+                                      IconGlyph="&#xE823;"
+                                      IconColor="#00A1D6"
+                                      Margin="5,0,5,0"
+                                      Grid.Column="1"/>
+                <controls:DataControl x:Name="CurrentMillisecondsData"
+                                      x:Uid="Pages_Timestamp_CurrentMillisecondsData"
+                                      IconGlyph="&#xE823;"
+                                      IconColor="#00A1D6"
+                                      Margin="5,0,0,0"
+                                      Grid.Column="2"/>
+            </Grid>
 
             <!-- 日期时间转时间戳卡片 -->
             <Border Style="{StaticResource CardBorderStyle}">
                 <StackPanel Spacing="10">
-                    <TextBlock Text="日期时间转换为时间戳" FontSize="20"/>
+                    <TextBlock x:Uid="Pages_Timestamp_DateTimeToTimestampCardTitle" Style="{StaticResource SubtitleTextBlockStyle}"/>
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <DatePicker x:Name="DatePickerInput"/>
                         <TimePicker x:Name="TimePickerInput" ClockIdentifier="24HourClock"/>
                         <ComboBox x:Name="SecondsComboBox" Width="70"/>
-                        <Button Content="转换" Style="{StaticResource AccentButtonStyle}" Click="OnConvertDateTimeToTimestamp"/>
+                        <Button x:Uid="Pages_Timestamp_ConvertButton" Style="{StaticResource AccentButtonStyle}" Click="OnConvertDateTimeToTimestamp"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="转换结果" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <TextBlock x:Uid="Pages_Timestamp_ConvertedResult" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                         <TextBlock x:Name="ConvertedTimestampResult" VerticalAlignment="Center" Width="150" TextWrapping="Wrap"/>
-                        <controls:ActionButton x:Name="CopyTimestampResultButton" IconGlyph="&#xE8C8;" ToolTipService.ToolTip="复制"/>
+                        <controls:ActionButton x:Name="CopyTimestampResultButton" x:Uid="Pages_Timestamp_CopyTimestampResultButton" IconGlyph="&#xE8C8;"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -56,11 +64,17 @@
             <!-- 时间戳转日期时间卡片 -->
             <Border Style="{StaticResource CardBorderStyle}">
                 <StackPanel Spacing="10">
-                    <TextBlock Text="时间戳转换为日期时间" FontSize="20"/>
-                    <AutoSuggestBox x:Name="TimestampInput" PlaceholderText="输入秒级时间戳" TextChanged="TimestampInput_TextChanged"/>
+                    <TextBlock x:Uid="Pages_Timestamp_TimestampToDateTimeCardTitle" Style="{StaticResource SubtitleTextBlockStyle}" />
+                    <Grid ColumnDefinitions="*,10,Auto">
+                        <AutoSuggestBox x:Name="TimestampInput" x:Uid="Pages_Timestamp_TimestampInput" Grid.Column="0" TextChanged="TimestampInput_TextChanged"/>
+                        <ComboBox x:Name="TimestampUnitComboBox" Grid.Column="2" Width="150" SelectedIndex="0" SelectionChanged="TimestampUnitComboBox_SelectionChanged">
+                            <ComboBoxItem x:Name="SecondsComboBoxItem" x:Uid="Pages_Timestamp_SecondsComboBoxItem"/>
+                            <ComboBoxItem x:Name="MillisecondsComboBoxItem" x:Uid="Pages_Timestamp_MillisecondsComboBoxItem"/>
+                        </ComboBox>
+                    </Grid>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="转换结果" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                        <TextBlock x:Name="ConvertedDateTimeResult" VerticalAlignment="Center" Width="150" TextWrapping="Wrap"/>
+                        <TextBlock x:Uid="Pages_Timestamp_ConvertedResult" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <TextBlock x:Name="ConvertedDateTimeResult" VerticalAlignment="Center" TextWrapping="Wrap"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

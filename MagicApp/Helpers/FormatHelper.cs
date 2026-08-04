@@ -141,6 +141,28 @@ namespace MagicApp.Helpers
         }
 
         /// <summary>
+        /// DateTime转换为Unix时间戳（毫秒）
+        /// </summary>
+        /// <param name="dateTime">要转换的DateTime</param>
+        /// <returns>Unix时间戳（毫秒）</returns>
+        public static long DateTimeToUnixTimeMilliseconds(DateTime dateTime)
+        {
+            DateTimeOffset dto = new DateTimeOffset(dateTime);
+            return dto.ToUnixTimeMilliseconds();
+        }
+
+        /// <summary>
+        /// Unix时间戳（毫秒）转换为DateTime
+        /// </summary>
+        /// <param name="unixTimeMilliseconds">Unix时间戳（毫秒）</param>
+        /// <returns>转换后的DateTime</returns>
+        public static DateTime UnixTimeMillisecondsToDateTime(long unixTimeMilliseconds)
+        {
+            DateTimeOffset dto = DateTimeOffset.FromUnixTimeMilliseconds(unixTimeMilliseconds);
+            return dto.LocalDateTime;
+        }
+
+        /// <summary>
         /// 格式化DateTime为可读字符串
         /// </summary>
         /// <param name="dateTime">要格式化的DateTime</param>

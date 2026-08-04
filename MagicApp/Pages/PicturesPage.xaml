@@ -42,11 +42,11 @@
                 SelectionChanged="ComboBox_SelectionChanged">
                 <StackPanel Name="Bing" Orientation="Horizontal" Spacing="10">
                     <Image Height="20" Width="20" Name="BingIcon"/>
-                    <TextBlock x:Uid="Pictures_Source_Bing"/>
+                    <TextBlock x:Uid="Pages_Pictures_Source_Bing"/>
                 </StackPanel>
                 <StackPanel Name="NASA" Orientation="Horizontal" Spacing="10">
                     <Image Height="20" Width="20" Name="NASAIcon"/>
-                    <TextBlock x:Uid="Pictures_Source_NASA"/>
+                    <TextBlock x:Uid="Pages_Pictures_Source_NASA"/>
                 </StackPanel>
             </ComboBox>
         </StackPanel>
@@ -56,7 +56,7 @@
             Orientation="Horizontal"
             Margin="0,0,10,0"
             Spacing="10">
-            <Button Name="InfoButton" x:Uid="Pictures_Button_Info" VerticalAlignment="Center" Width="50">
+            <Button Name="InfoButton" x:Uid="Pages_Pictures_Button_Info" VerticalAlignment="Center" Width="50">
                 <SymbolIcon Symbol="Important"/>
                 <Button.Flyout>
                     <Flyout>
@@ -67,7 +67,7 @@
                     </Flyout>
                 </Button.Flyout>
             </Button>
-            <Button Name="DownloadButton" x:Uid="Pictures_Button_Download" VerticalAlignment="Center" Width="50" Click="DownloadButton_Click">
+            <Button Name="DownloadButton" x:Uid="Pages_Pictures_Button_Download" VerticalAlignment="Center" Width="50" Click="DownloadButton_Click">
                 <SymbolIcon Symbol="Download"/>
             </Button>
         </StackPanel>

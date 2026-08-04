@@ -80,12 +80,12 @@ namespace MagicApp.Pages
                     }
                 }
 
-                StatusTextBlock.Text = _resourceLoader.GetString("QRCode_Status_Success") + $" ({DateTime.Now:HH:mm:ss})";
+                StatusTextBlock.Text = _resourceLoader.GetString("Pages_QRCode_Status_Success") + $" ({DateTime.Now:HH:mm:ss})";
             }
             catch (Exception ex)
             {
                 // 处理生成二维码时的异常
-                StatusTextBlock.Text = _resourceLoader.GetString("QRCode_Status_Failure") + $" {ex.Message}";
+                StatusTextBlock.Text = _resourceLoader.GetString("Pages_QRCode_Status_Failure") + $" {ex.Message}";
                 QRCodeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
             }
         }

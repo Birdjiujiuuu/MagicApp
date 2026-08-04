@@ -34,8 +34,8 @@ namespace MagicApp.Pages
             AppVersion.Description = string.Format("{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major, Package.Current.Id.Version.Minor, Package.Current.Id.Version.Build, Package.Current.Id.Version.Revision);
 
             // 设置关于处超链接文本
-            string officialWebsiteText = _resourceLoader.GetString("Settings_About_OfficialWebsite");
-            string sourceCodeText = _resourceLoader.GetString("Settings_About_SourceCode");
+            string officialWebsiteText = _resourceLoader.GetString("Pages_Settings_About_OfficialWebsite");
+            string sourceCodeText = _resourceLoader.GetString("Pages_Settings_About_SourceCode");
             OfficialWebsite.Inlines.Clear();
             OfficialWebsite.Inlines.Add(new Run { Text = officialWebsiteText });
             SourceCode.Inlines.Clear();
@@ -157,10 +157,10 @@ namespace MagicApp.Pages
             {
                 XamlRoot = this.XamlRoot,
                 Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                Title = _resourceLoader.GetString("Settings_Languages_Dialog_Title"),
-                Content = _resourceLoader.GetString("Settings_Languages_Dialog_Content"),
-                PrimaryButtonText = _resourceLoader.GetString("Settings_Languages_Dialog_Restart"),
-                CloseButtonText = _resourceLoader.GetString("Settings_Languages_Dialog_Later"),
+                Title = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Title"),
+                Content = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Content"),
+                PrimaryButtonText = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Restart"),
+                CloseButtonText = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Later"),
                 DefaultButton = ContentDialogButton.Primary
             };
             var result = await dialog.ShowAsync();

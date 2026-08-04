@@ -156,151 +156,151 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>神奇的应用程序</value>
   </data>
-  <data name="Pictures_Source_Bing.Text" xml:space="preserve">
+  <data name="Pages_Pictures_Source_Bing.Text" xml:space="preserve">
     <value>必应</value>
   </data>
-  <data name="Pictures_Source_NASA.Text" xml:space="preserve">
+  <data name="Pages_Pictures_Source_NASA.Text" xml:space="preserve">
     <value>NASA</value>
   </data>
   <data name="Main_Titlebar.Subtitle" xml:space="preserve">
     <value>预览</value>
   </data>
-  <data name="Search_SearchBox.PlaceholderText" xml:space="preserve">
+  <data name="Pages_Search_SearchBox.PlaceholderText" xml:space="preserve">
     <value>在此键入进行搜索</value>
   </data>
-  <data name="Search_OpenInBowser.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_Search_OpenInBowser.ToolTipService.ToolTip" xml:space="preserve">
     <value>在浏览器打开此网页</value>
   </data>
-  <data name="Search_Engine_Google.Text" xml:space="preserve">
+  <data name="Pages_Search_Engine_Google.Text" xml:space="preserve">
     <value>谷歌</value>
   </data>
-  <data name="Search_Engine_Baidu.Text" xml:space="preserve">
+  <data name="Pages_Search_Engine_Baidu.Text" xml:space="preserve">
     <value>百度</value>
   </data>
-  <data name="Search_Engine_Bing.Text" xml:space="preserve">
+  <data name="Pages_Search_Engine_Bing.Text" xml:space="preserve">
     <value>必应</value>
   </data>
-  <data name="Notice_Send.Text" xml:space="preserve">
+  <data name="Pages_Notice_Send.Text" xml:space="preserve">
     <value>发送</value>
   </data>
-  <data name="Notice_Clear.Content" xml:space="preserve">
+  <data name="Pages_Notice_Clear.Content" xml:space="preserve">
     <value>清空</value>
   </data>
-  <data name="QRCode_ClearButton.Content" xml:space="preserve">
+  <data name="Pages_QRCode_ClearButton.Content" xml:space="preserve">
     <value>清空</value>
   </data>
-  <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>声音事件</value>
   </data>
-  <data name="Notice_SoundEvent_Default.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Default.Content" xml:space="preserve">
     <value>默认</value>
   </data>
-  <data name="Notice_SoundEvent_Call.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Call.Content" xml:space="preserve">
     <value>呼叫</value>
   </data>
-  <data name="Notice_SoundEvent_Alarm.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Alarm.Content" xml:space="preserve">
     <value>闹钟</value>
   </data>
-  <data name="Notice_SoundEvent_SMS.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_SMS.Content" xml:space="preserve">
     <value>消息</value>
   </data>
-  <data name="Notice_SoundEvent_Reminder.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Reminder.Content" xml:space="preserve">
     <value>提醒</value>
   </data>
-  <data name="Notice_SoundEvent_IM.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_IM.Content" xml:space="preserve">
     <value>即时消息</value>
   </data>
-  <data name="Notice_ContentTitle.PlaceholderText" xml:space="preserve">
+  <data name="Pages_Notice_ContentTitle.PlaceholderText" xml:space="preserve">
     <value>标题</value>
   </data>
-  <data name="Notice_ContentContent.PlaceholderText" xml:space="preserve">
+  <data name="Pages_Notice_ContentContent.PlaceholderText" xml:space="preserve">
     <value>内容</value>
   </data>
-  <data name="Notice_ContentTitle.Header" xml:space="preserve">
+  <data name="Pages_Notice_ContentTitle.Header" xml:space="preserve">
     <value>标题</value>
   </data>
-  <data name="Notice_ContentContent.Header" xml:space="preserve">
+  <data name="Pages_Notice_ContentContent.Header" xml:space="preserve">
     <value>内容</value>
   </data>
-  <data name="Settings_Theme.Description" xml:space="preserve">
+  <data name="Pages_Settings_Theme.Description" xml:space="preserve">
     <value>切换浅色/深色模式</value>
   </data>
-  <data name="Settings_Languages.Description" xml:space="preserve">
+  <data name="Pages_Settings_Languages.Description" xml:space="preserve">
     <value>选择应用要显示的语言</value>
   </data>
-  <data name="Settings_Languages.Header" xml:space="preserve">
+  <data name="Pages_Settings_Languages.Header" xml:space="preserve">
     <value>语言</value>
   </data>
-  <data name="Settings_AppVersion.Header" xml:space="preserve">
+  <data name="Pages_Settings_AppVersion.Header" xml:space="preserve">
     <value>版本更新</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
+  <data name="Pages_Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
     <value>检查更新</value>
   </data>
-  <data name="UpdateService_Title" xml:space="preserve">
+  <data name="Services_Update_Title" xml:space="preserve">
     <value>检查更新</value>
   </data>
-  <data name="UpdateService_Close" xml:space="preserve">
+  <data name="Services_Update_Close" xml:space="preserve">
     <value>确定</value>
   </data>
-  <data name="UpdateService_Error" xml:space="preserve">
+  <data name="Services_Update_Error" xml:space="preserve">
     <value>错误</value>
   </data>
-  <data name="UpdateService_Latest" xml:space="preserve">
+  <data name="Services_Update_Latest" xml:space="preserve">
     <value>已经是最新版本！</value>
   </data>
-  <data name="UpdateService_Later" xml:space="preserve">
+  <data name="Services_Update_Later" xml:space="preserve">
     <value>稍后下载</value>
   </data>
-  <data name="UpdateService_Download" xml:space="preserve">
+  <data name="Services_Update_Download" xml:space="preserve">
     <value>立即下载</value>
   </data>
-  <data name="Settings_Theme.Header" xml:space="preserve">
+  <data name="Pages_Settings_Theme.Header" xml:space="preserve">
     <value>主题</value>
   </data>
-  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+  <data name="Pages_Settings_Theme_Default.Content" xml:space="preserve">
     <value>使用 Windows 默认</value>
   </data>
-  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+  <data name="Pages_Settings_Theme_Light.Content" xml:space="preserve">
     <value>浅色</value>
   </data>
-  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+  <data name="Pages_Settings_Theme_Dark.Content" xml:space="preserve">
     <value>深色</value>
   </data>
-  <data name="Settings_Languages_Dialog_Title" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Title" xml:space="preserve">
     <value>语言已更改 </value>
   </data>
-  <data name="Settings_Languages_Dialog_Content" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Content" xml:space="preserve">
     <value>需要重启应用以使语言更改生效，是否立即重启？ </value>
   </data>
-  <data name="Settings_Languages_Dialog_Restart" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Restart" xml:space="preserve">
     <value>立即重启 </value>
   </data>
-  <data name="Settings_Languages_Dialog_Later" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Later" xml:space="preserve">
     <value>稍后 </value>
   </data>
-  <data name="Settings_About_OfficialWebsite" xml:space="preserve">
+  <data name="Pages_Settings_About_OfficialWebsite" xml:space="preserve">
     <value>官方网站</value>
   </data>
-  <data name="Settings_About_SourceCode" xml:space="preserve">
+  <data name="Pages_Settings_About_SourceCode" xml:space="preserve">
     <value>源代码</value>
   </data>
-  <data name="FileDownloadService_Close" xml:space="preserve">
+  <data name="Services_FileDownload_Close" xml:space="preserve">
     <value>确定</value>
   </data>
-  <data name="FileDownloadService_Downloading" xml:space="preserve">
+  <data name="Services_FileDownload_Downloading" xml:space="preserve">
     <value>下载中</value>
   </data>
-  <data name="FileDownloadService_FilePath" xml:space="preserve">
+  <data name="Services_FileDownload_FilePath" xml:space="preserve">
     <value>文件已保存到：</value>
   </data>
-  <data name="FileDownloadService_Error" xml:space="preserve">
+  <data name="Services_FileDownload_Error" xml:space="preserve">
     <value>错误</value>
   </data>
-  <data name="FileDownloadService_Success" xml:space="preserve">
+  <data name="Services_FileDownload_Success" xml:space="preserve">
     <value>下载成功</value>
   </data>
-  <data name="FileDownloadService_Failure" xml:space="preserve">
+  <data name="Services_FileDownload_Failure" xml:space="preserve">
     <value>下载失败：</value>
   </data>
   <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
@@ -309,184 +309,223 @@
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>二维码工具</value>
   </data>
-  <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
+  <data name="Services_FileDownload_UrlNoNull" xml:space="preserve">
     <value>下载URL不能为空</value>
   </data>
-  <data name="FileDownloadService_AllFile" xml:space="preserve">
+  <data name="Services_FileDownload_AllFile" xml:space="preserve">
     <value>所有文件</value>
   </data>
-  <data name="FileDownloadService_File" xml:space="preserve">
+  <data name="Services_FileDownload_File" xml:space="preserve">
     <value>文件</value>
   </data>
-  <data name="FileDownloadService_TxtFile" xml:space="preserve">
+  <data name="Services_FileDownload_TxtFile" xml:space="preserve">
     <value>文本文件</value>
   </data>
-  <data name="FileDownloadService_Error_Describe" xml:space="preserve">
+  <data name="Services_FileDownload_Error_Describe" xml:space="preserve">
     <value>下载过程中发生错误：</value>
   </data>
-  <data name="FileDownloadService_AllFile_Image" xml:space="preserve">
+  <data name="Services_FileDownload_AllFile_Image" xml:space="preserve">
     <value>所有图片文件</value>
   </data>
-  <data name="FileDownloadService_AllFile_Video" xml:space="preserve">
+  <data name="Services_FileDownload_AllFile_Video" xml:space="preserve">
     <value>所有视频文件</value>
   </data>
-  <data name="UpdateService_Release" xml:space="preserve">
+  <data name="Services_Update_Release" xml:space="preserve">
     <value>前往发行页</value>
   </data>
-  <data name="FileDownloadService_Cancel" xml:space="preserve">
+  <data name="Services_FileDownload_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="FileDownloadService_remainingTime_Hour" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTime_Hour" xml:space="preserve">
     <value>小时</value>
   </data>
-  <data name="FileDownloadService_remainingTime_Minute" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTime_Minute" xml:space="preserve">
     <value>分</value>
   </data>
-  <data name="FileDownloadService_remainingTime_Second" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTime_Second" xml:space="preserve">
     <value>秒</value>
   </data>
-  <data name="FileDownloadService_remainingTimeText" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTimeText" xml:space="preserve">
     <value>剩余约 </value>
   </data>
-  <data name="QRCode_Status_Success" xml:space="preserve">
+  <data name="Pages_QRCode_Status_Success" xml:space="preserve">
     <value>二维码生成成功</value>
   </data>
-  <data name="QRCode_Status_Failure" xml:space="preserve">
+  <data name="Pages_QRCode_Status_Failure" xml:space="preserve">
     <value>生成失败:</value>
   </data>
-  <data name="QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
+  <data name="Pages_QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
     <value>请输入要生成二维码的内容...</value>
   </data>
-  <data name="QRCode_TextLengthData.Description" xml:space="preserve">
+  <data name="Pages_QRCode_TextLengthData.Description" xml:space="preserve">
     <value>输入长度/字符</value>
   </data>
-  <data name="QRCode_TitlePreview.Text" xml:space="preserve">
+  <data name="Pages_QRCode_TitlePreview.Text" xml:space="preserve">
     <value>二维码预览</value>
   </data>
-  <data name="QRCode_TitleGenerate.Text" xml:space="preserve">
+  <data name="Pages_QRCode_TitleGenerate.Text" xml:space="preserve">
     <value>二维码生成</value>
   </data>
-  <data name="QRCode_GenerateButton.Content" xml:space="preserve">
+  <data name="Pages_QRCode_GenerateButton.Content" xml:space="preserve">
     <value>生成二维码</value>
   </data>
   <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
     <value>转换工具</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs.Text" xml:space="preserve">
     <value>设备规格</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_DeviceName.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_DeviceName.Text" xml:space="preserve">
     <value>设备名称</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Architecture.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Architecture.Text" xml:space="preserve">
     <value>系统类型</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Resolution.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Resolution.Text" xml:space="preserve">
     <value>屏幕分辨率</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Gpu.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Gpu.Text" xml:space="preserve">
     <value>显卡</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Drives.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Drives.Text" xml:space="preserve">
     <value>驱动器</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_PageFile.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_PageFile.Text" xml:space="preserve">
     <value>虚拟内存</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Memory.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Memory.Text" xml:space="preserve">
     <value>内存</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Cpu.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Cpu.Text" xml:space="preserve">
     <value>处理器</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_SystemModel.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_SystemModel.Text" xml:space="preserve">
     <value>系统型号</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_BiosVersion.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_BiosVersion.Text" xml:space="preserve">
     <value>BIOS 版本</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Motherboard.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Motherboard.Text" xml:space="preserve">
     <value>主板</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs.Text" xml:space="preserve">
     <value>Windows 规格</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_Experience.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_Experience.Text" xml:space="preserve">
     <value>体验包</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
     <value>操作系统版本</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
     <value>安装日期</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_VersionDisplay.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_VersionDisplay.Text" xml:space="preserve">
     <value>版本号</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_Edition.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_Edition.Text" xml:space="preserve">
     <value>版本</value>
   </data>
-  <data name="SystemInfo_Network.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network.Text" xml:space="preserve">
     <value>网络</value>
   </data>
-  <data name="SystemInfo_Network_DnsServers.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_DnsServers.Text" xml:space="preserve">
     <value>DNS 服务器</value>
   </data>
-  <data name="SystemInfo_Network_Gateway.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Gateway.Text" xml:space="preserve">
     <value>默认网关</value>
   </data>
-  <data name="SystemInfo_Network_MacAddress.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_MacAddress.Text" xml:space="preserve">
     <value>MAC 地址</value>
   </data>
-  <data name="SystemInfo_Network_Ipv6Address.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Ipv6Address.Text" xml:space="preserve">
     <value>IPv6 地址</value>
   </data>
-  <data name="SystemInfo_Network_Ipv4Address.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Ipv4Address.Text" xml:space="preserve">
     <value>IPv4 地址</value>
   </data>
-  <data name="SystemInfo_Network_Status.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Status.Text" xml:space="preserve">
     <value>状态</value>
   </data>
-  <data name="SystemInfo_Network_Adapter.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Adapter.Text" xml:space="preserve">
     <value>适配器</value>
   </data>
-  <data name="SystemInfo_Runtime.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime.Text" xml:space="preserve">
     <value>运行时</value>
   </data>
-  <data name="SystemInfo_Runtime_UserProfile.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_UserProfile.Text" xml:space="preserve">
     <value>用户目录</value>
   </data>
-  <data name="SystemInfo_Runtime_CurrentUser.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_CurrentUser.Text" xml:space="preserve">
     <value>当前用户</value>
   </data>
-  <data name="SystemInfo_Runtime_Uptime.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_Uptime.Text" xml:space="preserve">
     <value>系统启动时长</value>
   </data>
-  <data name="SystemInfo_Runtime_DotNet.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_DotNet.Text" xml:space="preserve">
     <value>.NET 版本</value>
   </data>
-  <data name="SystemInfo_Unknow" xml:space="preserve">
+  <data name="Pages_SystemInfo_Unknow" xml:space="preserve">
     <value>未知</value>
   </data>
-  <data name="SystemInfo_NoConnection" xml:space="preserve">
+  <data name="Pages_SystemInfo_NoConnection" xml:space="preserve">
     <value>无连接</value>
   </data>
-  <data name="SystemInfo_Used" xml:space="preserve">
+  <data name="Pages_SystemInfo_Used" xml:space="preserve">
     <value>已用</value>
   </data>
-  <data name="SystemInfo_Available" xml:space="preserve">
+  <data name="Pages_SystemInfo_Available" xml:space="preserve">
     <value>可用</value>
   </data>
-  <data name="Home_Notice_CanNotLoad" xml:space="preserve">
+  <data name="Pages_Home_Notice_CanNotLoad" xml:space="preserve">
     <value>公告获取失败</value>
   </data>
-  <data name="Pictures_Button_Info.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_Pictures_Button_Info.ToolTipService.ToolTip" xml:space="preserve">
     <value>图片描述</value>
   </data>
-  <data name="Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
     <value>下载此图片</value>
   </data>
   <data name="Main_NavView_Timestamp.Content" xml:space="preserve">
     <value>时间戳工具</value>
+  </data>
+  <data name="Pages_Timestamp_CurrentTimeData.Description" xml:space="preserve">
+    <value>当前时间</value>
+  </data>
+  <data name="Pages_Timestamp_CurrentTimestampData.Description" xml:space="preserve">
+    <value>当前时间戳</value>
+  </data>
+  <data name="Pages_Timestamp_CurrentMillisecondsData.Description" xml:space="preserve">
+    <value>当前毫秒级时间戳</value>
+  </data>
+  <data name="Pages_Timestamp_CopyTimestampResultButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>复制结果</value>
+  </data>
+  <data name="Pages_Timestamp_ConvertedResult.Text" xml:space="preserve">
+    <value>转换结果</value>
+  </data>
+  <data name="Pages_Timestamp_DateTimeToTimestampCardTitle.Text" xml:space="preserve">
+    <value>日期时间转换为时间戳</value>
+  </data>
+  <data name="Pages_Timestamp_TimestampToDateTimeCardTitle.Text" xml:space="preserve">
+    <value>时间戳转换为日期时间</value>
+  </data>
+  <data name="Pages_Timestamp_ConvertButton.Content" xml:space="preserve">
+    <value>转换</value>
+  </data>
+  <data name="Pages_Timestamp_TimestampInput.PlaceholderText" xml:space="preserve">
+    <value>请输入时间戳</value>
+  </data>
+  <data name="Pages_Timestamp_SecondsComboBoxItem.Content" xml:space="preserve">
+    <value>秒级</value>
+  </data>
+  <data name="Pages_Timestamp_MillisecondsComboBoxItem.Content" xml:space="preserve">
+    <value>毫秒级</value>
+  </data>
+  <data name="Pages_Timestamp_InvalidNumber" xml:space="preserve">
+    <value>请输入有效数字</value>
+  </data>
+  <data name="Pages_Timestamp_OutOfRange" xml:space="preserve">
+    <value>时间戳超出有效范围</value>
   </data>
 </root>

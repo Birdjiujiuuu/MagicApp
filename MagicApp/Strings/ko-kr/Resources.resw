@@ -156,151 +156,151 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>신비한 앱</value>
   </data>
-  <data name="Pictures_Source_Bing.Text" xml:space="preserve">
+  <data name="Pages_Pictures_Source_Bing.Text" xml:space="preserve">
     <value>Bing</value>
   </data>
-  <data name="Pictures_Source_NASA.Text" xml:space="preserve">
+  <data name="Pages_Pictures_Source_NASA.Text" xml:space="preserve">
     <value>NASA</value>
   </data>
   <data name="Main_Titlebar.Subtitle" xml:space="preserve">
     <value>미리보기</value>
   </data>
-  <data name="Search_SearchBox.PlaceholderText" xml:space="preserve">
+  <data name="Pages_Search_SearchBox.PlaceholderText" xml:space="preserve">
     <value>여기에 검색어를 입력하세요</value>
   </data>
-  <data name="Search_OpenInBowser.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_Search_OpenInBowser.ToolTipService.ToolTip" xml:space="preserve">
     <value>브라우저에서 이 페이지 열기</value>
   </data>
-  <data name="Search_Engine_Google.Text" xml:space="preserve">
+  <data name="Pages_Search_Engine_Google.Text" xml:space="preserve">
     <value>Google</value>
   </data>
-  <data name="Search_Engine_Baidu.Text" xml:space="preserve">
+  <data name="Pages_Search_Engine_Baidu.Text" xml:space="preserve">
     <value>Baidu</value>
   </data>
-  <data name="Search_Engine_Bing.Text" xml:space="preserve">
+  <data name="Pages_Search_Engine_Bing.Text" xml:space="preserve">
     <value>Bing</value>
   </data>
-  <data name="Notice_Send.Text" xml:space="preserve">
+  <data name="Pages_Notice_Send.Text" xml:space="preserve">
     <value>보내기</value>
   </data>
-  <data name="Notice_Clear.Content" xml:space="preserve">
+  <data name="Pages_Notice_Clear.Content" xml:space="preserve">
     <value>지우기</value>
   </data>
-  <data name="QRCode_ClearButton.Content" xml:space="preserve">
+  <data name="Pages_QRCode_ClearButton.Content" xml:space="preserve">
     <value>지우기</value>
   </data>
-  <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>사운드 이벤트</value>
   </data>
-  <data name="Notice_SoundEvent_Default.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Default.Content" xml:space="preserve">
     <value>기본</value>
   </data>
-  <data name="Notice_SoundEvent_Call.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Call.Content" xml:space="preserve">
     <value>호출</value>
   </data>
-  <data name="Notice_SoundEvent_Alarm.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Alarm.Content" xml:space="preserve">
     <value>알람</value>
   </data>
-  <data name="Notice_SoundEvent_SMS.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_SMS.Content" xml:space="preserve">
     <value>메시지</value>
   </data>
-  <data name="Notice_SoundEvent_Reminder.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Reminder.Content" xml:space="preserve">
     <value>알림</value>
   </data>
-  <data name="Notice_SoundEvent_IM.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_IM.Content" xml:space="preserve">
     <value>인스턴트 메시지</value>
   </data>
-  <data name="Notice_ContentTitle.PlaceholderText" xml:space="preserve">
+  <data name="Pages_Notice_ContentTitle.PlaceholderText" xml:space="preserve">
     <value>제목</value>
   </data>
-  <data name="Notice_ContentContent.PlaceholderText" xml:space="preserve">
+  <data name="Pages_Notice_ContentContent.PlaceholderText" xml:space="preserve">
     <value>내용</value>
   </data>
-  <data name="Notice_ContentTitle.Header" xml:space="preserve">
+  <data name="Pages_Notice_ContentTitle.Header" xml:space="preserve">
     <value>제목</value>
   </data>
-  <data name="Notice_ContentContent.Header" xml:space="preserve">
+  <data name="Pages_Notice_ContentContent.Header" xml:space="preserve">
     <value>내용</value>
   </data>
-  <data name="Settings_Theme.Description" xml:space="preserve">
+  <data name="Pages_Settings_Theme.Description" xml:space="preserve">
     <value>밝은 모드/어두운 모드 전환</value>
   </data>
-  <data name="Settings_Languages.Description" xml:space="preserve">
+  <data name="Pages_Settings_Languages.Description" xml:space="preserve">
     <value>앱에 표시할 언어 선택</value>
   </data>
-  <data name="Settings_Languages.Header" xml:space="preserve">
+  <data name="Pages_Settings_Languages.Header" xml:space="preserve">
     <value>언어</value>
   </data>
-  <data name="Settings_AppVersion.Header" xml:space="preserve">
+  <data name="Pages_Settings_AppVersion.Header" xml:space="preserve">
     <value>버전 업데이트</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
+  <data name="Pages_Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
     <value>업데이트 확인</value>
   </data>
-  <data name="UpdateService_Title" xml:space="preserve">
+  <data name="Services_Update_Title" xml:space="preserve">
     <value>업데이트 확인</value>
   </data>
-  <data name="UpdateService_Close" xml:space="preserve">
+  <data name="Services_Update_Close" xml:space="preserve">
     <value>확인</value>
   </data>
-  <data name="UpdateService_Error" xml:space="preserve">
+  <data name="Services_Update_Error" xml:space="preserve">
     <value>오류</value>
   </data>
-  <data name="UpdateService_Latest" xml:space="preserve">
+  <data name="Services_Update_Latest" xml:space="preserve">
     <value>이미 최신 버전입니다!</value>
   </data>
-  <data name="UpdateService_Later" xml:space="preserve">
+  <data name="Services_Update_Later" xml:space="preserve">
     <value>나중에 다운로드</value>
   </data>
-  <data name="UpdateService_Download" xml:space="preserve">
+  <data name="Services_Update_Download" xml:space="preserve">
     <value>지금 다운로드</value>
   </data>
-  <data name="Settings_Theme.Header" xml:space="preserve">
+  <data name="Pages_Settings_Theme.Header" xml:space="preserve">
     <value>테마</value>
   </data>
-  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+  <data name="Pages_Settings_Theme_Default.Content" xml:space="preserve">
     <value>Windows 기본값 사용</value>
   </data>
-  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+  <data name="Pages_Settings_Theme_Light.Content" xml:space="preserve">
     <value>밝은 모드</value>
   </data>
-  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+  <data name="Pages_Settings_Theme_Dark.Content" xml:space="preserve">
     <value>어두운 모드</value>
   </data>
-  <data name="Settings_Languages_Dialog_Title" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Title" xml:space="preserve">
     <value>언어가 변경되었습니다</value>
   </data>
-  <data name="Settings_Languages_Dialog_Content" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Content" xml:space="preserve">
     <value>언어 변경을 적용하려면 앱을 다시 시작해야 합니다. 지금 다시 시작하시겠습니까?</value>
   </data>
-  <data name="Settings_Languages_Dialog_Restart" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Restart" xml:space="preserve">
     <value>지금 다시 시작</value>
   </data>
-  <data name="Settings_Languages_Dialog_Later" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Later" xml:space="preserve">
     <value>나중에</value>
   </data>
-  <data name="Settings_About_OfficialWebsite" xml:space="preserve">
+  <data name="Pages_Settings_About_OfficialWebsite" xml:space="preserve">
     <value>공식 웹사이트</value>
   </data>
-  <data name="Settings_About_SourceCode" xml:space="preserve">
+  <data name="Pages_Settings_About_SourceCode" xml:space="preserve">
     <value>소스 코드</value>
   </data>
-  <data name="FileDownloadService_Close" xml:space="preserve">
+  <data name="Services_FileDownload_Close" xml:space="preserve">
     <value>확인</value>
   </data>
-  <data name="FileDownloadService_Downloading" xml:space="preserve">
+  <data name="Services_FileDownload_Downloading" xml:space="preserve">
     <value>다운로드 중</value>
   </data>
-  <data name="FileDownloadService_FilePath" xml:space="preserve">
+  <data name="Services_FileDownload_FilePath" xml:space="preserve">
     <value>파일 저장 위치:</value>
   </data>
-  <data name="FileDownloadService_Error" xml:space="preserve">
+  <data name="Services_FileDownload_Error" xml:space="preserve">
     <value>오류</value>
   </data>
-  <data name="FileDownloadService_Success" xml:space="preserve">
+  <data name="Services_FileDownload_Success" xml:space="preserve">
     <value>다운로드 성공</value>
   </data>
-  <data name="FileDownloadService_Failure" xml:space="preserve">
+  <data name="Services_FileDownload_Failure" xml:space="preserve">
     <value>다운로드 실패：</value>
   </data>
   <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
@@ -309,181 +309,223 @@
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>QR 코드 도구</value>
   </data>
-  <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
+  <data name="Services_FileDownload_UrlNoNull" xml:space="preserve">
     <value>다운로드 URL은 비울 수 없습니다</value>
   </data>
-  <data name="FileDownloadService_AllFile" xml:space="preserve">
+  <data name="Services_FileDownload_AllFile" xml:space="preserve">
     <value>모든 파일</value>
   </data>
-  <data name="FileDownloadService_File" xml:space="preserve">
+  <data name="Services_FileDownload_File" xml:space="preserve">
     <value>파일</value>
   </data>
-  <data name="FileDownloadService_TxtFile" xml:space="preserve">
+  <data name="Services_FileDownload_TxtFile" xml:space="preserve">
     <value>텍스트 파일</value>
   </data>
-  <data name="FileDownloadService_Error_Describe" xml:space="preserve">
+  <data name="Services_FileDownload_Error_Describe" xml:space="preserve">
     <value>다운로드 중 오류 발생:</value>
   </data>
-  <data name="FileDownloadService_AllFile_Image" xml:space="preserve">
+  <data name="Services_FileDownload_AllFile_Image" xml:space="preserve">
     <value>모든 이미지 파일</value>
   </data>
-  <data name="FileDownloadService_AllFile_Video" xml:space="preserve">
+  <data name="Services_FileDownload_AllFile_Video" xml:space="preserve">
     <value>모든 동영상 파일</value>
   </data>
-  <data name="UpdateService_Release" xml:space="preserve">
+  <data name="Services_Update_Release" xml:space="preserve">
     <value>릴리스 페이지로 이동</value>
   </data>
-  <data name="FileDownloadService_Cancel" xml:space="preserve">
+  <data name="Services_FileDownload_Cancel" xml:space="preserve">
     <value>취소</value>
   </data>
-  <data name="FileDownloadService_remainingTime_Hour" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTime_Hour" xml:space="preserve">
     <value>시간</value>
   </data>
-  <data name="FileDownloadService_remainingTime_Minute" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTime_Minute" xml:space="preserve">
     <value>분</value>
   </data>
-  <data name="FileDownloadService_remainingTime_Second" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTime_Second" xml:space="preserve">
     <value>초</value>
   </data>
-  <data name="FileDownloadService_remainingTimeText" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTimeText" xml:space="preserve">
     <value>약 </value>
   </data>
-  <data name="QRCode_Status_Success" xml:space="preserve">
+  <data name="Pages_QRCode_Status_Success" xml:space="preserve">
     <value>QR 코드 생성 성공</value>
   </data>
-  <data name="QRCode_Status_Failure" xml:space="preserve">
+  <data name="Pages_QRCode_Status_Failure" xml:space="preserve">
     <value>생성 실패:</value>
   </data>
-  <data name="QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
+  <data name="Pages_QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
     <value>QR 코드로 만들 내용을 입력하세요...</value>
   </data>
-  <data name="QRCode_TextLengthData.Description" xml:space="preserve">
+  <data name="Pages_QRCode_TextLengthData.Description" xml:space="preserve">
     <value>입력 길이/문자 수</value>
   </data>
-  <data name="QRCode_TitlePreview.Text" xml:space="preserve">
+  <data name="Pages_QRCode_TitlePreview.Text" xml:space="preserve">
     <value>QR 코드 미리 보기</value>
   </data>
-  <data name="QRCode_TitleGenerate.Text" xml:space="preserve">
+  <data name="Pages_QRCode_TitleGenerate.Text" xml:space="preserve">
     <value>QR 코드 생성</value>
   </data>
-  <data name="QRCode_GenerateButton.Content" xml:space="preserve">
+  <data name="Pages_QRCode_GenerateButton.Content" xml:space="preserve">
     <value>QR 코드 생성</value>
   </data>
   <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
     <value>변환 도구</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs.Text" xml:space="preserve">
     <value>장치 사양</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_DeviceName.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_DeviceName.Text" xml:space="preserve">
     <value>장치 이름</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Architecture.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Architecture.Text" xml:space="preserve">
     <value>시스템 종류</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Resolution.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Resolution.Text" xml:space="preserve">
     <value>화면 해상도</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Gpu.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Gpu.Text" xml:space="preserve">
     <value>그래픽 카드</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Drives.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Drives.Text" xml:space="preserve">
     <value>드라이브</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_PageFile.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_PageFile.Text" xml:space="preserve">
     <value>가상 메모리</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Memory.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Memory.Text" xml:space="preserve">
     <value>메모리</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Cpu.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Cpu.Text" xml:space="preserve">
     <value>프로세서</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_SystemModel.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_SystemModel.Text" xml:space="preserve">
     <value>시스템 모델</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_BiosVersion.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_BiosVersion.Text" xml:space="preserve">
     <value>BIOS 버전</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Motherboard.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Motherboard.Text" xml:space="preserve">
     <value>마더보드</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs.Text" xml:space="preserve">
     <value>Windows 사양</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_Experience.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_Experience.Text" xml:space="preserve">
     <value>경험 팩</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
     <value>운영 체제 버전</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
     <value>설치 날짜</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_VersionDisplay.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_VersionDisplay.Text" xml:space="preserve">
     <value>버전</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_Edition.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_Edition.Text" xml:space="preserve">
     <value>에디션</value>
   </data>
-  <data name="SystemInfo_Network.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network.Text" xml:space="preserve">
     <value>네트워크</value>
   </data>
-  <data name="SystemInfo_Network_DnsServers.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_DnsServers.Text" xml:space="preserve">
     <value>DNS 서버</value>
   </data>
-  <data name="SystemInfo_Network_Gateway.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Gateway.Text" xml:space="preserve">
     <value>기본 게이트웨이</value>
   </data>
-  <data name="SystemInfo_Network_MacAddress.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_MacAddress.Text" xml:space="preserve">
     <value>MAC 주소</value>
   </data>
-  <data name="SystemInfo_Network_Ipv6Address.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Ipv6Address.Text" xml:space="preserve">
     <value>IPv6 주소</value>
   </data>
-  <data name="SystemInfo_Network_Ipv4Address.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Ipv4Address.Text" xml:space="preserve">
     <value>IPv4 주소</value>
   </data>
-  <data name="SystemInfo_Network_Status.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Status.Text" xml:space="preserve">
     <value>상태</value>
   </data>
-  <data name="SystemInfo_Network_Adapter.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Adapter.Text" xml:space="preserve">
     <value>어댑터</value>
   </data>
-  <data name="SystemInfo_Runtime.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime.Text" xml:space="preserve">
     <value>런타임</value>
   </data>
-  <data name="SystemInfo_Runtime_UserProfile.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_UserProfile.Text" xml:space="preserve">
     <value>사용자 디렉터리</value>
   </data>
-  <data name="SystemInfo_Runtime_CurrentUser.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_CurrentUser.Text" xml:space="preserve">
     <value>현재 사용자</value>
   </data>
-  <data name="SystemInfo_Runtime_Uptime.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_Uptime.Text" xml:space="preserve">
     <value>시스템 작동 시간</value>
   </data>
-  <data name="SystemInfo_Runtime_DotNet.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_DotNet.Text" xml:space="preserve">
     <value>.NET 버전</value>
   </data>
-  <data name="SystemInfo_Unknow" xml:space="preserve">
+  <data name="Pages_SystemInfo_Unknow" xml:space="preserve">
     <value>알 수 없음</value>
   </data>
-  <data name="SystemInfo_NoConnection" xml:space="preserve">
+  <data name="Pages_SystemInfo_NoConnection" xml:space="preserve">
     <value>연결 안 됨</value>
   </data>
-  <data name="SystemInfo_Used" xml:space="preserve">
+  <data name="Pages_SystemInfo_Used" xml:space="preserve">
     <value>사용됨</value>
   </data>
-  <data name="SystemInfo_Available" xml:space="preserve">
+  <data name="Pages_SystemInfo_Available" xml:space="preserve">
     <value>사용 가능</value>
   </data>
-  <data name="Home_Notice_CanNotLoad" xml:space="preserve">
+  <data name="Pages_Home_Notice_CanNotLoad" xml:space="preserve">
     <value>공지 불러오기 실패</value>
   </data>
-  <data name="Pictures_Button_Info.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_Pictures_Button_Info.ToolTipService.ToolTip" xml:space="preserve">
     <value>이미지 설명</value>
   </data>
-  <data name="Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
     <value>이미지 다운로드</value>
+  </data>
+  <data name="Main_NavView_Timestamp.Content" xml:space="preserve">
+    <value>타임스탬프 도구</value>
+  </data>
+  <data name="Pages_Timestamp_CurrentTimeData.Description" xml:space="preserve">
+    <value>현재 시간</value>
+  </data>
+  <data name="Pages_Timestamp_CurrentTimestampData.Description" xml:space="preserve">
+    <value>현재 타임스탬프</value>
+  </data>
+  <data name="Pages_Timestamp_CurrentMillisecondsData.Description" xml:space="preserve">
+    <value>현재 밀리초 타임스탬프</value>
+  </data>
+  <data name="Pages_Timestamp_CopyTimestampResultButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>결과 복사</value>
+  </data>
+  <data name="Pages_Timestamp_ConvertedResult.Text" xml:space="preserve">
+    <value>변환 결과</value>
+  </data>
+  <data name="Pages_Timestamp_DateTimeToTimestampCardTitle.Text" xml:space="preserve">
+    <value>날짜/시간을 타임스탬프로 변환</value>
+  </data>
+  <data name="Pages_Timestamp_TimestampToDateTimeCardTitle.Text" xml:space="preserve">
+    <value>타임스탬프를 날짜/시간으로 변환</value>
+  </data>
+  <data name="Pages_Timestamp_ConvertButton.Content" xml:space="preserve">
+    <value>변환</value>
+  </data>
+  <data name="Pages_Timestamp_TimestampInput.PlaceholderText" xml:space="preserve">
+    <value>타임스탬프를 입력하세요</value>
+  </data>
+  <data name="Pages_Timestamp_SecondsComboBoxItem.Content" xml:space="preserve">
+    <value>초</value>
+  </data>
+  <data name="Pages_Timestamp_MillisecondsComboBoxItem.Content" xml:space="preserve">
+    <value>밀리초</value>
+  </data>
+  <data name="Pages_Timestamp_InvalidNumber" xml:space="preserve">
+    <value>유효한 숫자를 입력하세요</value>
+  </data>
+  <data name="Pages_Timestamp_OutOfRange" xml:space="preserve">
+    <value>타임스탬프가 유효 범위를 벗어났습니다</value>
   </data>
 </root>

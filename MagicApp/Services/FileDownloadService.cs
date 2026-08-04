@@ -48,7 +48,7 @@ namespace MagicApp.Services
                 // 验证参数
                 if (string.IsNullOrEmpty(downloadUrl))
                 {
-                    throw new ArgumentException(_resourceLoader.GetString("FileDownloadService_UrlNoNull"));
+                    throw new ArgumentException(_resourceLoader.GetString("Services_FileDownload_UrlNoNull"));
                 }
 
                 if (string.IsNullOrEmpty(suggestedFileName))
@@ -104,7 +104,7 @@ namespace MagicApp.Services
                 else
                 {
                     // 如果没有提供文件类型选择，使用通用类型
-                    picker.FileTypeChoices.Add(_resourceLoader.GetString("FileDownloadService_AllFile"), new List<string> { ".*" });
+                    picker.FileTypeChoices.Add(_resourceLoader.GetString("Services_FileDownload_AllFile"), new List<string> { ".*" });
                 }
 
                 // 设置默认扩展名
@@ -127,9 +127,9 @@ namespace MagicApp.Services
                     {
                         XamlRoot = xamlRoot,
                         Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                        Title = dialogTitle ?? _resourceLoader.GetString("FileDownloadService_Downloading"),
+                        Title = dialogTitle ?? _resourceLoader.GetString("Services_FileDownload_Downloading"),
                         Content = CreateProgressContent(),
-                        PrimaryButtonText = _resourceLoader.GetString("FileDownloadService_Cancel"),
+                        PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Cancel"),
                         CloseButtonText = null,
                         DefaultButton = ContentDialogButton.Primary
                     };
@@ -247,8 +247,8 @@ namespace MagicApp.Services
                         // 更新对话框
                         UpdateDialogForCompletion(
                             progressDialog,
-                            _resourceLoader.GetString("FileDownloadService_Success"),
-                            successMessage ?? _resourceLoader.GetString("FileDownloadService_FilePath") + $"\n{targetFile.Path}");
+                            _resourceLoader.GetString("Services_FileDownload_Success"),
+                            successMessage ?? _resourceLoader.GetString("Services_FileDownload_FilePath") + $"\n{targetFile.Path}");
 
                         // 移除取消事件处理程序
                         progressDialog.PrimaryButtonClick -= cancelHandler;
@@ -260,7 +260,7 @@ namespace MagicApp.Services
                         };
 
                         // 修改按钮文本
-                        progressDialog.PrimaryButtonText = _resourceLoader.GetString("FileDownloadService_Close");
+                        progressDialog.PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Close");
 
                         // 等待用户点击关闭按钮
                         await showTask;
@@ -299,13 +299,13 @@ namespace MagicApp.Services
                             };
 
                             // 修改按钮文本
-                            progressDialog.PrimaryButtonText = _resourceLoader.GetString("FileDownloadService_Close");
+                            progressDialog.PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Close");
 
                             // 下载失败，更新对话框
                             UpdateDialogForCompletion(
                                 progressDialog,
-                                _resourceLoader.GetString("FileDownloadService_Failure"),
-                                failureMessage ?? _resourceLoader.GetString("FileDownloadService_Failure") + $"\n{ex.Message}");
+                                _resourceLoader.GetString("Services_FileDownload_Failure"),
+                                failureMessage ?? _resourceLoader.GetString("Services_FileDownload_Failure") + $"\n{ex.Message}");
 
                             progressDialog.IsPrimaryButtonEnabled = true;
                             await showTask;
@@ -320,7 +320,7 @@ namespace MagicApp.Services
             catch (Exception ex)
             {
                 // 显示错误对话框
-                await ShowErrorDialogAsync(xamlRoot, _resourceLoader.GetString("FileDownloadService_Error"), _resourceLoader.GetString("FileDownloadService_Error_Describe") + $"\n{ex.Message}");
+                await ShowErrorDialogAsync(xamlRoot, _resourceLoader.GetString("Services_FileDownload_Error"), _resourceLoader.GetString("Services_FileDownload_Error_Describe") + $"\n{ex.Message}");
                 return false;
             }
         }
@@ -338,7 +338,7 @@ namespace MagicApp.Services
                 { "JPEG", new List<string> { ".jpg", ".jpeg" } },
                 { "PNG", new List<string> { ".png" } },
                 { "BMP", new List<string> { ".bmp" } },
-                { _resourceLoader.GetString("FileDownloadService_AllFile_Image"), new List<string> { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp", ".tiff" } }
+                { _resourceLoader.GetString("Services_FileDownload_AllFile_Image"), new List<string> { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp", ".tiff" } }
             };
 
             string defaultExtension = GetDefaultImageExtension(imageUrl);
@@ -363,7 +363,7 @@ namespace MagicApp.Services
             {
                 { "MP4", new List<string> { ".mp4" } },
                 { "WebM", new List<string> { ".webm" } },
-                { _resourceLoader.GetString("FileDownloadService_AllFile_Video"), new List<string> { ".mp4", ".webm", ".avi", ".mov", ".wmv", ".flv", ".mkv" } }
+                { _resourceLoader.GetString("Services_FileDownload_AllFile_Video"), new List<string> { ".mp4", ".webm", ".avi", ".mov", ".wmv", ".flv", ".mkv" } }
             };
 
             string defaultExtension = GetDefaultVideoExtension(videoUrl);
@@ -386,7 +386,7 @@ namespace MagicApp.Services
         {
             var fileTypeChoices = new Dictionary<string, List<string>>
             {
-                { _resourceLoader.GetString("FileDownloadService_AllFile"), new List<string> { ".*" } }
+                { _resourceLoader.GetString("Services_FileDownload_AllFile"), new List<string> { ".*" } }
             };
 
             string defaultExtension = Path.GetExtension(fileUrl);
@@ -461,7 +461,7 @@ namespace MagicApp.Services
         private static string GetFileTypeDescription(string extension)
         {
             if (string.IsNullOrEmpty(extension))
-                return _resourceLoader.GetString("FileDownloadService_File");
+                return _resourceLoader.GetString("Services_FileDownload_File");
 
             extension = extension.ToLowerInvariant();
 
@@ -483,7 +483,7 @@ namespace MagicApp.Services
                 ".zip" => "ZIP",
                 ".rar" => "RAR",
                 ".7z" => "7Z",
-                ".txt" => _resourceLoader.GetString("FileDownloadService_TxtFile"),
+                ".txt" => _resourceLoader.GetString("Services_FileDownload_TxtFile"),
                 ".pdf" => "PDF",
                 ".doc" or ".docx" => "Word",
                 ".xls" or ".xlsx" => "Excel",
@@ -570,18 +570,18 @@ namespace MagicApp.Services
                             string remainingTimeText;
                             if (remainingTime.Value.TotalHours >= 1)
                             {
-                                remainingTimeText = $"{(int)remainingTime.Value.TotalHours}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Hour") + $"{ (int)remainingTime.Value.Minutes}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Minute");
+                                remainingTimeText = $"{(int)remainingTime.Value.TotalHours}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Hour") + $"{ (int)remainingTime.Value.Minutes}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Minute");
                             }
                             else if (remainingTime.Value.TotalMinutes >= 1)
                             {
-                                remainingTimeText = $"{(int)remainingTime.Value.TotalMinutes}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Minute") + $"{ (int)remainingTime.Value.Seconds}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Second");
+                                remainingTimeText = $"{(int)remainingTime.Value.TotalMinutes}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Minute") + $"{ (int)remainingTime.Value.Seconds}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Second");
                             }
                             else
                             {
-                                remainingTimeText = $"{(int)remainingTime.Value.TotalSeconds}" + _resourceLoader.GetString("FileDownloadService_remainingTime_Second");
+                                remainingTimeText = $"{(int)remainingTime.Value.TotalSeconds}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Second");
                             }
 
-                            speedTextBlock.Text = $"{speedText} - " + _resourceLoader.GetString("FileDownloadService_remainingTimeText") + $"{remainingTimeText}";
+                            speedTextBlock.Text = $"{speedText} - " + _resourceLoader.GetString("Services_FileDownload_remainingTimeText") + $"{remainingTimeText}";
                         }
                         else
                         {
@@ -638,7 +638,7 @@ namespace MagicApp.Services
                 XamlRoot = xamlRoot,
                 Title = title,
                 Content = message,
-                CloseButtonText = loader.GetString("FileDownloadService_Close"),
+                CloseButtonText = loader.GetString("Services_FileDownload_Close"),
                 DefaultButton = ContentDialogButton.Close
             };
 

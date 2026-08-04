@@ -88,7 +88,7 @@ namespace MagicApp.Services
                     {
                         return UpdateResult.CreateError(
                             currentVersion,
-                            $"{_resourceLoader.GetString("UpdateService_Error")}:\n(HTTP {response.StatusCode})"
+                            $"{_resourceLoader.GetString("Services_Update_Error")}:\n(HTTP {response.StatusCode})"
                         );
                     }
                 }
@@ -98,14 +98,14 @@ namespace MagicApp.Services
                     string currentVersion = $"{packageVersion.Major}.{packageVersion.Minor}.{packageVersion.Build}.{packageVersion.Revision}";
                     return UpdateResult.CreateError(
                         currentVersion,
-                        $"{_resourceLoader.GetString("UpdateService_Error")}:\n{httpEx.Message}"
+                        $"{_resourceLoader.GetString("Services_Update_Error")}:\n{httpEx.Message}"
                     );
                 }
                 catch (Exception ex)
                 {
                     var packageVersion = Package.Current.Id.Version;
                     string currentVersion = $"{packageVersion.Major}.{packageVersion.Minor}.{packageVersion.Build}.{packageVersion.Revision}";
-                    return UpdateResult.CreateError(currentVersion, $"{_resourceLoader.GetString("UpdateService_Error")}:\n{ex.Message}");
+                    return UpdateResult.CreateError(currentVersion, $"{_resourceLoader.GetString("Services_Update_Error")}:\n{ex.Message}");
                 }
             }
         }
@@ -135,7 +135,7 @@ namespace MagicApp.Services
                 if (!result.IsSuccess)
                 {
                     _isDialogShowing = true;
-                    await ShowErrorDialogAsync(xamlRoot, result.ErrorMessage ?? _resourceLoader.GetString("UpdateService_Error"));
+                    await ShowErrorDialogAsync(xamlRoot, result.ErrorMessage ?? _resourceLoader.GetString("Services_Update_Error"));
                     _isDialogShowing = false;
                 }
                 else if (!result.HasUpdate)
@@ -201,9 +201,9 @@ namespace MagicApp.Services
             {
                 XamlRoot = xamlRoot,
                 Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                Title = _resourceLoader.GetString("UpdateService_Title"),
-                Content = _resourceLoader.GetString("UpdateService_Latest"),
-                CloseButtonText = _resourceLoader.GetString("UpdateService_Close"),
+                Title = _resourceLoader.GetString("Services_Update_Title"),
+                Content = _resourceLoader.GetString("Services_Update_Latest"),
+                CloseButtonText = _resourceLoader.GetString("Services_Update_Close"),
                 DefaultButton = ContentDialogButton.Close
             };
             await dialog.ShowAsync();
@@ -375,9 +375,9 @@ namespace MagicApp.Services
                 XamlRoot = xamlRoot,
                 Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
                 Content = container,
-                PrimaryButtonText = _resourceLoader.GetString("UpdateService_Download"),
-                SecondaryButtonText = _resourceLoader.GetString("UpdateService_Release"),
-                CloseButtonText = _resourceLoader.GetString("UpdateService_Later"),
+                PrimaryButtonText = _resourceLoader.GetString("Services_Update_Download"),
+                SecondaryButtonText = _resourceLoader.GetString("Services_Update_Release"),
+                CloseButtonText = _resourceLoader.GetString("Services_Update_Later"),
                 DefaultButton = ContentDialogButton.Primary
             };
 
@@ -402,7 +402,7 @@ namespace MagicApp.Services
         {
             if (string.IsNullOrWhiteSpace(markdown))
             {
-                return "<p>" + _resourceLoader.GetString("UpdateService_NoReleaseNotes") + "</p>";
+                return "<p>" + _resourceLoader.GetString("Services_Update_NoReleaseNotes") + "</p>";
             }
 
             // 简单的Markdown转换
@@ -479,7 +479,7 @@ namespace MagicApp.Services
                 var fileTypeChoices = new Dictionary<string, List<string>>
                 {
                     { "ZIP", new List<string> { ".zip"} },
-                    { _resourceLoader.GetString("FileDownloadService_AllFile"), new List<string> { "." } }
+                    { _resourceLoader.GetString("Services_FileDownload_AllFile"), new List<string> { "." } }
                 };
 
                 // 调用FileDownloadService
@@ -505,9 +505,9 @@ namespace MagicApp.Services
             {
                 XamlRoot = xamlRoot,
                 Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                Title = _resourceLoader.GetString("UpdateService_Title"),
+                Title = _resourceLoader.GetString("Services_Update_Title"),
                 Content = errorMessage,
-                CloseButtonText = _resourceLoader.GetString("UpdateService_Close"),
+                CloseButtonText = _resourceLoader.GetString("Services_Update_Close"),
                 DefaultButton = ContentDialogButton.Close
             };
             await dialog.ShowAsync();

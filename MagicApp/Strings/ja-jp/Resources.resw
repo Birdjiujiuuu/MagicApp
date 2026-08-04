@@ -156,151 +156,151 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>素晴らしいアプリ</value>
   </data>
-  <data name="Pictures_Source_Bing.Text" xml:space="preserve">
+  <data name="Pages_Pictures_Source_Bing.Text" xml:space="preserve">
     <value>Bing</value>
   </data>
-  <data name="Pictures_Source_NASA.Text" xml:space="preserve">
+  <data name="Pages_Pictures_Source_NASA.Text" xml:space="preserve">
     <value>NASA</value>
   </data>
   <data name="Main_Titlebar.Subtitle" xml:space="preserve">
     <value>プレビュー</value>
   </data>
-  <data name="Search_SearchBox.PlaceholderText" xml:space="preserve">
+  <data name="Pages_Search_SearchBox.PlaceholderText" xml:space="preserve">
     <value>ここに入力して検索</value>
   </data>
-  <data name="Search_OpenInBowser.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_Search_OpenInBowser.ToolTipService.ToolTip" xml:space="preserve">
     <value>ブラウザで開く</value>
   </data>
-  <data name="Search_Engine_Google.Text" xml:space="preserve">
+  <data name="Pages_Search_Engine_Google.Text" xml:space="preserve">
     <value>Google</value>
   </data>
-  <data name="Search_Engine_Baidu.Text" xml:space="preserve">
+  <data name="Pages_Search_Engine_Baidu.Text" xml:space="preserve">
     <value>Baidu</value>
   </data>
-  <data name="Search_Engine_Bing.Text" xml:space="preserve">
+  <data name="Pages_Search_Engine_Bing.Text" xml:space="preserve">
     <value>Bing</value>
   </data>
-  <data name="Notice_Send.Text" xml:space="preserve">
+  <data name="Pages_Notice_Send.Text" xml:space="preserve">
     <value>送信</value>
   </data>
-  <data name="Notice_Clear.Content" xml:space="preserve">
+  <data name="Pages_Notice_Clear.Content" xml:space="preserve">
     <value>クリア</value>
   </data>
-  <data name="QRCode_ClearButton.Content" xml:space="preserve">
+  <data name="Pages_QRCode_ClearButton.Content" xml:space="preserve">
     <value>クリア</value>
   </data>
-  <data name="Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
     <value>サウンドイベント</value>
   </data>
-  <data name="Notice_SoundEvent_Default.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Default.Content" xml:space="preserve">
     <value>デフォルト</value>
   </data>
-  <data name="Notice_SoundEvent_Call.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Call.Content" xml:space="preserve">
     <value>通話</value>
   </data>
-  <data name="Notice_SoundEvent_Alarm.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Alarm.Content" xml:space="preserve">
     <value>アラーム</value>
   </data>
-  <data name="Notice_SoundEvent_SMS.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_SMS.Content" xml:space="preserve">
     <value>メッセージ</value>
   </data>
-  <data name="Notice_SoundEvent_Reminder.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_Reminder.Content" xml:space="preserve">
     <value>リマインダー</value>
   </data>
-  <data name="Notice_SoundEvent_IM.Content" xml:space="preserve">
+  <data name="Pages_Notice_SoundEvent_IM.Content" xml:space="preserve">
     <value>インスタントメッセージ</value>
   </data>
-  <data name="Notice_ContentTitle.PlaceholderText" xml:space="preserve">
+  <data name="Pages_Notice_ContentTitle.PlaceholderText" xml:space="preserve">
     <value>タイトル</value>
   </data>
-  <data name="Notice_ContentContent.PlaceholderText" xml:space="preserve">
+  <data name="Pages_Notice_ContentContent.PlaceholderText" xml:space="preserve">
     <value>コンテンツ</value>
   </data>
-  <data name="Notice_ContentTitle.Header" xml:space="preserve">
+  <data name="Pages_Notice_ContentTitle.Header" xml:space="preserve">
     <value>タイトル</value>
   </data>
-  <data name="Notice_ContentContent.Header" xml:space="preserve">
+  <data name="Pages_Notice_ContentContent.Header" xml:space="preserve">
     <value>コンテンツ</value>
   </data>
-  <data name="Settings_Theme.Description" xml:space="preserve">
+  <data name="Pages_Settings_Theme.Description" xml:space="preserve">
     <value>ライト/ダークモード切替</value>
   </data>
-  <data name="Settings_Languages.Description" xml:space="preserve">
+  <data name="Pages_Settings_Languages.Description" xml:space="preserve">
     <value>表示言語を選択</value>
   </data>
-  <data name="Settings_Languages.Header" xml:space="preserve">
+  <data name="Pages_Settings_Languages.Header" xml:space="preserve">
     <value>言語</value>
   </data>
-  <data name="Settings_AppVersion.Header" xml:space="preserve">
+  <data name="Pages_Settings_AppVersion.Header" xml:space="preserve">
     <value>バージョン更新</value>
   </data>
-  <data name="Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
+  <data name="Pages_Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
     <value>更新を確認</value>
   </data>
-  <data name="UpdateService_Title" xml:space="preserve">
+  <data name="Services_Update_Title" xml:space="preserve">
     <value>更新を確認</value>
   </data>
-  <data name="UpdateService_Close" xml:space="preserve">
+  <data name="Services_Update_Close" xml:space="preserve">
     <value>確認</value>
   </data>
-  <data name="UpdateService_Error" xml:space="preserve">
+  <data name="Services_Update_Error" xml:space="preserve">
     <value>エラー</value>
   </data>
-  <data name="UpdateService_Latest" xml:space="preserve">
+  <data name="Services_Update_Latest" xml:space="preserve">
     <value>最新版です！</value>
   </data>
-  <data name="UpdateService_Later" xml:space="preserve">
+  <data name="Services_Update_Later" xml:space="preserve">
     <value>後でダウンロード</value>
   </data>
-  <data name="UpdateService_Download" xml:space="preserve">
+  <data name="Services_Update_Download" xml:space="preserve">
     <value>今すぐダウンロード</value>
   </data>
-  <data name="Settings_Theme.Header" xml:space="preserve">
+  <data name="Pages_Settings_Theme.Header" xml:space="preserve">
     <value>テーマ</value>
   </data>
-  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+  <data name="Pages_Settings_Theme_Default.Content" xml:space="preserve">
     <value>Windowsに合わせる</value>
   </data>
-  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+  <data name="Pages_Settings_Theme_Light.Content" xml:space="preserve">
     <value>ライト</value>
   </data>
-  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+  <data name="Pages_Settings_Theme_Dark.Content" xml:space="preserve">
     <value>ダーク</value>
   </data>
-  <data name="Settings_Languages_Dialog_Title" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Title" xml:space="preserve">
     <value>言語が変更されました</value>
   </data>
-  <data name="Settings_Languages_Dialog_Content" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Content" xml:space="preserve">
     <value>言語変更を有効にするにはアプリを再起動する必要があります。今すぐ再起動しますか？</value>
   </data>
-  <data name="Settings_Languages_Dialog_Restart" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Restart" xml:space="preserve">
     <value>すぐに再起動</value>
   </data>
-  <data name="Settings_Languages_Dialog_Later" xml:space="preserve">
+  <data name="Pages_Settings_Languages_Dialog_Later" xml:space="preserve">
     <value>後ほど</value>
   </data>
-  <data name="Settings_About_OfficialWebsite" xml:space="preserve">
+  <data name="Pages_Settings_About_OfficialWebsite" xml:space="preserve">
     <value>公式サイト</value>
   </data>
-  <data name="Settings_About_SourceCode" xml:space="preserve">
+  <data name="Pages_Settings_About_SourceCode" xml:space="preserve">
     <value>ソースコード</value>
   </data>
-  <data name="FileDownloadService_Close" xml:space="preserve">
+  <data name="Services_FileDownload_Close" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="FileDownloadService_Downloading" xml:space="preserve">
+  <data name="Services_FileDownload_Downloading" xml:space="preserve">
     <value>ダウンロード中</value>
   </data>
-  <data name="FileDownloadService_FilePath" xml:space="preserve">
+  <data name="Services_FileDownload_FilePath" xml:space="preserve">
     <value>ファイルの保存先：</value>
   </data>
-  <data name="FileDownloadService_Error" xml:space="preserve">
+  <data name="Services_FileDownload_Error" xml:space="preserve">
     <value>エラー</value>
   </data>
-  <data name="FileDownloadService_Success" xml:space="preserve">
+  <data name="Services_FileDownload_Success" xml:space="preserve">
     <value>ダウンロードが成功しました</value>
   </data>
-  <data name="FileDownloadService_Failure" xml:space="preserve">
+  <data name="Services_FileDownload_Failure" xml:space="preserve">
     <value>ダウンロード失敗：</value>
   </data>
   <data name="Main_NavView_BilibiliVideoData.Content" xml:space="preserve">
@@ -309,181 +309,223 @@
   <data name="Main_NavView_QRCode.Content" xml:space="preserve">
     <value>QRコードツール</value>
   </data>
-  <data name="FileDownloadService_UrlNoNull" xml:space="preserve">
+  <data name="Services_FileDownload_UrlNoNull" xml:space="preserve">
     <value>ダウンロードURLは空にできません</value>
   </data>
-  <data name="FileDownloadService_AllFile" xml:space="preserve">
+  <data name="Services_FileDownload_AllFile" xml:space="preserve">
     <value>すべてのファイル</value>
   </data>
-  <data name="FileDownloadService_File" xml:space="preserve">
+  <data name="Services_FileDownload_File" xml:space="preserve">
     <value>ファイル</value>
   </data>
-  <data name="FileDownloadService_TxtFile" xml:space="preserve">
+  <data name="Services_FileDownload_TxtFile" xml:space="preserve">
     <value>テキストファイル</value>
   </data>
-  <data name="FileDownloadService_Error_Describe" xml:space="preserve">
+  <data name="Services_FileDownload_Error_Describe" xml:space="preserve">
     <value>ダウンロード中にエラーが発生しました：</value>
   </data>
-  <data name="FileDownloadService_AllFile_Image" xml:space="preserve">
+  <data name="Services_FileDownload_AllFile_Image" xml:space="preserve">
     <value>すべての画像ファイル</value>
   </data>
-  <data name="FileDownloadService_AllFile_Video" xml:space="preserve">
+  <data name="Services_FileDownload_AllFile_Video" xml:space="preserve">
     <value>すべての動画ファイル</value>
   </data>
-  <data name="UpdateService_Release" xml:space="preserve">
+  <data name="Services_Update_Release" xml:space="preserve">
     <value>リリースページへ</value>
   </data>
-  <data name="FileDownloadService_Cancel" xml:space="preserve">
+  <data name="Services_FileDownload_Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
-  <data name="FileDownloadService_remainingTime_Hour" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTime_Hour" xml:space="preserve">
     <value>時間</value>
   </data>
-  <data name="FileDownloadService_remainingTime_Minute" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTime_Minute" xml:space="preserve">
     <value>分</value>
   </data>
-  <data name="FileDownloadService_remainingTime_Second" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTime_Second" xml:space="preserve">
     <value>秒</value>
   </data>
-  <data name="FileDownloadService_remainingTimeText" xml:space="preserve">
+  <data name="Services_FileDownload_remainingTimeText" xml:space="preserve">
     <value>残り約 </value>
   </data>
-  <data name="QRCode_Status_Success" xml:space="preserve">
+  <data name="Pages_QRCode_Status_Success" xml:space="preserve">
     <value>QRコードの生成に成功しました</value>
   </data>
-  <data name="QRCode_Status_Failure" xml:space="preserve">
+  <data name="Pages_QRCode_Status_Failure" xml:space="preserve">
     <value>生成失敗:</value>
   </data>
-  <data name="QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
+  <data name="Pages_QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
     <value>QRコードの内容を入力してください...</value>
   </data>
-  <data name="QRCode_TextLengthData.Description" xml:space="preserve">
+  <data name="Pages_QRCode_TextLengthData.Description" xml:space="preserve">
     <value>入力長/文字数</value>
   </data>
-  <data name="QRCode_TitlePreview.Text" xml:space="preserve">
+  <data name="Pages_QRCode_TitlePreview.Text" xml:space="preserve">
     <value>QRコードプレビュー</value>
   </data>
-  <data name="QRCode_TitleGenerate.Text" xml:space="preserve">
+  <data name="Pages_QRCode_TitleGenerate.Text" xml:space="preserve">
     <value>QRコード生成</value>
   </data>
-  <data name="QRCode_GenerateButton.Content" xml:space="preserve">
+  <data name="Pages_QRCode_GenerateButton.Content" xml:space="preserve">
     <value>QRコードを生成</value>
   </data>
   <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
     <value>変換ツール</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs.Text" xml:space="preserve">
     <value>デバイスの仕様</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_DeviceName.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_DeviceName.Text" xml:space="preserve">
     <value>デバイス名</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Architecture.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Architecture.Text" xml:space="preserve">
     <value>システムの種類</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Resolution.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Resolution.Text" xml:space="preserve">
     <value>画面解像度</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Gpu.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Gpu.Text" xml:space="preserve">
     <value>グラフィック カード</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Drives.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Drives.Text" xml:space="preserve">
     <value>ドライブ</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_PageFile.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_PageFile.Text" xml:space="preserve">
     <value>仮想メモリ</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Memory.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Memory.Text" xml:space="preserve">
     <value>メモリ</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Cpu.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Cpu.Text" xml:space="preserve">
     <value>プロセッサ</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_SystemModel.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_SystemModel.Text" xml:space="preserve">
     <value>システム モデル</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_BiosVersion.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_BiosVersion.Text" xml:space="preserve">
     <value>BIOS バージョン</value>
   </data>
-  <data name="SystemInfo_DeviceSpecs_Motherboard.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_DeviceSpecs_Motherboard.Text" xml:space="preserve">
     <value>マザーボード</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs.Text" xml:space="preserve">
     <value>Windows の仕様</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_Experience.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_Experience.Text" xml:space="preserve">
     <value>エクスペリエンス パック</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
     <value>オペレーティング システム バージョン</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
     <value>インストール日</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_VersionDisplay.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_VersionDisplay.Text" xml:space="preserve">
     <value>バージョン</value>
   </data>
-  <data name="SystemInfo_WindowsSpecs_Edition.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_WindowsSpecs_Edition.Text" xml:space="preserve">
     <value>エディション</value>
   </data>
-  <data name="SystemInfo_Network.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network.Text" xml:space="preserve">
     <value>ネットワーク</value>
   </data>
-  <data name="SystemInfo_Network_DnsServers.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_DnsServers.Text" xml:space="preserve">
     <value>DNS サーバー</value>
   </data>
-  <data name="SystemInfo_Network_Gateway.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Gateway.Text" xml:space="preserve">
     <value>デフォルト ゲートウェイ</value>
   </data>
-  <data name="SystemInfo_Network_MacAddress.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_MacAddress.Text" xml:space="preserve">
     <value>MAC アドレス</value>
   </data>
-  <data name="SystemInfo_Network_Ipv6Address.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Ipv6Address.Text" xml:space="preserve">
     <value>IPv6 アドレス</value>
   </data>
-  <data name="SystemInfo_Network_Ipv4Address.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Ipv4Address.Text" xml:space="preserve">
     <value>IPv4 アドレス</value>
   </data>
-  <data name="SystemInfo_Network_Status.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Status.Text" xml:space="preserve">
     <value>状態</value>
   </data>
-  <data name="SystemInfo_Network_Adapter.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Network_Adapter.Text" xml:space="preserve">
     <value>アダプター</value>
   </data>
-  <data name="SystemInfo_Runtime.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime.Text" xml:space="preserve">
     <value>ランタイム</value>
   </data>
-  <data name="SystemInfo_Runtime_UserProfile.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_UserProfile.Text" xml:space="preserve">
     <value>ユーザー ディレクトリ</value>
   </data>
-  <data name="SystemInfo_Runtime_CurrentUser.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_CurrentUser.Text" xml:space="preserve">
     <value>現在のユーザー</value>
   </data>
-  <data name="SystemInfo_Runtime_Uptime.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_Uptime.Text" xml:space="preserve">
     <value>システム起動時間</value>
   </data>
-  <data name="SystemInfo_Runtime_DotNet.Text" xml:space="preserve">
+  <data name="Pages_SystemInfo_Runtime_DotNet.Text" xml:space="preserve">
     <value>.NET バージョン</value>
   </data>
-  <data name="SystemInfo_Unknow" xml:space="preserve">
+  <data name="Pages_SystemInfo_Unknow" xml:space="preserve">
     <value>不明</value>
   </data>
-  <data name="SystemInfo_NoConnection" xml:space="preserve">
+  <data name="Pages_SystemInfo_NoConnection" xml:space="preserve">
     <value>接続なし</value>
   </data>
-  <data name="SystemInfo_Used" xml:space="preserve">
+  <data name="Pages_SystemInfo_Used" xml:space="preserve">
     <value>使用済み</value>
   </data>
-  <data name="SystemInfo_Available" xml:space="preserve">
+  <data name="Pages_SystemInfo_Available" xml:space="preserve">
     <value>利用可能</value>
   </data>
-  <data name="Home_Notice_CanNotLoad" xml:space="preserve">
+  <data name="Pages_Home_Notice_CanNotLoad" xml:space="preserve">
     <value>お知らせ取得エラー</value>
   </data>
-  <data name="Pictures_Button_Info.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_Pictures_Button_Info.ToolTipService.ToolTip" xml:space="preserve">
     <value>画像の説明</value>
   </data>
-  <data name="Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_Pictures_Button_Download.ToolTipService.ToolTip" xml:space="preserve">
     <value>画像をダウンロード</value>
+  </data>
+  <data name="Main_NavView_Timestamp.Content" xml:space="preserve">
+    <value>タイムスタンプツール</value>
+  </data>
+  <data name="Pages_Timestamp_CurrentTimeData.Description" xml:space="preserve">
+    <value>現在時刻</value>
+  </data>
+  <data name="Pages_Timestamp_CurrentTimestampData.Description" xml:space="preserve">
+    <value>現在のタイムスタンプ</value>
+  </data>
+  <data name="Pages_Timestamp_CurrentMillisecondsData.Description" xml:space="preserve">
+    <value>現在のミリ秒タイムスタンプ</value>
+  </data>
+  <data name="Pages_Timestamp_CopyTimestampResultButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>結果をコピー</value>
+  </data>
+  <data name="Pages_Timestamp_ConvertedResult.Text" xml:space="preserve">
+    <value>変換結果</value>
+  </data>
+  <data name="Pages_Timestamp_DateTimeToTimestampCardTitle.Text" xml:space="preserve">
+    <value>日時をタイムスタンプに変換</value>
+  </data>
+  <data name="Pages_Timestamp_TimestampToDateTimeCardTitle.Text" xml:space="preserve">
+    <value>タイムスタンプを日時に変換</value>
+  </data>
+  <data name="Pages_Timestamp_ConvertButton.Content" xml:space="preserve">
+    <value>変換</value>
+  </data>
+  <data name="Pages_Timestamp_TimestampInput.PlaceholderText" xml:space="preserve">
+    <value>タイムスタンプを入力してください</value>
+  </data>
+  <data name="Pages_Timestamp_SecondsComboBoxItem.Content" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="Pages_Timestamp_MillisecondsComboBoxItem.Content" xml:space="preserve">
+    <value>ミリ秒</value>
+  </data>
+  <data name="Pages_Timestamp_InvalidNumber" xml:space="preserve">
+    <value>有効な数字を入力してください</value>
+  </data>
+  <data name="Pages_Timestamp_OutOfRange" xml:space="preserve">
+    <value>タイムスタンプが有効範囲外です</value>
   </data>
 </root>
