@@ -3,7 +3,7 @@
 ⏰更新频率比较随机，有空就写写代码，开发一些新功能\
 ⭐使用 WinUI 3 进行程序开发，作者编程能力有限，故采用人工 + AI 辅助的方法进行开发（其实是 AI 生成大部分代码后再人工修改整理
 # ↓首页预览图以及当前已经具备的功能↓
-<img width="951" height="554" alt="image" src="https://github.com/user-attachments/assets/4d28e1e3-a50b-4599-8859-12fc222cb200" /><br />
+<img width="951" height="554" alt="image" src="https://github.com/user-attachments/assets/03188e97-a906-4f7f-a953-69c326f05a6b" />
 # 支持的语言
 🇨🇳 简体中文\
 🇭🇰 繁體中文\
