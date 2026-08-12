@@ -369,13 +369,18 @@ namespace MagicApp.Services
             // 加载HTML内容
             webView.CoreWebView2.NavigateToString(htmlContent);
 
+            // 判断是否为商店版本
+            bool isStore = (Package.Current.SignatureKind == PackageSignatureKind.Store);
+
             // 创建对话框
             ContentDialog dialog = new()
             {
                 XamlRoot = xamlRoot,
                 Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
                 Content = container,
-                PrimaryButtonText = _resourceLoader.GetString("Services_Update_Download"),
+                PrimaryButtonText = isStore
+                    ? _resourceLoader.GetString("Services_Update_StoreUpdate")
+                    : _resourceLoader.GetString("Services_Update_Download"),
                 SecondaryButtonText = _resourceLoader.GetString("Services_Update_Release"),
                 CloseButtonText = _resourceLoader.GetString("Services_Update_Later"),
                 DefaultButton = ContentDialogButton.Primary
@@ -385,10 +390,20 @@ namespace MagicApp.Services
 
             if (result == ContentDialogResult.Primary)
             {
-                // 下载更新文件
-                await DownloadFileAsync(downloadUrl, newestVersion, xamlRoot);
+                if (isStore)
+                {
+                    // 商店用户：跳转到商店详情页
+                    string storeProductId = "9PBZ97JBR98G";
+                    var storeUri = new Uri($"ms-windows-store://pdp/?ProductId={storeProductId}");
+                    await Launcher.LaunchUriAsync(storeUri);
+                }
+                else
+                {
+                    // GitHub 用户：直接下载更新
+                    await DownloadFileAsync(downloadUrl, newestVersion, xamlRoot);
+                }
             }
-            if (result == ContentDialogResult.Secondary)
+            else if (result == ContentDialogResult.Secondary)
             {
                 // 打开发布页面
                 await Launcher.LaunchUriAsync(new Uri(releaseUrl));

@@ -528,4 +528,7 @@
   <data name="Pages_Timestamp_OutOfRange" xml:space="preserve">
     <value>時間戳超出有效範圍</value>
   </data>
+  <data name="Services_Update_StoreUpdate" xml:space="preserve">
+    <value>前往 Microsoft Store</value>
+  </data>
 </root>

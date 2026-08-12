@@ -528,4 +528,7 @@
   <data name="Pages_Timestamp_OutOfRange" xml:space="preserve">
     <value>超出有效范围了呜~</value>
   </data>
+  <data name="Services_Update_StoreUpdate" xml:space="preserve">
+    <value>去商店看看</value>
+  </data>
 </root>

@@ -154,7 +154,7 @@
     <value>시스템 정보</value>
   </data>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>신비한 앱</value>
+    <value>Magic App by Birdjiujiuuu</value>
   </data>
   <data name="Pages_Pictures_Source_Bing.Text" xml:space="preserve">
     <value>Bing</value>
@@ -527,5 +527,8 @@
   </data>
   <data name="Pages_Timestamp_OutOfRange" xml:space="preserve">
     <value>타임스탬프가 유효 범위를 벗어났습니다</value>
+  </data>
+  <data name="Services_Update_StoreUpdate" xml:space="preserve">
+    <value>Microsoft Store로 이동</value>
   </data>
 </root>

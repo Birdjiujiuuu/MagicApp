@@ -154,7 +154,7 @@
     <value>システム情報</value>
   </data>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>素晴らしいアプリ</value>
+    <value>Magic App by Birdjiujiuuu</value>
   </data>
   <data name="Pages_Pictures_Source_Bing.Text" xml:space="preserve">
     <value>Bing</value>
@@ -527,5 +527,8 @@
   </data>
   <data name="Pages_Timestamp_OutOfRange" xml:space="preserve">
     <value>タイムスタンプが有効範囲外です</value>
+  </data>
+  <data name="Services_Update_StoreUpdate" xml:space="preserve">
+    <value>Microsoft Store へ移動</value>
   </data>
 </root>

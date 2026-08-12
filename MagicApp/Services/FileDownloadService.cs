@@ -209,8 +209,8 @@ namespace MagicApp.Services
                                     // 更新已下载字节数
                                     downloadedBytes += bytesRead;
 
-                                    // 计算下载速度（每0.5秒更新一次）
-                                    if (speedTimer.ElapsedMilliseconds >= 500)
+                                    // 计算下载速度
+                                    if (speedTimer.ElapsedMilliseconds >= 1)
                                     {
                                         bytesPerSecond = (long)((downloadedBytes - lastDownloadedBytes) / (speedTimer.ElapsedMilliseconds / 1000.0));
                                         lastDownloadedBytes = downloadedBytes;

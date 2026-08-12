@@ -154,7 +154,7 @@
     <value>System Information</value>
   </data>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>Magic App</value>
+    <value>Magic App by Birdjiujiuuu</value>
   </data>
   <data name="Pages_Pictures_Source_Bing.Text" xml:space="preserve">
     <value>Bing</value>
@@ -527,5 +527,8 @@
   </data>
   <data name="Pages_Timestamp_OutOfRange" xml:space="preserve">
     <value>Timestamp out of valid range</value>
+  </data>
+  <data name="Services_Update_StoreUpdate" xml:space="preserve">
+    <value>Go to Microsoft Store</value>
   </data>
 </root>
