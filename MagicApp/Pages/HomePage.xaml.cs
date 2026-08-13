@@ -20,7 +20,6 @@ namespace MagicApp.Pages
 
         private async void GetNotice(object sender, RoutedEventArgs e)
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
             NoticeProgressRing.IsActive = true;
 
             using (var httpClient = new HttpClient())

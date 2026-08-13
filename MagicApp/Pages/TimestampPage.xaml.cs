@@ -90,8 +90,6 @@ namespace MagicApp.Pages
 
         private void PerformTimestampConversion()
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             try
             {
                 if (ConvertedDateTimeResult == null)

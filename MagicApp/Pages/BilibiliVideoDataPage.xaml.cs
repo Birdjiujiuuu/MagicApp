@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Resources;
 
 namespace MagicApp.Pages;
 
@@ -26,7 +27,12 @@ public sealed partial class BilibiliVideoDataPage : Page
         InitializeComponent();
 
         // 初始化 HttpClient
-        _httpClient = new HttpClient();
+        var handler = new HttpClientHandler
+        {
+            Proxy = null,      // 不使用任何代理
+            UseProxy = false   // 禁用代理功能
+        };
+        _httpClient = new HttpClient(handler);
         _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
         _httpClient.DefaultRequestHeaders.Accept.ParseAdd("application/json");
 
@@ -34,14 +40,16 @@ public sealed partial class BilibiliVideoDataPage : Page
         _currentCoverUrl = string.Empty;
     }
 
+    private static readonly ResourceLoader _resourceLoader = ResourceLoader.GetForViewIndependentUse();
+
     // 获取视频类型（版权信息）
     private string GetCopyrightText(int copyright)
     {
         return copyright switch
         {
-            1 => "自制",
-            2 => "转载",
-            _ => "未知"
+            1 => _resourceLoader.GetString("Pages_BilibiliVideoData_CopyrightSelfMade"),
+            2 => _resourceLoader.GetString("Pages_BilibiliVideoData_CopyrightReprinted"),
+            _ => _resourceLoader.GetString("Pages_BilibiliVideoData_unknown")
         };
     }
 
@@ -109,7 +117,7 @@ public sealed partial class BilibiliVideoDataPage : Page
             if (code != 0)
             {
                 string? message = root.GetProperty("message").GetString();
-                ShowError($"API错误: {message ?? "未知错误"}");
+                ShowError(_resourceLoader.GetString("Pages_BilibiliVideoData_APIError") + " : " + (message ?? "未知错误"));
                 return;
             }
 
@@ -124,15 +132,15 @@ public sealed partial class BilibiliVideoDataPage : Page
         }
         catch (HttpRequestException ex)
         {
-            ShowError($"网络错误: {ex.Message}");
+            ShowError(_resourceLoader.GetString("Pages_BilibiliVideoData_NetworkError") + " : " + ex.Message);
         }
         catch (JsonException ex)
         {
-            ShowError($"数据解析错误: {ex.Message}");
+            ShowError(_resourceLoader.GetString("Pages_BilibiliVideoData_ParseError") + " : " + ex.Message);
         }
         catch (Exception ex)
         {
-            ShowError($"发生错误: {ex.Message}");
+            ShowError(_resourceLoader.GetString("Pages_BilibiliVideoData_UnknownError") + " : " + ex.Message);
         }
         finally
         {
@@ -173,14 +181,14 @@ public sealed partial class BilibiliVideoDataPage : Page
     {
         try
         {
-            // 基本信息 - 使用空值合并运算符处理可能的空值
-            TitleTextBlock.Text = data.GetProperty("title").GetString() ?? "未知标题";
-            UpNameTextBlock.Text = data.GetProperty("owner").GetProperty("name").GetString() ?? "未知UP主";            
+            // 基本信息
+            TitleTextBlock.Text = data.GetProperty("title").GetString() ?? _resourceLoader.GetString("Pages_BilibiliVideoData_unknown");
+            UpNameTextBlock.Text = data.GetProperty("owner").GetProperty("name").GetString() ?? _resourceLoader.GetString("Pages_BilibiliVideoData_unknown");            
             AidTextBlock.Text = data.GetProperty("aid").ToString();
-            BvidTextBlock.Text = data.GetProperty("bvid").GetString() ?? "未知BV号";
+            BvidTextBlock.Text = data.GetProperty("bvid").GetString() ?? _resourceLoader.GetString("Pages_BilibiliVideoData_unknown");
             CidTextBlock.Text = data.GetProperty("cid").ToString();
 
-            // 发布时间（详细时间） - 使用 FormatHelper.UnixTimeStampToDateTime
+            // 发布详细时间
             long pubdate = data.GetProperty("pubdate").GetInt64();
             DateTime publishTime = FormatHelper.UnixTimeStampToDateTime(pubdate);
             PubDateTextBlock.Text = publishTime.ToString("yyyy/MM/dd HH:mm:ss");
@@ -199,7 +207,7 @@ public sealed partial class BilibiliVideoDataPage : Page
                 OnlineDataControl.DataValue = "N/A";
             }
 
-            // 统计数据 - 使用 FormatHelper.FormatNumber
+            // 统计数据
             var stat = data.GetProperty("stat");
             ViewDataControl.DataValue = FormatHelper.FormatNumber(stat.GetProperty("view").GetInt32());
             DanmakuDataControl.DataValue = FormatHelper.FormatNumber(stat.GetProperty("danmaku").GetInt32());
@@ -211,7 +219,7 @@ public sealed partial class BilibiliVideoDataPage : Page
 
             // 视频简介
             var description = data.GetProperty("desc").GetString();
-            DescriptionTextBlock.Text = string.IsNullOrEmpty(description) ? "暂无简介" : description;
+            DescriptionTextBlock.Text = string.IsNullOrEmpty(description) ? _resourceLoader.GetString("Pages_BilibiliVideoData_None") : description;
 
             // 视频类型（版权信息）
             int copyright = data.GetProperty("copyright").GetInt32();
@@ -221,11 +229,11 @@ public sealed partial class BilibiliVideoDataPage : Page
             int state = data.GetProperty("state").GetInt32();
             VideoStateTextBlock.Text = GetVideoStateText(state);
 
-            // 视频时长 - 使用 FormatHelper.FormatDuration
+            // 视频时长
             int duration = data.GetProperty("duration").GetInt32();
             DurationTextBlock.Text = FormatHelper.FormatDuration(duration);
 
-            // 抓取时间 - 使用 FormatHelper.FormatDateTime
+            // 抓取时间
             FetchTimeTextBlock.Text = FormatHelper.FormatDateTime(_fetchTime, "yyyy/MM/dd HH:mm:ss");
 
             // 加载封面图片
@@ -255,7 +263,7 @@ public sealed partial class BilibiliVideoDataPage : Page
         }
         catch (Exception ex)
         {
-            ShowError($"数据解析错误: {ex.Message}");
+            ShowError(_resourceLoader.GetString("Pages_BilibiliVideoData_ParseError") + " : " + ex.Message);
         }
     }
 
@@ -316,7 +324,7 @@ public sealed partial class BilibiliVideoDataPage : Page
         string bvid = BvIdTextBox.Text.Trim();
         if (string.IsNullOrEmpty(bvid))
         {
-            ShowError("请输入BV号");
+            ShowError(_resourceLoader.GetString("Pages_BilibiliVideoData_EnterBVNumber"));
             return;
         }
 
@@ -332,7 +340,7 @@ public sealed partial class BilibiliVideoDataPage : Page
         }
         else
         {
-            ShowError("BV号格式不正确");
+            ShowError(_resourceLoader.GetString("Pages_BilibiliVideoData_InvalidBVNumberFormat"));
         }
     }
 

@@ -531,4 +531,94 @@
   <data name="Services_Update_StoreUpdate" xml:space="preserve">
     <value>Microsoft Store へ移動</value>
   </data>
+  <data name="Pages_BilibiliVideoData_BvIdTextBox.PlaceholderText" xml:space="preserve">
+    <value>BV番号を入力してください（例：BV1xx411c7mD）</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_SearchButton.Content" xml:space="preserve">
+    <value>動画を検索</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_SaveCoverButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>カバーを保存</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyLinkButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>リンクをコピー</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OpenInBrowserButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>ブラウザで開く</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OnlineDataControl.Description" xml:space="preserve">
+    <value>視聴中</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ViewDataControl.Description" xml:space="preserve">
+    <value>再生</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_DanmakuDataControl.Description" xml:space="preserve">
+    <value>弾幕</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ReplyDataControl.Description" xml:space="preserve">
+    <value>コメント</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_LikeDataControl.Description" xml:space="preserve">
+    <value>いいね</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CoinDataControl.Description" xml:space="preserve">
+    <value>コインを投げる</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_FavoriteDataControl.Description" xml:space="preserve">
+    <value>お気に入り</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ShareDataControl.Description" xml:space="preserve">
+    <value>共有</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_DescriptionTextBlock.Text" xml:space="preserve">
+    <value>動画説明</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyDescriptionButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OtherInfoTextBlock.Text" xml:space="preserve">
+    <value>その他情報</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightTextBlock.Text" xml:space="preserve">
+    <value>動画タイプ</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_VideoStateTextBlock.Text" xml:space="preserve">
+    <value>動画ステータス</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_FetchTimeTextBlock.Text" xml:space="preserve">
+    <value>取得時間</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ErrorMessageTextBlock.Text" xml:space="preserve">
+    <value>検索に失敗しました。BV番号が正しいか確認してください</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightSelfMade" xml:space="preserve">
+    <value>自制</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightReprinted" xml:space="preserve">
+    <value>転載</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_EnterBVNumber" xml:space="preserve">
+    <value>BV番号を入力してください</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_InvalidBVNumberFormat" xml:space="preserve">
+    <value>BV番号の形式が正しくありません</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_None" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ParseError" xml:space="preserve">
+    <value>データ解析エラー</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_UnknownError" xml:space="preserve">
+    <value>不明なエラー</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_NetworkError" xml:space="preserve">
+    <value>ネットワークエラー</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_APIError" xml:space="preserve">
+    <value>APIエラー</value>
+  </data>
 </root>

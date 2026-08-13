@@ -14,14 +14,14 @@
         <!-- 顶部搜索区域 -->
         <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="20,10,20,10">
             <TextBox x:Name="BvIdTextBox" 
+                     x:Uid="Pages_BilibiliVideoData_BvIdTextBox"
                      Grid.Column="0"
-                     PlaceholderText="请输入BV号 (例如：BV1xx411c7mD)"
                      Margin="0,0,12,0"
                      VerticalAlignment="Center"
                      KeyDown="BvIdTextBox_KeyDown"/>
             <Button Grid.Column="1"
                     x:Name="SearchButton"
-                    Content="查询视频"
+                    x:Uid="Pages_BilibiliVideoData_SearchButton"
                     Click="SearchButton_Click"
                     Style="{StaticResource AccentButtonStyle}"/>
         </Grid>
@@ -95,20 +95,20 @@
 
                             <!-- 保存封面图片 -->
                             <Button x:Name="SaveCoverButton"
-                                    Click="SaveCoverButton_Click"
-                                    ToolTipService.ToolTip="保存封面">
+                                    x:Uid="Pages_BilibiliVideoData_SaveCoverButton"
+                                    Click="SaveCoverButton_Click">
                                 <SymbolIcon Symbol="Save"/>
                             </Button>
 
                             <!-- 复制视频链接 -->
                             <controls:ActionButton x:Name="CopyLinkButton"
-                                    IconGlyph="&#xE71B;"
-                                    ToolTipService.ToolTip="复制链接"/>
+                                    x:Uid="Pages_BilibiliVideoData_CopyLinkButton"
+                                    IconGlyph="&#xE71B;"/>
 
                             <!-- 在浏览器打开视频 -->
                             <controls:ActionButton x:Name="OpenInBrowserButton"
-                                    IconGlyph="&#xE909;"
-                                    ToolTipService.ToolTip="在浏览器打开"/>
+                                    x:Uid="Pages_BilibiliVideoData_OpenInBrowserButton"
+                                    IconGlyph="&#xE909;"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -118,35 +118,35 @@
                     <StackPanel Spacing="10">
                         <!-- 第一行 -->
                         <Grid ColumnDefinitions="*,*,*,*">
-
+                            
                             <!-- 正在观看人数 -->
-                            <controls:DataControl x:Name="OnlineDataControl"
+                            <controls:DataControl x:Name="OnlineDataControl"                
+                          x:Uid="Pages_BilibiliVideoData_OnlineDataControl"
                           Grid.Column="0"
-                          Description="正在观看"
                           IconGlyph="&#xE716;"
                           IconColor="#FFCC00"
                           Margin="0,0,5,0"/>
 
                             <!-- 播放量 -->
                             <controls:DataControl x:Name="ViewDataControl"
+                          x:Uid="Pages_BilibiliVideoData_ViewDataControl"
                           Grid.Column="1"
-                          Description="播放"
                           IconGlyph="&#xE768;"
                           IconColor="#00A1D6"
                           Margin="5,0,5,0"/>
 
                             <!-- 弹幕 -->
                             <controls:DataControl x:Name="DanmakuDataControl"
+                          x:Uid="Pages_BilibiliVideoData_DanmakuDataControl"
                           Grid.Column="2"
-                          Description="弹幕"
                           IconGlyph="&#xE8BD;"
                           IconColor="#FB7299"
                           Margin="5,0,5,0"/>
 
                             <!-- 评论 -->
                             <controls:DataControl x:Name="ReplyDataControl"
+                          x:Uid="Pages_BilibiliVideoData_ReplyDataControl"
                           Grid.Column="3"
-                          Description="评论"
                           IconGlyph="&#xE8F2;"
                           IconColor="#007AFF"
                           Margin="5,0,0,0"/>
@@ -157,32 +157,32 @@
 
                             <!-- 点赞 -->
                             <controls:DataControl x:Name="LikeDataControl"
+                          x:Uid="Pages_BilibiliVideoData_LikeDataControl"                        
                           Grid.Column="0"
-                          Description="点赞"
                           IconGlyph="&#xE8E1;"
                           IconColor="#FF9500"
                           Margin="0,0,5,0"/>
 
                             <!-- 投币 -->
                             <controls:DataControl x:Name="CoinDataControl"
+                          x:Uid="Pages_BilibiliVideoData_CoinDataControl"                        
                           Grid.Column="1"
-                          Description="投币"
                           IconGlyph="&#xE719;"
                           IconColor="#FFCC00"
                           Margin="5,0,5,0"/>
 
                             <!-- 收藏 -->
                             <controls:DataControl x:Name="FavoriteDataControl"
+                          x:Uid="Pages_BilibiliVideoData_FavoriteDataControl"                        
                           Grid.Column="2"
-                          Description="收藏"
                           IconGlyph="&#xE734;"
                           IconColor="#34C759"
                           Margin="5,0,5,0"/>
 
                             <!-- 分享 -->
                             <controls:DataControl x:Name="ShareDataControl"
+                          x:Uid="Pages_BilibiliVideoData_ShareDataControl"                        
                           Grid.Column="3"
-                          Description="分享"
                           IconGlyph="&#xE72D;"
                           IconColor="#5856D6"
                           Margin="5,0,0,0"/>
@@ -204,7 +204,7 @@
                             Padding="16"
                             Margin="0,0,5,0">
                         <StackPanel>
-                            <TextBlock Text="视频简介"
+                            <TextBlock x:Uid="Pages_BilibiliVideoData_DescriptionTextBlock"
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,8"/>
@@ -216,10 +216,10 @@
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                             </ScrollViewer>
                             <controls:ActionButton x:Name="CopyDescriptionButton"
+                                    x:Uid="Pages_BilibiliVideoData_CopyDescriptionButton"
                                     HorizontalAlignment="Right"
                                     Margin="0,8,0,0"
-                                    IconGlyph="&#xE8C8;"
-                                    ToolTipService.ToolTip="复制链接"/>
+                                    IconGlyph="&#xE8C8;"/>
                         </StackPanel>
                     </Border>
 
@@ -232,14 +232,14 @@
                             Padding="16"
                             Margin="5,0,0,0">
                         <StackPanel>
-                            <TextBlock Text="其他信息"
+                            <TextBlock x:Uid="Pages_BilibiliVideoData_OtherInfoTextBlock"
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,8"/>
 
                             <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
                                 <TextBlock Grid.Row="0" Grid.Column="0"
-                                           Text="AV号"
+                                           Text="aid"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,4"/>
@@ -249,7 +249,7 @@
                                            Margin="0,0,0,4"/>
                                 
                                 <TextBlock Grid.Row="1" Grid.Column="0"
-                                           Text="BV号"
+                                           Text="bvid"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,4"/>
@@ -259,7 +259,7 @@
                                            Margin="0,0,0,4"/>
                                 
                                 <TextBlock Grid.Row="2" Grid.Column="0"
-                                           Text="Cid"
+                                           Text="cid"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,4"/>
@@ -269,7 +269,7 @@
                                            Margin="0,0,0,4"/>
 
                                 <TextBlock Grid.Row="3" Grid.Column="0"
-                                           Text="视频类型"
+                                           x:Uid="Pages_BilibiliVideoData_CopyrightTextBlock"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,4"/>
@@ -279,7 +279,7 @@
                                            Margin="0,0,0,4"/>
 
                                 <TextBlock Grid.Row="4" Grid.Column="0"
-                                           Text="视频状态"
+                                           x:Uid="Pages_BilibiliVideoData_VideoStateTextBlock"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,4"/>
@@ -289,7 +289,7 @@
                                            Margin="0,0,0,4"/>
 
                                 <TextBlock Grid.Row="5" Grid.Column="0"
-                                           Text="抓取时间"
+                                           x:Uid="Pages_BilibiliVideoData_FetchTimeTextBlock"
                                            FontSize="12"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                            Margin="0,0,8,0"/>
@@ -312,7 +312,7 @@
                                     Height="48"
                                     Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
                         <TextBlock x:Name="ErrorMessageTextBlock"
-                                   Text="查询失败，请检查BV号是否正确"
+                                   x:Uid="Pages_BilibiliVideoData_ErrorMessageTextBlock"
                                    FontSize="16"/>
                     </StackPanel>
                 </Grid>

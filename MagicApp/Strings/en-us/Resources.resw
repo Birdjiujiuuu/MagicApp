@@ -531,4 +531,94 @@
   <data name="Services_Update_StoreUpdate" xml:space="preserve">
     <value>Go to Microsoft Store</value>
   </data>
+  <data name="Pages_BilibiliVideoData_BvIdTextBox.PlaceholderText" xml:space="preserve">
+    <value>Please enter bvid (e.g., BV1xx411c7mD)</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_SearchButton.Content" xml:space="preserve">
+    <value>Search video</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_SaveCoverButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Save cover</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyLinkButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Copy Link</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OpenInBrowserButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OnlineDataControl.Description" xml:space="preserve">
+    <value>Watching</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ViewDataControl.Description" xml:space="preserve">
+    <value>Play count</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_DanmakuDataControl.Description" xml:space="preserve">
+    <value>Danmaku</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ReplyDataControl.Description" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_LikeDataControl.Description" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CoinDataControl.Description" xml:space="preserve">
+    <value>Coin</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_FavoriteDataControl.Description" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ShareDataControl.Description" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_DescriptionTextBlock.Text" xml:space="preserve">
+    <value>Video Description</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyDescriptionButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OtherInfoTextBlock.Text" xml:space="preserve">
+    <value>Other info</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightTextBlock.Text" xml:space="preserve">
+    <value>Video Type</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_VideoStateTextBlock.Text" xml:space="preserve">
+    <value>Video status</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_FetchTimeTextBlock.Text" xml:space="preserve">
+    <value>Fetch time</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ErrorMessageTextBlock.Text" xml:space="preserve">
+    <value>Query failed, please check bvid</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightSelfMade" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightReprinted" xml:space="preserve">
+    <value>Repost</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_EnterBVNumber" xml:space="preserve">
+    <value>Please enter bvid</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_InvalidBVNumberFormat" xml:space="preserve">
+    <value>Invalid bvid format</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ParseError" xml:space="preserve">
+    <value>Data parsing error</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_UnknownError" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_NetworkError" xml:space="preserve">
+    <value>Network error</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_APIError" xml:space="preserve">
+    <value>API Error</value>
+  </data>
 </root>

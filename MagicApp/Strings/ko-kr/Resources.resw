@@ -531,4 +531,94 @@
   <data name="Services_Update_StoreUpdate" xml:space="preserve">
     <value>Microsoft Store로 이동</value>
   </data>
+  <data name="Pages_BilibiliVideoData_BvIdTextBox.PlaceholderText" xml:space="preserve">
+    <value>BV 번호를 입력하세요 (예: BV1xx411c7mD)</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_SearchButton.Content" xml:space="preserve">
+    <value>동영상 검색</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_SaveCoverButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>커버 저장</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyLinkButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>링크 복사</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OpenInBrowserButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>브라우저에서 열기</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OnlineDataControl.Description" xml:space="preserve">
+    <value>시청 중</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ViewDataControl.Description" xml:space="preserve">
+    <value>재생</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_DanmakuDataControl.Description" xml:space="preserve">
+    <value>탄막</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ReplyDataControl.Description" xml:space="preserve">
+    <value>댓글</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_LikeDataControl.Description" xml:space="preserve">
+    <value>좋아요</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CoinDataControl.Description" xml:space="preserve">
+    <value>코인 투척</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_FavoriteDataControl.Description" xml:space="preserve">
+    <value>즐겨찾기</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ShareDataControl.Description" xml:space="preserve">
+    <value>공유</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_DescriptionTextBlock.Text" xml:space="preserve">
+    <value>동영상 소개</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyDescriptionButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OtherInfoTextBlock.Text" xml:space="preserve">
+    <value>기타 정보</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightTextBlock.Text" xml:space="preserve">
+    <value>동영상 유형</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_VideoStateTextBlock.Text" xml:space="preserve">
+    <value>동영상 상태</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_FetchTimeTextBlock.Text" xml:space="preserve">
+    <value>가져온 시간</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ErrorMessageTextBlock.Text" xml:space="preserve">
+    <value>검색 실패, BV 번호를 확인하세요</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_unknown" xml:space="preserve">
+    <value>알 수 없음</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightSelfMade" xml:space="preserve">
+    <value>자체 제작</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightReprinted" xml:space="preserve">
+    <value>전재</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_EnterBVNumber" xml:space="preserve">
+    <value>BV 번호를 입력하세요</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_InvalidBVNumberFormat" xml:space="preserve">
+    <value>BV 번호 형식이 올바르지 않습니다</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_None" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ParseError" xml:space="preserve">
+    <value>데이터 구문 분석 오류</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_UnknownError" xml:space="preserve">
+    <value>알 수 없는 오류</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_NetworkError" xml:space="preserve">
+    <value>네트워크 오류</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_APIError" xml:space="preserve">
+    <value>API 오류</value>
+  </data>
 </root>

@@ -531,4 +531,94 @@
   <data name="Services_Update_StoreUpdate" xml:space="preserve">
     <value>前往商店页面</value>
   </data>
+  <data name="Pages_BilibiliVideoData_BvIdTextBox.PlaceholderText" xml:space="preserve">
+    <value>请输入 BV 号 (例如：BV1xx411c7mD)</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_SearchButton.Content" xml:space="preserve">
+    <value>查询视频</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_SaveCoverButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>保存封面</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyLinkButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OpenInBrowserButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>在浏览器打开</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OnlineDataControl.Description" xml:space="preserve">
+    <value>正在观看</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ViewDataControl.Description" xml:space="preserve">
+    <value>播放</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_DanmakuDataControl.Description" xml:space="preserve">
+    <value>弹幕</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ReplyDataControl.Description" xml:space="preserve">
+    <value>评论</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_LikeDataControl.Description" xml:space="preserve">
+    <value>点赞</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CoinDataControl.Description" xml:space="preserve">
+    <value>投币</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_FavoriteDataControl.Description" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ShareDataControl.Description" xml:space="preserve">
+    <value>分享</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_DescriptionTextBlock.Text" xml:space="preserve">
+    <value>视频简介</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyDescriptionButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_OtherInfoTextBlock.Text" xml:space="preserve">
+    <value>其他信息</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightTextBlock.Text" xml:space="preserve">
+    <value>视频类型</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_VideoStateTextBlock.Text" xml:space="preserve">
+    <value>视频状态</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_FetchTimeTextBlock.Text" xml:space="preserve">
+    <value>抓取时间</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ErrorMessageTextBlock.Text" xml:space="preserve">
+    <value>查询失败，请检查BV号是否正确</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightSelfMade" xml:space="preserve">
+    <value>自制</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_CopyrightReprinted" xml:space="preserve">
+    <value>转载</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_EnterBVNumber" xml:space="preserve">
+    <value>请输入 BV 号</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_InvalidBVNumberFormat" xml:space="preserve">
+    <value>BV 号格式不正确</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_None" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_ParseError" xml:space="preserve">
+    <value>数据解析错误</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_UnknownError" xml:space="preserve">
+    <value>未知错误</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_NetworkError" xml:space="preserve">
+    <value>网络错误</value>
+  </data>
+  <data name="Pages_BilibiliVideoData_APIError" xml:space="preserve">
+    <value>API 错误</value>
+  </data>
 </root>
