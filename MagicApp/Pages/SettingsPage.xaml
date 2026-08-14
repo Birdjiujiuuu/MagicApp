@@ -22,8 +22,8 @@
                 </StackPanel.ChildrenTransitions>
 
                 <controls:ContentControl
-                x:Name="Theme"
-                x:Uid="Pages_Settings_Theme">
+                    x:Name="Theme"
+                    x:Uid="Pages_Settings_Theme">
                     <controls:ContentControl.Icon>
                         <FontIcon Glyph="&#xE790;"/>
                     </controls:ContentControl.Icon>
@@ -34,8 +34,8 @@
                     </ComboBox>
                 </controls:ContentControl>
                 <controls:ContentControl
-                x:Name="Languages"
-                x:Uid="Pages_Settings_Languages">
+                    x:Name="Languages"
+                    x:Uid="Pages_Settings_Languages">
                     <controls:ContentControl.Icon>
                         <FontIcon Glyph="&#xF2B7;"/>
                     </controls:ContentControl.Icon>
@@ -49,8 +49,21 @@
                     </ComboBox>
                 </controls:ContentControl>
                 <controls:ContentControl
-                x:Name="AppVersion"
-                x:Uid="Pages_Settings_AppVersion">
+                    x:Name="History"
+                    x:Uid="Pages_Settings_History">
+                    <controls:ContentControl.Icon>
+                        <FontIcon Glyph="&#xE81C;"/>
+                    </controls:ContentControl.Icon>
+                    <Button Click="History_Button_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <TextBlock x:Uid="Pages_Settings_History_TextBlock"/>
+                            <FontIcon Glyph="&#xE8A7;"/>
+                        </StackPanel>
+                    </Button>
+                </controls:ContentControl>
+                <controls:ContentControl
+                    x:Name="AppVersion"
+                    x:Uid="Pages_Settings_AppVersion">
                     <controls:ContentControl.Icon>
                         <FontIcon Glyph="&#xE895;"/>
                     </controls:ContentControl.Icon>
@@ -61,11 +74,12 @@
                     </StackPanel>
                 </controls:ContentControl>
                 <controls:ContentControl
-                x:Name="About"
-                Image="ms-appx:///Assets/MagicAppLogo.png"
-                Description="©2026 Birdjiujiuuu">
+                    x:Name="About"
+                    Image="ms-appx:///Assets/MagicAppLogo.png"
+                    Description="©2026 Birdjiujiuuu">
                     <RichTextBlock>
                         <Paragraph>
+                            <Hyperlink x:Name="StorePage" NavigateUri="https://apps.microsoft.com/detail/9pbz97jbr98g"/>
                             <Hyperlink x:Name="OfficialWebsite" NavigateUri="https://birdjiujiuuu.github.io/magicapp/"/>
                             <Hyperlink x:Name="SourceCode" NavigateUri="https://github.com/Birdjiujiuuu/MagicApp"/>
                         </Paragraph>

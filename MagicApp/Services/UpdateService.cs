@@ -1,7 +1,6 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -23,9 +22,7 @@ namespace MagicApp.Services
         private static DateTime _lastCheckTime = DateTime.MinValue;
         private static readonly TimeSpan CHECK_DEBOUNCE = TimeSpan.FromSeconds(2); // 2秒防抖
 
-        /// <summary>
-        /// 静默检查更新（只返回结果，不显示对话框）
-        /// </summary>
+        // 静默检查更新
         public static async Task<UpdateResult> CheckForUpdateSilentlyAsync()
         {
             // 防抖检查，避免频繁调用
@@ -110,11 +107,13 @@ namespace MagicApp.Services
             }
         }
 
-        /// <summary>
-        /// 检查更新并显示对话框
-        /// </summary>
+        // 检查更新并显示对话框
         public static async Task CheckForUpdateAsync(XamlRoot xamlRoot, Action? onCheckStart = null, Action? onCheckEnd = null)
         {
+            // 商店版本跳过更新检查
+            if (Package.Current.SignatureKind == PackageSignatureKind.Store)
+                return;
+
             // 等待信号量，确保只有一个检查在执行
             await _checkSemaphore.WaitAsync();
 
@@ -159,11 +158,13 @@ namespace MagicApp.Services
             }
         }
 
-        /// <summary>
-        /// 静默检查并在有更新时显示对话框
-        /// </summary>
+        // 静默检查并在有更新时显示对话框
         public static async Task CheckForUpdateSilentlyAndNotifyAsync(XamlRoot xamlRoot)
         {
+            // 商店版本跳过更新检查
+            if (Package.Current.SignatureKind == PackageSignatureKind.Store)
+                return;
+
             // 如果已经有检查在进行，则跳过
             if (_isChecking)
                 return;
@@ -192,9 +193,7 @@ namespace MagicApp.Services
             }
         }
 
-        /// <summary>
-        /// 显示已是最新版本的对话框
-        /// </summary>
+        // 显示已是最新版本的对话框
         private static async Task ShowLatestDialogAsync(XamlRoot xamlRoot)
         {
             ContentDialog dialog = new()
@@ -209,9 +208,7 @@ namespace MagicApp.Services
             await dialog.ShowAsync();
         }
 
-        /// <summary>
-        /// 显示有可用更新的对话框
-        /// </summary>
+        // 显示有可用更新的对话框
         private static async Task ShowUpdateAvailableDialogAsync(XamlRoot xamlRoot, string title, string releaseNotes, string releaseUrl, string downloadUrl, string newestVersion)
         {
             // 创建WebView2控件
@@ -369,18 +366,13 @@ namespace MagicApp.Services
             // 加载HTML内容
             webView.CoreWebView2.NavigateToString(htmlContent);
 
-            // 判断是否为商店版本
-            bool isStore = (Package.Current.SignatureKind == PackageSignatureKind.Store);
-
             // 创建对话框
             ContentDialog dialog = new()
             {
                 XamlRoot = xamlRoot,
                 Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
                 Content = container,
-                PrimaryButtonText = isStore
-                    ? _resourceLoader.GetString("Services_Update_StoreUpdate")
-                    : _resourceLoader.GetString("Services_Update_Download"),
+                PrimaryButtonText = _resourceLoader.GetString("Services_Update_Download"),
                 SecondaryButtonText = _resourceLoader.GetString("Services_Update_Release"),
                 CloseButtonText = _resourceLoader.GetString("Services_Update_Later"),
                 DefaultButton = ContentDialogButton.Primary
@@ -390,18 +382,8 @@ namespace MagicApp.Services
 
             if (result == ContentDialogResult.Primary)
             {
-                if (isStore)
-                {
-                    // 商店用户：跳转到商店详情页
-                    string storeProductId = "9PBZ97JBR98G";
-                    var storeUri = new Uri($"ms-windows-store://pdp/?ProductId={storeProductId}");
-                    await Launcher.LaunchUriAsync(storeUri);
-                }
-                else
-                {
-                    // GitHub 用户：直接下载更新
-                    await DownloadFileAsync(downloadUrl, newestVersion, xamlRoot);
-                }
+                // 下载更新文件
+                await DownloadFileAsync(downloadUrl, newestVersion, xamlRoot);
             }
             else if (result == ContentDialogResult.Secondary)
             {
@@ -410,9 +392,7 @@ namespace MagicApp.Services
             }
         }
 
-        /// <summary>
-        /// 将Markdown转换为HTML
-        /// </summary>
+        // 将Markdown转换为HTML
         private static string ConvertMarkdownToHtml(string markdown)
         {
             if (string.IsNullOrWhiteSpace(markdown))
@@ -468,9 +448,7 @@ namespace MagicApp.Services
             return html;
         }
 
-        /// <summary>
-        /// 转义HTML特殊字符
-        /// </summary>
+        // 转义HTML特殊字符
         private static string EscapeHtml(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -484,9 +462,7 @@ namespace MagicApp.Services
                 .Replace("'", "&#39;");
         }
 
-        /// <summary>
-        /// 下载更新文件
-        /// </summary>
+        // 下载更新文件
         private static async Task DownloadFileAsync(string downloadUrl, string newestVersion, XamlRoot xamlRoot)
         {
             try
@@ -511,9 +487,7 @@ namespace MagicApp.Services
             }
         }
 
-        /// <summary>
-        /// 显示错误对话框
-        /// </summary>
+        // 显示错误对话框
         private static async Task ShowErrorDialogAsync(XamlRoot xamlRoot, string errorMessage)
         {
             ContentDialog dialog = new()
@@ -529,59 +503,37 @@ namespace MagicApp.Services
         }
     }
 
-    /// <summary>
-    /// 更新检查结果
-    /// </summary>
+    // 更新检查结果
     public class UpdateResult
     {
-        /// <summary>
-        /// 是否有更新可用
-        /// </summary>
+        // 是否有更新可用
         public bool HasUpdate { get; set; }
 
-        /// <summary>
-        /// 检查是否成功
-        /// </summary>
+        // 检查是否成功
         public bool IsSuccess { get; set; }
 
-        /// <summary>
-        /// 新版本号
-        /// </summary>
+        // 新版本号
         public string? NewVersion { get; set; }
 
-        /// <summary>
-        /// 当前版本号
-        /// </summary>
+        // 当前版本号
         public string? CurrentVersion { get; set; }
 
-        /// <summary>
-        /// 更新标题
-        /// </summary>
+        // 更新标题
         public string? ReleaseTitle { get; set; }
 
-        /// <summary>
-        /// 更新说明
-        /// </summary>
+        // 更新说明
         public string? ReleaseNotes { get; set; }
 
-        /// <summary>
-        /// 发行链接
-        /// </summary>
+        // 发行链接
         public string? ReleaseUrl { get; set; }
 
-        /// <summary>
-        /// 下载链接
-        /// </summary>
+        // 下载链接
         public string? DownloadUrl { get; set; }
 
-        /// <summary>
-        /// 错误信息
-        /// </summary>
+        // 错误信息
         public string? ErrorMessage { get; set; }
 
-        /// <summary>
-        /// 创建无更新的结果
-        /// </summary>
+        // 创建无更新的结果
         public static UpdateResult CreateNoUpdate(string currentVersion)
         {
             return new UpdateResult
@@ -592,9 +544,7 @@ namespace MagicApp.Services
             };
         }
 
-        /// <summary>
-        /// 创建有更新的结果
-        /// </summary>
+        // 创建有更新的结果
         public static UpdateResult CreateUpdateAvailable(string currentVersion, string newVersion, string releaseTitle, string releaseNotes, string releaseUrl, string downloadUrl)
         {
             return new UpdateResult
@@ -610,9 +560,7 @@ namespace MagicApp.Services
             };
         }
 
-        /// <summary>
-        /// 创建错误结果
-        /// </summary>
+        // 创建错误结果
         public static UpdateResult CreateError(string currentVersion, string errorMessage)
         {
             return new UpdateResult

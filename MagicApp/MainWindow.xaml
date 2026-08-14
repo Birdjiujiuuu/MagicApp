@@ -15,7 +15,6 @@
     <Grid RowDefinitions="Auto,*">
         <TitleBar
             x:Name="TitleBar"
-            x:Uid="Main_Titlebar"
             IsBackButtonVisible="False"
             IsPaneToggleButtonVisible="True"
             PaneToggleRequested="TitleBar_PaneToggleRequested">

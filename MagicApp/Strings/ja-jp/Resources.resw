@@ -162,7 +162,7 @@
   <data name="Pages_Pictures_Source_NASA.Text" xml:space="preserve">
     <value>NASA</value>
   </data>
-  <data name="Main_Titlebar.Subtitle" xml:space="preserve">
+  <data name="Main_Titlebar" xml:space="preserve">
     <value>プレビュー</value>
   </data>
   <data name="Pages_Search_SearchBox.PlaceholderText" xml:space="preserve">
@@ -528,9 +528,6 @@
   <data name="Pages_Timestamp_OutOfRange" xml:space="preserve">
     <value>タイムスタンプが有効範囲外です</value>
   </data>
-  <data name="Services_Update_StoreUpdate" xml:space="preserve">
-    <value>Microsoft Store へ移動</value>
-  </data>
   <data name="Pages_BilibiliVideoData_BvIdTextBox.PlaceholderText" xml:space="preserve">
     <value>BV番号を入力してください（例：BV1xx411c7mD）</value>
   </data>
@@ -620,5 +617,8 @@
   </data>
   <data name="Pages_BilibiliVideoData_APIError" xml:space="preserve">
     <value>APIエラー</value>
+  </data>
+  <data name="Pages_Settings_About_StorePage" xml:space="preserve">
+    <value>Microsoft Store へ移動</value>
   </data>
 </root>

@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.Media.Core;
 
@@ -69,8 +70,14 @@ namespace MagicApp
             this.MusicRefresh_Click(this, new RoutedEventArgs());
         }
 
+        private static readonly ResourceLoader _resourceLoader = ResourceLoader.GetForViewIndependentUse();
+
         private async void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
         {
+            // 判断是否为 Microsoft Store 版本，如果不是则显示预览
+            bool isStore = (Package.Current.SignatureKind == PackageSignatureKind.Store);
+            TitleBar.Subtitle = isStore ? null : _resourceLoader.GetString("Main_Titlebar");
+
             // 确保只在第一次激活时检查
             if (args.WindowActivationState != WindowActivationState.CodeActivated &&
                 args.WindowActivationState != WindowActivationState.PointerActivated)

@@ -34,8 +34,11 @@ namespace MagicApp.Pages
             AppVersion.Description = string.Format("{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major, Package.Current.Id.Version.Minor, Package.Current.Id.Version.Build, Package.Current.Id.Version.Revision);
 
             // 设置关于处超链接文本
+            string storePageText = _resourceLoader.GetString("Pages_Settings_About_StorePage");
             string officialWebsiteText = _resourceLoader.GetString("Pages_Settings_About_OfficialWebsite");
             string sourceCodeText = _resourceLoader.GetString("Pages_Settings_About_SourceCode");
+            StorePage.Inlines.Clear();
+            StorePage.Inlines.Add(new Run { Text = storePageText });
             OfficialWebsite.Inlines.Clear();
             OfficialWebsite.Inlines.Add(new Run { Text = officialWebsiteText });
             SourceCode.Inlines.Clear();
@@ -178,24 +181,45 @@ namespace MagicApp.Pages
             Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
         }
 
+        //在浏览器打开更新记录
+        private void History_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var processStartInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://github.com/Birdjiujiuuu/MagicApp/releases",
+                UseShellExecute = true
+            };
+            System.Diagnostics.Process.Start(processStartInfo);
+        }
+
         //检查更新
         private async void CheckUpdate_Click(object sender, RoutedEventArgs e)
         {
-            CheckUpdate.IsEnabled = false;
-            CheckUpdateProgressRing.IsActive = true;
+            if (Package.Current.SignatureKind == PackageSignatureKind.Store)
+            {
+                // 商店版本直接跳转到商店详情页
+                string storeProductId = "9PBZ97JBR98G";
+                var storeUri = new Uri($"ms-windows-store://pdp/?ProductId={storeProductId}");
+                await Windows.System.Launcher.LaunchUriAsync(storeUri);
+            }
+            else
+            {
+                CheckUpdate.IsEnabled = false;
+                CheckUpdateProgressRing.IsActive = true;
 
-            // 调用UpdateService
-            await UpdateService.CheckForUpdateAsync(
-                this.XamlRoot,
-                // 检查开始时的回调
-                onCheckStart: null,
-                // 检查结束时的回调
-                onCheckEnd: () =>
-                {
-                    CheckUpdate.IsEnabled = true;
-                    CheckUpdateProgressRing.IsActive = false;
-                }
-            );
+                // 调用UpdateService
+                await UpdateService.CheckForUpdateAsync(
+                    this.XamlRoot,
+                    // 检查开始时的回调
+                    onCheckStart: null,
+                    // 检查结束时的回调
+                    onCheckEnd: () =>
+                    {
+                        CheckUpdate.IsEnabled = true;
+                        CheckUpdateProgressRing.IsActive = false;
+                    }
+                );
+            }
         }
     }
 }
