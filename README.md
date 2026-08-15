@@ -10,7 +10,7 @@
 </a>
 
 [GitHub 发行版](https://github.com/Birdjiujiuuu/MagicApp/releases)\
-注意：商店版和 Github 版不互通但可共存
+注意：商店版和 Github 版是两个可共存的版本
 # ↓首页预览图以及当前已经具备的功能↓
 <img width="951" height="554" alt="image" src="https://github.com/user-attachments/assets/03188e97-a906-4f7f-a953-69c326f05a6b" /><br />
 # 支持的语言
