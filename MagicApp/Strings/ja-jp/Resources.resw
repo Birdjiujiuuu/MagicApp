@@ -621,4 +621,13 @@
   <data name="Pages_Settings_About_StorePage" xml:space="preserve">
     <value>Microsoft Store へ移動</value>
   </data>
+  <data name="Pages_Settings_History.Header" xml:space="preserve">
+    <value>更新履歴</value>
+  </data>
+  <data name="Pages_Settings_History.Description" xml:space="preserve">
+    <value>アプリの更新履歴を表示</value>
+  </data>
+  <data name="Pages_Settings_History_TextBlock.Text" xml:space="preserve">
+    <value>表示</value>
+  </data>
 </root>

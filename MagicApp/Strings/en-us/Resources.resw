@@ -621,4 +621,13 @@
   <data name="Pages_Settings_About_StorePage" xml:space="preserve">
     <value>Microsoft Store Page</value>
   </data>
+  <data name="Pages_Settings_History.Header" xml:space="preserve">
+    <value>Update History</value>
+  </data>
+  <data name="Pages_Settings_History.Description" xml:space="preserve">
+    <value>View App Update History</value>
+  </data>
+  <data name="Pages_Settings_History_TextBlock.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
 </root>

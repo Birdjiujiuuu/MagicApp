@@ -210,7 +210,7 @@ namespace MagicApp.Services
                                     downloadedBytes += bytesRead;
 
                                     // 计算下载速度
-                                    if (speedTimer.ElapsedMilliseconds >= 1)
+                                    if (speedTimer.ElapsedMilliseconds >= 100)
                                     {
                                         bytesPerSecond = (long)((downloadedBytes - lastDownloadedBytes) / (speedTimer.ElapsedMilliseconds / 1000.0));
                                         lastDownloadedBytes = downloadedBytes;

@@ -621,4 +621,13 @@
   <data name="Pages_Settings_About_StorePage" xml:space="preserve">
     <value>商店里</value>
   </data>
+  <data name="Pages_Settings_History.Header" xml:space="preserve">
+    <value>升级日志</value>
+  </data>
+  <data name="Pages_Settings_History.Description" xml:space="preserve">
+    <value>看看应用黑历史</value>
+  </data>
+  <data name="Pages_Settings_History_TextBlock.Text" xml:space="preserve">
+    <value>看看</value>
+  </data>
 </root>

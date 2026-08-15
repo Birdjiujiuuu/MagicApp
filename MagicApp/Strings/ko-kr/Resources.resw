@@ -621,4 +621,13 @@
   <data name="Pages_Settings_About_StorePage" xml:space="preserve">
     <value>Microsoft Store로 이동</value>
   </data>
+  <data name="Pages_Settings_History.Header" xml:space="preserve">
+    <value>업데이트 기록</value>
+  </data>
+  <data name="Pages_Settings_History.Description" xml:space="preserve">
+    <value>앱 업데이트 기록 보기</value>
+  </data>
+  <data name="Pages_Settings_History_TextBlock.Text" xml:space="preserve">
+    <value>보기</value>
+  </data>
 </root>
