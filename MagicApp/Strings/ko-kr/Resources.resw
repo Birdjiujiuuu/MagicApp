@@ -630,4 +630,7 @@
   <data name="Pages_Settings_History_TextBlock.Text" xml:space="preserve">
     <value>보기</value>
   </data>
+  <data name="Services_Update_NewVersionFound" xml:space="preserve">
+    <value>새 버전 발견</value>
+  </data>
 </root>

@@ -1,6 +1,9 @@
 ﻿using Microsoft.UI;
+using Microsoft.UI.Content;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Windows.AppNotifications;
+using Microsoft.Windows.AppNotifications.Builder;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -377,6 +380,13 @@ namespace MagicApp.Services
                 CloseButtonText = _resourceLoader.GetString("Services_Update_Later"),
                 DefaultButton = ContentDialogButton.Primary
             };
+
+            // 显示通知
+            AppNotification notification = new AppNotificationBuilder()
+                .AddText(_resourceLoader.GetString("Services_Update_NewVersionFound"))
+                .AddText(title)
+                .BuildNotification();
+            AppNotificationManager.Default.Show(notification);
 
             var result = await dialog.ShowAsync();
 

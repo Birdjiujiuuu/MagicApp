@@ -630,4 +630,7 @@
   <data name="Pages_Settings_History_TextBlock.Text" xml:space="preserve">
     <value>查看</value>
   </data>
+  <data name="Services_Update_NewVersionFound" xml:space="preserve">
+    <value>发现新版本</value>
+  </data>
 </root>

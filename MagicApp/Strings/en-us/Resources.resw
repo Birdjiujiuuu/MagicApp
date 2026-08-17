@@ -630,4 +630,7 @@
   <data name="Pages_Settings_History_TextBlock.Text" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="Services_Update_NewVersionFound" xml:space="preserve">
+    <value>New version found</value>
+  </data>
 </root>

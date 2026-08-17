@@ -630,4 +630,7 @@
   <data name="Pages_Settings_History_TextBlock.Text" xml:space="preserve">
     <value>表示</value>
   </data>
+  <data name="Services_Update_NewVersionFound" xml:space="preserve">
+    <value>新しいバージョンを発見する</value>
+  </data>
 </root>

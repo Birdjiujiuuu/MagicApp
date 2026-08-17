@@ -10,489 +10,236 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 
 namespace MagicApp.Services
 {
-    public class FileDownloadService
+    /// <summary>
+    /// 提供文件下载功能，支持进度显示、取消下载、文件类型选择等。
+    /// </summary>
+    public static class FileDownloadService
     {
         private static readonly ResourceLoader _resourceLoader = ResourceLoader.GetForViewIndependentUse();
-        private static readonly HttpClient _httpClient = new HttpClient();
 
         /// <summary>
-        /// 通用的文件下载方法
+        /// 通用的文件下载方法（所有便捷方法最终调用此方法）
         /// </summary>
-        /// <param name="downloadUrl">要下载的文件URL</param>
-        /// <param name="suggestedFileName">建议的文件名（不含扩展名）</param>
-        /// <param name="defaultExtension">默认扩展名（如：.jpg, .png, .mp4, .txt）</param>
-        /// <param name="fileTypeChoices">文件类型选择列表</param>
-        /// <param name="xamlRoot">用于显示对话框的XamlRoot</param>
-        /// <param name="dialogTitle">对话框标题</param>
-        /// <param name="successMessage">下载成功消息（可选）</param>
-        /// <param name="failureMessage">下载失败消息（可选）</param>
-        /// <returns>成功返回true，失败返回false</returns>
         public static async Task<bool> DownloadFileAsync(
             string downloadUrl,
             string suggestedFileName,
             string defaultExtension,
-            Dictionary<string, List<string>> fileTypeChoices,
+            Dictionary<string, List<string>>? fileTypeChoices,
             XamlRoot xamlRoot,
             string? dialogTitle = null,
             string? successMessage = null,
             string? failureMessage = null)
         {
+            // 参数校验与默认值
+            if (string.IsNullOrEmpty(downloadUrl))
+                throw new ArgumentException(_resourceLoader.GetString("Services_FileDownload_UrlNoNull"));
+
+            if (string.IsNullOrEmpty(suggestedFileName))
+                suggestedFileName = $"Download_{DateTime.Now:yyyyMMdd_HHmmss}";
+
+            if (!string.IsNullOrEmpty(defaultExtension) && !defaultExtension.StartsWith("."))
+                defaultExtension = "." + defaultExtension;
+
+            // 确保默认扩展名包含在文件类型列表中
+            EnsureDefaultExtensionInChoices(ref fileTypeChoices, defaultExtension);
+
             try
             {
-                // 验证参数
-                if (string.IsNullOrEmpty(downloadUrl))
+                // 1. 让用户选择保存位置
+                var targetFile = await PickSaveFileAsync(suggestedFileName, defaultExtension, fileTypeChoices);
+                if (targetFile == null)
+                    return false; // 用户取消了选择
+
+                // 2. 准备进度对话框和取消令牌
+                var (progressDialog, cancellationTokenSource) = CreateProgressDialog(xamlRoot, dialogTitle);
+                var cancellationToken = cancellationTokenSource.Token;
+
+                // 3. 开始下载并显示对话框
+                var dialogTask = progressDialog.ShowAsync();
+
+                try
                 {
-                    throw new ArgumentException(_resourceLoader.GetString("Services_FileDownload_UrlNoNull"));
-                }
+                    // 执行实际下载
+                    await DownloadStreamToFileAsync(
+                        downloadUrl,
+                        targetFile,
+                        cancellationToken,
+                        (downloaded, total, speed, remaining) =>
+                            UpdateProgressUI(progressDialog, downloaded, total, speed, remaining)
+                    );
 
-                if (string.IsNullOrEmpty(suggestedFileName))
+                    // 下载成功 → 更新对话框为“成功”并等待用户关闭
+                    CompleteWithSuccess(progressDialog, successMessage, targetFile.Path);
+                    await dialogTask;
+                    return true;
+                }
+                catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
                 {
-                    suggestedFileName = $"Download_{DateTime.Now:yyyyMMdd_HHmmss}";
+                    // 用户取消 → 删除未完成的文件，关闭对话框
+                    await DeleteFilePermanentlyAsync(targetFile);
+                    progressDialog.Hide();
+                    await dialogTask; // 确保对话框完全关闭
+                    return false;
                 }
-
-                // 确保默认扩展名以点开头
-                if (!string.IsNullOrEmpty(defaultExtension) && !defaultExtension.StartsWith("."))
+                catch (Exception ex)
                 {
-                    defaultExtension = "." + defaultExtension;
+                    // 下载失败 → 删除残留文件，显示错误信息并等待用户关闭
+                    await DeleteFilePermanentlyAsync(targetFile);
+                    CompleteWithFailure(progressDialog, failureMessage, ex.Message);
+                    await dialogTask;
+                    return false;
                 }
-
-                // 如果提供了默认扩展名，确保它在文件类型选择中
-                if (!string.IsNullOrEmpty(defaultExtension) && fileTypeChoices != null)
+                finally
                 {
-                    bool extensionExists = false;
-                    foreach (var choice in fileTypeChoices)
-                    {
-                        if (choice.Value.Contains(defaultExtension, StringComparer.OrdinalIgnoreCase))
-                        {
-                            extensionExists = true;
-                            break;
-                        }
-                    }
-
-                    if (!extensionExists && defaultExtension != null)
-                    {
-                        // 如果默认扩展名不在选择列表中，添加它
-                        string description = GetFileTypeDescription(defaultExtension);
-                        if (!fileTypeChoices.ContainsKey(description))
-                        {
-                            fileTypeChoices[description] = new List<string> { defaultExtension };
-                        }
-                    }
+                    // 清理取消令牌资源
+                    cancellationTokenSource.Dispose();
                 }
-
-                // 创建文件选择器
-                var picker = new FileSavePicker();
-
-                // 配置 FileSavePicker 属性
-                picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-                picker.SuggestedFileName = suggestedFileName;
-
-                // 添加文件类型选择
-                if (fileTypeChoices != null)
-                {
-                    foreach (var choice in fileTypeChoices)
-                    {
-                        picker.FileTypeChoices.Add(choice.Key, choice.Value);
-                    }
-                }
-                else
-                {
-                    // 如果没有提供文件类型选择，使用通用类型
-                    picker.FileTypeChoices.Add(_resourceLoader.GetString("Services_FileDownload_AllFile"), new List<string> { ".*" });
-                }
-
-                // 设置默认扩展名
-                if (!string.IsNullOrEmpty(defaultExtension))
-                {
-                    picker.DefaultFileExtension = defaultExtension;
-                }
-
-                // 关联窗口句柄
-                var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
-                WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
-
-                // 显示选择器对话框
-                var file = await picker.PickSaveFileAsync();
-
-                if (file != null)
-                {
-                    // 创建并显示进度对话框
-                    ContentDialog progressDialog = new()
-                    {
-                        XamlRoot = xamlRoot,
-                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                        Title = dialogTitle ?? _resourceLoader.GetString("Services_FileDownload_Downloading"),
-                        Content = CreateProgressContent(),
-                        PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Cancel"),
-                        CloseButtonText = null,
-                        DefaultButton = ContentDialogButton.Primary
-                    };
-
-                    // 添加取消标记
-                    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-                    StorageFile targetFile = file; // 保存文件引用用于取消时删除
-                    bool isDownloadCompleted = false; // 添加下载完成标志
-
-                    // 定义取消按钮的事件处理程序
-                    TypedEventHandler<ContentDialog, ContentDialogButtonClickEventArgs> cancelHandler = async (sender, args) =>
-                    {
-                        // 如果下载已完成，则不执行取消逻辑
-                        if (isDownloadCompleted)
-                        {
-                            progressDialog.Hide();
-                            return;
-                        }
-
-                        args.Cancel = true; // 防止对话框立即关闭
-                        cancellationTokenSource.Cancel();
-
-                        // 延迟关闭对话框，确保删除操作完成
-                        await Task.Delay(100);
-                        progressDialog.Hide();
-
-                        try
-                        {
-                            // 删除已下载的部分文件
-                            if (targetFile != null)
-                            {
-                                await targetFile.DeleteAsync(StorageDeleteOption.Default);
-                            }
-                        }
-                        catch
-                        {
-                            // 忽略删除错误
-                        }
-                    };
-
-                    // 为取消按钮添加点击事件
-                    progressDialog.PrimaryButtonClick += cancelHandler;
-
-                    var showTask = progressDialog.ShowAsync();
-
-                    try
-                    {
-                        // 使用支持取消的下载方式
-                        using (var downloadClient = new HttpClient())
-                        using (var response = await downloadClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationTokenSource.Token))
-                        {
-                            // 获取文件总大小
-                            long? contentLength = response.Content.Headers.ContentLength;
-                            long totalBytes = contentLength ?? 0;
-                            long downloadedBytes = 0;
-
-                            // 速度计算变量
-                            Stopwatch speedTimer = Stopwatch.StartNew();
-                            long lastDownloadedBytes = 0;
-                            long bytesPerSecond = 0;
-                            TimeSpan? remainingTime = null;
-
-                            using (var streamToReadFrom = await response.Content.ReadAsStreamAsync())
-                            using (var streamToWriteTo = await targetFile.OpenStreamForWriteAsync())
-                            {
-                                var buffer = new byte[81920];
-                                int bytesRead;
-
-                                // 使用CancellationToken监听取消请求
-                                while ((bytesRead = await streamToReadFrom.ReadAsync(buffer, 0, buffer.Length, cancellationTokenSource.Token)) > 0)
-                                {
-                                    // 如果取消标记被请求，抛出异常
-                                    cancellationTokenSource.Token.ThrowIfCancellationRequested();
-
-                                    await streamToWriteTo.WriteAsync(buffer, 0, bytesRead, cancellationTokenSource.Token);
-
-                                    // 更新已下载字节数
-                                    downloadedBytes += bytesRead;
-
-                                    // 计算下载速度
-                                    if (speedTimer.ElapsedMilliseconds >= 100)
-                                    {
-                                        bytesPerSecond = (long)((downloadedBytes - lastDownloadedBytes) / (speedTimer.ElapsedMilliseconds / 1000.0));
-                                        lastDownloadedBytes = downloadedBytes;
-                                        speedTimer.Restart();
-
-                                        // 计算预计剩余时间（如果总大小已知且速度>0）
-                                        if (totalBytes > 0 && bytesPerSecond > 0)
-                                        {
-                                            long remainingBytes = totalBytes - downloadedBytes;
-                                            if (remainingBytes > 0)
-                                            {
-                                                remainingTime = TimeSpan.FromSeconds(remainingBytes / (double)bytesPerSecond);
-                                            }
-                                            else
-                                            {
-                                                remainingTime = TimeSpan.Zero;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            remainingTime = null;
-                                        }
-
-                                        // 更新进度显示
-                                        UpdateDownloadProgress(progressDialog, downloadedBytes, totalBytes, bytesPerSecond, remainingTime);
-                                    }
-                                }
-                            }
-                        }
-
-                        // 下载成功，设置完成标志
-                        isDownloadCompleted = true;
-
-                        // 更新对话框
-                        UpdateDialogForCompletion(
-                            progressDialog,
-                            _resourceLoader.GetString("Services_FileDownload_Success"),
-                            successMessage ?? _resourceLoader.GetString("Services_FileDownload_FilePath") + $"\n{targetFile.Path}");
-
-                        // 移除取消事件处理程序
-                        progressDialog.PrimaryButtonClick -= cancelHandler;
-
-                        // 添加新的关闭按钮事件处理程序
-                        progressDialog.PrimaryButtonClick += (sender, args) =>
-                        {
-                            progressDialog.Hide();
-                        };
-
-                        // 修改按钮文本
-                        progressDialog.PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Close");
-
-                        // 等待用户点击关闭按钮
-                        await showTask;
-                        return true;
-                    }
-                    catch (OperationCanceledException)
-                    {
-                        // 用户取消了下载，已处理，直接返回false
-                        return false;
-                    }
-                    catch (Exception ex)
-                    {
-                        // 设置完成标志（虽然是失败，但已经完成）
-                        isDownloadCompleted = true;
-
-                        // 取消标记可能已被处理，避免重复操作
-                        if (!cancellationTokenSource.IsCancellationRequested)
-                        {
-                            try
-                            {
-                                // 如果下载失败，尝试删除已创建的文件
-                                await targetFile.DeleteAsync();
-                            }
-                            catch
-                            {
-                                // 忽略删除错误
-                            }
-
-                            // 移除取消事件处理程序
-                            progressDialog.PrimaryButtonClick -= cancelHandler;
-
-                            // 添加新的关闭按钮事件处理程序
-                            progressDialog.PrimaryButtonClick += (sender, args) =>
-                            {
-                                progressDialog.Hide();
-                            };
-
-                            // 修改按钮文本
-                            progressDialog.PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Close");
-
-                            // 下载失败，更新对话框
-                            UpdateDialogForCompletion(
-                                progressDialog,
-                                _resourceLoader.GetString("Services_FileDownload_Failure"),
-                                failureMessage ?? _resourceLoader.GetString("Services_FileDownload_Failure") + $"\n{ex.Message}");
-
-                            progressDialog.IsPrimaryButtonEnabled = true;
-                            await showTask;
-                        }
-
-                        return false;
-                    }
-                }
-
-                return false; // 用户取消了选择
             }
             catch (Exception ex)
             {
-                // 显示错误对话框
-                await ShowErrorDialogAsync(xamlRoot, _resourceLoader.GetString("Services_FileDownload_Error"), _resourceLoader.GetString("Services_FileDownload_Error_Describe") + $"\n{ex.Message}");
+                // 外层异常（如选择器初始化失败等）→ 显示错误弹窗
+                await ShowErrorDialogAsync(xamlRoot,
+                    _resourceLoader.GetString("Services_FileDownload_Error"),
+                    _resourceLoader.GetString("Services_FileDownload_Error_Describe") + $"\n{ex.Message}");
                 return false;
             }
         }
 
         /// <summary>
-        /// 下载图片文件的便捷方法
+        /// 下载图片的便捷方法
         /// </summary>
-        public static async Task<bool> DownloadImageAsync(
-            string imageUrl,
-            string suggestedFileName,
-            XamlRoot xamlRoot)
+        public static async Task<bool> DownloadImageAsync(string imageUrl, string suggestedFileName, XamlRoot xamlRoot)
         {
             var fileTypeChoices = new Dictionary<string, List<string>>
             {
                 { "JPEG", new List<string> { ".jpg", ".jpeg" } },
                 { "PNG", new List<string> { ".png" } },
                 { "BMP", new List<string> { ".bmp" } },
-                { _resourceLoader.GetString("Services_FileDownload_AllFile_Image"), new List<string> { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp", ".tiff" } }
+                { _resourceLoader.GetString("Services_FileDownload_AllFile_Image"),
+                    new List<string> { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp", ".tiff" } }
             };
-
             string defaultExtension = GetDefaultImageExtension(imageUrl);
-
-            return await DownloadFileAsync(
-                imageUrl,
-                suggestedFileName,
-                defaultExtension,
-                fileTypeChoices,
-                xamlRoot);
+            return await DownloadFileAsync(imageUrl, suggestedFileName, defaultExtension, fileTypeChoices, xamlRoot);
         }
 
         /// <summary>
-        /// 下载视频文件的便捷方法
+        /// 下载视频的便捷方法
         /// </summary>
-        public static async Task<bool> DownloadVideoAsync(
-            string videoUrl,
-            string suggestedFileName,
-            XamlRoot xamlRoot)
+        public static async Task<bool> DownloadVideoAsync(string videoUrl, string suggestedFileName, XamlRoot xamlRoot)
         {
             var fileTypeChoices = new Dictionary<string, List<string>>
             {
                 { "MP4", new List<string> { ".mp4" } },
                 { "WebM", new List<string> { ".webm" } },
-                { _resourceLoader.GetString("Services_FileDownload_AllFile_Video"), new List<string> { ".mp4", ".webm", ".avi", ".mov", ".wmv", ".flv", ".mkv" } }
+                { _resourceLoader.GetString("Services_FileDownload_AllFile_Video"),
+                    new List<string> { ".mp4", ".webm", ".avi", ".mov", ".wmv", ".flv", ".mkv" } }
             };
-
             string defaultExtension = GetDefaultVideoExtension(videoUrl);
-
-            return await DownloadFileAsync(
-                videoUrl,
-                suggestedFileName,
-                defaultExtension,
-                fileTypeChoices,
-                xamlRoot);
+            return await DownloadFileAsync(videoUrl, suggestedFileName, defaultExtension, fileTypeChoices, xamlRoot);
         }
 
         /// <summary>
         /// 下载通用文件的便捷方法
         /// </summary>
-        public static async Task<bool> DownloadGenericFileAsync(
-            string fileUrl,
-            string suggestedFileName,
-            XamlRoot xamlRoot)
+        public static async Task<bool> DownloadGenericFileAsync(string fileUrl, string suggestedFileName, XamlRoot xamlRoot)
         {
             var fileTypeChoices = new Dictionary<string, List<string>>
             {
                 { _resourceLoader.GetString("Services_FileDownload_AllFile"), new List<string> { ".*" } }
             };
-
             string defaultExtension = Path.GetExtension(fileUrl);
             if (string.IsNullOrEmpty(defaultExtension))
-            {
                 defaultExtension = ".download";
-            }
+            return await DownloadFileAsync(fileUrl, suggestedFileName, defaultExtension, fileTypeChoices, xamlRoot);
+        }
 
-            return await DownloadFileAsync(
-                fileUrl,
-                suggestedFileName,
-                defaultExtension,
-                fileTypeChoices,
-                xamlRoot);
+        // ==================== 私有辅助方法 ====================
+
+        /// <summary>
+        /// 确保默认扩展名存在于文件类型选择列表中，若不存在则添加
+        /// </summary>
+        private static void EnsureDefaultExtensionInChoices(ref Dictionary<string, List<string>>? fileTypeChoices, string? defaultExtension)
+        {
+            if (string.IsNullOrEmpty(defaultExtension) || fileTypeChoices == null)
+                return;
+
+            bool exists = fileTypeChoices.Values.Any(list => list.Contains(defaultExtension, StringComparer.OrdinalIgnoreCase));
+            if (!exists)
+            {
+                string description = GetFileTypeDescription(defaultExtension);
+                fileTypeChoices[description] = new List<string> { defaultExtension };
+            }
         }
 
         /// <summary>
-        /// 根据URL获取默认的图片扩展名
+        /// 显示文件保存选择器，返回用户选择的 StorageFile
         /// </summary>
-        private static string GetDefaultImageExtension(string imageUrl)
+        private static async Task<StorageFile?> PickSaveFileAsync(
+            string suggestedFileName,
+            string? defaultExtension,
+            Dictionary<string, List<string>>? fileTypeChoices)
         {
-            if (string.IsNullOrEmpty(imageUrl))
-                return ".jpg";
-
-            string url = imageUrl.ToLowerInvariant();
-            string extension = Path.GetExtension(url);
-
-            if (!string.IsNullOrEmpty(extension))
+            var picker = new FileSavePicker
             {
-                // 检查是否是有效的图片扩展名
-                string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp", ".tiff" };
-                foreach (var ext in imageExtensions)
-                {
-                    if (extension.Equals(ext, StringComparison.OrdinalIgnoreCase))
-                        return ext;
-                }
-            }
-
-            // 默认返回.jpg
-            return ".jpg";
-        }
-
-        /// <summary>
-        /// 根据URL获取默认的视频扩展名
-        /// </summary>
-        private static string GetDefaultVideoExtension(string videoUrl)
-        {
-            if (string.IsNullOrEmpty(videoUrl))
-                return ".mp4";
-
-            string url = videoUrl.ToLowerInvariant();
-            string extension = Path.GetExtension(url);
-
-            if (!string.IsNullOrEmpty(extension))
-            {
-                // 检查是否是有效的视频扩展名
-                string[] videoExtensions = { ".mp4", ".webm", ".avi", ".mov", ".wmv", ".flv", ".mkv" };
-                foreach (var ext in videoExtensions)
-                {
-                    if (extension.Equals(ext, StringComparison.OrdinalIgnoreCase))
-                        return ext;
-                }
-            }
-
-            // 默认返回.mp4
-            return ".mp4";
-        }
-
-        /// <summary>
-        /// 根据扩展名获取文件类型描述
-        /// </summary>
-        private static string GetFileTypeDescription(string extension)
-        {
-            if (string.IsNullOrEmpty(extension))
-                return _resourceLoader.GetString("Services_FileDownload_File");
-
-            extension = extension.ToLowerInvariant();
-
-            return extension switch
-            {
-                ".jpg" or ".jpeg" => "JPEG",
-                ".png" => "PNG",
-                ".bmp" => "BMP",
-                ".gif" => "GIF",
-                ".webp" => "WebP",
-                ".tiff" or ".tif" => "TIFF",
-                ".mp4" => "MP4",
-                ".webm" => "WebM",
-                ".avi" => "AVI",
-                ".mov" => "MOV",
-                ".wmv" => "WMV",
-                ".mp3" => "MP3",
-                ".wav" => "WAV",
-                ".zip" => "ZIP",
-                ".rar" => "RAR",
-                ".7z" => "7Z",
-                ".txt" => _resourceLoader.GetString("Services_FileDownload_TxtFile"),
-                ".pdf" => "PDF",
-                ".doc" or ".docx" => "Word",
-                ".xls" or ".xlsx" => "Excel",
-                _ => $"{extension.ToUpper().TrimStart('.')}"
+                SuggestedStartLocation = PickerLocationId.PicturesLibrary,
+                SuggestedFileName = suggestedFileName
             };
+
+            if (fileTypeChoices != null)
+            {
+                foreach (var choice in fileTypeChoices)
+                    picker.FileTypeChoices.Add(choice.Key, choice.Value);
+            }
+            else
+            {
+                picker.FileTypeChoices.Add(_resourceLoader.GetString("Services_FileDownload_AllFile"), new List<string> { ".*" });
+            }
+
+            if (!string.IsNullOrEmpty(defaultExtension))
+                picker.DefaultFileExtension = defaultExtension;
+
+            // 关联窗口句柄
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+            return await picker.PickSaveFileAsync();
         }
 
         /// <summary>
-        /// 创建进度对话框内容
+        /// 创建进度对话框并返回对话框实例及取消令牌源
+        /// </summary>
+        private static (ContentDialog dialog, CancellationTokenSource cts) CreateProgressDialog(XamlRoot xamlRoot, string? title)
+        {
+            var cts = new CancellationTokenSource();
+
+            var dialog = new ContentDialog
+            {
+                XamlRoot = xamlRoot,
+                Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+                Title = title ?? _resourceLoader.GetString("Services_FileDownload_Downloading"),
+                Content = CreateProgressContent(),
+                PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Cancel"),
+                CloseButtonText = null,
+                DefaultButton = ContentDialogButton.Primary
+            };
+
+            // 点击取消按钮 → 仅触发取消令牌，不执行其他操作
+            dialog.PrimaryButtonClick += (sender, args) =>
+            {
+                args.Cancel = false; // 允许对话框关闭
+                cts.Cancel();
+            };
+
+            return (dialog, cts);
+        }
+
+        /// <summary>
+        /// 创建进度对话框的初始内容
         /// </summary>
         private static StackPanel CreateProgressContent()
         {
@@ -516,16 +263,8 @@ namespace MagicApp.Services
                     {
                         Children =
                         {
-                            new TextBlock
-                            {
-                                Name = "SpeedTextBlock",
-                                HorizontalAlignment = HorizontalAlignment.Left,
-                            },
-                            new TextBlock
-                            {
-                                Name = "ProgressTextBlock",
-                                HorizontalAlignment = HorizontalAlignment.Right,
-                            }
+                            new TextBlock { Name = "SpeedTextBlock", HorizontalAlignment = HorizontalAlignment.Left },
+                            new TextBlock { Name = "ProgressTextBlock", HorizontalAlignment = HorizontalAlignment.Right }
                         }
                     }
                 }
@@ -533,116 +272,260 @@ namespace MagicApp.Services
         }
 
         /// <summary>
-        /// 更新下载进度
+        /// 核心下载逻辑：从 URL 读取流并写入文件，同时通过回调报告进度
         /// </summary>
-        private static void UpdateDownloadProgress(ContentDialog dialog, long downloadedBytes, long totalBytes, long bytesPerSecond, TimeSpan? remainingTime = null)
+        private static async Task DownloadStreamToFileAsync(
+            string downloadUrl,
+            StorageFile targetFile,
+            CancellationToken cancellationToken,
+            Action<long, long, long, TimeSpan?> progressCallback)
         {
-            if (dialog.Content is StackPanel stackPanel && stackPanel.Children.Count > 1)
+            using var client = new HttpClient();
+            using var response = await client.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            response.EnsureSuccessStatusCode();
+
+            long totalBytes = response.Content.Headers.ContentLength ?? 0;
+            long downloadedBytes = 0;
+            var speedTimer = Stopwatch.StartNew();
+            long lastDownloadedBytes = 0;
+            long bytesPerSecond = 0;
+            TimeSpan? remainingTime = null;
+
+            await using var sourceStream = await response.Content.ReadAsStreamAsync(cancellationToken);
+            await using var destStream = await targetFile.OpenStreamForWriteAsync();
+
+            byte[] buffer = new byte[81920];
+            int bytesRead;
+
+            while ((bytesRead = await sourceStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken)) > 0)
             {
-                // 更新进度条
-                if (stackPanel.Children[0] is ProgressBar progressBar)
+                cancellationToken.ThrowIfCancellationRequested();
+
+                await destStream.WriteAsync(buffer, 0, bytesRead, cancellationToken);
+                downloadedBytes += bytesRead;
+
+                // 每 100ms 更新一次进度
+                if (speedTimer.ElapsedMilliseconds >= 100)
                 {
-                    if (totalBytes > 0)
+                    bytesPerSecond = (long)((downloadedBytes - lastDownloadedBytes) / (speedTimer.ElapsedMilliseconds / 1000.0));
+                    lastDownloadedBytes = downloadedBytes;
+                    speedTimer.Restart();
+
+                    if (totalBytes > 0 && bytesPerSecond > 0)
                     {
-                        // 已知总大小，显示确定进度
-                        progressBar.IsIndeterminate = false;
-                        double progress = (double)downloadedBytes / totalBytes * 100;
-                        progressBar.Value = Math.Min(progress, 100);
+                        long remainingBytes = totalBytes - downloadedBytes;
+                        remainingTime = remainingBytes > 0
+                            ? TimeSpan.FromSeconds(remainingBytes / (double)bytesPerSecond)
+                            : TimeSpan.Zero;
                     }
                     else
                     {
-                        // 未知总大小，显示不确定进度
-                        progressBar.IsIndeterminate = true;
+                        remainingTime = null;
+                    }
+
+                    progressCallback(downloadedBytes, totalBytes, bytesPerSecond, remainingTime);
+                }
+            }
+
+            // 最终刷新进度
+            progressCallback(downloadedBytes, totalBytes, bytesPerSecond, TimeSpan.Zero);
+        }
+
+        /// <summary>
+        /// 更新进度对话框上的进度条和文本
+        /// </summary>
+        private static void UpdateProgressUI(ContentDialog dialog, long downloaded, long total, long speed, TimeSpan? remaining)
+        {
+            if (dialog.Content is not StackPanel panel || panel.Children.Count < 2)
+                return;
+
+            // 进度条
+            if (panel.Children[0] is ProgressBar progressBar)
+            {
+                if (total > 0)
+                {
+                    progressBar.IsIndeterminate = false;
+                    progressBar.Value = Math.Min(100.0, downloaded * 100.0 / total);
+                }
+                else
+                {
+                    progressBar.IsIndeterminate = true;
+                }
+            }
+
+            // 速度与进度文本
+            if (panel.Children[1] is Grid grid && grid.Children.Count >= 2)
+            {
+                if (grid.Children[0] is TextBlock speedText)
+                {
+                    string speedStr = FormatHelper.FormatFileSize(speed) + "/s";
+                    if (remaining.HasValue && remaining.Value.TotalSeconds > 0)
+                    {
+                        string remainingStr = FormatRemainingTime(remaining.Value);
+                        speedText.Text = $"{speedStr} - " + _resourceLoader.GetString("Services_FileDownload_remainingTimeText") + remainingStr;
+                    }
+                    else
+                    {
+                        speedText.Text = speedStr;
                     }
                 }
 
-                // 更新进度文本和速度文本
-                if (stackPanel.Children[1] is Grid grid && grid.Children.Count >= 2)
+                if (grid.Children[1] is TextBlock progressText)
                 {
-                    // 获取速度文本块
-                    if (grid.Children[0] is TextBlock speedTextBlock)
+                    string downloadedStr = FormatHelper.FormatFileSize(downloaded);
+                    if (total > 0)
                     {
-                        string speedText = FormatHelper.FormatFileSize(bytesPerSecond) + "/s";
-
-                        if (remainingTime.HasValue && remainingTime.Value.TotalSeconds > 0)
-                        {
-                            // 显示速度和预计剩余时间
-                            string remainingTimeText;
-                            if (remainingTime.Value.TotalHours >= 1)
-                            {
-                                remainingTimeText = $"{(int)remainingTime.Value.TotalHours}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Hour") + $"{ (int)remainingTime.Value.Minutes}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Minute");
-                            }
-                            else if (remainingTime.Value.TotalMinutes >= 1)
-                            {
-                                remainingTimeText = $"{(int)remainingTime.Value.TotalMinutes}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Minute") + $"{ (int)remainingTime.Value.Seconds}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Second");
-                            }
-                            else
-                            {
-                                remainingTimeText = $"{(int)remainingTime.Value.TotalSeconds}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Second");
-                            }
-
-                            speedTextBlock.Text = $"{speedText} - " + _resourceLoader.GetString("Services_FileDownload_remainingTimeText") + $"{remainingTimeText}";
-                        }
-                        else
-                        {
-                            // 只显示速度
-                            speedTextBlock.Text = $"{speedText}";
-                        }
+                        string totalStr = FormatHelper.FormatFileSize(total);
+                        double percent = downloaded * 100.0 / total;
+                        progressText.Text = $"{downloadedStr} / {totalStr} ({percent:F1}%)";
                     }
-
-                    // 获取进度文本块
-                    if (grid.Children[1] is TextBlock progressTextBlock)
+                    else
                     {
-                        string downloadedSize = FormatHelper.FormatFileSize(downloadedBytes);
-
-                        if (totalBytes > 0)
-                        {
-                            // 已知总大小
-                            string totalSize = FormatHelper.FormatFileSize(totalBytes);
-                            double progress = (double)downloadedBytes / totalBytes * 100;
-                            progressTextBlock.Text = $"{downloadedSize} / {totalSize} ({progress:F1}%)";
-                        }
-                        else
-                        {
-                            // 未知总大小
-                            progressTextBlock.Text = $"{downloadedSize}";
-                        }
+                        progressText.Text = downloadedStr;
                     }
                 }
             }
         }
 
         /// <summary>
-        /// 更新对话框为完成状态
+        /// 将 TimeSpan 格式化为易读的剩余时间字符串
         /// </summary>
-        private static void UpdateDialogForCompletion(ContentDialog dialog, string title, string message)
+        private static string FormatRemainingTime(TimeSpan time)
         {
-            dialog.Title = title;
-            dialog.Content = new TextBlock
-            {
-                Text = message,
-                TextWrapping = TextWrapping.WrapWholeWords,
-                MaxWidth = 450
-            };
+            if (time.TotalHours >= 1)
+                return $"{(int)time.TotalHours}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Hour") +
+                       $"{(int)time.Minutes}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Minute");
+            if (time.TotalMinutes >= 1)
+                return $"{(int)time.TotalMinutes}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Minute") +
+                       $"{(int)time.Seconds}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Second");
+            return $"{(int)time.TotalSeconds}" + _resourceLoader.GetString("Services_FileDownload_remainingTime_Second");
         }
 
         /// <summary>
-        /// 显示错误对话框
+        /// 将对话框转换为“下载成功”状态
+        /// </summary>
+        private static void CompleteWithSuccess(ContentDialog dialog, string? successMessage, string filePath)
+        {
+            dialog.Title = _resourceLoader.GetString("Services_FileDownload_Success");
+            dialog.Content = new TextBlock
+            {
+                Text = successMessage ?? (_resourceLoader.GetString("Services_FileDownload_FilePath") + $"\n{filePath}"),
+                TextWrapping = TextWrapping.WrapWholeWords,
+                MaxWidth = 450
+            };
+            dialog.PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Close");
+            // 移除旧的取消事件（若有），添加关闭事件
+            dialog.PrimaryButtonClick -= null; // 实际应移除特定处理，但为了简单，重新赋值事件
+            dialog.PrimaryButtonClick += (s, e) => dialog.Hide();
+            dialog.IsPrimaryButtonEnabled = true;
+        }
+
+        /// <summary>
+        /// 将对话框转换为“下载失败”状态
+        /// </summary>
+        private static void CompleteWithFailure(ContentDialog dialog, string? failureMessage, string errorDetail)
+        {
+            dialog.Title = _resourceLoader.GetString("Services_FileDownload_Failure");
+            dialog.Content = new TextBlock
+            {
+                Text = failureMessage ?? (_resourceLoader.GetString("Services_FileDownload_Failure") + $"\n{errorDetail}"),
+                TextWrapping = TextWrapping.WrapWholeWords,
+                MaxWidth = 450
+            };
+            dialog.PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Close");
+            dialog.PrimaryButtonClick -= null;
+            dialog.PrimaryButtonClick += (s, e) => dialog.Hide();
+            dialog.IsPrimaryButtonEnabled = true;
+        }
+
+        /// <summary>
+        /// 永久删除文件
+        /// </summary>
+        private static async Task DeleteFilePermanentlyAsync(StorageFile? file)
+        {
+            if (file == null) return;
+            try
+            {
+                await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
+            }
+            catch
+            {
+                // 忽略删除失败
+            }
+        }
+
+        /// <summary>
+        /// 显示通用错误对话框。
         /// </summary>
         private static async Task ShowErrorDialogAsync(XamlRoot xamlRoot, string title, string message)
         {
-            var loader = ResourceLoader.GetForViewIndependentUse();
-
             var dialog = new ContentDialog
             {
                 XamlRoot = xamlRoot,
                 Title = title,
                 Content = message,
-                CloseButtonText = loader.GetString("Services_FileDownload_Close"),
+                CloseButtonText = _resourceLoader.GetString("Services_FileDownload_Close"),
                 DefaultButton = ContentDialogButton.Close
             };
-
             await dialog.ShowAsync();
+        }
+
+        // 扩展名辅助方法
+
+        private static string GetDefaultImageExtension(string imageUrl)
+        {
+            if (string.IsNullOrEmpty(imageUrl)) return ".jpg";
+            string ext = Path.GetExtension(imageUrl);
+            if (!string.IsNullOrEmpty(ext))
+            {
+                string[] valid = { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp", ".tiff" };
+                if (valid.Contains(ext, StringComparer.OrdinalIgnoreCase))
+                    return ext;
+            }
+            return ".jpg";
+        }
+
+        private static string GetDefaultVideoExtension(string videoUrl)
+        {
+            if (string.IsNullOrEmpty(videoUrl)) return ".mp4";
+            string ext = Path.GetExtension(videoUrl);
+            if (!string.IsNullOrEmpty(ext))
+            {
+                string[] valid = { ".mp4", ".webm", ".avi", ".mov", ".wmv", ".flv", ".mkv" };
+                if (valid.Contains(ext, StringComparer.OrdinalIgnoreCase))
+                    return ext;
+            }
+            return ".mp4";
+        }
+
+        private static string GetFileTypeDescription(string extension)
+        {
+            if (string.IsNullOrEmpty(extension)) return _resourceLoader.GetString("Services_FileDownload_File");
+            extension = extension.ToLowerInvariant();
+            return extension switch
+            {
+                ".jpg" or ".jpeg" => "JPEG",
+                ".png" => "PNG",
+                ".bmp" => "BMP",
+                ".gif" => "GIF",
+                ".webp" => "WebP",
+                ".tiff" or ".tif" => "TIFF",
+                ".mp4" => "MP4",
+                ".webm" => "WebM",
+                ".avi" => "AVI",
+                ".mov" => "MOV",
+                ".wmv" => "WMV",
+                ".mp3" => "MP3",
+                ".wav" => "WAV",
+                ".zip" => "ZIP",
+                ".rar" => "RAR",
+                ".7z" => "7Z",
+                ".txt" => _resourceLoader.GetString("Services_FileDownload_TxtFile"),
+                ".pdf" => "PDF",
+                ".doc" or ".docx" => "Word",
+                ".xls" or ".xlsx" => "Excel",
+                _ => extension.TrimStart('.').ToUpper()
+            };
         }
     }
 }
