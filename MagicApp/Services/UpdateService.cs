@@ -214,160 +214,32 @@ namespace MagicApp.Services
         // 显示有可用更新的对话框
         private static async Task ShowUpdateAvailableDialogAsync(XamlRoot xamlRoot, string title, string releaseNotes, string releaseUrl, string downloadUrl, string newestVersion)
         {
-            // 创建WebView2控件
-            var webView = new Microsoft.UI.Xaml.Controls.WebView2();
-            webView.DefaultBackgroundColor = Colors.Transparent;
-            webView.HorizontalAlignment = HorizontalAlignment.Stretch;
-            webView.VerticalAlignment = VerticalAlignment.Stretch;
+            // 创建 WebView2 控件
+            var webView = new Microsoft.UI.Xaml.Controls.WebView2
+            {
+                DefaultBackgroundColor = Colors.Transparent,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch
+            };
 
-            // 创建容器并添加WebView2
-            var container = new Grid();
+            // 创建容器并添加 WebView2
+            var container = new Grid            
+            {
+                // 设置容器的尺寸以填充对话框内容区域
+                MinHeight = 200,
+                MinWidth = 400,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch
+            };
 
-            // 设置容器的尺寸以填充对话框内容区域
-            container.MinHeight = 200;
-            container.MinWidth = 400;
-            container.HorizontalAlignment = HorizontalAlignment.Stretch;
-            container.VerticalAlignment = VerticalAlignment.Stretch;
-
-            // 确保WebView2在容器中填满整个空间
+            // 确保 WebView2 在容器中填满整个空间
             container.Children.Add(webView);
 
-            // 确保WebView2已初始化
+            // 确保 WebView2 已初始化
             await webView.EnsureCoreWebView2Async();
 
-            // 创建Markdown HTML页面
-            string htmlContent = $@"
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset='UTF-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <style>
-            html {{
-                margin: 0;
-                padding: 0;
-                height: 100%;
-                width: 100%;
-                overflow: hidden;
-            }}
-
-            body {{
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                margin: 0;
-                padding: 16px;
-                background-color: {(App.AppTheme == ElementTheme.Dark ? "#2B2B2B" : "#ffffff")};
-                color: {(App.AppTheme == ElementTheme.Dark ? "#ffffff" : "#000000")};
-                line-height: 1.6;
-                font-size: 14px;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-                height: 100%;
-                width: 100%;
-                box-sizing: border-box;
-                overflow-y: auto;
-                overflow-x: hidden;
-            }}
-            h1, h2, h3, h4 {{
-                margin-top: 20px;
-                margin-bottom: 10px;
-                color: {(App.AppTheme == ElementTheme.Dark ? "#ffffff" : "#000000")};
-            }}
-            h1 {{ font-size: 20px; }}
-            h2 {{ font-size: 18px; }}
-            h3 {{ font-size: 16px; }}
-            h4 {{ font-size: 14px; }}
-            
-            a {{
-                color: #0078d4;
-                text-decoration: none;
-            }}
-            a:hover {{ text-decoration: underline; }}
-            
-            code {{
-                background-color: {(App.AppTheme == ElementTheme.Dark ? "#2d2d30" : "#f5f5f5")};
-                padding: 2px 4px;
-                border-radius: 3px;
-                font-family: 'Cascadia Mono', Consolas, 'Courier New', monospace;
-                font-size: 12px;
-            }}
-            
-            pre {{
-                background-color: {(App.AppTheme == ElementTheme.Dark ? "#2d2d30" : "#f5f5f5")};
-                padding: 12px;
-                border-radius: 5px;
-                overflow-x: auto;
-                border: 1px solid {(App.AppTheme == ElementTheme.Dark ? "#3d3d40" : "#e1e1e1")};
-            }}
-            
-            pre code {{
-                background-color: transparent;
-                padding: 0;
-                font-size: 12px;
-            }}
-            
-            blockquote {{
-                border-left: 4px solid #0078d4;
-                margin: 10px 0;
-                padding: 8px 12px;
-                background-color: {(App.AppTheme == ElementTheme.Dark ? "rgba(0, 120, 212, 0.1)" : "rgba(0, 120, 212, 0.05)")};
-                color: {(App.AppTheme == ElementTheme.Dark ? "#cccccc" : "#333333")};
-            }}
-            
-            ul, ol {{
-                margin: 8px 0;
-                padding-left: 24px;
-            }}
-            
-            li {{
-                margin: 4px 0;
-            }}
-            
-            table {{
-                border-collapse: collapse;
-                width: 100%;
-                margin: 12px 0;
-            }}
-            
-            th, td {{
-                border: 1px solid {(App.AppTheme == ElementTheme.Dark ? "#3d3d40" : "#e1e1e1")};
-                padding: 8px 12px;
-                text-align: left;
-            }}
-            
-            th {{
-                background-color: {(App.AppTheme == ElementTheme.Dark ? "#2d2d30" : "#f5f5f5")};
-                font-weight: 600;
-            }}
-            
-            hr {{
-                border: none;
-                border-top: 1px solid {(App.AppTheme == ElementTheme.Dark ? "#3d3d40" : "#e1e1e1")};
-                margin: 20px 0;
-            }}
-            
-            img {{
-                max-width: 100%;
-                height: auto;
-            }}
-            
-            .release-header {{
-                margin-bottom: 15px;
-                border-bottom: 1px solid {(App.AppTheme == ElementTheme.Dark ? "#3d3d40" : "#e1e1e1")};
-                padding-bottom: 10px;
-                font-size: 24px;
-            }}
-        </style>
-    </head>
-    <body>
-        <div class='release-header'>
-            <span style='font-weight: 600;'>{EscapeHtml(title)}</span>
-        </div>
-        {ConvertMarkdownToHtml(releaseNotes)}
-    </body>
-    </html>";
-
-            // 加载HTML内容
-            webView.CoreWebView2.NavigateToString(htmlContent);
+            // 使用 MarkdownRenderer 加载 Markdown
+            MarkdownRenderer.LoadMarkdown(webView, releaseNotes, title, App.AppTheme);
 
             // 创建对话框
             ContentDialog dialog = new()
@@ -400,76 +272,6 @@ namespace MagicApp.Services
                 // 打开发布页面
                 await Launcher.LaunchUriAsync(new Uri(releaseUrl));
             }
-        }
-
-        // 将Markdown转换为HTML
-        private static string ConvertMarkdownToHtml(string markdown)
-        {
-            if (string.IsNullOrWhiteSpace(markdown))
-            {
-                return "<p>" + _resourceLoader.GetString("Services_Update_NoReleaseNotes") + "</p>";
-            }
-
-            // 简单的Markdown转换
-            string html = markdown
-                // 转义HTML特殊字符
-                .Replace("&", "&amp;")
-                .Replace("<", "&lt;")
-                .Replace(">", "&gt;")
-                // 处理换行符
-                .Replace("\r\n", "\n")
-                .Replace("\r", "\n")
-                // 段落
-                .Replace("\n\n", "</p><p>")
-                .Replace("\n", "<br>");
-
-            // 处理标题
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"^###\s+(.+?)$", "<h3>$1</h3>", System.Text.RegularExpressions.RegexOptions.Multiline);
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"^##\s+(.+?)$", "<h2>$1</h2>", System.Text.RegularExpressions.RegexOptions.Multiline);
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"^#\s+(.+?)$", "<h1>$1</h1>", System.Text.RegularExpressions.RegexOptions.Multiline);
-
-            // 处理列表项
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"^-\s+(.+?)$", "<li>$1</li>", System.Text.RegularExpressions.RegexOptions.Multiline);
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"^\*\s+(.+?)$", "<li>$1</li>", System.Text.RegularExpressions.RegexOptions.Multiline);
-
-            // 处理代码块（简单处理）
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"`(.+?)`", "<code>$1</code>");
-
-            // 处理链接
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"\[(.+?)\]\((.+?)\)", "<a href=\"$2\">$1</a>");
-
-            // 处理加粗
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"\*\*(.+?)\*\*", "<strong>$1</strong>");
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"__(.+?)__", "<strong>$1</strong>");
-
-            // 处理斜体
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"\*(.+?)\*", "<em>$1</em>");
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"_(.+?)_", "<em>$1</em>");
-
-            // 将<li>包装在<ul>中
-            html = System.Text.RegularExpressions.Regex.Replace(html, @"(<li>.+?</li>)(?:\n|$)", "<ul>$1</ul>\n", System.Text.RegularExpressions.RegexOptions.Singleline);
-
-            // 确保有<p>标签包裹
-            if (!html.StartsWith("<h1>") && !html.StartsWith("<h2>") && !html.StartsWith("<h3>"))
-            {
-                html = "<p>" + html + "</p>";
-            }
-
-            return html;
-        }
-
-        // 转义HTML特殊字符
-        private static string EscapeHtml(string text)
-        {
-            if (string.IsNullOrEmpty(text))
-                return string.Empty;
-
-            return text
-                .Replace("&", "&amp;")
-                .Replace("<", "&lt;")
-                .Replace(">", "&gt;")
-                .Replace("\"", "&quot;")
-                .Replace("'", "&#39;");
         }
 
         // 下载更新文件
