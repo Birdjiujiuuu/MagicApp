@@ -206,7 +206,8 @@ namespace MagicApp.Services
                 Title = _resourceLoader.GetString("Services_Update_Title"),
                 Content = _resourceLoader.GetString("Services_Update_Latest"),
                 CloseButtonText = _resourceLoader.GetString("Services_Update_Close"),
-                DefaultButton = ContentDialogButton.Close
+                DefaultButton = ContentDialogButton.Close,
+                RequestedTheme = App.AppTheme
             };
             await dialog.ShowAsync();
         }
@@ -226,8 +227,8 @@ namespace MagicApp.Services
             var container = new Grid            
             {
                 // 设置容器的尺寸以填充对话框内容区域
-                MinHeight = 200,
-                MinWidth = 400,
+                MinHeight = 250,
+                MinWidth = 500,
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch
             };
@@ -250,7 +251,8 @@ namespace MagicApp.Services
                 PrimaryButtonText = _resourceLoader.GetString("Services_Update_Download"),
                 SecondaryButtonText = _resourceLoader.GetString("Services_Update_Release"),
                 CloseButtonText = _resourceLoader.GetString("Services_Update_Later"),
-                DefaultButton = ContentDialogButton.Primary
+                DefaultButton = ContentDialogButton.Primary,
+                RequestedTheme = App.AppTheme
             };
 
             // 显示通知
@@ -309,7 +311,8 @@ namespace MagicApp.Services
                 Title = _resourceLoader.GetString("Services_Update_Title"),
                 Content = errorMessage,
                 CloseButtonText = _resourceLoader.GetString("Services_Update_Close"),
-                DefaultButton = ContentDialogButton.Close
+                DefaultButton = ContentDialogButton.Close,
+                RequestedTheme = App.AppTheme
             };
             await dialog.ShowAsync();
         }

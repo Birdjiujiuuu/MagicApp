@@ -225,7 +225,8 @@ namespace MagicApp.Services
                 Content = CreateProgressContent(),
                 PrimaryButtonText = _resourceLoader.GetString("Services_FileDownload_Cancel"),
                 CloseButtonText = null,
-                DefaultButton = ContentDialogButton.Primary
+                DefaultButton = ContentDialogButton.Primary,
+                RequestedTheme = App.AppTheme
             };
 
             // 点击取消按钮 → 仅触发取消令牌，不执行其他操作
@@ -465,7 +466,8 @@ namespace MagicApp.Services
                 Title = title,
                 Content = message,
                 CloseButtonText = _resourceLoader.GetString("Services_FileDownload_Close"),
-                DefaultButton = ContentDialogButton.Close
+                DefaultButton = ContentDialogButton.Close,
+                RequestedTheme = App.AppTheme
             };
             await dialog.ShowAsync();
         }

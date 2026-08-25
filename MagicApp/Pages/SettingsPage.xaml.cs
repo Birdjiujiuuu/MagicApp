@@ -164,7 +164,8 @@ namespace MagicApp.Pages
                 Content = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Content"),
                 PrimaryButtonText = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Restart"),
                 CloseButtonText = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Later"),
-                DefaultButton = ContentDialogButton.Primary
+                DefaultButton = ContentDialogButton.Primary,
+                RequestedTheme = App.AppTheme
             };
             var result = await dialog.ShowAsync();
 
