@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Windows.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Xml.Linq;
@@ -26,7 +27,7 @@ namespace MagicApp.Pages
             {
                 try
                 {
-                    string url = "https://birdjiujiuuu.github.io/magicapp/source/winui3/home/Notice.xml";
+                    string url = "https://birdjiujiuuu.github.io/magicapp/source/winui3/home/Notices.xml";
                     var response = await httpClient.GetAsync(url);
 
                     if (response.IsSuccessStatusCode)
@@ -34,25 +35,44 @@ namespace MagicApp.Pages
                         string retString = await response.Content.ReadAsStringAsync();
 
                         var doc = XDocument.Parse(retString);
-                        var noticeElement = doc.Descendants("notice").FirstOrDefault();
+                        var root = doc.Root;
 
-                        if (noticeElement != null)
+                        if (root != null && root.Name == "notices")
                         {
-                            string? Title = noticeElement.Element("title")?.Value;
-                            string? Content = noticeElement.Element("body")?.Value;
+                            string currentLang = ApplicationLanguages.Languages[0];
+                            string nodeName = currentLang switch
+                            {
+                                "zh-Hans-CN" => "notice_zh_cn",
+                                "zh-Hant-TW" => "notice_zh_tw",
+                                "zh-Hant-MO" => "notice_zh_mo",
+                                "en-US" => "notice_en_us",
+                                "ja" => "notice_ja_jp",
+                                "ko" => "notice_ko_kr",
+                                _ => "notice_en_us"
+                            };
 
-                            NoticeTitle.Text = Title;
-                            NoticeContent.Text = Content;
+                            var langNode = root.Element(nodeName);
+                            if (langNode != null)
+                            {
+                                string? title = langNode.Element("title")?.Value;
+                                string? content = langNode.Element("body")?.Value;
+
+                                if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(content))
+                                {
+                                    NoticeTitle.Text = title;
+                                    NoticeContent.Text = content;
+                                    NoticeProgressRing.IsActive = false;
+                                    return;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            NoticeTitle.Text = _resourceLoader.GetString("Pages_Home_Notice_CanNotLoad");
+                            NoticeContent.Text = null;
 
                             NoticeProgressRing.IsActive = false;
                         }
-                    }
-                    else
-                    {
-                        NoticeTitle.Text = _resourceLoader.GetString("Pages_Home_Notice_CanNotLoad");
-                        NoticeContent.Text = null;
-
-                        NoticeProgressRing.IsActive = false;
                     }
                 }
                 catch
