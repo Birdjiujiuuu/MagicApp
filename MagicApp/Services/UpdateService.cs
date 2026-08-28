@@ -247,6 +247,7 @@ namespace MagicApp.Services
             {
                 XamlRoot = xamlRoot,
                 Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+                Title = title,
                 Content = container,
                 PrimaryButtonText = _resourceLoader.GetString("Services_Update_Download"),
                 SecondaryButtonText = _resourceLoader.GetString("Services_Update_Release"),

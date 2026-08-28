@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI;
 using Markdig;
 using System;
 
@@ -58,13 +57,7 @@ namespace MagicApp.Services
             max-width: 100%;
             overflow-y: auto;
         }}
-        .release-header {{
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            border-bottom: 1px solid {borderColor};
-            padding-bottom: 10px;
-        }}
+        
         h1, h2, h3, h4, h5, h6 {{
             margin-top: 20px;
             margin-bottom: 10px;
@@ -145,7 +138,6 @@ namespace MagicApp.Services
     </style>
 </head>
 <body>
-    <div class='release-header'>{EscapeHtml(title)}</div>
     {contentHtml}
 </body>
 </html>";
