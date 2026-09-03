@@ -14,13 +14,19 @@ namespace MagicApp.Pages
 
         private void Page_Loading(FrameworkElement sender, object args)
         {
-            //设置应用名称
+            //设置初始内容
             AppName.Text = Windows.ApplicationModel.AppInfo.Current.DisplayInfo.DisplayName;
+            ContentTitlePreview.Text = Windows.ApplicationModel.AppInfo.Current.DisplayInfo.DisplayName;
         }
 
         //设置预览
         private void ContentTitle_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
+            if (string.IsNullOrEmpty(ContentTitle.Text))
+            {
+                ContentTitlePreview.Text = Windows.ApplicationModel.AppInfo.Current.DisplayInfo.DisplayName;
+                return;
+            }
             ContentTitlePreview.Text = ContentTitle.Text;
         }
 
