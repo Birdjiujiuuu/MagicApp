@@ -41,6 +41,7 @@ namespace MagicApp
             var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
             var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+            MagicApp.Helpers.TaskbarProgressHelper.Attach(hwnd);
 
             // 设置窗口最小尺寸
             appWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.Overlapped);

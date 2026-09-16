@@ -55,11 +55,15 @@ namespace MagicApp.Services
                 if (targetFile == null)
                     return false; // 用户取消了选择
 
-                // 2. 准备进度对话框和取消令牌
+                // 2. 初始化任务栏进度
+                TaskbarProgressHelper.SetNormal();
+                TaskbarProgressHelper.SetProgress(0, 100);
+
+                // 3. 准备进度对话框和取消令牌
                 var (progressDialog, cancellationTokenSource) = CreateProgressDialog(xamlRoot, dialogTitle);
                 var cancellationToken = cancellationTokenSource.Token;
 
-                // 3. 开始下载并显示对话框
+                // 4. 开始下载并显示对话框
                 var dialogTask = progressDialog.ShowAsync();
 
                 try
@@ -73,25 +77,30 @@ namespace MagicApp.Services
                             UpdateProgressUI(progressDialog, downloaded, total, speed, remaining)
                     );
 
-                    // 下载成功 → 更新对话框为“成功”并等待用户关闭
+                    // 下载成功 → 任务栏显示满进度，更新对话框为并等待用户关闭
+                    TaskbarProgressHelper.SetProgress(100, 100);
                     CompleteWithSuccess(progressDialog, successMessage, targetFile.Path);
                     await dialogTask;
+                    TaskbarProgressHelper.Clear();
                     return true;
                 }
                 catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
                 {
                     // 用户取消 → 删除未完成的文件，关闭对话框
+                    TaskbarProgressHelper.Clear();
                     await DeleteFilePermanentlyAsync(targetFile);
                     progressDialog.Hide();
-                    await dialogTask; // 确保对话框完全关闭
+                    await dialogTask;
                     return false;
                 }
                 catch (Exception ex)
                 {
                     // 下载失败 → 删除残留文件，显示错误信息并等待用户关闭
+                    TaskbarProgressHelper.SetError();
                     await DeleteFilePermanentlyAsync(targetFile);
                     CompleteWithFailure(progressDialog, failureMessage, ex.Message);
                     await dialogTask;
+                    TaskbarProgressHelper.Clear();
                     return false;
                 }
                 finally
@@ -103,6 +112,7 @@ namespace MagicApp.Services
             catch (Exception ex)
             {
                 // 外层异常（如选择器初始化失败等）→ 显示错误弹窗
+                TaskbarProgressHelper.Clear();
                 await ShowErrorDialogAsync(xamlRoot,
                     _resourceLoader.GetString("Services_FileDownload_Error"),
                     _resourceLoader.GetString("Services_FileDownload_Error_Describe") + $"\n{ex.Message}");
@@ -336,7 +346,18 @@ namespace MagicApp.Services
         /// 更新进度对话框上的进度条和文本
         /// </summary>
         private static void UpdateProgressUI(ContentDialog dialog, long downloaded, long total, long speed, TimeSpan? remaining)
-        {
+        {            
+            // 同步任务栏进度
+            if (total > 0)
+            {
+                ulong percent = (ulong)Math.Min(100.0, downloaded * 100.0 / total);
+                TaskbarProgressHelper.SetProgress(percent, 100);
+            }
+            else
+            {
+                TaskbarProgressHelper.SetIndeterminate();
+            }
+
             if (dialog.Content is not StackPanel panel || panel.Children.Count < 2)
                 return;
 
