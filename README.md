@@ -2,7 +2,7 @@
 
 🚀目标是集合一些常用的工具，随机添加各种功能，做一个类似于工具箱的程序\
 ⏰更新频率比较随机，有空就写写代码，开发一些新功能\
-⭐使用 WinUI 3 进行程序开发，作者编程能力有限，故采用人工 + AI 辅助的方法进行开发（其实是 AI 生成大部分代码后再人工修改整理
+⭐使用 WinUI 3 框架，采用人工 + AI 的方法进行开发
 # 下载渠道
 
 <a href="https://apps.microsoft.com/detail/9pbz97jbr98g?referrer=appbadge&mode=full" target="_blank"  rel="noopener noreferrer">
