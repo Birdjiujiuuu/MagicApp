@@ -110,7 +110,7 @@ namespace MagicApp
             {
                 try
                 {
-                    string url = "https://birdjiujiuuu.github.io/magicapp/source/winui3/home/bgm.xml";
+                    string url = "https://birdjiujiuuu.github.io/MagicApp/app-sources/bgm.xml";
                     var response = await httpClient.GetAsync(url);
 
                     if (response.IsSuccessStatusCode)

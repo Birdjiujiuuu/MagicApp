@@ -80,7 +80,7 @@
                     <RichTextBlock>
                         <Paragraph>
                             <Hyperlink x:Name="StorePage" NavigateUri="https://apps.microsoft.com/detail/9pbz97jbr98g"/>
-                            <Hyperlink x:Name="OfficialWebsite" NavigateUri="https://birdjiujiuuu.github.io/magicapp/"/>
+                            <Hyperlink x:Name="OfficialWebsite" NavigateUri="https://birdjiujiuuu.github.io/MagicApp/"/>
                             <Hyperlink x:Name="SourceCode" NavigateUri="https://github.com/Birdjiujiuuu/MagicApp"/>
                         </Paragraph>
                     </RichTextBlock>

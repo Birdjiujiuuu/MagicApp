@@ -21,9 +21,9 @@
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
             BorderThickness="1">
                 <FlipView>
-                    <Image Source="https://birdjiujiuuu.github.io/magicapp/source/winui3/home/1.png" Stretch="Fill"/>
-                    <Image Source="https://birdjiujiuuu.github.io/magicapp/source/winui3/home/2.png" Stretch="Fill"/>
-                    <Image Source="https://birdjiujiuuu.github.io/magicapp/source/winui3/home/3.png" Stretch="Fill"/>
+                    <Image Source="https://birdjiujiuuu.github.io/MagicApp/app-sources/home_1.png" Stretch="Fill"/>
+                    <Image Source="https://birdjiujiuuu.github.io/MagicApp/app-sources/home_2.png" Stretch="Fill"/>
+                    <Image Source="https://birdjiujiuuu.github.io/MagicApp/app-sources/home_3.png" Stretch="Fill"/>
                 </FlipView>
             </Border>
 
