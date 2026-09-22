@@ -1,19 +1,27 @@
-<h1 align="center">神奇的应用程序</h1>
+<div align="center">
+
+# 神奇的应用程序
+
+**简体中文** · [English](README_EN.md)
+
+</div>
 
 🚀目标是集合一些常用的工具，随机添加各种功能，做一个类似于工具箱的程序\
 ⏰更新频率比较随机，有空就写写代码，开发一些新功能\
 ⭐使用 WinUI 3 框架，采用人工 + AI 的方法进行开发
-# 下载渠道
 
+## 下载
 <a href="https://apps.microsoft.com/detail/9pbz97jbr98g?referrer=appbadge&mode=full" target="_blank"  rel="noopener noreferrer">
 	<img src="https://get.microsoft.com/images/zh-cn%20dark.svg" width="200"/>
 </a>
 
 [GitHub 发行版](https://github.com/Birdjiujiuuu/MagicApp/releases)\
 注意：商店版和 Github 版是两个可共存的版本
-# ↓首页预览图以及当前已经具备的功能↓
+
+## ↓首页预览图以及当前已经具备的功能↓
 <img width="951" height="554" alt="image" src="https://github.com/user-attachments/assets/03188e97-a906-4f7f-a953-69c326f05a6b" /><br />
-# 支持的语言
+
+## 支持的语言
 🇨🇳 简体中文\
 🇭🇰 繁體中文\
 🇺🇸 English\
