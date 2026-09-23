@@ -15,6 +15,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Controls\ActionButton.xaml" />
+    <None Remove="Controls\ReleaseHistoryDialog.xaml" />
     <None Remove="Pages\BilibiliVideoDataPage.xaml" />
     <None Remove="Pages\HomePage.xaml" />
     <None Remove="Pages\NoticePage.xaml" />
@@ -56,6 +57,11 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.4.0" />
     <PackageReference Include="QRCoder" Version="1.8.0" />
     <PackageReference Include="System.Management" Version="10.0.11" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Controls\ReleaseHistoryDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\TimestampPage.xaml">

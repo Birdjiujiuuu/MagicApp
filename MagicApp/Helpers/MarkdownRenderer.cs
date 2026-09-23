@@ -1,7 +1,8 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Markdig;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Markdig;
 using System;
+using System.Threading.Tasks;
 
 namespace MagicApp.Services
 {
@@ -146,7 +147,7 @@ namespace MagicApp.Services
         }
 
         // 直接加载 Markdown 到 WebView2
-        public static async void LoadMarkdown(WebView2 webView, string markdown, string title, ElementTheme theme)
+        public static async Task LoadMarkdownAsync(WebView2 webView, string markdown, string title, ElementTheme theme)
         {
             if (webView == null) return;
 

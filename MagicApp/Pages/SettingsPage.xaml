@@ -54,12 +54,7 @@
                     <controls:ContentControl.Icon>
                         <FontIcon Glyph="&#xE81C;"/>
                     </controls:ContentControl.Icon>
-                    <Button Click="History_Button_Click">
-                        <StackPanel Orientation="Horizontal" Spacing="5">
-                            <TextBlock x:Uid="Pages_Settings_History_TextBlock"/>
-                            <FontIcon Glyph="&#xE8A7;"/>
-                        </StackPanel>
-                    </Button>
+                    <Button x:Uid="Pages_Settings_History_Button" Click="History_Button_Click"/>
                 </controls:ContentControl>
                 <controls:ContentControl
                     x:Name="AppVersion"

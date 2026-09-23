@@ -240,7 +240,7 @@ namespace MagicApp.Services
             await webView.EnsureCoreWebView2Async();
 
             // 使用 MarkdownRenderer 加载 Markdown
-            MarkdownRenderer.LoadMarkdown(webView, releaseNotes, title, App.AppTheme);
+            await MarkdownRenderer.LoadMarkdownAsync(webView, releaseNotes, title, App.AppTheme);
 
             // 创建对话框
             ContentDialog dialog = new()

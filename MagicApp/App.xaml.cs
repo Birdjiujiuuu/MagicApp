@@ -9,9 +9,6 @@ using WinRT.Interop;
 
 namespace MagicApp
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     public sealed partial class App : Application
     {
         private Window? _window;
@@ -33,6 +30,9 @@ namespace MagicApp
 
         // 主题设置常量
         private const string ThemeSettingKey = "AppTheme";
+
+        // 主题变化通知
+        public static event Action<ElementTheme>? ThemeChanged;
 
         // 当前应用主题属性
         public static ElementTheme AppTheme
@@ -64,6 +64,8 @@ namespace MagicApp
                     rootElement.RequestedTheme = theme;
                 }
             }
+
+            ThemeChanged?.Invoke(theme);
         }
 
         // 获取所有活动窗口（需要维护窗口列表）

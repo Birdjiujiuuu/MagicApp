@@ -1,6 +1,7 @@
 using MagicApp.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.Windows.Globalization;
 using System;
@@ -182,15 +183,29 @@ namespace MagicApp.Pages
             Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
         }
 
-        //在浏览器打开更新记录
-        private void History_Button_Click(object sender, RoutedEventArgs e)
+        //打开更新记录弹窗
+        private async void History_Button_Click(object sender, RoutedEventArgs e)
         {
-            var processStartInfo = new System.Diagnostics.ProcessStartInfo
+            var dialog = new Controls.ReleaseHistoryDialog
             {
-                FileName = "https://github.com/Birdjiujiuuu/MagicApp/releases",
-                UseShellExecute = true
+                RepoOwner = "Birdjiujiuuu",
+                RepoName = "MagicApp",
             };
-            System.Diagnostics.Process.Start(processStartInfo);
+
+            var popup = new Popup
+            {
+                XamlRoot = this.XamlRoot,
+                Child = dialog,
+                HorizontalOffset = 0,
+                VerticalOffset = 0,
+                IsLightDismissEnabled = false,
+            };
+            dialog.HostPopup = popup;
+
+            popup.Closed += (_, __) => dialog.Dispose();
+
+            popup.IsOpen = true;
+            await dialog.LoadReleasesAsync();
         }
 
         //检查更新

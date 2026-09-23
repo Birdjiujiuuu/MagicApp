@@ -627,7 +627,7 @@
   <data name="Pages_Settings_History.Description" xml:space="preserve">
     <value>看看应用黑历史</value>
   </data>
-  <data name="Pages_Settings_History_TextBlock.Text" xml:space="preserve">
+  <data name="Pages_Settings_History_Button.Content" xml:space="preserve">
     <value>看看</value>
   </data>
   <data name="Services_Update_NewVersionFound" xml:space="preserve">
