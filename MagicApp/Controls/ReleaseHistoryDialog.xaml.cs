@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -19,11 +20,10 @@ namespace MagicApp.Controls
         private const double CardHeightPref = 620;
         private const double CloseGap = 10;
         private const double CloseSize = 40;
+        private const int FadeMs = 180;
 
-        // 缓存 markdown，主题切换时重渲
         private string _cachedMarkdown = "";
 
-        // 外部注入
         public Popup? HostPopup { get; set; }
         public string RepoOwner { get; set; } = "Birdjiujiuuu";
         public string RepoName { get; set; } = "MagicApp";
@@ -41,12 +41,11 @@ namespace MagicApp.Controls
             }
             _http.DefaultRequestHeaders.Accept.ParseAdd("application/vnd.github+json");
 
-            // 跟随应用主题
             RequestedTheme = App.AppTheme;
             ApplyTheme();
 
+            RootOverlay.Opacity = 0;
             Loaded += ReleaseHistoryDialog_Loaded;
-            Unloaded += ReleaseHistoryDialog_Unloaded;
         }
 
         // ---------- 生命周期 ----------
@@ -56,20 +55,26 @@ namespace MagicApp.Controls
             if (XamlRoot == null) return;
 
             ApplyLayoutForXamlRoot();
-
-            XamlRoot.Changed -= XamlRoot_Changed;
             XamlRoot.Changed += XamlRoot_Changed;
-
-            App.ThemeChanged -= App_ThemeChanged;
             App.ThemeChanged += App_ThemeChanged;
+
+            FadeRoot(1);
         }
 
-        private void ReleaseHistoryDialog_Unloaded(object sender, RoutedEventArgs e)
+        public void Dispose()
         {
+            try { ContentWebView?.Close(); } catch { }
+
             if (XamlRoot != null)
                 XamlRoot.Changed -= XamlRoot_Changed;
 
             App.ThemeChanged -= App_ThemeChanged;
+            HostPopup = null;
+        }
+
+        private void XamlRoot_Changed(XamlRoot sender, XamlRootChangedEventArgs args)
+        {
+            ApplyLayoutForXamlRoot();
         }
 
         private void App_ThemeChanged(ElementTheme theme)
@@ -82,18 +87,12 @@ namespace MagicApp.Controls
                 if (!string.IsNullOrEmpty(_cachedMarkdown))
                 {
                     _ = MarkdownRenderer.LoadMarkdownAsync(
-                        ContentWebView,
-                        _cachedMarkdown,
-                        "Release History",
-                        ResolveEffectiveTheme());
+                        ContentWebView, _cachedMarkdown, "Release History", EffectiveTheme);
                 }
             });
         }
 
-        private void XamlRoot_Changed(XamlRoot sender, XamlRootChangedEventArgs args)
-        {
-            ApplyLayoutForXamlRoot();
-        }
+        // ---------- 布局 / 主题 ----------
 
         private void ApplyLayoutForXamlRoot()
         {
@@ -109,80 +108,89 @@ namespace MagicApp.Controls
             Card.Height = Math.Min(CardHeightPref, Math.Max(360, rootH - 120));
         }
 
-        private ElementTheme ResolveEffectiveTheme()
-        {
-            if (RequestedTheme == ElementTheme.Default)
-            {
-                return Application.Current.RequestedTheme == ApplicationTheme.Dark
+        private ElementTheme EffectiveTheme =>
+            RequestedTheme != ElementTheme.Default
+                ? RequestedTheme
+                : Application.Current.RequestedTheme == ApplicationTheme.Dark
                     ? ElementTheme.Dark
                     : ElementTheme.Light;
-            }
-            return RequestedTheme;
-        }
 
         private void ApplyTheme()
         {
-            bool isDark = ResolveEffectiveTheme() == ElementTheme.Dark;
-
-            var bgColor = isDark
+            var bgColor = EffectiveTheme == ElementTheme.Dark
                 ? Windows.UI.Color.FromArgb(0xFF, 0x2B, 0x2B, 0x2B)
                 : Windows.UI.Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
 
-            var bgBrush = new SolidColorBrush(bgColor);
+            var brush = new SolidColorBrush(bgColor);
 
-            Card.Background = bgBrush;
-            TitleRegion.Background = bgBrush;
-            CloseButton.Background = bgBrush;
+            Card.Background = brush;
+            TitleRegion.Background = brush;
+            CloseButton.Background = brush;
             ContentWebView.DefaultBackgroundColor = bgColor;
         }
 
-        public void Dispose()
+        // ---------- 动画 ----------
+
+        private void FadeRoot(double to, Action? onCompleted = null)
         {
-            try { ContentWebView?.Close(); } catch { }
+            var sb = new Storyboard();
 
-            if (XamlRoot != null)
-                XamlRoot.Changed -= XamlRoot_Changed;
+            var anim = new DoubleAnimation
+            {
+                To = to,
+                Duration = new Duration(TimeSpan.FromMilliseconds(FadeMs)),
+                EasingFunction = new CubicEase
+                {
+                    EasingMode = to > 0 ? EasingMode.EaseOut : EasingMode.EaseIn
+                }
+            };
 
-            App.ThemeChanged -= App_ThemeChanged;
-            HostPopup = null;
+            Storyboard.SetTarget(anim, RootOverlay);
+            Storyboard.SetTargetProperty(anim, "Opacity");
+            sb.Children.Add(anim);
+
+            if (onCompleted != null)
+                sb.Completed += (_, _) => onCompleted();
+
+            sb.Begin();
+        }
+
+        // ---------- 状态 ----------
+
+        private void SetState(bool loading, string? error = null)
+        {
+            LoadingRing.IsActive = loading;
+            LoadingRing.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
+            ErrorPanel.Visibility = error != null ? Visibility.Visible : Visibility.Collapsed;
+            ContentWebView.Visibility = !loading && error == null ? Visibility.Visible : Visibility.Collapsed;
+
+            if (error != null) ErrorText.Text = error;
         }
 
         // ---------- 数据加载 ----------
 
         public async Task LoadReleasesAsync()
         {
-            LoadingRing.IsActive = true;
-            LoadingRing.Visibility = Visibility.Visible;
-            ErrorPanel.Visibility = Visibility.Collapsed;
-            ContentWebView.Visibility = Visibility.Collapsed;
+            SetState(loading: true);
 
             try
             {
-                string url = $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases?per_page=30";
-                string json = await _http.GetStringAsync(url);
-
-                _cachedMarkdown = ConvertReleasesToMarkdown(json);
+                var url = $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases?per_page=30";
+                var json = await _http.GetStringAsync(url);
+                _cachedMarkdown = ToMarkdown(json);
 
                 await MarkdownRenderer.LoadMarkdownAsync(
-                    ContentWebView,
-                    _cachedMarkdown,
-                    "Release History",
-                    ResolveEffectiveTheme());
+                    ContentWebView, _cachedMarkdown, "Release History", EffectiveTheme);
 
-                ContentWebView.Visibility = Visibility.Visible;
-                LoadingRing.IsActive = false;
-                LoadingRing.Visibility = Visibility.Collapsed;
+                SetState(loading: false);
             }
             catch (Exception ex)
             {
-                LoadingRing.IsActive = false;
-                LoadingRing.Visibility = Visibility.Collapsed;
-                ErrorText.Text = ex.Message;
-                ErrorPanel.Visibility = Visibility.Visible;
+                SetState(loading: false, error: ex.Message);
             }
         }
 
-        private static string ConvertReleasesToMarkdown(string json)
+        private static string ToMarkdown(string json)
         {
             using var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
@@ -197,11 +205,7 @@ namespace MagicApp.Controls
                 if (r.TryGetProperty("draft", out var d) && d.GetBoolean())
                     continue;
 
-                bool prerelease = r.TryGetProperty("prerelease", out var pre) && pre.GetBoolean();
-
-                string title = "";
-                if (r.TryGetProperty("name", out var n))
-                    title = n.GetString() ?? "";
+                string title = r.TryGetProperty("name", out var n) ? n.GetString() ?? "" : "";
                 if (string.IsNullOrWhiteSpace(title) &&
                     r.TryGetProperty("tag_name", out var tag))
                     title = tag.GetString() ?? "Release";
@@ -213,21 +217,12 @@ namespace MagicApp.Controls
                     dateText = dt.ToLocalTime().ToString("yyyy-MM-dd");
                 }
 
-                string suffix = prerelease ? " `Pre-release`" : "";
+                string suffix = string.IsNullOrEmpty(dateText) ? "" : $" `{dateText}`";
+                sb.Append("# ").Append(title).AppendLine(suffix).AppendLine();
 
-                sb.Append("# ").Append(title).AppendLine(suffix);
-                if (!string.IsNullOrEmpty(dateText))
-                    sb.Append('*').Append(dateText).AppendLine("*");
-                sb.AppendLine();
-
-                string body = "";
-                if (r.TryGetProperty("body", out var b))
-                    body = b.GetString() ?? "";
-
+                string body = r.TryGetProperty("body", out var b) ? b.GetString() ?? "" : "";
                 sb.AppendLine(string.IsNullOrWhiteSpace(body) ? "_No description for this release._" : body);
-                sb.AppendLine();
-                sb.AppendLine("---");
-                sb.AppendLine();
+                sb.AppendLine().AppendLine("---").AppendLine();
             }
 
             return sb.ToString();
@@ -237,8 +232,11 @@ namespace MagicApp.Controls
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (HostPopup != null)
-                HostPopup.IsOpen = false;
+            CloseButton.IsEnabled = false;
+            FadeRoot(0, () =>
+            {
+                if (HostPopup != null) HostPopup.IsOpen = false;
+            });
         }
 
         private async void RetryButton_Click(object sender, RoutedEventArgs e)

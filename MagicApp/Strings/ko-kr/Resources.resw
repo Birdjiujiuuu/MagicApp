@@ -633,4 +633,10 @@
   <data name="Services_Update_NewVersionFound" xml:space="preserve">
     <value>새 버전 발견</value>
   </data>
+  <data name="Controls_ReleaseHistoryDialog_Title.Text" xml:space="preserve">
+    <value>업데이트 기록</value>
+  </data>
+  <data name="Controls_ReleaseHistoryDialog_RetryButton.Content" xml:space="preserve">
+    <value>다시 시도</value>
+  </data>
 </root>

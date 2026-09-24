@@ -633,4 +633,10 @@
   <data name="Services_Update_NewVersionFound" xml:space="preserve">
     <value>发现新版本</value>
   </data>
+  <data name="Controls_ReleaseHistoryDialog_Title.Text" xml:space="preserve">
+    <value>更新记录</value>
+  </data>
+  <data name="Controls_ReleaseHistoryDialog_RetryButton.Content" xml:space="preserve">
+    <value>重试</value>
+  </data>
 </root>

@@ -9,16 +9,10 @@
 
     <Grid x:Name="RootOverlay">
         <!-- 遮罩 -->
-        <Rectangle x:Name="OverlayRect" Fill="#66000000"/>
+        <Rectangle Fill="#66000000"/>
 
         <!-- 卡片 -->
-        <Grid x:Name="DraggableGroup"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" ColumnDefinitions="Auto,Auto">
 
             <!-- 主卡片 -->
             <Border x:Name="Card"
@@ -26,12 +20,8 @@
                     Width="620" Height="620"
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                     BorderThickness="1"
-                    CornerRadius="8">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                    CornerRadius="10">
+                <Grid RowDefinitions="Auto,*">
 
                     <!-- 标题区 -->
                     <Grid Grid.Row="0"
@@ -39,15 +29,14 @@
                           Padding="28,22,28,12"
                           Background="Transparent">
                         <StackPanel>
-                            <TextBlock x:Name="TitleText"
-                                       Text="What's new"
-                                       Style="{StaticResource SubtitleTextBlockStyle}"/>
+                            <TextBlock x:Uid="Controls_ReleaseHistoryDialog_Title" Style="{StaticResource SubtitleTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
 
                     <!-- 内容区 -->
                     <Grid Grid.Row="1">
                         <WebView2 x:Name="ContentWebView"
+                                  Margin="10"
                                   DefaultBackgroundColor="Transparent"/>
 
                         <ProgressRing x:Name="LoadingRing"
@@ -67,8 +56,7 @@
                             <TextBlock x:Name="ErrorText"
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"/>
-                            <Button x:Name="RetryButton"
-                                    Content="Retry"
+                            <Button x:Uid="Controls_ReleaseHistoryDialog_RetryButton"
                                     HorizontalAlignment="Center"
                                     Click="RetryButton_Click"/>
                         </StackPanel>
