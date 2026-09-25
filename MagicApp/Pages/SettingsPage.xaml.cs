@@ -8,6 +8,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 
 namespace MagicApp.Pages
 {
@@ -86,6 +87,18 @@ namespace MagicApp.Pages
             {
                 LanguageBox.SelectedItem = Lang_en_us;
             }
+
+            // 加载音效开关状态
+            bool soundEnabled = false;
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue("SoundEnabled", out var soundValue)
+                && soundValue is bool saved)
+            {
+                soundEnabled = saved;
+            }
+            SoundSwitch.IsOn = soundEnabled;
+            ElementSoundPlayer.State = soundEnabled
+                ? ElementSoundPlayerState.On
+                : ElementSoundPlayerState.Off;
 
             // 初始化完成
             _isInitializing = false;
@@ -181,6 +194,18 @@ namespace MagicApp.Pages
         {
             
             Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
+        }
+
+        // 音效开关切换事件
+        private void SoundSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            // 初始化过程中不处理，避免恢复状态时误触发
+            if (_isInitializing) return;
+
+            bool isOn = SoundSwitch.IsOn;
+            ElementSoundPlayer.State = isOn ? ElementSoundPlayerState.On : ElementSoundPlayerState.Off;
+
+            ApplicationData.Current.LocalSettings.Values["SoundEnabled"] = isOn;
         }
 
         //打开更新记录弹窗

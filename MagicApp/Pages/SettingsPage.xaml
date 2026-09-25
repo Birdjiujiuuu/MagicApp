@@ -49,6 +49,15 @@
                     </ComboBox>
                 </controls:ContentControl>
                 <controls:ContentControl
+                    x:Name="Sound"
+                    Header="音效"
+                    Description="控件提供音效反馈">
+                    <controls:ContentControl.Icon>
+                        <FontIcon Glyph="&#xEC4F;"/>
+                    </controls:ContentControl.Icon>
+                    <ToggleSwitch x:Name="SoundSwitch" MinWidth="0" Toggled="SoundSwitch_Toggled"/>
+                </controls:ContentControl>
+                <controls:ContentControl
                     x:Name="History"
                     x:Uid="Pages_Settings_History">
                     <controls:ContentControl.Icon>
