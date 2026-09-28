@@ -231,6 +231,9 @@
   <data name="Pages_Settings_Languages.Header" xml:space="preserve">
     <value>言語</value>
   </data>
+  <data name="Pages_Settings_Sound.Header" xml:space="preserve">
+    <value>効果音</value>
+  </data>
   <data name="Pages_Settings_AppVersion.Header" xml:space="preserve">
     <value>バージョン更新</value>
   </data>
@@ -626,6 +629,9 @@
   </data>
   <data name="Pages_Settings_History.Description" xml:space="preserve">
     <value>アプリの更新履歴を表示</value>
+  </data>
+  <data name="Pages_Settings_Sound.Description" xml:space="preserve">
+    <value>コントロールは効果音フィードバックを提供します</value>
   </data>
   <data name="Pages_Settings_History_Button.Content" xml:space="preserve">
     <value>表示</value>

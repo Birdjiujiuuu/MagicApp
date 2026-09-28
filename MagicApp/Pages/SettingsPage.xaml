@@ -50,8 +50,7 @@
                 </controls:ContentControl>
                 <controls:ContentControl
                     x:Name="Sound"
-                    Header="音效"
-                    Description="控件提供音效反馈">
+                    x:Uid="Pages_Settings_Sound">
                     <controls:ContentControl.Icon>
                         <FontIcon Glyph="&#xEC4F;"/>
                     </controls:ContentControl.Icon>
