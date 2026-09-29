@@ -270,17 +270,14 @@
   <data name="Pages_Settings_Theme_Dark.Content" xml:space="preserve">
     <value>深色</value>
   </data>
-  <data name="Pages_Settings_Languages_Dialog_Title" xml:space="preserve">
+  <data name="Pages_Settings_Languages_InfoBar.Title" xml:space="preserve">
     <value>語言已更改</value>
   </data>
-  <data name="Pages_Settings_Languages_Dialog_Content" xml:space="preserve">
+  <data name="Pages_Settings_Languages_InfoBar.Message" xml:space="preserve">
     <value>需要重啓程式以使語言更改生效，是否立即重啓？</value>
   </data>
-  <data name="Pages_Settings_Languages_Dialog_Restart" xml:space="preserve">
+  <data name="Pages_Settings_Languages_InfoBar_RestartButton.Content" xml:space="preserve">
     <value>立即重啓</value>
-  </data>
-  <data name="Pages_Settings_Languages_Dialog_Later" xml:space="preserve">
-    <value>稍後</value>
   </data>
   <data name="Pages_Settings_About_OfficialWebsite" xml:space="preserve">
     <value>官方網站</value>

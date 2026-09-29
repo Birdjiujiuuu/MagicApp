@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Documents;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.Windows.Globalization;
 using System;
 using System.Threading.Tasks;
@@ -162,37 +163,50 @@ namespace MagicApp.Pages
             // 如果语言确实发生了变化，提示重启
             if (ApplicationLanguages.PrimaryLanguageOverride != oldLang)
             {
-                await Task.Delay(100); // 短暂延迟确保语言设置生效
-                ShowRestartDialog();
+                ShowRestartInfoBar();
             }
         }
 
-        //显示重启对话框
-        private async void ShowRestartDialog()
+        // 从底部滑入显示提示条
+        private void ShowRestartInfoBar()
         {
-            ContentDialog dialog = new()
+            // 每次打开前把 transform 重置回“台下”
+            RestartInfoBarTranslate.Y = 100;
+            RestartInfoBar.Opacity = 0;
+            RestartInfoBar.IsOpen = true;
+
+            var sb = new Storyboard();
+
+            // 上滑：Y 100 → 0
+            var slide = new DoubleAnimation
             {
-                XamlRoot = this.XamlRoot,
-                Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                Title = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Title"),
-                Content = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Content"),
-                PrimaryButtonText = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Restart"),
-                CloseButtonText = _resourceLoader.GetString("Pages_Settings_Languages_Dialog_Later"),
-                DefaultButton = ContentDialogButton.Primary,
-                RequestedTheme = App.AppTheme
+                From = 100,
+                To = 0,
+                Duration = new Duration(TimeSpan.FromMilliseconds(350)),
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
-            var result = await dialog.ShowAsync();
+            Storyboard.SetTarget(slide, RestartInfoBarTranslate);
+            Storyboard.SetTargetProperty(slide, "Y");
+            sb.Children.Add(slide);
 
-            if (result == ContentDialogResult.Primary)
+            // 淡入：Opacity 0 → 1
+            var fade = new DoubleAnimation
             {
-                await RestartApplication();
-            }
+                From = 0,
+                To = 1,
+                Duration = new Duration(TimeSpan.FromMilliseconds(250))
+            };
+            Storyboard.SetTarget(fade, RestartInfoBar);
+            Storyboard.SetTargetProperty(fade, "Opacity");
+            sb.Children.Add(fade);
+
+            sb.Begin();
         }
 
-        // 重启应用
-        private async Task RestartApplication()
+        // 重启应用按钮点击事件
+        private void RestartButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            RestartInfoBar.IsOpen = false;
             Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
         }
 

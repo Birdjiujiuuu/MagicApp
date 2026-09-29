@@ -90,5 +90,22 @@
                 </controls:ContentControl>
             </StackPanel>
         </ScrollViewer>
+
+        <InfoBar
+            x:Name="RestartInfoBar"
+            x:Uid="Pages_Settings_Languages_InfoBar"
+            VerticalAlignment="Bottom"
+            Margin="40,0,40,20"
+            IsOpen="False"
+            IsClosable="True"
+            Severity="Informational"
+            Opacity="0">
+            <InfoBar.RenderTransform>
+                <TranslateTransform x:Name="RestartInfoBarTranslate" Y="100"/>
+            </InfoBar.RenderTransform>
+            <InfoBar.ActionButton>
+                <Button x:Uid="Pages_Settings_Languages_InfoBar_RestartButton" HorizontalAlignment="Right" Click="RestartButton_Click"/>
+            </InfoBar.ActionButton>
+        </InfoBar>
     </Grid>
 </Page>
