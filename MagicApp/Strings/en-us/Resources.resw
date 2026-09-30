@@ -234,10 +234,10 @@
   <data name="Pages_Settings_Sound.Header" xml:space="preserve">
     <value>Sound</value>
   </data>
-  <data name="Pages_Settings_AppVersion.Header" xml:space="preserve">
+  <data name="Pages_Settings_Update.Header" xml:space="preserve">
     <value>App Version</value>
   </data>
-  <data name="Pages_Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
+  <data name="Pages_Settings_Update_CheckUpdate.Content" xml:space="preserve">
     <value>Check for Updates</value>
   </data>
   <data name="Services_Update_Title" xml:space="preserve">
@@ -279,10 +279,10 @@
   <data name="Pages_Settings_Languages_InfoBar_RestartButton.Content" xml:space="preserve">
     <value>Restart Now</value>
   </data>
-  <data name="Pages_Settings_About_OfficialWebsite" xml:space="preserve">
+  <data name="Pages_Settings_About_OfficialWebsite.Content" xml:space="preserve">
     <value>Official Website</value>
   </data>
-  <data name="Pages_Settings_About_SourceCode" xml:space="preserve">
+  <data name="Pages_Settings_About_SourceCode.Content" xml:space="preserve">
     <value>Source Code</value>
   </data>
   <data name="Services_FileDownload_Close" xml:space="preserve">
@@ -618,7 +618,7 @@
   <data name="Pages_BilibiliVideoData_APIError" xml:space="preserve">
     <value>API Error</value>
   </data>
-  <data name="Pages_Settings_About_StorePage" xml:space="preserve">
+  <data name="Pages_Settings_About_StorePage.Content" xml:space="preserve">
     <value>Microsoft Store Page</value>
   </data>
   <data name="Pages_Settings_History.Header" xml:space="preserve">
@@ -641,5 +641,8 @@
   </data>
   <data name="Controls_ReleaseHistoryDialog_RetryButton.Content" xml:space="preserve">
     <value>Retry</value>
+  </data>
+  <data name="Pages_Settings_Update.Description" xml:space="preserve">
+    <value>Check for app version updates</value>
   </data>
 </root>

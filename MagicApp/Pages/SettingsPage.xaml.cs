@@ -2,11 +2,9 @@ using MagicApp.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.Windows.Globalization;
 using System;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
@@ -34,18 +32,7 @@ namespace MagicApp.Pages
             About.Header = Windows.ApplicationModel.AppInfo.Current.DisplayInfo.DisplayName;
 
             //设置应用版本号
-            AppVersion.Description = string.Format("{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major, Package.Current.Id.Version.Minor, Package.Current.Id.Version.Build, Package.Current.Id.Version.Revision);
-
-            // 设置关于处超链接文本
-            string storePageText = _resourceLoader.GetString("Pages_Settings_About_StorePage");
-            string officialWebsiteText = _resourceLoader.GetString("Pages_Settings_About_OfficialWebsite");
-            string sourceCodeText = _resourceLoader.GetString("Pages_Settings_About_SourceCode");
-            StorePage.Inlines.Clear();
-            StorePage.Inlines.Add(new Run { Text = storePageText });
-            OfficialWebsite.Inlines.Clear();
-            OfficialWebsite.Inlines.Add(new Run { Text = officialWebsiteText });
-            SourceCode.Inlines.Clear();
-            SourceCode.Inlines.Add(new Run { Text = sourceCodeText });
+            AppVersion.Text = string.Format("{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major, Package.Current.Id.Version.Minor, Package.Current.Id.Version.Build, Package.Current.Id.Version.Revision);
 
             // 设置当前主题选项
             var currentTheme = App.AppTheme;

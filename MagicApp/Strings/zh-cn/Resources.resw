@@ -234,10 +234,10 @@
   <data name="Pages_Settings_Sound.Header" xml:space="preserve">
     <value>音效</value>
   </data>
-  <data name="Pages_Settings_AppVersion.Header" xml:space="preserve">
+  <data name="Pages_Settings_Update.Header" xml:space="preserve">
     <value>版本更新</value>
   </data>
-  <data name="Pages_Settings_AppVersion_CheckUpdate.Content" xml:space="preserve">
+  <data name="Pages_Settings_Update_CheckUpdate.Content" xml:space="preserve">
     <value>检查更新</value>
   </data>
   <data name="Services_Update_Title" xml:space="preserve">
@@ -279,10 +279,10 @@
   <data name="Pages_Settings_Languages_InfoBar_RestartButton.Content" xml:space="preserve">
     <value>立即重启 </value>
   </data>
-  <data name="Pages_Settings_About_OfficialWebsite" xml:space="preserve">
+  <data name="Pages_Settings_About_OfficialWebsite.Content" xml:space="preserve">
     <value>官方网站</value>
   </data>
-  <data name="Pages_Settings_About_SourceCode" xml:space="preserve">
+  <data name="Pages_Settings_About_SourceCode.Content" xml:space="preserve">
     <value>源代码</value>
   </data>
   <data name="Services_FileDownload_Close" xml:space="preserve">
@@ -618,7 +618,7 @@
   <data name="Pages_BilibiliVideoData_APIError" xml:space="preserve">
     <value>API 错误</value>
   </data>
-  <data name="Pages_Settings_About_StorePage" xml:space="preserve">
+  <data name="Pages_Settings_About_StorePage.Content" xml:space="preserve">
     <value>商店页面</value>
   </data>
   <data name="Pages_Settings_History.Header" xml:space="preserve">
@@ -641,5 +641,8 @@
   </data>
   <data name="Controls_ReleaseHistoryDialog_RetryButton.Content" xml:space="preserve">
     <value>重试</value>
+  </data>
+  <data name="Pages_Settings_Update.Description" xml:space="preserve">
+    <value>检查应用版本更新</value>
   </data>
 </root>
