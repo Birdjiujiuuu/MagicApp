@@ -12,6 +12,8 @@
     <WinUISDKReferences>false</WinUISDKReferences>
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<CsWinRTAotWarningLevel>2</CsWinRTAotWarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Controls\ActionButton.xaml" />
@@ -56,8 +58,8 @@
     <PackageReference Include="Markdig" Version="1.4.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.6901" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
-    <PackageReference Include="QRCoder" Version="1.8.0" />
-    <PackageReference Include="System.Management" Version="10.0.12" />
+    <PackageReference Include="QRCoder" Version="1.8.1" />
+    <PackageReference Include="System.Management" Version="10.0.13" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\ContentExpanderControl.xaml">
@@ -114,6 +116,7 @@
     <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
     <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
     <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+	<PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <SupportedOSPlatformVersion>10.0.19041.1</SupportedOSPlatformVersion>
