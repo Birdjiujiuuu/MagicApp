@@ -10,9 +10,20 @@
     mc:Ignorable="d"
     Loading="Page_Loading">
 
+    <Page.Resources>
+        <Style
+            x:Key="SettingsSectionHeaderTextBlockStyle"
+            BasedOn="{StaticResource BodyStrongTextBlockStyle}"
+            TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="Margin" Value="0,25,0,5" />
+            </Style.Setters>
+        </Style>
+    </Page.Resources>
+
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel Margin="40,20,40,20" Spacing="5">
+            <StackPanel Margin="58,20,58,20" Spacing="5">
 
                 <!--动画-->
                 <StackPanel.ChildrenTransitions>
@@ -21,6 +32,7 @@
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
 
+                <TextBlock x:Uid="Pages_Settings_Section_AppearanceBehavior" Style="{StaticResource SettingsSectionHeaderTextBlockStyle}"/>
                 <controls:ContentControl
                     x:Name="Theme"
                     x:Uid="Pages_Settings_Theme">
@@ -56,6 +68,8 @@
                     </controls:ContentControl.Icon>
                     <ToggleSwitch x:Name="SoundSwitch" MinWidth="0" Toggled="SoundSwitch_Toggled"/>
                 </controls:ContentControl>
+
+                <TextBlock x:Uid="Pages_Settings_Section_About" Style="{StaticResource SettingsSectionHeaderTextBlockStyle}"/>
                 <controls:ContentControl
                     x:Name="History"
                     x:Uid="Pages_Settings_History">

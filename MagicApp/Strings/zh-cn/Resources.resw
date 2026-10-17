@@ -645,4 +645,10 @@
   <data name="Pages_Settings_Update.Description" xml:space="preserve">
     <value>检查应用版本更新</value>
   </data>
+  <data name="Pages_Settings_Section_About.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="Pages_Settings_Section_AppearanceBehavior.Text" xml:space="preserve">
+    <value>外观与行为</value>
+  </data>
 </root>

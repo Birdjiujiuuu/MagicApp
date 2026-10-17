@@ -645,4 +645,10 @@
   <data name="Pages_Settings_Update.Description" xml:space="preserve">
     <value>앱 버전 업데이트 확인</value>
   </data>
+  <data name="Pages_Settings_Section_About.Text" xml:space="preserve">
+    <value>정보</value>
+  </data>
+  <data name="Pages_Settings_Section_AppearanceBehavior.Text" xml:space="preserve">
+    <value>모양 및 동작</value>
+  </data>
 </root>

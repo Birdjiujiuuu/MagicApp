@@ -645,4 +645,10 @@
   <data name="Pages_Settings_Update.Description" xml:space="preserve">
     <value>Check for app version updates</value>
   </data>
+  <data name="Pages_Settings_Section_About.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Pages_Settings_Section_AppearanceBehavior.Text" xml:space="preserve">
+    <value>Appearance &amp;amp; Behavior</value>
+  </data>
 </root>
