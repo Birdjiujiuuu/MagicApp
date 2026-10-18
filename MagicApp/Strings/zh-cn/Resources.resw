@@ -654,4 +654,7 @@
   <data name="Pages_Settings_Sound_SpatialAudio.Description" xml:space="preserve">
     <value>启用空间音效</value>
   </data>
+  <data name="Pages_Settings_Update_AutoCheckUpdates.Description" xml:space="preserve">
+    <value>启动时自动检查更新</value>
+  </data>
 </root>

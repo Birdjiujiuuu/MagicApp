@@ -101,6 +101,22 @@ namespace MagicApp.Pages
                 ? ElementSpatialAudioMode.On
                 : ElementSpatialAudioMode.Off;
 
+            // 商店版本禁用检查更新卡片
+            if (Package.Current.SignatureKind == PackageSignatureKind.Store)
+            {
+                Update.Visibility = Visibility.Collapsed;
+                CheckUpdate.IsEnabled = false;
+            }
+
+            // 加载自动检查更新开关状态
+            bool autoCheckUpdatesEnabled = true;
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue("AutoCheckUpdatesEnabled", out var autoCheckValue)
+                && autoCheckValue is bool savedAutoCheck)
+            {
+                autoCheckUpdatesEnabled = savedAutoCheck;
+            }
+            AutoCheckUpdatesSwitch.IsOn = autoCheckUpdatesEnabled;
+
             // 初始化完成
             _isInitializing = false;
         }
@@ -213,7 +229,7 @@ namespace MagicApp.Pages
         // 音效开关切换事件
         private void SoundSwitch_Toggled(object sender, RoutedEventArgs e)
         {
-            // 初始化过程中不处理，避免恢复状态时误触发
+            // 初始化过程中不处理，避免误触发
             if (_isInitializing) return;
 
             bool isOn = SoundSwitch.IsOn;
@@ -233,7 +249,7 @@ namespace MagicApp.Pages
 
         private void SpatialAudioSwitch_Toggled(object sender, RoutedEventArgs e)
         {
-            // 初始化过程中不处理
+            // 初始化过程中不处理，避免误触发
             if (_isInitializing) return;
 
             // 音效总开关关闭时，不允许空间音效为开
@@ -277,31 +293,29 @@ namespace MagicApp.Pages
         //检查更新
         private async void CheckUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (Package.Current.SignatureKind == PackageSignatureKind.Store)
-            {
-                // 商店版本直接跳转到商店详情页
-                string storeProductId = "9PBZ97JBR98G";
-                var storeUri = new Uri($"ms-windows-store://pdp/?ProductId={storeProductId}");
-                await Windows.System.Launcher.LaunchUriAsync(storeUri);
-            }
-            else
-            {
-                CheckUpdate.IsEnabled = false;
-                CheckUpdateProgressRing.IsActive = true;
+            CheckUpdate.IsEnabled = false;
+            CheckUpdateProgressRing.IsActive = true;
 
-                // 调用UpdateService
-                await UpdateService.CheckForUpdateAsync(
-                    this.XamlRoot,
-                    // 检查开始时的回调
-                    onCheckStart: null,
-                    // 检查结束时的回调
-                    onCheckEnd: () =>
-                    {
-                        CheckUpdate.IsEnabled = true;
-                        CheckUpdateProgressRing.IsActive = false;
-                    }
-                );
-            }
+            // 调用UpdateService
+            await UpdateService.CheckForUpdateAsync(
+                this.XamlRoot,
+                // 检查开始时的回调
+                onCheckStart: null,
+                // 检查结束时的回调
+                onCheckEnd: () =>
+                {
+                    CheckUpdate.IsEnabled = true;
+                    CheckUpdateProgressRing.IsActive = false;
+                }
+            );
+        }
+
+        private void AutoCheckUpdatesSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            // 初始化过程中不处理，避免误触发
+            if (_isInitializing) return;
+
+            ApplicationData.Current.LocalSettings.Values["AutoCheckUpdatesEnabled"] = AutoCheckUpdatesSwitch.IsOn;
         }
     }
 }

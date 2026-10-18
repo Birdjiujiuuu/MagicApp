@@ -1,5 +1,4 @@
 ﻿using Microsoft.UI;
-using Microsoft.UI.Content;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Windows.AppNotifications;
@@ -12,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 using Windows.System;
 
 namespace MagicApp.Services
@@ -24,6 +24,18 @@ namespace MagicApp.Services
         private static bool _isDialogShowing = false;
         private static DateTime _lastCheckTime = DateTime.MinValue;
         private static readonly TimeSpan CHECK_DEBOUNCE = TimeSpan.FromSeconds(2); // 2秒防抖
+
+
+        // 检查是否启用自动检查更新
+        public static bool IsAutoCheckUpdatesEnabled()
+        {
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue("AutoCheckUpdatesEnabled", out var value)
+                && value is bool enabled)
+            {
+                return enabled;
+            }
+            return true;
+        }
 
         // 静默检查更新
         public static async Task<UpdateResult> CheckForUpdateSilentlyAsync()
@@ -168,7 +180,11 @@ namespace MagicApp.Services
             if (Package.Current.SignatureKind == PackageSignatureKind.Store)
                 return;
 
-            // 如果已经有检查在进行，则跳过
+            // 用户关闭了自动检查更新，跳过
+            if (!IsAutoCheckUpdatesEnabled())
+                return;
+
+            // 如果已经有检查在进行，跳过
             if (_isChecking)
                 return;
 

@@ -654,4 +654,7 @@
   <data name="Pages_Settings_Sound_SpatialAudio.Description" xml:space="preserve">
     <value>空間オーディオを有効にする</value>
   </data>
+  <data name="Pages_Settings_Update_AutoCheckUpdates.Description" xml:space="preserve">
+    <value>アプリ起動時にアップデートを自動確認</value>
+  </data>
 </root>

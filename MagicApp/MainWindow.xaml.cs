@@ -1,5 +1,6 @@
 using MagicApp.Pages;
 using MagicApp.Services;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -28,6 +29,7 @@ namespace MagicApp
             this.Activated += MainWindow_Activated;
 
             this.ExtendsContentIntoTitleBar = true;
+            AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
             this.SetTitleBar(TitleBar);
 
             //设置标题栏标题和图标
