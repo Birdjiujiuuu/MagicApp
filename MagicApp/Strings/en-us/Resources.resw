@@ -651,4 +651,7 @@
   <data name="Pages_Settings_Section_AppearanceBehavior.Text" xml:space="preserve">
     <value>Appearance &amp;amp; Behavior</value>
   </data>
+  <data name="Pages_Settings_Sound_SpatialAudio.Description" xml:space="preserve">
+    <value>Enable Spatial Audio</value>
+  </data>
 </root>

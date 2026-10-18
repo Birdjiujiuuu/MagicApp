@@ -60,14 +60,21 @@
                         <ComboBoxItem Name="Lang_en_us" Content="English"/>
                     </ComboBox>
                 </controls:ContentControl>
-                <controls:ContentControl
+                <controls:ContentExpanderControl
                     x:Name="Sound"
                     x:Uid="Pages_Settings_Sound">
-                    <controls:ContentControl.Icon>
+                    <controls:ContentExpanderControl.Icon>
                         <FontIcon Glyph="&#xEC4F;"/>
-                    </controls:ContentControl.Icon>
+                    </controls:ContentExpanderControl.Icon>
                     <ToggleSwitch x:Name="SoundSwitch" MinWidth="0" Toggled="SoundSwitch_Toggled"/>
-                </controls:ContentControl>
+                    <controls:ContentExpanderControl.Items>
+                        <controls:ContentItemControl
+                            x:Name="Sound_SpatialAudio"
+                            x:Uid="Pages_Settings_Sound_SpatialAudio">
+                            <ToggleSwitch x:Name="SpatialAudioSwitch" MinWidth="0" Toggled="SpatialAudioSwitch_Toggled"/>
+                        </controls:ContentItemControl>
+                    </controls:ContentExpanderControl.Items>
+                </controls:ContentExpanderControl>
 
                 <TextBlock x:Uid="Pages_Settings_Section_About" Style="{StaticResource SettingsSectionHeaderTextBlockStyle}"/>
                 <controls:ContentControl
@@ -95,9 +102,9 @@
                     Description="©2026 Birdjiujiuuu">
                     <TextBlock x:Name="AppVersion" FontSize="14" Foreground="Gray"/>
                     <controls:ContentExpanderControl.Items>
-                        <HyperlinkButton x:Uid="Pages_Settings_About_StorePage" Margin="16,6,16,0" NavigateUri="https://apps.microsoft.com/detail/9pbz97jbr98g"/>
-                        <HyperlinkButton x:Uid="Pages_Settings_About_OfficialWebsite" Margin="16,0" NavigateUri="https://birdjiujiuuu.github.io/MagicApp/"/>
-                        <HyperlinkButton x:Uid="Pages_Settings_About_SourceCode" Margin="16,0,16,6" NavigateUri="https://github.com/Birdjiujiuuu/MagicApp"/>
+                        <HyperlinkButton x:Uid="Pages_Settings_About_StorePage" Margin="44,5,44,0" NavigateUri="https://apps.microsoft.com/detail/9pbz97jbr98g"/>
+                        <HyperlinkButton x:Uid="Pages_Settings_About_OfficialWebsite" Margin="44,0" NavigateUri="https://birdjiujiuuu.github.io/MagicApp/"/>
+                        <HyperlinkButton x:Uid="Pages_Settings_About_SourceCode" Margin="44,0,44,5" NavigateUri="https://github.com/Birdjiujiuuu/MagicApp"/>
                     </controls:ContentExpanderControl.Items>
                 </controls:ContentExpanderControl>
             </StackPanel>
@@ -110,7 +117,7 @@
             Margin="40,0,40,20"
             IsOpen="False"
             IsClosable="True"
-            Severity="Informational"
+            Severity="Warning"
             Opacity="0">
             <InfoBar.RenderTransform>
                 <TranslateTransform x:Name="RestartInfoBarTranslate" Y="100"/>

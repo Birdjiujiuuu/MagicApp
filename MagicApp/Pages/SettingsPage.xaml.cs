@@ -88,6 +88,19 @@ namespace MagicApp.Pages
                 ? ElementSoundPlayerState.On
                 : ElementSoundPlayerState.Off;
 
+            // 加载空间音效开关状态（仅在音效开启时可用）
+            bool spatialAudioEnabled = false;
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue("SpatialAudioEnabled", out var spatialValue)
+                && spatialValue is bool savedSpatial)
+            {
+                spatialAudioEnabled = savedSpatial;
+            }
+            SpatialAudioSwitch.IsEnabled = soundEnabled;
+            SpatialAudioSwitch.IsOn = soundEnabled && spatialAudioEnabled;
+            ElementSoundPlayer.SpatialAudioMode = (soundEnabled && spatialAudioEnabled)
+                ? ElementSpatialAudioMode.On
+                : ElementSpatialAudioMode.Off;
+
             // 初始化完成
             _isInitializing = false;
         }
@@ -207,6 +220,33 @@ namespace MagicApp.Pages
             ElementSoundPlayer.State = isOn ? ElementSoundPlayerState.On : ElementSoundPlayerState.Off;
 
             ApplicationData.Current.LocalSettings.Values["SoundEnabled"] = isOn;
+
+            // 联动空间音效开关
+            SpatialAudioSwitch.IsEnabled = isOn;
+            if (!isOn)
+            {
+                SpatialAudioSwitch.IsOn = false;
+                ApplicationData.Current.LocalSettings.Values["SpatialAudioEnabled"] = false;
+                ElementSoundPlayer.SpatialAudioMode = ElementSpatialAudioMode.Off;
+            }
+        }
+
+        private void SpatialAudioSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            // 初始化过程中不处理
+            if (_isInitializing) return;
+
+            // 音效总开关关闭时，不允许空间音效为开
+            if (!SoundSwitch.IsOn)
+            {
+                SpatialAudioSwitch.IsOn = false;
+                return;
+            }
+
+            bool isOn = SpatialAudioSwitch.IsOn;
+            ElementSoundPlayer.SpatialAudioMode = isOn ? ElementSpatialAudioMode.On : ElementSpatialAudioMode.Off;
+
+            ApplicationData.Current.LocalSettings.Values["SpatialAudioEnabled"] = isOn;
         }
 
         //打开更新记录弹窗

@@ -651,4 +651,7 @@
   <data name="Pages_Settings_Section_AppearanceBehavior.Text" xml:space="preserve">
     <value>样子和干什么</value>
   </data>
+  <data name="Pages_Settings_Sound_SpatialAudio.Description" xml:space="preserve">
+    <value>打开更带感的小声音</value>
+  </data>
 </root>

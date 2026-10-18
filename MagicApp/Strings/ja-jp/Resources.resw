@@ -651,4 +651,7 @@
   <data name="Pages_Settings_Section_AppearanceBehavior.Text" xml:space="preserve">
     <value>外観と動作</value>
   </data>
+  <data name="Pages_Settings_Sound_SpatialAudio.Description" xml:space="preserve">
+    <value>空間オーディオを有効にする</value>
+  </data>
 </root>
