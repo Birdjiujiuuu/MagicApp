@@ -1,6 +1,8 @@
 ﻿using Microsoft.UI;
+using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.Windows.AppLifecycle;
 using System;
 using System.Collections.Generic;
@@ -28,8 +30,9 @@ namespace MagicApp
             InitializeComponent();
         }
 
-        // 主题设置常量
+        // 设置主题和背景变量
         private const string ThemeSettingKey = "AppTheme";
+        private const string BackdropSettingKey = "WindowBackdrop";
 
         // 主题变化通知
         public static event Action<ElementTheme>? ThemeChanged;
@@ -71,6 +74,44 @@ namespace MagicApp
         // 获取所有活动窗口（需要维护窗口列表）
         private static List<Window> Windows { get; } = new List<Window>();
 
+        // 读取已保存的背景标识
+        public static string GetSavedWindowBackdrop()
+        {
+            var settings = ApplicationData.Current.LocalSettings;
+            if (settings.Values.TryGetValue(BackdropSettingKey, out var value)
+                && value is string s && !string.IsNullOrEmpty(s))
+            {
+                return s;
+            }
+            return "Mica"; // 默认 Mica
+        }
+        // 将指定标识的背景应用到指定窗口。
+        public static void ApplyWindowBackdrop(Window? window, string backdropType)
+        {
+            if (window is null) return;
+
+            switch (backdropType)
+            {
+                case "MicaAlt":
+                    window.SystemBackdrop = new MicaBackdrop { Kind = MicaKind.BaseAlt };
+                    break;
+                case "Acrylic":
+                    window.SystemBackdrop = new DesktopAcrylicBackdrop();
+                    break;
+                case "None":
+                    window.SystemBackdrop = null; // 无材质则回退为纯色主题背景
+                    break;
+                case "Mica":
+                default:
+                    window.SystemBackdrop = new MicaBackdrop();
+                    break;
+            }
+        }
+        // 将指定标识的背景应用到主窗口
+        public static void ApplyWindowBackdrop(string backdropType)
+            => ApplyWindowBackdrop(MainWindow, backdropType);
+
+
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
@@ -104,6 +145,9 @@ namespace MagicApp
                 rootElement.RequestedTheme = AppTheme;
             }
 
+            // 应用保存的背景设置
+            ApplyWindowBackdrop(_window, GetSavedWindowBackdrop());
+
             _window.Activate();
         }
 
@@ -131,6 +175,9 @@ namespace MagicApp
             {
                 rootElement.RequestedTheme = AppTheme;
             }
+
+            // 新窗口同步应用当前背景设置
+            ApplyWindowBackdrop(window, GetSavedWindowBackdrop());
         }
 
         // 注销窗口（窗口关闭时调用）

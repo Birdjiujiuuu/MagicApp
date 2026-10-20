@@ -657,4 +657,10 @@
   <data name="Pages_Settings_Update_AutoCheckUpdates.Description" xml:space="preserve">
     <value>打开小应用的时候看看有没有更新</value>
   </data>
+  <data name="Pages_Settings_WindowBackdrops.Header" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Pages_Settings_WindowBackdrops.Description" xml:space="preserve">
+    <value>好多奇妙的背景选选看吧</value>
+  </data>
 </root>

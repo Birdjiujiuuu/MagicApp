@@ -23,7 +23,7 @@
 
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel Margin="58,20,58,20" Spacing="5">
+            <StackPanel Margin="58,20" Spacing="5">
 
                 <!--动画-->
                 <StackPanel.ChildrenTransitions>
@@ -44,6 +44,19 @@
                         <ComboBoxItem Name="Theme_Default" x:Uid="Pages_Settings_Theme_Default"/>
                         <ComboBoxItem Name="Theme_Light" x:Uid="Pages_Settings_Theme_Light"/>
                         <ComboBoxItem Name="Theme_Dark" x:Uid="Pages_Settings_Theme_Dark"/>
+                    </ComboBox>
+                </controls:ContentControl>
+                <controls:ContentControl
+                    x:Name="WindowBackdrops"
+                    x:Uid="Pages_Settings_WindowBackdrops">
+                    <controls:ContentControl.Icon>
+                        <FontIcon Glyph="&#xEABC;"/>
+                    </controls:ContentControl.Icon>
+                    <ComboBox Name="WindowBackdropsBox" SelectionChanged="WindowBackdropsBox_SelectionChanged">
+                        <ComboBoxItem x:Name="Backdrop_Mica" Content="Mica" Tag="Mica"/>
+                        <ComboBoxItem x:Name="Backdrop_MicaAlt" Content="Mica Alt" Tag="MicaAlt"/>
+                        <ComboBoxItem x:Name="Backdrop_Acrylic" Content="Acrylic" Tag="Acrylic"/>
+                        <ComboBoxItem x:Name="Backdrop_None" Content="None" Tag="None"/>
                     </ComboBox>
                 </controls:ContentControl>
                 <controls:ContentControl

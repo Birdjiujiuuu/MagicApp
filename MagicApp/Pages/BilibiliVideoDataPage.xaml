@@ -30,7 +30,7 @@
         <ProgressBar x:Name="LoadingProgressBar" Grid.Row="1" Height="5" Margin="20,0,20,0" Visibility="Collapsed" IsIndeterminate="True"/>
 
         <!-- 主内容区域 -->
-        <ScrollViewer Grid.Row="2" Margin="20,10,20,10" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer Grid.Row="2" Padding="20,10,20,10" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel Spacing="20">
 
                 <!-- 视频封面和基本信息 -->

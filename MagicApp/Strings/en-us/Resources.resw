@@ -226,7 +226,7 @@
     <value>Select which app theme to display</value>
   </data>
   <data name="Pages_Settings_Languages.Description" xml:space="preserve">
-    <value>Select Language</value>
+    <value>Select language</value>
   </data>
   <data name="Pages_Settings_Languages.Header" xml:space="preserve">
     <value>Language</value>
@@ -625,7 +625,7 @@
     <value>Changelogs</value>
   </data>
   <data name="Pages_Settings_History.Description" xml:space="preserve">
-    <value>View App Update History</value>
+    <value>View app update history</value>
   </data>
   <data name="Pages_Settings_Sound.Description" xml:space="preserve">
     <value>Controls provide audible feedback</value>
@@ -656,5 +656,11 @@
   </data>
   <data name="Pages_Settings_Update_AutoCheckUpdates.Description" xml:space="preserve">
     <value>Automatically check for updates when the app starts</value>
+  </data>
+  <data name="Pages_Settings_WindowBackdrops.Header" xml:space="preserve">
+    <value>Window Backdrops</value>
+  </data>
+  <data name="Pages_Settings_WindowBackdrops.Description" xml:space="preserve">
+    <value>Select the appearance of your window's backdrop</value>
   </data>
 </root>

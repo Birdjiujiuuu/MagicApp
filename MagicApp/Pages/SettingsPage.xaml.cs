@@ -49,6 +49,25 @@ namespace MagicApp.Pages
                 ThemeModeBox.SelectedItem = Theme_Dark;
             }
 
+            // 设置当前背景选项
+            string savedBackdrop = App.GetSavedWindowBackdrop();
+            switch (savedBackdrop)
+            {
+                case "MicaAlt":
+                    WindowBackdropsBox.SelectedItem = Backdrop_MicaAlt;
+                    break;
+                case "Acrylic":
+                    WindowBackdropsBox.SelectedItem = Backdrop_Acrylic;
+                    break;
+                case "None":
+                    WindowBackdropsBox.SelectedItem = Backdrop_None;
+                    break;
+                case "Mica":
+                default:
+                    WindowBackdropsBox.SelectedItem = Backdrop_Mica;
+                    break;
+            }
+
             // 获取当前语言
             string currentLang = ApplicationLanguages.Languages[0];
             if (currentLang == "zh-Hant-MO")
@@ -141,10 +160,25 @@ namespace MagicApp.Pages
             }
         }
 
+        //更改背景
+        private void WindowBackdropsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // 初始化过程中不处理，避免误触发
+            if (_isInitializing) return;
+
+            if (WindowBackdropsBox.SelectedItem is not ComboBoxItem selected) return;
+
+            string tag = selected.Tag?.ToString() ?? "Mica";
+
+            // 保存到本地设置并应用更改
+            ApplicationData.Current.LocalSettings.Values["WindowBackdrop"] = tag;
+            App.ApplyWindowBackdrop(tag);
+        }
+
         //更改应用语言
         private async void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // 如果是初始化过程中则不处理
+            // 初始化过程中不处理，避免误触发
             if (_isInitializing) return;
 
             var LangSelect = LanguageBox.SelectedItem as ComboBoxItem;

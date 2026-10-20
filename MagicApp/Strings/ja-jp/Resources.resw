@@ -657,4 +657,10 @@
   <data name="Pages_Settings_Update_AutoCheckUpdates.Description" xml:space="preserve">
     <value>アプリ起動時にアップデートを自動確認</value>
   </data>
+  <data name="Pages_Settings_WindowBackdrops.Header" xml:space="preserve">
+    <value>ウィンドウの背景</value>
+  </data>
+  <data name="Pages_Settings_WindowBackdrops.Description" xml:space="preserve">
+    <value>ウィンドウの背景の外観を選択してください</value>
+  </data>
 </root>
