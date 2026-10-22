@@ -415,7 +415,7 @@
     <value>エクスペリエンス パック</value>
   </data>
   <data name="Pages_SystemInfo_WindowsSpecs_Build.Text" xml:space="preserve">
-    <value>オペレーティング システム バージョン</value>
+    <value>ビルド</value>
   </data>
   <data name="Pages_SystemInfo_WindowsSpecs_InstallDate.Text" xml:space="preserve">
     <value>インストール日</value>

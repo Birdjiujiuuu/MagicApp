@@ -59,9 +59,6 @@ namespace MagicApp.Pages
                 case "Acrylic":
                     WindowBackdropsBox.SelectedItem = Backdrop_Acrylic;
                     break;
-                case "None":
-                    WindowBackdropsBox.SelectedItem = Backdrop_None;
-                    break;
                 case "Mica":
                 default:
                     WindowBackdropsBox.SelectedItem = Backdrop_Mica;
@@ -103,9 +100,6 @@ namespace MagicApp.Pages
                 soundEnabled = saved;
             }
             SoundSwitch.IsOn = soundEnabled;
-            ElementSoundPlayer.State = soundEnabled
-                ? ElementSoundPlayerState.On
-                : ElementSoundPlayerState.Off;
 
             // 加载空间音效开关状态（仅在音效开启时可用）
             bool spatialAudioEnabled = false;
@@ -116,9 +110,6 @@ namespace MagicApp.Pages
             }
             SpatialAudioSwitch.IsEnabled = soundEnabled;
             SpatialAudioSwitch.IsOn = soundEnabled && spatialAudioEnabled;
-            ElementSoundPlayer.SpatialAudioMode = (soundEnabled && spatialAudioEnabled)
-                ? ElementSpatialAudioMode.On
-                : ElementSpatialAudioMode.Off;
 
             // 商店版本禁用检查更新卡片
             if (Package.Current.SignatureKind == PackageSignatureKind.Store)

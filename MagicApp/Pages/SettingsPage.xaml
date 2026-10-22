@@ -56,7 +56,6 @@
                         <ComboBoxItem x:Name="Backdrop_Mica" Content="Mica" Tag="Mica"/>
                         <ComboBoxItem x:Name="Backdrop_MicaAlt" Content="Mica Alt" Tag="MicaAlt"/>
                         <ComboBoxItem x:Name="Backdrop_Acrylic" Content="Acrylic" Tag="Acrylic"/>
-                        <ComboBoxItem x:Name="Backdrop_None" Content="None" Tag="None"/>
                     </ComboBox>
                 </controls:ContentControl>
                 <controls:ContentControl

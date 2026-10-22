@@ -34,6 +34,10 @@ namespace MagicApp
         private const string ThemeSettingKey = "AppTheme";
         private const string BackdropSettingKey = "WindowBackdrop";
 
+        // 设置音效和空间音频变量
+        private const string SoundEnabledKey = "SoundEnabled";
+        private const string SpatialAudioEnabledKey = "SpatialAudioEnabled";
+
         // 主题变化通知
         public static event Action<ElementTheme>? ThemeChanged;
 
@@ -85,6 +89,7 @@ namespace MagicApp
             }
             return "Mica"; // 默认 Mica
         }
+
         // 将指定标识的背景应用到指定窗口。
         public static void ApplyWindowBackdrop(Window? window, string backdropType)
         {
@@ -98,19 +103,39 @@ namespace MagicApp
                 case "Acrylic":
                     window.SystemBackdrop = new DesktopAcrylicBackdrop();
                     break;
-                case "None":
-                    window.SystemBackdrop = null; // 无材质则回退为纯色主题背景
-                    break;
                 case "Mica":
                 default:
                     window.SystemBackdrop = new MicaBackdrop();
                     break;
             }
         }
+
         // 将指定标识的背景应用到主窗口
         public static void ApplyWindowBackdrop(string backdropType)
             => ApplyWindowBackdrop(MainWindow, backdropType);
 
+        // 应用音效和空间音频设置
+        private static void RestoreSoundSettings()
+        {
+            var settings = ApplicationData.Current.LocalSettings;
+
+            bool soundEnabled =
+                settings.Values.TryGetValue(SoundEnabledKey, out var soundValue)
+                && soundValue is bool s && s;
+
+            bool spatialEnabled =
+                settings.Values.TryGetValue(SpatialAudioEnabledKey, out var spatialValue)
+                && spatialValue is bool sp && sp;
+
+            ElementSoundPlayer.State = soundEnabled
+                ? ElementSoundPlayerState.On
+                : ElementSoundPlayerState.Off;
+
+            // 音效关闭时，空间音效必须一起关闭
+            ElementSoundPlayer.SpatialAudioMode = (soundEnabled && spatialEnabled)
+                ? ElementSpatialAudioMode.On
+                : ElementSpatialAudioMode.Off;
+        }
 
         /// <summary>
         /// Invoked when the application is launched.
@@ -147,6 +172,9 @@ namespace MagicApp
 
             // 应用保存的背景设置
             ApplyWindowBackdrop(_window, GetSavedWindowBackdrop());
+
+            // 应用保存的音效和空间音频设置
+            RestoreSoundSettings();
 
             _window.Activate();
         }

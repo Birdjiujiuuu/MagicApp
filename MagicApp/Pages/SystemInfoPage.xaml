@@ -27,8 +27,15 @@
 
         <!-- 图标样式 -->
         <Style x:Key="IconStyle" TargetType="FontIcon">
+            <Setter Property="FontFamily" Value="Segoe Fluent Icons"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- 多行图标顶部对齐样式 -->
+        <Style x:Key="IconTopStyle" TargetType="FontIcon" BasedOn="{StaticResource IconStyle}">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="0,2,0,0"/>
         </Style>
 
         <!-- 标签样式 -->
@@ -36,6 +43,13 @@
             <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="14"/>
+            <Setter Property="MinWidth" Value="140"/>
+        </Style>
+
+        <!-- 多行标签顶部对齐样式 -->
+        <Style x:Key="LabelTopStyle" TargetType="TextBlock" BasedOn="{StaticResource LabelStyle}">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="0,2,0,0"/>
         </Style>
 
         <!-- 值样式 -->
@@ -46,97 +60,101 @@
         </Style>
     </Page.Resources>
 
-    <ScrollViewer>
-        <StackPanel Margin="10,20" Spacing="10">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="58,20" Spacing="12">
+
             <!-- 设备规格卡片 -->
             <Border Style="{StaticResource CardBorderStyle}">
-                <StackPanel Spacing="10">
+                <StackPanel Spacing="12">
                     <TextBlock x:Uid="Pages_SystemInfo_DeviceSpecs" Style="{StaticResource SectionTitleStyle}"/>
 
-                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
+                    <Grid ColumnDefinitions="Auto,Auto,*"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                          ColumnSpacing="12" RowSpacing="8">
+
                         <!-- 设备名称 -->
-                        <FontIcon Grid.Row="0" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE8EC;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="0" Grid.Column="0" Glyph="&#xE8EC;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_DeviceName" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtDeviceName" Grid.Row="0" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 主板 -->
-                        <FontIcon Grid.Row="1" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE950;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="1" Grid.Column="0" Glyph="&#xE950;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Motherboard" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtMotherboard" Grid.Row="1" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- BIOS 版本 -->
-                        <FontIcon Grid.Row="2" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xF847;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="2" Grid.Column="0" Glyph="&#xF847;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="2" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_BiosVersion" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtBiosVersion" Grid.Row="2" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 系统型号 -->
-                        <FontIcon Grid.Row="3" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE74C;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="3" Grid.Column="0" Glyph="&#xE74C;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="3" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_SystemModel" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtSystemModel" Grid.Row="3" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 处理器 -->
-                        <FontIcon Grid.Row="4" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xEEA1;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="4" Grid.Column="0" Glyph="&#xEEA1;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="4" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Cpu" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtCpu" Grid.Row="4" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 内存 -->
-                        <FontIcon Grid.Row="5" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xEEA0;" Style="{StaticResource IconStyle}"/>
-                        <TextBlock Grid.Row="5" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Memory" Style="{StaticResource LabelStyle}"/>
+                        <FontIcon Grid.Row="5" Grid.Column="0" Glyph="&#xEEA0;" Style="{StaticResource IconTopStyle}"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Memory" Style="{StaticResource LabelTopStyle}"/>
                         <StackPanel Grid.Row="5" Grid.Column="2" Spacing="6">
                             <Grid ColumnDefinitions="*,Auto">
                                 <StackPanel Grid.Column="0">
                                     <TextBlock x:Name="txtMemoryUsed" Style="{StaticResource ValueStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12"/>
                                     <ProgressBar x:Name="memoryBar" Height="6" Maximum="100" Value="0" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
                                 </StackPanel>
-                                <TextBlock Grid.Column="1" x:Name="txtMemoryTotal" Style="{StaticResource ValueStyle}" Margin="8,0,0,0" FontSize="12"/>
+                                <TextBlock Grid.Column="1" x:Name="txtMemoryTotal" Style="{StaticResource ValueStyle}" Margin="8,0,0,0" FontSize="12" VerticalAlignment="Bottom"/>
                             </Grid>
                         </StackPanel>
 
                         <!-- 虚拟内存 -->
-                        <FontIcon Grid.Row="6" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE964;" Style="{StaticResource IconStyle}"/>
-                        <TextBlock Grid.Row="6" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_PageFile" Style="{StaticResource LabelStyle}"/>
+                        <FontIcon Grid.Row="6" Grid.Column="0" Glyph="&#xE964;" Style="{StaticResource IconTopStyle}"/>
+                        <TextBlock Grid.Row="6" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_PageFile" Style="{StaticResource LabelTopStyle}"/>
                         <StackPanel Grid.Row="6" Grid.Column="2" Spacing="6">
                             <Grid ColumnDefinitions="*,Auto">
                                 <StackPanel Grid.Column="0">
                                     <TextBlock x:Name="txtPageUsed" Style="{StaticResource ValueStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12"/>
                                     <ProgressBar x:Name="pageBar" Height="6" Maximum="100" Value="0" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
                                 </StackPanel>
-                                <TextBlock Grid.Column="1" x:Name="txtPageTotal" Style="{StaticResource ValueStyle}" Margin="8,0,0,0" FontSize="12"/>
+                                <TextBlock Grid.Column="1" x:Name="txtPageTotal" Style="{StaticResource ValueStyle}" Margin="8,0,0,0" FontSize="12" VerticalAlignment="Bottom"/>
                             </Grid>
                         </StackPanel>
 
                         <!-- 驱动器 -->
-                        <FontIcon Grid.Row="7" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xEDA2;" Style="{StaticResource IconStyle}"/>
-                        <TextBlock Grid.Row="7" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Drives" Style="{StaticResource LabelStyle}"/>
+                        <FontIcon Grid.Row="7" Grid.Column="0" Glyph="&#xEDA2;" Style="{StaticResource IconTopStyle}"/>
+                        <TextBlock Grid.Row="7" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Drives" Style="{StaticResource LabelTopStyle}"/>
                         <ItemsControl x:Name="drivesList" Grid.Row="7" Grid.Column="2">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="models:SystemInfoDriveItem">
-                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,6">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,8">
                                         <TextBlock Grid.Column="0" Text="{x:Bind Name, Mode=OneTime}" Style="{StaticResource ValueStyle}" FontWeight="SemiBold"/>
                                         <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                                            <TextBlock Text="{x:Bind FreeSpaceStr, Mode=OneTime}" Style="{StaticResource ValueStyle}"
-                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12"/>
-                                            <ProgressBar Height="4" Maximum="{x:Bind TotalBytes, Mode=OneTime}" Value="{x:Bind UsedBytes, Mode=OneTime}" 
-                                 Foreground="{ThemeResource AccentFillColorDefaultBrush}" ShowError="{x:Bind IsHighUsage, Mode=OneTime}" Margin="0,2,0,0"/>
+                                            <TextBlock Text="{x:Bind FreeSpaceStr, Mode=OneTime}" Style="{StaticResource ValueStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12"/>
+                                            <ProgressBar Height="4" Maximum="{x:Bind TotalBytes, Mode=OneTime}" Value="{x:Bind UsedBytes, Mode=OneTime}"
+                                                         Foreground="{ThemeResource AccentFillColorDefaultBrush}"
+                                                         ShowError="{x:Bind IsHighUsage, Mode=OneTime}" Margin="0,2,0,0"/>
                                         </StackPanel>
                                         <TextBlock Grid.Column="2" Text="{x:Bind TotalSpaceStr, Mode=OneTime}" Style="{StaticResource ValueStyle}" Margin="8,0,0,0" FontSize="12"/>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        
+
                         <!-- 显卡 -->
-                        <FontIcon Grid.Row="8" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xF211;" Style="{StaticResource IconStyle}"/>
-                        <TextBlock Grid.Row="8" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Gpu" Style="{StaticResource LabelStyle}"/>
+                        <FontIcon Grid.Row="8" Grid.Column="0" Glyph="&#xF211;" Style="{StaticResource IconTopStyle}"/>
+                        <TextBlock Grid.Row="8" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Gpu" Style="{StaticResource LabelTopStyle}"/>
                         <TextBlock x:Name="txtGpu" Grid.Row="8" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 屏幕分辨率 -->
-                        <FontIcon Grid.Row="9" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE70A;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="9" Grid.Column="0" Glyph="&#xE70A;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="9" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Resolution" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtResolution" Grid.Row="9" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 系统类型 -->
-                        <FontIcon Grid.Row="10" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE946;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="10" Grid.Column="0" Glyph="&#xE946;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="10" Grid.Column="1" x:Uid="Pages_SystemInfo_DeviceSpecs_Architecture" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtArchitecture" Grid.Row="10" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
                     </Grid>
@@ -145,32 +163,35 @@
 
             <!-- Windows 规格卡片 -->
             <Border Style="{StaticResource CardBorderStyle}">
-                <StackPanel Spacing="10">
+                <StackPanel Spacing="12">
                     <TextBlock x:Uid="Pages_SystemInfo_WindowsSpecs" Style="{StaticResource SectionTitleStyle}"/>
 
-                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
-                        <!-- Windows 版本 -->
-                        <FontIcon Grid.Row="0" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE770;" Style="{StaticResource IconStyle}"/>
+                    <Grid ColumnDefinitions="Auto,Auto,*"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                          ColumnSpacing="12" RowSpacing="8">
+
+                        <!-- 版本 -->
+                        <FontIcon Grid.Row="0" Grid.Column="0" Glyph="&#xE770;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="Pages_SystemInfo_WindowsSpecs_Edition" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtEdition" Grid.Row="0" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
-                        <!-- 版本号 -->
-                        <FontIcon Grid.Row="1" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE789;" Style="{StaticResource IconStyle}"/>
+                        <!-- Windows 版本号 -->
+                        <FontIcon Grid.Row="1" Grid.Column="0" Glyph="&#xE789;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="Pages_SystemInfo_WindowsSpecs_VersionDisplay" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtVersionDisplay" Grid.Row="1" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 安装日期 -->
-                        <FontIcon Grid.Row="2" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE823;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="2" Grid.Column="0" Glyph="&#xE823;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="2" Grid.Column="1" x:Uid="Pages_SystemInfo_WindowsSpecs_InstallDate" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtInstallDate" Grid.Row="2" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 操作系统版本 -->
-                        <FontIcon Grid.Row="3" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE756;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="3" Grid.Column="0" Glyph="&#xE756;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="3" Grid.Column="1" x:Uid="Pages_SystemInfo_WindowsSpecs_Build" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtBuild" Grid.Row="3" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 体验包 -->
-                        <FontIcon Grid.Row="4" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE7B8;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="4" Grid.Column="0" Glyph="&#xE7B8;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="4" Grid.Column="1" x:Uid="Pages_SystemInfo_WindowsSpecs_Experience" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtExperience" Grid.Row="4" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
                     </Grid>
@@ -179,42 +200,45 @@
 
             <!-- 网络卡片 -->
             <Border Style="{StaticResource CardBorderStyle}">
-                <StackPanel Spacing="10">
+                <StackPanel Spacing="12">
                     <TextBlock x:Uid="Pages_SystemInfo_Network" Style="{StaticResource SectionTitleStyle}"/>
 
-                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
+                    <Grid ColumnDefinitions="Auto,Auto,*"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                          ColumnSpacing="12" RowSpacing="8">
+
                         <!-- 适配器 -->
-                        <FontIcon Grid.Row="0" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xEE77;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="0" Grid.Column="0" Glyph="&#xEE77;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="Pages_SystemInfo_Network_Adapter" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtAdapter" Grid.Row="0" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
-                        <!-- 连接状态 -->
-                        <FontIcon Grid.Row="1" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE968;" Style="{StaticResource IconStyle}"/>
+                        <!-- 状态 -->
+                        <FontIcon Grid.Row="1" Grid.Column="0" Glyph="&#xE968;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="Pages_SystemInfo_Network_Status" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtNetworkStatus" Grid.Row="1" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- IPv4 地址 -->
-                        <FontIcon Grid.Row="2" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE874;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="2" Grid.Column="0" Glyph="&#xE874;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="2" Grid.Column="1" x:Uid="Pages_SystemInfo_Network_Ipv4Address" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtIpv4Address" Grid.Row="2" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- IPv6 地址 -->
-                        <FontIcon Grid.Row="3" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE874;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="3" Grid.Column="0" Glyph="&#xE874;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="3" Grid.Column="1" x:Uid="Pages_SystemInfo_Network_Ipv6Address" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtIpv6Address" Grid.Row="3" Grid.Column="2" Style="{StaticResource ValueStyle}" TextWrapping="Wrap"/>
 
                         <!-- MAC 地址 -->
-                        <FontIcon Grid.Row="4" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE8CE;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="4" Grid.Column="0" Glyph="&#xE8CE;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="4" Grid.Column="1" x:Uid="Pages_SystemInfo_Network_MacAddress" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtMacAddress" Grid.Row="4" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 默认网关 -->
-                        <FontIcon Grid.Row="5" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE704;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="5" Grid.Column="0" Glyph="&#xE704;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="5" Grid.Column="1" x:Uid="Pages_SystemInfo_Network_Gateway" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtGateway" Grid.Row="5" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- DNS 服务器 -->
-                        <FontIcon Grid.Row="6" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE774;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="6" Grid.Column="0" Glyph="&#xE774;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="6" Grid.Column="1" x:Uid="Pages_SystemInfo_Network_DnsServers" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtDnsServers" Grid.Row="6" Grid.Column="2" Style="{StaticResource ValueStyle}" TextWrapping="Wrap"/>
                     </Grid>
@@ -223,32 +247,36 @@
 
             <!-- 运行时卡片 -->
             <Border Style="{StaticResource CardBorderStyle}">
-                <StackPanel Spacing="10">
+                <StackPanel Spacing="12">
                     <TextBlock x:Uid="Pages_SystemInfo_Runtime" Style="{StaticResource SectionTitleStyle}"/>
 
-                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
+                    <Grid ColumnDefinitions="Auto,Auto,*"
+                          RowDefinitions="Auto,Auto,Auto,Auto"
+                          ColumnSpacing="12" RowSpacing="8">
+
                         <!-- .NET 版本 -->
-                        <FontIcon Grid.Row="0" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xED35;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="0" Grid.Column="0" Glyph="&#xED35;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="Pages_SystemInfo_Runtime_DotNet" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtDotNet" Grid.Row="0" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 系统启动时长 -->
-                        <FontIcon Grid.Row="1" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE916;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="1" Grid.Column="0" Glyph="&#xE916;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="Pages_SystemInfo_Runtime_Uptime" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtUptime" Grid.Row="1" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 当前用户 -->
-                        <FontIcon Grid.Row="2" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xE77B;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="2" Grid.Column="0" Glyph="&#xE77B;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="2" Grid.Column="1" x:Uid="Pages_SystemInfo_Runtime_CurrentUser" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtCurrentUser" Grid.Row="2" Grid.Column="2" Style="{StaticResource ValueStyle}"/>
 
                         <!-- 用户目录 -->
-                        <FontIcon Grid.Row="3" Grid.Column="0" FontFamily="Segoe Fluent Icons" Glyph="&#xEC25;" Style="{StaticResource IconStyle}"/>
+                        <FontIcon Grid.Row="3" Grid.Column="0" Glyph="&#xEC25;" Style="{StaticResource IconStyle}"/>
                         <TextBlock Grid.Row="3" Grid.Column="1" x:Uid="Pages_SystemInfo_Runtime_UserProfile" Style="{StaticResource LabelStyle}"/>
                         <TextBlock x:Name="txtUserProfile" Grid.Row="3" Grid.Column="2" Style="{StaticResource ValueStyle}" TextWrapping="Wrap"/>
                     </Grid>
                 </StackPanel>
             </Border>
+
         </StackPanel>
     </ScrollViewer>
 </Page>

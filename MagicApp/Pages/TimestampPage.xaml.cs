@@ -23,7 +23,7 @@ namespace MagicApp.Pages
             }
 
             // 初始化日期时间选择器为当前时间
-            DatePickerInput.Date = DateTimeOffset.Now;
+            CalendarDatePickerInput.Date = DateTimeOffset.Now;
             TimePickerInput.Time = DateTimeOffset.Now.TimeOfDay;
             SecondsComboBox.SelectedItem = DateTime.Now.Second.ToString("D2");            
 
@@ -60,7 +60,7 @@ namespace MagicApp.Pages
         {
             try
             {
-                DateTime selectedDate = DatePickerInput.Date.DateTime;
+                DateTime selectedDate = CalendarDatePickerInput.Date?.DateTime ?? DateTime.Now;
                 int hour = TimePickerInput.Time.Hours;
                 int minute = TimePickerInput.Time.Minutes;
                 string secondStr = SecondsComboBox.SelectedItem?.ToString() ?? "00";

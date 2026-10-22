@@ -20,7 +20,7 @@
     </Page.Resources>
     
     <ScrollViewer>
-        <StackPanel Margin="10,20" Spacing="10">
+        <StackPanel Margin="58,20" Spacing="10">
             <!-- 实时显示 -->
             <Grid ColumnDefinitions="*,*,*">
                 <controls:DataControl x:Name="CurrentTimeData"
@@ -48,7 +48,7 @@
                 <StackPanel Spacing="10">
                     <TextBlock x:Uid="Pages_Timestamp_DateTimeToTimestampCardTitle" Style="{StaticResource SubtitleTextBlockStyle}"/>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <DatePicker x:Name="DatePickerInput"/>
+                        <CalendarDatePicker x:Name="CalendarDatePickerInput"/>
                         <TimePicker x:Name="TimePickerInput" ClockIdentifier="24HourClock"/>
                         <ComboBox x:Name="SecondsComboBox" Width="70"/>
                         <Button x:Uid="Pages_Timestamp_ConvertButton" Style="{StaticResource AccentButtonStyle}" Click="OnConvertDateTimeToTimestamp"/>
