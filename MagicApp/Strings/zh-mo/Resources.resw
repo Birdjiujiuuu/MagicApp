@@ -159,9 +159,6 @@
   <data name="Pages_Pictures_Source_Bing.Text" xml:space="preserve">
     <value>Bing</value>
   </data>
-  <data name="Pages_Pictures_Source_NASA.Text" xml:space="preserve">
-    <value>美国的航天局</value>
-  </data>
   <data name="Main_Titlebar" xml:space="preserve">
     <value>先看看</value>
   </data>

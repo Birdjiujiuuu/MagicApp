@@ -33,44 +33,36 @@
                     </Grid>
                 </Border>
 
-                <Border
-                    Grid.Row="1"
-                    Padding="20"
-                    CornerRadius="8"
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                    BorderThickness="1">
-                    <StackPanel Spacing="12" Orientation="Vertical">
+                <StackPanel Grid.Row="1" Spacing="12" Orientation="Vertical">
 
-                        <!--动画-->
-                        <StackPanel.ChildrenTransitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="500"/>
-                            </TransitionCollection>
-                        </StackPanel.ChildrenTransitions>
+                    <!--动画-->
+                    <StackPanel.ChildrenTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="500"/>
+                        </TransitionCollection>
+                    </StackPanel.ChildrenTransitions>
 
-                        <AutoSuggestBox Name="ContentTitle" x:Uid="Pages_Notice_ContentTitle" TextChanged="ContentTitle_TextChanged"/>
-                        <AutoSuggestBox Name="ContentContent" x:Uid="Pages_Notice_ContentContent" TextChanged="ContentContent_TextChanged"/>
-                        <ComboBox Name="SoundEvent_ComboBox" x:Uid="Pages_Notice_SoundEvent_ComboBox" SelectedIndex="0">
-                            <ComboBoxItem Name="Default"  x:Uid="Pages_Notice_SoundEvent_Default"/>
-                            <ComboBoxItem Name="IM"       x:Uid="Pages_Notice_SoundEvent_IM"/>
-                            <ComboBoxItem Name="Reminder" x:Uid="Pages_Notice_SoundEvent_Reminder"/>
-                            <ComboBoxItem Name="SMS"      x:Uid="Pages_Notice_SoundEvent_SMS"/>
-                            <ComboBoxItem Name="Alarm"    x:Uid="Pages_Notice_SoundEvent_Alarm"/>
-                            <ComboBoxItem Name="Call"     x:Uid="Pages_Notice_SoundEvent_Call"/>
-                        </ComboBox>
+                    <AutoSuggestBox Name="ContentTitle" x:Uid="Pages_Notice_ContentTitle" TextChanged="ContentTitle_TextChanged"/>
+                    <AutoSuggestBox Name="ContentContent" x:Uid="Pages_Notice_ContentContent" TextChanged="ContentContent_TextChanged"/>
+                    <ComboBox Name="SoundEvent_ComboBox" x:Uid="Pages_Notice_SoundEvent_ComboBox" SelectedIndex="0">
+                        <ComboBoxItem Name="Default"  x:Uid="Pages_Notice_SoundEvent_Default"/>
+                        <ComboBoxItem Name="IM"       x:Uid="Pages_Notice_SoundEvent_IM"/>
+                        <ComboBoxItem Name="Reminder" x:Uid="Pages_Notice_SoundEvent_Reminder"/>
+                        <ComboBoxItem Name="SMS"      x:Uid="Pages_Notice_SoundEvent_SMS"/>
+                        <ComboBoxItem Name="Alarm"    x:Uid="Pages_Notice_SoundEvent_Alarm"/>
+                        <ComboBoxItem Name="Call"     x:Uid="Pages_Notice_SoundEvent_Call"/>
+                    </ComboBox>
 
-                        <StackPanel Spacing="10" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Name="Clear" Height="35" x:Uid="Pages_Notice_Clear" Click="Clear_Click"/>
-                            <Button Name="Send" Height="35" Style="{StaticResource AccentButtonStyle}" Click="Send_Click">
-                                <StackPanel Orientation="Horizontal" Spacing="10">
-                                    <TextBlock x:Uid="Pages_Notice_Send"/>
-                                    <FontIcon Glyph="&#xE724;"/>
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
+                    <StackPanel Spacing="10" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Name="Clear" Height="35" x:Uid="Pages_Notice_Clear" Click="Clear_Click"/>
+                        <Button Name="Send" Height="35" Style="{StaticResource AccentButtonStyle}" Click="Send_Click">
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock x:Uid="Pages_Notice_Send"/>
+                                <FontIcon Glyph="&#xE724;"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
-                </Border>
+                </StackPanel>
             </Grid>
         </ScrollViewer>
     </Grid>

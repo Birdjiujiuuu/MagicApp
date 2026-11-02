@@ -6,107 +6,61 @@ using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace MagicApp.Pages
 {
     public sealed partial class PicturesPage : Page
     {
+        private bool _isLoaded;
+
         public PicturesPage()
         {
             InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ComboBox.SelectedIndex = 0;
+            if (_isLoaded)
+            {
+                return;
+            }
+            _isLoaded = true;
 
             BitmapImage BingIcons = new();
             BingIcons.UriSource = new Uri(this.BaseUri, "https://www.bing.com/favicon.ico");
             BingIcon.Source = BingIcons;
 
-            BitmapImage NASAIcons = new();
-            NASAIcons.UriSource = new Uri(this.BaseUri, "https://apod.nasa.gov/favicon.ico");
-            NASAIcon.Source = NASAIcons;
+            await LoadBingImageAsync();
         }
 
-        private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async Task LoadBingImageAsync()
         {
             ProgressRing.IsActive = true;
             Picture.Source = null;
             InfoButton.IsEnabled = false;
             DownloadButton.IsEnabled = false;
 
-            var Web = ComboBox.SelectedItem as StackPanel;
-            string SourceWeb = Web?.Name?.ToString() ?? string.Empty;
-
-            if (SourceWeb == "Bing")
+            using (var httpClient = new HttpClient())
             {
-                using (var httpClient = new HttpClient())
+                try
                 {
-                    try
-                    {
-                        string url = "https://www.bing.com/HPImageArchive.aspx?n=1";
-                        var response = await httpClient.GetAsync(url);
+                    string url = "https://www.bing.com/HPImageArchive.aspx?n=1";
+                    var response = await httpClient.GetAsync(url);
 
-                        if (response.IsSuccessStatusCode)
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string retString = await response.Content.ReadAsStringAsync();
+
+                        var doc = XDocument.Parse(retString);
+                        var imageElement = doc.Descendants("image").FirstOrDefault();
+
+                        if (imageElement != null)
                         {
-                            string retString = await response.Content.ReadAsStringAsync();
-
-                            var doc = XDocument.Parse(retString);
-                            var imageElement = doc.Descendants("image").FirstOrDefault();
-
-                            if (imageElement != null)
-                            {
-                                string imgurl = "http://www.bing.com" + imageElement.Element("urlBase")?.Value + "_UHD.jpg";
-                                string? StrInfoTitle = imageElement.Element("headline")?.Value;
-                                string? StrInfoBody = imageElement.Element("copyright")?.Value;
-
-                                BitmapImage Pictures = new();
-                                Pictures.UriSource = new Uri(this.BaseUri, imgurl);
-                                Picture.Source = Pictures;
-                                InfoTitle.Text = StrInfoTitle;
-                                InfoBody.Text = StrInfoBody;
-
-                                ProgressRing.IsActive = false;
-                                InfoButton.IsEnabled = true;
-                                DownloadButton.IsEnabled = true;
-                            }
-                        }
-                    }
-                    catch
-                    {
-
-                    }
-                }
-            }
-            else if (SourceWeb == "NASA")
-            {
-                using (var httpClient = new HttpClient())
-                {
-                    try
-                    {
-                        string url = "https://api.nasa.gov/planetary/apod?api_key=ArinapLeN81diwrDMp8C3v8BYYz5eSgt9eOpXo7h";
-                        var response = await httpClient.GetAsync(url);
-
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string retString = await response.Content.ReadAsStringAsync();
-
-                            // 使用 JsonDocument 解析 JSON 响应
-                            using JsonDocument document = JsonDocument.Parse(retString);
-                            JsonElement root = document.RootElement;
-
-                            // 安全地获取字段值
-                            string? imgurl = root.TryGetProperty("hdurl", out JsonElement hdurlElement)
-                                            ? hdurlElement.GetString()
-                                            : string.Empty;
-                            string? StrInfoTitle = root.TryGetProperty("title", out JsonElement titleElement)
-                                                 ? titleElement.GetString()
-                                                 : string.Empty;
-                            string? StrInfoBody = root.TryGetProperty("explanation", out JsonElement explanationElement)
-                                                ? explanationElement.GetString()
-                                                : string.Empty;
+                            string imgurl = "http://www.bing.com" + imageElement.Element("urlBase")?.Value + "_UHD.jpg";
+                            string? StrInfoTitle = imageElement.Element("headline")?.Value;
+                            string? StrInfoBody = imageElement.Element("copyright")?.Value;
 
                             BitmapImage Pictures = new();
                             Pictures.UriSource = new Uri(this.BaseUri, imgurl);
@@ -114,15 +68,18 @@ namespace MagicApp.Pages
                             InfoTitle.Text = StrInfoTitle;
                             InfoBody.Text = StrInfoBody;
 
-                            ProgressRing.IsActive = false;
                             InfoButton.IsEnabled = true;
                             DownloadButton.IsEnabled = true;
                         }
                     }
-                    catch
-                    {
+                }
+                catch
+                {
 
-                    }
+                }
+                finally
+                {
+                    ProgressRing.IsActive = false;
                 }
             }
         }
@@ -149,14 +106,10 @@ namespace MagicApp.Pages
                     return;
                 }
 
-                // 获取当前选中的网站名称
-                var Web = ComboBox.SelectedItem as StackPanel;
-                string SourceWeb = Web?.Name?.ToString() ?? string.Empty;
-
                 // 调用FileDownloadService
-                string suggestedFileName = $"{SourceWeb}_Wallpaper_{DateTime.Now:yyyyMMdd}";
+                string suggestedFileName = $"Bing_Wallpaper_{DateTime.Now:yyyyMMdd}";
 
-                bool success = await FileDownloadService.DownloadImageAsync(
+                await FileDownloadService.DownloadImageAsync(
                     imageUrl,
                     suggestedFileName,
                     this.XamlRoot);

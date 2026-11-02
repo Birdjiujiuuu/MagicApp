@@ -159,9 +159,6 @@
   <data name="Pages_Pictures_Source_Bing.Text" xml:space="preserve">
     <value>必应</value>
   </data>
-  <data name="Pages_Pictures_Source_NASA.Text" xml:space="preserve">
-    <value>NASA</value>
-  </data>
   <data name="Main_Titlebar" xml:space="preserve">
     <value>预览</value>
   </data>
