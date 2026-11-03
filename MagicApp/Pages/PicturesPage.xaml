@@ -10,11 +10,11 @@
     NavigationCacheMode="Enabled"
     Loaded="Page_Loaded">
 
-    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="*,50">
+    <Grid ColumnDefinitions="Auto,*,Auto,*,Auto" RowDefinitions="*,50">
         <Border
             Grid.Column="0"
             Grid.Row="0"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="5"
             Margin="10"
             CornerRadius="10"
             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
@@ -25,17 +25,17 @@
         <StackPanel
             Grid.Column="0"
             Grid.Row="0"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="5"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <ProgressRing Name="ProgressRing"/>
         </StackPanel>
 
+        <CalendarDatePicker Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Name="DatePicker" DateChanged="DatePicker_DateChanged"/>
         <StackPanel
             Grid.Row="1"
-            Grid.Column="0"
+            Grid.Column="2"
             Orientation="Horizontal"
-            Margin="10,0,0,0"
             Spacing="10"
             VerticalAlignment="Center">
             <Image Height="20" Width="20" Name="BingIcon"/>
@@ -43,7 +43,7 @@
         </StackPanel>
         <StackPanel
             Grid.Row="1"
-            Grid.Column="2"
+            Grid.Column="4"
             Orientation="Horizontal"
             Margin="0,0,10,0"
             Spacing="10">
