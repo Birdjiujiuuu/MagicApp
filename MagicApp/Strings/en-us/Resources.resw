@@ -660,4 +660,7 @@
   <data name="Pages_Settings_WindowBackdrops.Description" xml:space="preserve">
     <value>Select the appearance of your window's backdrop</value>
   </data>
+  <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Select image date</value>
+  </data>
 </root>

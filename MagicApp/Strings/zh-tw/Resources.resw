@@ -660,4 +660,7 @@
   <data name="Pages_Settings_WindowBackdrops.Description" xml:space="preserve">
     <value>選擇視窗背景的外觀</value>
   </data>
+  <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>選擇圖片日期</value>
+  </data>
 </root>

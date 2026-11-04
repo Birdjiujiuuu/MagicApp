@@ -660,4 +660,7 @@
   <data name="Pages_Settings_WindowBackdrops.Description" xml:space="preserve">
     <value>창 배경의 모양을 선택하세요</value>
   </data>
+  <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>이미지 날짜 선택</value>
+  </data>
 </root>

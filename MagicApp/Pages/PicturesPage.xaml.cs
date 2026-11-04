@@ -21,6 +21,9 @@ namespace MagicApp.Pages
         // 防止初始化 DatePicker 时触发 DateChanged 导致重复加载
         private bool _isUpdatingDatePicker;
 
+        // 当前图片的 URL 不含分辨率后缀的基础部分
+        private string _currentUrlBase = "";
+
         public PicturesPage()
         {
             InitializeComponent();
@@ -47,6 +50,7 @@ namespace MagicApp.Pages
             Picture.Source = null;
             InfoButton.IsEnabled = false;
             DownloadButton.IsEnabled = false;
+            _currentUrlBase = "";
 
             using (var httpClient = new HttpClient())
             {
@@ -80,9 +84,15 @@ namespace MagicApp.Pages
                         SetupDatePickerRange();
                     }
 
-                    string imgurl = "http://www.bing.com"
-                                    + imageElement.Element("urlBase")?.Value
-                                    + "_UHD.jpg";
+                    // 保存不含后缀的 base URL，供下载时使用
+                    string? urlBase = imageElement.Element("urlBase")?.Value;
+                    if (string.IsNullOrEmpty(urlBase))
+                        return;
+
+                    _currentUrlBase = "http://www.bing.com" + urlBase;
+
+                    // 预览使用最高画质 UHD
+                    string imgurl = _currentUrlBase + "_UHD.jpg";
 
                     string? infoTitle = imageElement.Element("headline")?.Value;
                     string? infoBody = imageElement.Element("copyright")?.Value;
@@ -153,45 +163,36 @@ namespace MagicApp.Pages
             await LoadBingImageAsync(idx);
         }
 
-        // 图片下载
-        private async void DownloadButton_Click(object sender, RoutedEventArgs e)
+        // 按所选画质后缀下载图片
+        private async void DownloadMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            DownloadButton.IsEnabled = false;
+            if (sender is not MenuFlyoutItem item)
+                return;
 
+            string suffix = item.Tag?.ToString() ?? "";
+            if (string.IsNullOrEmpty(_currentUrlBase) || string.IsNullOrEmpty(suffix))
+                return;
+
+            DownloadButton.IsEnabled = false;
             try
             {
-                // 检查是否有图片可以下载
-                if (Picture.Source == null)
-                {
-                    DownloadButton.IsEnabled = true;
-                    return;
-                }
-
-                // 获取当前图片的URL
-                string imageUrl = GetCurrentImageUrl();
-                if (string.IsNullOrEmpty(imageUrl))
-                {
-                    DownloadButton.IsEnabled = true;
-                    return;
-                }
-
-                // 调用FileDownloadService
-                string suggestedFileName = $"Bing_Wallpaper_{DateTime.Now:yyyyMMdd}";
+                string imageUrl = _currentUrlBase + suffix;
+                string resolution = suffix.TrimStart('_').Replace(".jpg", "");
+                string suggestedFileName = $"Bing_Wallpaper_{resolution}";
 
                 await FileDownloadService.DownloadImageAsync(
                     imageUrl,
                     suggestedFileName,
                     this.XamlRoot);
             }
+            catch
+            {
+
+            }
             finally
             {
                 DownloadButton.IsEnabled = true;
             }
-        }
-
-        private string GetCurrentImageUrl()
-        {
-            return (Picture.Source as BitmapImage)?.UriSource?.ToString() ?? "";
         }
     }
 }

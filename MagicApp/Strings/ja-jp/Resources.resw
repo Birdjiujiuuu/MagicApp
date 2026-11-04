@@ -660,4 +660,7 @@
   <data name="Pages_Settings_WindowBackdrops.Description" xml:space="preserve">
     <value>ウィンドウの背景の外観を選択してください</value>
   </data>
+  <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>画像の日付を選択</value>
+  </data>
 </root>

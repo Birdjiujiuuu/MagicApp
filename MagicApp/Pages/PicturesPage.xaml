@@ -31,7 +31,7 @@
             <ProgressRing Name="ProgressRing"/>
         </StackPanel>
 
-        <CalendarDatePicker Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Name="DatePicker" DateChanged="DatePicker_DateChanged"/>
+        <CalendarDatePicker Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Name="DatePicker" x:Uid="Pages_Pictures_DatePicker" DateChanged="DatePicker_DateChanged"/>
         <StackPanel
             Grid.Row="1"
             Grid.Column="2"
@@ -58,9 +58,94 @@
                     </Flyout>
                 </Button.Flyout>
             </Button>
-            <Button Name="DownloadButton" x:Uid="Pages_Pictures_Button_Download" VerticalAlignment="Center" Width="50" Click="DownloadButton_Click">
+            <DropDownButton Name="DownloadButton" x:Uid="Pages_Pictures_Button_Download" VerticalAlignment="Center">
                 <SymbolIcon Symbol="Download"/>
-            </Button>
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="Bottom">
+                        <MenuFlyoutItem Text="UHD(3840×2160)" Tag="_UHD.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE70A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="FHD+(1920×1200)" Tag="_1920x1200.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE70A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="FHD(1920×1080)" Tag="_1920x1080.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE70A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="HD+(1366×768)" Tag="_1366x768.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE70A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="HD(1280×768)" Tag="_1280x768.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE70A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="SD+(1024×768)" Tag="_1024x768.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE70A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="SD(800×600)" Tag="_800x600.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE70A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="SD(800×480)" Tag="_800x480.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE70A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="LD/VGA(640×480)" Tag="_640x480.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE70A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutSeparator/>
+                        <MenuFlyoutItem Text="FHD(1080×1920)" Tag="_1080x1920.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE8EA;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="HD+(768×1280)" Tag="_768x1280.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE8EA;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="HD(720×1280)" Tag="_720x1280.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE8EA;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="SD+(480×800)" Tag="_480x800.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE8EA;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="SD-/LD(400×240)" Tag="_400x240.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE8EA;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="LD(320×240)" Tag="_320x240.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE8EA;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="LD(240×320)" Tag="_240x320.jpg" Click="DownloadMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE8EA;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
         </StackPanel>
     </Grid>
 </Page>

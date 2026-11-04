@@ -660,4 +660,7 @@
   <data name="Pages_Settings_WindowBackdrops.Description" xml:space="preserve">
     <value>好多奇妙的背景选选看吧</value>
   </data>
+  <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>看看其他日子的</value>
+  </data>
 </root>
