@@ -21,8 +21,9 @@ namespace MagicApp.Pages
         // 防止初始化 DatePicker 时触发 DateChanged 导致重复加载
         private bool _isUpdatingDatePicker;
 
-        // 当前图片的 URL 不含分辨率后缀的基础部分
+        // 当前图片的 URL 不含分辨率后缀的基础部分和日期
         private string _currentUrlBase = "";
+        private string _currentStartDate = "";
 
         public PicturesPage()
         {
@@ -51,6 +52,7 @@ namespace MagicApp.Pages
             InfoButton.IsEnabled = false;
             DownloadButton.IsEnabled = false;
             _currentUrlBase = "";
+            _currentStartDate = "";
 
             using (var httpClient = new HttpClient())
             {
@@ -69,13 +71,15 @@ namespace MagicApp.Pages
                     if (imageElement == null)
                         return;
 
-                    // 解析 Bing 返回的日期（yyyyMMdd）
+                    // 解析 Bing 返回的日期并保存
                     string? startDateText = imageElement.Element("startdate")?.Value;
                     if (string.IsNullOrEmpty(startDateText))
                         return;
 
                     DateTime imageDate = DateTime.ParseExact(
                         startDateText, "yyyyMMdd", CultureInfo.InvariantCulture);
+
+                    _currentStartDate = startDateText;
 
                     // 用 Bing 的最新日期初始化日历范围
                     if (_bingCurrentDate == DateTime.MinValue)
@@ -178,7 +182,8 @@ namespace MagicApp.Pages
             {
                 string imageUrl = _currentUrlBase + suffix;
                 string resolution = suffix.TrimStart('_').Replace(".jpg", "");
-                string suggestedFileName = $"Bing_Wallpaper_{resolution}";
+                string date = string.IsNullOrEmpty(_currentStartDate) ? "unknown" : _currentStartDate;
+                string suggestedFileName = $"Bing_Wallpaper_{date}_{resolution}";
 
                 await FileDownloadService.DownloadImageAsync(
                     imageUrl,
