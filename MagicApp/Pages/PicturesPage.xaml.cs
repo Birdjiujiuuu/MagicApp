@@ -95,8 +95,8 @@ namespace MagicApp.Pages
 
                     _currentUrlBase = "http://www.bing.com" + urlBase;
 
-                    // 预览使用最高画质 UHD
-                    string imgurl = _currentUrlBase + "_UHD.jpg";
+                    // 预览图片
+                    string imgurl = _currentUrlBase + "_1920x1080.jpg";
 
                     string? infoTitle = imageElement.Element("headline")?.Value;
                     string? infoBody = imageElement.Element("copyright")?.Value;
