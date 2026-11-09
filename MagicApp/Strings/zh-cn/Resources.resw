@@ -663,4 +663,10 @@
   <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>选择图片日期</value>
   </data>
+  <data name="Pages_QRCode_CopyQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>复制二维码</value>
+  </data>
+  <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>保存二维码</value>
+  </data>
 </root>

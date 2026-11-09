@@ -59,7 +59,7 @@
 
             <!-- 预览区 -->
             <Border Grid.Column="1" Width="340" Style="{StaticResource CardStyle}">
-                <StackPanel Spacing="15">
+                <StackPanel Spacing="10">
                     <TextBlock x:Uid="Pages_QRCode_TitlePreview"
                                Style="{StaticResource SubtitleTextBlockStyle}"/>
 
@@ -75,6 +75,11 @@
                                Height="260"
                                Stretch="Uniform"/>
                     </Border>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                        <controls:ActionButton x:Name="CopyQRCodeButton" x:Uid="Pages_QRCode_CopyQRCodeButton" IconGlyph="&#xE8C8;" IsEnabled="False"/>
+                        <controls:ActionButton x:Name="SaveQRCodeButton" x:Uid="Pages_QRCode_SaveQRCodeButton" IconGlyph="&#xE74E;" IsEnabled="False"/>
+                    </StackPanel>
                     
                     <TextBlock x:Name="StatusTextBlock"
                                TextWrapping="Wrap"

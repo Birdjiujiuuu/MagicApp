@@ -663,4 +663,10 @@
   <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>이미지 날짜 선택</value>
   </data>
+  <data name="Pages_QRCode_CopyQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>QR 코드 복사</value>
+  </data>
+  <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>QR 코드 저장</value>
+  </data>
 </root>

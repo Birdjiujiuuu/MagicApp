@@ -663,4 +663,10 @@
   <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>画像の日付を選択</value>
   </data>
+  <data name="Pages_QRCode_CopyQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>QRコードをコピー</value>
+  </data>
+  <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>QRコードを保存</value>
+  </data>
 </root>

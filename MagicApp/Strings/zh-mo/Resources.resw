@@ -663,4 +663,10 @@
   <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>看看其他日子的</value>
   </data>
+  <data name="Pages_QRCode_CopyQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>复制一下神秘二维码</value>
+  </data>
+  <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>把神秘二维码存起来</value>
+  </data>
 </root>

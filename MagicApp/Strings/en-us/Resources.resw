@@ -663,4 +663,10 @@
   <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Select image date</value>
   </data>
+  <data name="Pages_QRCode_CopyQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Copy QR code</value>
+  </data>
+  <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Save QR code</value>
+  </data>
 </root>
