@@ -59,5 +59,6 @@
     <uap:Capability Name="musicLibrary"/>
     <uap3:Capability Name="backgroundMediaPlayback"/>
     <iot:Capability Name="systemManagement"/>
+    <DeviceCapability Name="webcam"/>
   </Capabilities>
 </Package>

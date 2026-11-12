@@ -30,7 +30,6 @@ namespace MagicApp.Pages
 
         // 识别区：当前预览图字节 与 上一次识别结果
         private byte[]? _lastDecodedBytes;
-        private string? _lastDecodedText;
 
         public QRCodePage()
         {
@@ -40,7 +39,6 @@ namespace MagicApp.Pages
             ViewSelectorBar.SelectedItem = GenerateTab;
 
             UpdateActionButtonState();
-            UpdateDecodeButtonState();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -49,7 +47,7 @@ namespace MagicApp.Pages
 
             this.InputTextBox_TextChanged(this, default!);
 
-            // 复制二维码按钮点击事件
+            // 生成区：复制二维码按钮点击事件
             CopyQRCodeButton.Action = async () =>
             {
                 if (_lastQrCodeBytes is not { Length: > 0 })
@@ -79,7 +77,7 @@ namespace MagicApp.Pages
                 }
             };
 
-            // 保存二维码按钮点击事件
+            // 生成区：保存二维码按钮点击事件
             SaveQRCodeButton.Action = async () =>
             {
                 if (_lastQrCodeBytes is not { Length: > 0 })
@@ -116,6 +114,62 @@ namespace MagicApp.Pages
                 {
                     return false;
                 }
+            };
+
+            // 识别区：粘贴按钮点击事件
+            PasteFromClipboardButton.Action = async () =>
+            {
+                try
+                {
+                    var content = Clipboard.GetContent();
+
+                    if (content.Contains(StandardDataFormats.Bitmap))
+                    {
+                        var reference = await content.GetBitmapAsync();
+                        using var stream = await reference.OpenReadAsync();
+                        await DecodeFromStreamAsync(stream);
+                        return true;
+                    }
+
+                    if (content.Contains(StandardDataFormats.StorageItems))
+                    {
+                        var items = await content.GetStorageItemsAsync();
+                        var file = items.OfType<StorageFile>().FirstOrDefault(f => IsImageFile(f.Name));
+                        if (file != null)
+                        {
+                            await DecodeFromFileAsync(file);
+                            return true;
+                        }
+                    }
+
+                    ShowDecodeError("剪贴板中没有可识别的图片");
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    ShowDecodeError("粘贴失败：" + ex.Message);
+                    return false;
+                }
+            };
+
+            // 识别区：清空按钮点击事件
+            ClearDecodeButton.Action = async () =>
+            {
+                // 没有内容可清空返回 false
+                if (_lastDecodedBytes is not { Length: > 0 })
+                    return false;
+
+                _lastDecodedBytes = null;
+
+                DecodePreviewImage.Source = null;
+                DecodePlaceholderText.Visibility = Visibility.Visible;
+
+                // 重置状态为空白并禁止交互
+                DecodeResultTextBox.Text = string.Empty;
+                DecodeResultTextBox.PlaceholderText = string.Empty;
+                DecodeResultTextBox.IsHitTestVisible = false;
+
+                return true;
             };
         }
 
@@ -237,9 +291,18 @@ namespace MagicApp.Pages
             DecodeView.Visibility = isGenerate ? Visibility.Collapsed : Visibility.Visible;
         }
 
-        private void UpdateDecodeButtonState()
+        // -------- 状态辅助方法（统一处理 UI 反馈） --------
+        private void ShowDecodeError(string message)
         {
-            ClearDecodeButton.IsEnabled = _lastDecodedBytes is { Length: > 0 };
+            DecodeResultTextBox.Text = string.Empty; // 清空正文
+            DecodeResultTextBox.PlaceholderText = message; // 用占位符显示灰色的提示信息
+            DecodeResultTextBox.IsHitTestVisible = false; // 失败或提示时，禁止鼠标交互/框选
+        }
+
+        private void ShowDecodeSuccess(string text)
+        {
+            DecodeResultTextBox.Text = text; // 显示识别结果正文
+            DecodeResultTextBox.IsHitTestVisible = true; // 成功时允许框选复制
         }
 
         // -------- 点击选图 --------
@@ -269,47 +332,11 @@ namespace MagicApp.Pages
             }
             catch (Exception ex)
             {
-                DecodeStatusTextBlock.Text = "选择图片失败：" + ex.Message;
-            }
-        }
-
-        // -------- 从剪贴板粘贴 --------
-
-        private async void PasteFromClipboardButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var content = Clipboard.GetContent();
-
-                if (content.Contains(StandardDataFormats.Bitmap))
-                {
-                    var reference = await content.GetBitmapAsync();
-                    using var stream = await reference.OpenReadAsync();
-                    await DecodeFromStreamAsync(stream);
-                    return;
-                }
-
-                if (content.Contains(StandardDataFormats.StorageItems))
-                {
-                    var items = await content.GetStorageItemsAsync();
-                    var file = items.OfType<StorageFile>().FirstOrDefault(f => IsImageFile(f.Name));
-                    if (file != null)
-                    {
-                        await DecodeFromFileAsync(file);
-                        return;
-                    }
-                }
-
-                DecodeStatusTextBlock.Text = "剪贴板中没有可识别的图片";
-            }
-            catch (Exception ex)
-            {
-                DecodeStatusTextBlock.Text = "粘贴失败：" + ex.Message;
+                ShowDecodeError("选择图片失败：" + ex.Message);
             }
         }
 
         // -------- 拖拽 --------
-
         private void DecodePreview_DragOver(object sender, DragEventArgs e)
         {
             if (e.DataView.Contains(StandardDataFormats.Bitmap) ||
@@ -345,11 +372,11 @@ namespace MagicApp.Pages
                     }
                 }
 
-                DecodeStatusTextBlock.Text = "拖入的内容中没有可识别的图片";
+                ShowDecodeError("拖入的内容中没有可识别的图片");
             }
             catch (Exception ex)
             {
-                DecodeStatusTextBlock.Text = "拖拽识别失败：" + ex.Message;
+                ShowDecodeError("拖拽识别失败：" + ex.Message);
             }
             finally
             {
@@ -357,22 +384,7 @@ namespace MagicApp.Pages
             }
         }
 
-        // -------- 清空 --------
-        private void ClearDecodeButton_Click(object sender, RoutedEventArgs e)
-        {
-            _lastDecodedBytes = null;
-            _lastDecodedText = null; // 若已删除此字段可忽略
-
-            DecodePreviewImage.Source = null;
-            DecodePlaceholderText.Visibility = Visibility.Visible;
-            DecodeResultTextBox.Text = string.Empty;
-            DecodeStatusTextBlock.Text = string.Empty;
-
-            UpdateDecodeButtonState();
-        }
-
         // -------- 解码流程 --------
-
         private async Task DecodeFromFileAsync(StorageFile file)
         {
             using var stream = await file.OpenReadAsync();
@@ -396,7 +408,7 @@ namespace MagicApp.Pages
 
                 if (bytes.Length == 0)
                 {
-                    DecodeStatusTextBlock.Text = "图片内容为空";
+                    ShowDecodeError("图片内容为空");
                     return;
                 }
 
@@ -404,13 +416,14 @@ namespace MagicApp.Pages
             }
             catch (Exception ex)
             {
-                DecodeStatusTextBlock.Text = "读取图片失败：" + ex.Message;
+                ShowDecodeError("读取图片失败：" + ex.Message);
             }
         }
 
         private async Task DecodeFromBytesAsync(byte[] bytes)
         {
-            DecodeStatusTextBlock.Text = "正在识别…";
+            // 开始识别并禁用框选
+            DecodeResultTextBox.IsHitTestVisible = false;
 
             // 预览
             try
@@ -446,17 +459,15 @@ namespace MagicApp.Pages
                 error = ex.Message;
             }
 
+            // 根据结果更新 UI
             if (!string.IsNullOrEmpty(text))
             {
-                DecodeResultTextBox.Text = text;
-                DecodeStatusTextBlock.Text = $"识别成功 ({DateTime.Now:HH:mm:ss})";
+                ShowDecodeSuccess(text);
             }
             else
             {
-                DecodeResultTextBox.Text = string.Empty;
-                DecodeStatusTextBlock.Text = error == null ? "未识别到二维码" : "识别失败：" + error;
+                ShowDecodeError(error == null ? "未识别到二维码" : "识别失败：" + error);
             }
-            UpdateDecodeButtonState();
         }
 
         /// <summary>
