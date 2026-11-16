@@ -27,6 +27,6 @@
             Grid.Column="2"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
-            Content="{x:Bind SettingActionableElement, Mode=OneWay}"/>
+            Content="{x:Bind SettingActionableElement, Mode=OneTime}"/>
     </Grid>
 </UserControl>

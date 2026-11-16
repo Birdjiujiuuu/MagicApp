@@ -27,8 +27,8 @@
                      Grid.Row="0"
                      Margin="58,12,58,0"
                      SelectionChanged="ViewSelectorBar_SelectionChanged">
-            <SelectorBarItem x:Name="GenerateTab" Text="生成" Icon="Edit"/>
-            <SelectorBarItem x:Name="DecodeTab" Text="识别" Icon="BrowsePhotos"/>
+            <SelectorBarItem x:Name="GenerateTab" x:Uid="Pages_QRCode_GenerateTab" Icon="Edit"/>
+            <SelectorBarItem x:Name="DecodeTab" x:Uid="Pages_QRCode_DecodeTab" Icon="BrowsePhotos"/>
         </SelectorBar>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
@@ -126,7 +126,7 @@
                                     Click="DecodeDropButton_Click">
                                 <Grid>
                                     <TextBlock x:Name="DecodePlaceholderText"
-                                               Text="点击选择图片，或拖拽到此处"
+                                               x:Uid="Pages_QRCode_DecodePlaceholderText"
                                                Foreground="Gray"
                                                TextWrapping="Wrap"
                                                TextAlignment="Center"
@@ -146,21 +146,21 @@
                                         Margin="12,0,0,0" 
                                         Spacing="6">
                                 <!-- 粘贴 -->
-                                <controls:ActionButton x:Name="PasteFromClipboardButton" ToolTipService.ToolTip="从剪贴板粘贴" IconGlyph="&#xE77F;"/>
+                                <controls:ActionButton x:Name="PasteFromClipboardButton" x:Uid="Pages_QRCode_PasteFromClipboardButton" IconGlyph="&#xE77F;"/>
                                 <!-- 清空 -->
-                                <controls:ActionButton x:Name="ClearDecodeButton" ToolTipService.ToolTip="清空" IconGlyph="&#xE74D;"/>
+                                <controls:ActionButton x:Name="ClearDecodeButton" x:Uid="Pages_QRCode_ClearDecodeButton" IconGlyph="&#xE74D;"/>
                             </StackPanel>
                         </Grid>
                     </StackPanel>
 
                     <!-- 结果区 -->
                     <TextBox x:Name="DecodeResultTextBox"
+                             x:Uid="Pages_QRCode_DecodeResultTextBox"
                              Grid.Row="1"
                              IsReadOnly="True"
                              TextWrapping="Wrap"
                              AcceptsReturn="True"
                              VerticalAlignment="Stretch"
-                             Header="识别结果"
                              IsHitTestVisible="False"
                              MinHeight="160"/>
                 </Grid>

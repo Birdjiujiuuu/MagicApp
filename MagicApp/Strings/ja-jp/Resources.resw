@@ -669,4 +669,22 @@
   <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>QRコードを保存</value>
   </data>
+  <data name="Pages_QRCode_DecodePlaceholderText.Text" xml:space="preserve">
+    <value>クリックして画像を選択、またはここにドラッグ＆ドロップ</value>
+  </data>
+  <data name="Pages_QRCode_PasteFromClipboardButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>クリップボードから貼り付け</value>
+  </data>
+  <data name="Pages_QRCode_ClearDecodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
+    <value>認識結果</value>
+  </data>
+  <data name="Pages_QRCode_GenerateTab.Text" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="Pages_QRCode_DecodeTab.Text" xml:space="preserve">
+    <value>認識</value>
+  </data>
 </root>

@@ -669,4 +669,22 @@
   <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>儲存 QR Code</value>
   </data>
+  <data name="Pages_QRCode_DecodePlaceholderText.Text" xml:space="preserve">
+    <value>點擊選擇圖片，或拖曳到此處</value>
+  </data>
+  <data name="Pages_QRCode_PasteFromClipboardButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>從剪貼簿貼上</value>
+  </data>
+  <data name="Pages_QRCode_ClearDecodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
+    <value>辨識結果</value>
+  </data>
+  <data name="Pages_QRCode_GenerateTab.Text" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="Pages_QRCode_DecodeTab.Text" xml:space="preserve">
+    <value>辨識</value>
+  </data>
 </root>

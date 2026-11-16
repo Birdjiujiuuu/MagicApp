@@ -669,4 +669,22 @@
   <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>保存二维码</value>
   </data>
+  <data name="Pages_QRCode_DecodePlaceholderText.Text" xml:space="preserve">
+    <value>点击选择图片，或拖拽到此处</value>
+  </data>
+  <data name="Pages_QRCode_PasteFromClipboardButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>从剪贴板粘贴</value>
+  </data>
+  <data name="Pages_QRCode_ClearDecodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>清空</value>
+  </data>
+  <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
+    <value>识别结果</value>
+  </data>
+  <data name="Pages_QRCode_GenerateTab.Text" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="Pages_QRCode_DecodeTab.Text" xml:space="preserve">
+    <value>识别</value>
+  </data>
 </root>

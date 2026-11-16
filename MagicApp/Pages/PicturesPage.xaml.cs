@@ -49,6 +49,7 @@ namespace MagicApp.Pages
         {
             ProgressRing.IsActive = true;
             Picture.Source = null;
+            DatePicker.IsEnabled = false;
             InfoButton.IsEnabled = false;
             DownloadButton.IsEnabled = false;
             _currentUrlBase = "";
@@ -108,6 +109,7 @@ namespace MagicApp.Pages
                     InfoTitle.Text = infoTitle;
                     InfoBody.Text = infoBody;
 
+                    DatePicker.IsEnabled = true;
                     InfoButton.IsEnabled = true;
                     DownloadButton.IsEnabled = true;
                 }

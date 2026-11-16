@@ -173,6 +173,15 @@ namespace MagicApp.Pages
             };
         }
 
+        // ==================== 视图切换 ====================
+        private void ViewSelectorBar_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
+        {
+            bool isGenerate = ReferenceEquals(sender.SelectedItem, GenerateTab);
+
+            GenerateView.Visibility = isGenerate ? Visibility.Visible : Visibility.Collapsed;
+            DecodeView.Visibility = isGenerate ? Visibility.Collapsed : Visibility.Visible;
+        }
+
         // ==================== 生成区 ====================
 
         // 更新操作按钮的状态
@@ -282,14 +291,6 @@ namespace MagicApp.Pages
         }
 
         // ==================== 识别区 ====================
-
-        private void ViewSelectorBar_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
-        {
-            bool isGenerate = ReferenceEquals(sender.SelectedItem, GenerateTab);
-
-            GenerateView.Visibility = isGenerate ? Visibility.Visible : Visibility.Collapsed;
-            DecodeView.Visibility = isGenerate ? Visibility.Collapsed : Visibility.Visible;
-        }
 
         // -------- 状态辅助方法（统一处理 UI 反馈） --------
         private void ShowDecodeError(string message)

@@ -669,4 +669,22 @@
   <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>把神秘二维码存起来</value>
   </data>
+  <data name="Pages_QRCode_DecodePlaceholderText.Text" xml:space="preserve">
+    <value>点一下选图，也可以拉过来</value>
+  </data>
+  <data name="Pages_QRCode_PasteFromClipboardButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>从剪贴板偷</value>
+  </data>
+  <data name="Pages_QRCode_ClearDecodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>全部不要了</value>
+  </data>
+  <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
+    <value>知道是什么了</value>
+  </data>
+  <data name="Pages_QRCode_GenerateTab.Text" xml:space="preserve">
+    <value>产生</value>
+  </data>
+  <data name="Pages_QRCode_DecodeTab.Text" xml:space="preserve">
+    <value>看看是什么</value>
+  </data>
 </root>

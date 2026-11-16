@@ -669,4 +669,22 @@
   <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>QR 코드 저장</value>
   </data>
+  <data name="Pages_QRCode_DecodePlaceholderText.Text" xml:space="preserve">
+    <value>클릭하여 이미지를 선택하거나 여기로 끌어다 놓으세요</value>
+  </data>
+  <data name="Pages_QRCode_PasteFromClipboardButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>클립보드에서 붙여넣기</value>
+  </data>
+  <data name="Pages_QRCode_ClearDecodeButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>지우기</value>
+  </data>
+  <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
+    <value>인식 결과</value>
+  </data>
+  <data name="Pages_QRCode_GenerateTab.Text" xml:space="preserve">
+    <value>생성</value>
+  </data>
+  <data name="Pages_QRCode_DecodeTab.Text" xml:space="preserve">
+    <value>인식</value>
+  </data>
 </root>
