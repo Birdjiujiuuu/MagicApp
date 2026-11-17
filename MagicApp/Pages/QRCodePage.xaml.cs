@@ -142,12 +142,12 @@ namespace MagicApp.Pages
                         }
                     }
 
-                    ShowDecodeError("剪贴板中没有可识别的图片");
+                    ShowDecodeError(_resourceLoader.GetString("Pages_QRCode_Decode_Error_NoImageInPaste"));
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    ShowDecodeError("粘贴失败：" + ex.Message);
+                    ShowDecodeError(_resourceLoader.GetString("Pages_QRCode_Decode_Error_PasteFailed") + ex.Message);
                     return false;
                 }
             };
@@ -274,7 +274,7 @@ namespace MagicApp.Pages
                 UpdateActionButtonState();
 
                 StatusTextBlock.Text =
-                    _resourceLoader.GetString("Pages_QRCode_Status_Success") +
+                    _resourceLoader.GetString("Pages_QRCode_Generate_StatusSuccess") +
                     $" ({DateTime.Now:HH:mm:ss})";
             }
             catch (Exception ex)
@@ -284,7 +284,7 @@ namespace MagicApp.Pages
                 UpdateActionButtonState();
 
                 StatusTextBlock.Text =
-                    _resourceLoader.GetString("Pages_QRCode_Status_Failure") +
+                    _resourceLoader.GetString("Pages_QRCode_Generate_StatusFailure") +
                     $" {ex.Message}";
                 QRCodeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
             }
@@ -333,7 +333,7 @@ namespace MagicApp.Pages
             }
             catch (Exception ex)
             {
-                ShowDecodeError("选择图片失败：" + ex.Message);
+                ShowDecodeError(_resourceLoader.GetString("Pages_QRCode_Decode_Error_SelectImageFailed") + ex.Message);
             }
         }
 
@@ -344,7 +344,7 @@ namespace MagicApp.Pages
                 e.DataView.Contains(StandardDataFormats.StorageItems))
             {
                 e.AcceptedOperation = DataPackageOperation.Copy;
-                e.DragUIOverride.Caption = "松开以识别二维码";
+                e.DragUIOverride.Caption = _resourceLoader.GetString("Pages_QRCode_Decode_Drop_Caption");
                 e.DragUIOverride.IsCaptionVisible = true;
             }
         }
@@ -373,11 +373,11 @@ namespace MagicApp.Pages
                     }
                 }
 
-                ShowDecodeError("拖入的内容中没有可识别的图片");
+                ShowDecodeError(_resourceLoader.GetString("Pages_QRCode_Decode_Error_NoImageInDrop"));
             }
             catch (Exception ex)
             {
-                ShowDecodeError("拖拽识别失败：" + ex.Message);
+                ShowDecodeError(_resourceLoader.GetString("Pages_QRCode_Decode_Error_DropFailed") + ex.Message);
             }
             finally
             {
@@ -409,7 +409,7 @@ namespace MagicApp.Pages
 
                 if (bytes.Length == 0)
                 {
-                    ShowDecodeError("图片内容为空");
+                    ShowDecodeError(_resourceLoader.GetString("Pages_QRCode_Decode_Error_ImageContentEmpty"));
                     return;
                 }
 
@@ -417,7 +417,7 @@ namespace MagicApp.Pages
             }
             catch (Exception ex)
             {
-                ShowDecodeError("读取图片失败：" + ex.Message);
+                ShowDecodeError(_resourceLoader.GetString("Pages_QRCode_Decode_Error_ReadImageFailed") + ex.Message);
             }
         }
 
@@ -467,7 +467,7 @@ namespace MagicApp.Pages
             }
             else
             {
-                ShowDecodeError(error == null ? "未识别到二维码" : "识别失败：" + error);
+                ShowDecodeError(error == null ? _resourceLoader.GetString("Pages_QRCode_Decode_Error_NoQrCodeFound") : _resourceLoader.GetString("Pages_QRCode_Decode_Error_DecodeFailed") + error);
             }
         }
 

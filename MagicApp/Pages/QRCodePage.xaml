@@ -27,8 +27,8 @@
                      Grid.Row="0"
                      Margin="58,12,58,0"
                      SelectionChanged="ViewSelectorBar_SelectionChanged">
-            <SelectorBarItem x:Name="GenerateTab" x:Uid="Pages_QRCode_GenerateTab" Icon="Edit"/>
-            <SelectorBarItem x:Name="DecodeTab" x:Uid="Pages_QRCode_DecodeTab" Icon="BrowsePhotos"/>
+            <SelectorBarItem x:Name="GenerateTab" x:Uid="Pages_QRCode_Tab_Generate" Icon="Edit"/>
+            <SelectorBarItem x:Name="DecodeTab" x:Uid="Pages_QRCode_Tab_Decode" Icon="BrowsePhotos"/>
         </SelectorBar>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

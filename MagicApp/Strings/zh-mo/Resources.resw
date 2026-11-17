@@ -345,10 +345,10 @@
   <data name="Services_FileDownload_remainingTimeText" xml:space="preserve">
     <value>还要大概 </value>
   </data>
-  <data name="Pages_QRCode_Status_Success" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_StatusSuccess" xml:space="preserve">
     <value>神秘二维码产生成了！</value>
   </data>
-  <data name="Pages_QRCode_Status_Failure" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_StatusFailure" xml:space="preserve">
     <value>产生出错了:</value>
   </data>
   <data name="Pages_QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
@@ -681,10 +681,40 @@
   <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
     <value>知道是什么了</value>
   </data>
-  <data name="Pages_QRCode_GenerateTab.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Tab_Generate.Text" xml:space="preserve">
     <value>产生</value>
   </data>
-  <data name="Pages_QRCode_DecodeTab.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Tab_Decode.Text" xml:space="preserve">
     <value>看看是什么</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoImageInPaste" xml:space="preserve">
+    <value>剪贴板里面没有有东西的图</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_PasteFailed" xml:space="preserve">
+    <value>偷失败了：</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_SelectImageFailed" xml:space="preserve">
+    <value>选不了图：</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Drop_Caption" xml:space="preserve">
+    <value>松手识别</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoImageInDrop" xml:space="preserve">
+    <value>拖过来的东西不是有东西的图哦</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_DropFailed" xml:space="preserve">
+    <value>拖过来识别不了呢：</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_ImageContentEmpty" xml:space="preserve">
+    <value>图里没有东西哦</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_ReadImageFailed" xml:space="preserve">
+    <value>看不见图：</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoQrCodeFound" xml:space="preserve">
+    <value>识别不到神秘二维码</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_DecodeFailed" xml:space="preserve">
+    <value>识别不了呢：</value>
   </data>
 </root>

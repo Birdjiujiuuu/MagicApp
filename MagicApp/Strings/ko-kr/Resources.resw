@@ -345,10 +345,10 @@
   <data name="Services_FileDownload_remainingTimeText" xml:space="preserve">
     <value>약 </value>
   </data>
-  <data name="Pages_QRCode_Status_Success" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_StatusSuccess" xml:space="preserve">
     <value>QR 코드 생성 성공</value>
   </data>
-  <data name="Pages_QRCode_Status_Failure" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_StatusFailure" xml:space="preserve">
     <value>생성 실패:</value>
   </data>
   <data name="Pages_QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
@@ -681,10 +681,40 @@
   <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
     <value>인식 결과</value>
   </data>
-  <data name="Pages_QRCode_GenerateTab.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Tab_Generate.Text" xml:space="preserve">
     <value>생성</value>
   </data>
-  <data name="Pages_QRCode_DecodeTab.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Tab_Decode.Text" xml:space="preserve">
     <value>인식</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoImageInPaste" xml:space="preserve">
+    <value>클립보드에 인식 가능한 이미지가 없습니다</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_PasteFailed" xml:space="preserve">
+    <value>붙여넣기 실패:</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_SelectImageFailed" xml:space="preserve">
+    <value>이미지 선택 실패:</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Drop_Caption" xml:space="preserve">
+    <value>QR 코드를 인식하려면 놓으세요</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoImageInDrop" xml:space="preserve">
+    <value>드롭한 내용에 인식 가능한 이미지가 없습니다</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_DropFailed" xml:space="preserve">
+    <value>드래그 앤 드롭 인식 실패:</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_ImageContentEmpty" xml:space="preserve">
+    <value>이미지 내용이 비어 있습니다</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_ReadImageFailed" xml:space="preserve">
+    <value>이미지 읽기 실패:</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoQrCodeFound" xml:space="preserve">
+    <value>QR 코드를 인식하지 못했습니다</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_DecodeFailed" xml:space="preserve">
+    <value>인식 실패:</value>
   </data>
 </root>

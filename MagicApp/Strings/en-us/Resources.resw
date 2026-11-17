@@ -345,10 +345,10 @@
   <data name="Services_FileDownload_remainingTimeText" xml:space="preserve">
     <value>About </value>
   </data>
-  <data name="Pages_QRCode_Status_Success" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_StatusSuccess" xml:space="preserve">
     <value>QR code generated successfully</value>
   </data>
-  <data name="Pages_QRCode_Status_Failure" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_StatusFailure" xml:space="preserve">
     <value>Generation failed:</value>
   </data>
   <data name="Pages_QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
@@ -681,10 +681,40 @@
   <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
     <value>Recognition result</value>
   </data>
-  <data name="Pages_QRCode_GenerateTab.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Tab_Generate.Text" xml:space="preserve">
     <value>Generate</value>
   </data>
-  <data name="Pages_QRCode_DecodeTab.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Tab_Decode.Text" xml:space="preserve">
     <value>Recognize</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoImageInPaste" xml:space="preserve">
+    <value>No recognizable image in the clipboard</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_PasteFailed" xml:space="preserve">
+    <value>Paste failed:</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_SelectImageFailed" xml:space="preserve">
+    <value>Failed to select image:</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Drop_Caption" xml:space="preserve">
+    <value>Release to recognize QR code</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoImageInDrop" xml:space="preserve">
+    <value>No recognizable image in the dropped content</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_DropFailed" xml:space="preserve">
+    <value>Drag-and-drop recognition failed:</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_ImageContentEmpty" xml:space="preserve">
+    <value>Image content is empty</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_ReadImageFailed" xml:space="preserve">
+    <value>Failed to read image:</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoQrCodeFound" xml:space="preserve">
+    <value>No QR code detected</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_DecodeFailed" xml:space="preserve">
+    <value>Recognition failed:</value>
   </data>
 </root>

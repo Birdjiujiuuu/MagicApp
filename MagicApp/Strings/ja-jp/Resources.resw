@@ -345,10 +345,10 @@
   <data name="Services_FileDownload_remainingTimeText" xml:space="preserve">
     <value>残り約 </value>
   </data>
-  <data name="Pages_QRCode_Status_Success" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_StatusSuccess" xml:space="preserve">
     <value>QRコードの生成に成功しました</value>
   </data>
-  <data name="Pages_QRCode_Status_Failure" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_StatusFailure" xml:space="preserve">
     <value>生成失敗:</value>
   </data>
   <data name="Pages_QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
@@ -681,10 +681,40 @@
   <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
     <value>認識結果</value>
   </data>
-  <data name="Pages_QRCode_GenerateTab.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Tab_Generate.Text" xml:space="preserve">
     <value>生成</value>
   </data>
-  <data name="Pages_QRCode_DecodeTab.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Tab_Decode.Text" xml:space="preserve">
     <value>認識</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoImageInPaste" xml:space="preserve">
+    <value>クリップボードに認識可能な画像がありません</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_PasteFailed" xml:space="preserve">
+    <value>貼り付けに失敗しました：</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_SelectImageFailed" xml:space="preserve">
+    <value>画像の選択に失敗しました：</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Drop_Caption" xml:space="preserve">
+    <value>QRコードを認識するには離してください</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoImageInDrop" xml:space="preserve">
+    <value>ドロップされた内容に認識可能な画像がありません</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_DropFailed" xml:space="preserve">
+    <value>ドラッグ＆ドロップでの認識に失敗しました：</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_ImageContentEmpty" xml:space="preserve">
+    <value>画像の内容が空です</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_ReadImageFailed" xml:space="preserve">
+    <value>画像の読み込みに失敗しました：</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_NoQrCodeFound" xml:space="preserve">
+    <value>QRコードが認識されませんでした</value>
+  </data>
+  <data name="Pages_QRCode_Decode_Error_DecodeFailed" xml:space="preserve">
+    <value>認識に失敗しました：</value>
   </data>
 </root>
