@@ -36,7 +36,7 @@ namespace MagicApp.Pages
             InitializeComponent();
 
             // 默认选中生成区
-            ViewSelectorBar.SelectedItem = GenerateTab;
+            ViewSelectorBar.SelectedItem = Tab_Generate;
 
             UpdateActionButtonState();
         }
@@ -45,10 +45,10 @@ namespace MagicApp.Pages
         {
             UpdateActionButtonState();
 
-            this.InputTextBox_TextChanged(this, default!);
+            this.Generate_InputTextBox_TextChanged(this, default!);
 
             // 生成区：复制二维码按钮点击事件
-            CopyQRCodeButton.Action = async () =>
+            Generate_CopyQRCodeButton.Action = async () =>
             {
                 if (_lastQrCodeBytes is not { Length: > 0 })
                     return false;
@@ -78,7 +78,7 @@ namespace MagicApp.Pages
             };
 
             // 生成区：保存二维码按钮点击事件
-            SaveQRCodeButton.Action = async () =>
+            Generate_SaveQRCodeButton.Action = async () =>
             {
                 if (_lastQrCodeBytes is not { Length: > 0 })
                     return false;
@@ -117,7 +117,7 @@ namespace MagicApp.Pages
             };
 
             // 识别区：粘贴按钮点击事件
-            PasteFromClipboardButton.Action = async () =>
+            Decode_PasteFromClipboardButton.Action = async () =>
             {
                 try
                 {
@@ -153,7 +153,7 @@ namespace MagicApp.Pages
             };
 
             // 识别区：清空按钮点击事件
-            ClearDecodeButton.Action = async () =>
+            Decode_ClearButton.Action = async () =>
             {
                 // 没有内容可清空返回 false
                 if (_lastDecodedBytes is not { Length: > 0 })
@@ -161,13 +161,13 @@ namespace MagicApp.Pages
 
                 _lastDecodedBytes = null;
 
-                DecodePreviewImage.Source = null;
-                DecodePlaceholderText.Visibility = Visibility.Visible;
+                Decode_PreviewImage.Source = null;
+                Decode_PlaceholderText.Visibility = Visibility.Visible;
 
                 // 重置状态为空白并禁止交互
-                DecodeResultTextBox.Text = string.Empty;
-                DecodeResultTextBox.PlaceholderText = string.Empty;
-                DecodeResultTextBox.IsHitTestVisible = false;
+                Decode_ResultTextBox.Text = string.Empty;
+                Decode_ResultTextBox.PlaceholderText = string.Empty;
+                Decode_ResultTextBox.IsHitTestVisible = false;
 
                 return true;
             };
@@ -176,7 +176,7 @@ namespace MagicApp.Pages
         // ==================== 视图切换 ====================
         private void ViewSelectorBar_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
         {
-            bool isGenerate = ReferenceEquals(sender.SelectedItem, GenerateTab);
+            bool isGenerate = ReferenceEquals(sender.SelectedItem, Tab_Generate);
 
             GenerateView.Visibility = isGenerate ? Visibility.Visible : Visibility.Collapsed;
             DecodeView.Visibility = isGenerate ? Visibility.Collapsed : Visibility.Visible;
@@ -188,23 +188,23 @@ namespace MagicApp.Pages
         private void UpdateActionButtonState()
         {
             bool hasQr = _lastQrCodeBytes is { Length: > 0 };
-            CopyQRCodeButton.IsEnabled = hasQr;
-            SaveQRCodeButton.IsEnabled = hasQr;
+            Generate_CopyQRCodeButton.IsEnabled = hasQr;
+            Generate_SaveQRCodeButton.IsEnabled = hasQr;
         }
 
-        private async void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private async void Generate_InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             // 更新文本长度
-            TextLengthData.DataValue = InputTextBox.Text.Length.ToString();
+            Generate_TextLengthData.DataValue = Generate_InputTextBox.Text.Length.ToString();
 
             // 如果文本框有内容，启用生成按钮
-            GenerateButton.IsEnabled = !string.IsNullOrWhiteSpace(InputTextBox.Text);
+            Generate_GenerateButton.IsEnabled = !string.IsNullOrWhiteSpace(Generate_InputTextBox.Text);
 
             // 如果内容为空，清空二维码
-            if (string.IsNullOrWhiteSpace(InputTextBox.Text))
+            if (string.IsNullOrWhiteSpace(Generate_InputTextBox.Text))
             {
-                QRCodeImage.Source = null;
-                StatusTextBlock.Text = string.Empty;
+                Generate_QRCodeImage.Source = null;
+                Generate_StatusTextBlock.Text = string.Empty;
 
                 // 清空上一次生成的二维码字节数组
                 _lastQrCodeBytes = null;
@@ -212,12 +212,12 @@ namespace MagicApp.Pages
             }
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        private void Generate_ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            InputTextBox.Text = string.Empty;
+            Generate_InputTextBox.Text = string.Empty;
         }
 
-        private async void GenerateButton_Click(object sender, RoutedEventArgs e)
+        private async void Generate_GenerateButton_Click(object sender, RoutedEventArgs e)
         {
             await GenerateQRCode();
         }
@@ -226,7 +226,7 @@ namespace MagicApp.Pages
         {
             try
             {
-                string text = InputTextBox.Text;
+                string text = Generate_InputTextBox.Text;
                 if (string.IsNullOrWhiteSpace(text))
                     return;
                 byte[] qrCodeBytes;
@@ -266,14 +266,14 @@ namespace MagicApp.Pages
 
                     var bitmapImage = new BitmapImage();
                     await bitmapImage.SetSourceAsync(stream);
-                    QRCodeImage.Source = bitmapImage;
+                    Generate_QRCodeImage.Source = bitmapImage;
                 }
 
                 // 保存字节，并启用操作按钮
                 _lastQrCodeBytes = qrCodeBytes;
                 UpdateActionButtonState();
 
-                StatusTextBlock.Text =
+                Generate_StatusTextBlock.Text =
                     _resourceLoader.GetString("Pages_QRCode_Generate_StatusSuccess") +
                     $" ({DateTime.Now:HH:mm:ss})";
             }
@@ -283,10 +283,10 @@ namespace MagicApp.Pages
                 _lastQrCodeBytes = null;
                 UpdateActionButtonState();
 
-                StatusTextBlock.Text =
+                Generate_StatusTextBlock.Text =
                     _resourceLoader.GetString("Pages_QRCode_Generate_StatusFailure") +
                     $" {ex.Message}";
-                QRCodeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
+                Generate_QRCodeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/None.png"));
             }
         }
 
@@ -295,19 +295,19 @@ namespace MagicApp.Pages
         // -------- 状态辅助方法（统一处理 UI 反馈） --------
         private void ShowDecodeError(string message)
         {
-            DecodeResultTextBox.Text = string.Empty; // 清空正文
-            DecodeResultTextBox.PlaceholderText = message; // 用占位符显示灰色的提示信息
-            DecodeResultTextBox.IsHitTestVisible = false; // 失败或提示时，禁止鼠标交互/框选
+            Decode_ResultTextBox.Text = string.Empty; // 清空正文
+            Decode_ResultTextBox.PlaceholderText = message; // 用占位符显示灰色的提示信息
+            Decode_ResultTextBox.IsHitTestVisible = false; // 失败或提示时，禁止鼠标交互/框选
         }
 
         private void ShowDecodeSuccess(string text)
         {
-            DecodeResultTextBox.Text = text; // 显示识别结果正文
-            DecodeResultTextBox.IsHitTestVisible = true; // 成功时允许框选复制
+            Decode_ResultTextBox.Text = text; // 显示识别结果正文
+            Decode_ResultTextBox.IsHitTestVisible = true; // 成功时允许框选复制
         }
 
         // -------- 点击选图 --------
-        private async void DecodeDropButton_Click(object sender, RoutedEventArgs e)
+        private async void Decode_DropButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -424,7 +424,7 @@ namespace MagicApp.Pages
         private async Task DecodeFromBytesAsync(byte[] bytes)
         {
             // 开始识别并禁用框选
-            DecodeResultTextBox.IsHitTestVisible = false;
+            Decode_ResultTextBox.IsHitTestVisible = false;
 
             // 预览
             try
@@ -436,14 +436,14 @@ namespace MagicApp.Pages
                 var bitmapImage = new BitmapImage();
                 await bitmapImage.SetSourceAsync(stream);
 
-                DecodePreviewImage.Source = bitmapImage;
-                DecodePlaceholderText.Visibility = Visibility.Collapsed;
+                Decode_PreviewImage.Source = bitmapImage;
+                Decode_PlaceholderText.Visibility = Visibility.Collapsed;
             }
             catch
             {
                 // 预览失败不阻止继续尝试解码
-                DecodePreviewImage.Source = null;
-                DecodePlaceholderText.Visibility = Visibility.Visible;
+                Decode_PreviewImage.Source = null;
+                Decode_PlaceholderText.Visibility = Visibility.Visible;
             }
 
             _lastDecodedBytes = bytes;

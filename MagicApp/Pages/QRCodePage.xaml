@@ -27,8 +27,8 @@
                      Grid.Row="0"
                      Margin="58,12,58,0"
                      SelectionChanged="ViewSelectorBar_SelectionChanged">
-            <SelectorBarItem x:Name="GenerateTab" x:Uid="Pages_QRCode_Tab_Generate" Icon="Edit"/>
-            <SelectorBarItem x:Name="DecodeTab" x:Uid="Pages_QRCode_Tab_Decode" Icon="BrowsePhotos"/>
+            <SelectorBarItem x:Name="Tab_Generate" x:Uid="Pages_QRCode_Tab_Generate" Icon="Edit"/>
+            <SelectorBarItem x:Name="Tab_Decode" x:Uid="Pages_QRCode_Tab_Decode" Icon="BrowsePhotos"/>
         </SelectorBar>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
@@ -40,33 +40,33 @@
                     <!-- 输入区 -->
                     <Border Grid.Column="0" Style="{StaticResource CardStyle}">
                         <StackPanel Spacing="15">
-                            <TextBlock x:Uid="Pages_QRCode_TitleGenerate"
+                            <TextBlock x:Uid="Pages_QRCode_Generate_Title"
                                        Style="{StaticResource SubtitleTextBlockStyle}"/>
 
-                            <TextBox x:Name="InputTextBox"
-                                     x:Uid="Pages_QRCode_InputTextBox"
+                            <TextBox x:Name="Generate_InputTextBox"
+                                     x:Uid="Pages_QRCode_Generate_InputTextBox"
                                      AcceptsReturn="True"
                                      TextWrapping="Wrap"
                                      MinHeight="180"
                                      MaxHeight="320"
                                      VerticalAlignment="Stretch"
-                                     TextChanged="InputTextBox_TextChanged"/>
-                            <controls:DataControl x:Name="TextLengthData"
-                                                  x:Uid="Pages_QRCode_TextLengthData"
+                                     TextChanged="Generate_InputTextBox_TextChanged"/>
+                            <controls:DataControl x:Name="Generate_TextLengthData"
+                                                  x:Uid="Pages_QRCode_Generate_TextLengthData"
                                                   IconGlyph="&#xE8D2;"
                                                   IconColor="#00A1D6"/>
                             <Grid ColumnDefinitions="*,10,*">
-                                <Button x:Name="ClearButton"
-                                        x:Uid="Pages_QRCode_ClearButton"
+                                <Button x:Name="Generate_ClearButton"
+                                        x:Uid="Pages_QRCode_Generate_ClearButton"
                                         Grid.Column="0"
                                         HorizontalAlignment="Stretch"
-                                        Click="ClearButton_Click"/>
-                                <Button x:Name="GenerateButton"
-                                        x:Uid="Pages_QRCode_GenerateButton"
+                                        Click="Generate_ClearButton_Click"/>
+                                <Button x:Name="Generate_GenerateButton"
+                                        x:Uid="Pages_QRCode_Generate_GenerateButton"
                                         Grid.Column="2"
                                         HorizontalAlignment="Stretch"
                                         Style="{StaticResource AccentButtonStyle}"
-                                        Click="GenerateButton_Click"/>
+                                        Click="Generate_GenerateButton_Click"/>
                             </Grid>
                         </StackPanel>
                     </Border>
@@ -74,7 +74,7 @@
                     <!-- 预览区 -->
                     <Border Grid.Column="1" Width="340" Style="{StaticResource CardStyle}">
                         <StackPanel Spacing="10">
-                            <TextBlock x:Uid="Pages_QRCode_TitlePreview"
+                            <TextBlock x:Uid="Pages_QRCode_Generate_PreviewTitle"
                                        Style="{StaticResource SubtitleTextBlockStyle}"/>
 
                             <Border Background="White"
@@ -84,18 +84,18 @@
                                     HorizontalAlignment="Center"
                                     MinWidth="290"
                                     MinHeight="290">
-                                <Image x:Name="QRCodeImage"
+                                <Image x:Name="Generate_QRCodeImage"
                                        Width="270"
                                        Height="270"
                                        Stretch="Uniform"/>
                             </Border>
 
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
-                                <controls:ActionButton x:Name="CopyQRCodeButton" x:Uid="Pages_QRCode_CopyQRCodeButton" IconGlyph="&#xE8C8;" IsEnabled="False"/>
-                                <controls:ActionButton x:Name="SaveQRCodeButton" x:Uid="Pages_QRCode_SaveQRCodeButton" IconGlyph="&#xE74E;" IsEnabled="False"/>
+                                <controls:ActionButton x:Name="Generate_CopyQRCodeButton" x:Uid="Pages_QRCode_Generate_CopyQRCodeButton" IconGlyph="&#xE8C8;" IsEnabled="False"/>
+                                <controls:ActionButton x:Name="Generate_SaveQRCodeButton" x:Uid="Pages_QRCode_Generate_SaveQRCodeButton" IconGlyph="&#xE74E;" IsEnabled="False"/>
                             </StackPanel>
 
-                            <TextBlock x:Name="StatusTextBlock"
+                            <TextBlock x:Name="Generate_StatusTextBlock"
                                        TextWrapping="Wrap"
                                        HorizontalAlignment="Center"
                                        TextAlignment="Center"
@@ -111,7 +111,7 @@
                     <StackPanel Grid.Row="0" HorizontalAlignment="Center" Spacing="8">
                         <Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,Auto">
                             <!-- 拖拽/点击选图框 -->
-                            <Button x:Name="DecodeDropButton"
+                            <Button x:Name="Decode_DropButton"
                                     Grid.Column="0"
                                     Width="290"
                                     Height="290"
@@ -123,17 +123,17 @@
                                     AllowDrop="True"
                                     DragOver="DecodePreview_DragOver"
                                     Drop="DecodePreview_Drop"
-                                    Click="DecodeDropButton_Click">
+                                    Click="Decode_DropButton_Click">
                                 <Grid>
-                                    <TextBlock x:Name="DecodePlaceholderText"
-                                               x:Uid="Pages_QRCode_DecodePlaceholderText"
+                                    <TextBlock x:Name="Decode_PlaceholderText"
+                                               x:Uid="Pages_QRCode_Decode_PlaceholderText"
                                                Foreground="Gray"
                                                TextWrapping="Wrap"
                                                TextAlignment="Center"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                Margin="20"/>
-                                    <Image x:Name="DecodePreviewImage"
+                                    <Image x:Name="Decode_PreviewImage"
                                            Width="270"
                                            Height="270"
                                            Stretch="Uniform"/>
@@ -146,16 +146,16 @@
                                         Margin="12,0,0,0" 
                                         Spacing="6">
                                 <!-- 粘贴 -->
-                                <controls:ActionButton x:Name="PasteFromClipboardButton" x:Uid="Pages_QRCode_PasteFromClipboardButton" IconGlyph="&#xE77F;"/>
+                                <controls:ActionButton x:Name="Decode_PasteFromClipboardButton" x:Uid="Pages_QRCode_Decode_PasteFromClipboardButton" IconGlyph="&#xE77F;"/>
                                 <!-- 清空 -->
-                                <controls:ActionButton x:Name="ClearDecodeButton" x:Uid="Pages_QRCode_ClearDecodeButton" IconGlyph="&#xE74D;"/>
+                                <controls:ActionButton x:Name="Decode_ClearButton" x:Uid="Pages_QRCode_Decode_ClearButton" IconGlyph="&#xE74D;"/>
                             </StackPanel>
                         </Grid>
                     </StackPanel>
 
                     <!-- 结果区 -->
-                    <TextBox x:Name="DecodeResultTextBox"
-                             x:Uid="Pages_QRCode_DecodeResultTextBox"
+                    <TextBox x:Name="Decode_ResultTextBox"
+                             x:Uid="Pages_QRCode_Decode_ResultTextBox"
                              Grid.Row="1"
                              IsReadOnly="True"
                              TextWrapping="Wrap"

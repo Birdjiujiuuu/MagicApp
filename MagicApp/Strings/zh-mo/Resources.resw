@@ -183,7 +183,7 @@
   <data name="Pages_Notice_Clear.Content" xml:space="preserve">
     <value>全部不要了</value>
   </data>
-  <data name="Pages_QRCode_ClearButton.Content" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_ClearButton.Content" xml:space="preserve">
     <value>全部不要了</value>
   </data>
   <data name="Pages_Notice_SoundEvent_ComboBox.Header" xml:space="preserve">
@@ -351,19 +351,19 @@
   <data name="Pages_QRCode_Generate_StatusFailure" xml:space="preserve">
     <value>产生出错了:</value>
   </data>
-  <data name="Pages_QRCode_InputTextBox.PlaceholderText" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_InputTextBox.PlaceholderText" xml:space="preserve">
     <value>把要藏在神秘二维码的东西写在这里...</value>
   </data>
-  <data name="Pages_QRCode_TextLengthData.Description" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_TextLengthData.Description" xml:space="preserve">
     <value>东西有多长/字符</value>
   </data>
-  <data name="Pages_QRCode_TitlePreview.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_PreviewTitle.Text" xml:space="preserve">
     <value>神秘二维码提前看看</value>
   </data>
-  <data name="Pages_QRCode_TitleGenerate.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_Title.Text" xml:space="preserve">
     <value>神秘二维码产生</value>
   </data>
-  <data name="Pages_QRCode_GenerateButton.Content" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_GenerateButton.Content" xml:space="preserve">
     <value>产生神秘二维码</value>
   </data>
   <data name="Main_NavView_Header_ConversionTools.Content" xml:space="preserve">
@@ -663,22 +663,22 @@
   <data name="Pages_Pictures_DatePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>看看其他日子的</value>
   </data>
-  <data name="Pages_QRCode_CopyQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_CopyQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>复制一下神秘二维码</value>
   </data>
-  <data name="Pages_QRCode_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_QRCode_Generate_SaveQRCodeButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>把神秘二维码存起来</value>
   </data>
-  <data name="Pages_QRCode_DecodePlaceholderText.Text" xml:space="preserve">
+  <data name="Pages_QRCode_Decode_PlaceholderText.Text" xml:space="preserve">
     <value>点一下选图，也可以拉过来</value>
   </data>
-  <data name="Pages_QRCode_PasteFromClipboardButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_QRCode_Decode_PasteFromClipboardButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>从剪贴板偷</value>
   </data>
-  <data name="Pages_QRCode_ClearDecodeButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="Pages_QRCode_Decode_ClearButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>全部不要了</value>
   </data>
-  <data name="Pages_QRCode_DecodeResultTextBox.Header" xml:space="preserve">
+  <data name="Pages_QRCode_Decode_ResultTextBox.Header" xml:space="preserve">
     <value>知道是什么了</value>
   </data>
   <data name="Pages_QRCode_Tab_Generate.Text" xml:space="preserve">
